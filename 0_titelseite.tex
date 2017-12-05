@@ -1,0 +1,44 @@
+% \thispagestyle{empty}
+
+\begin{titlepage}
+	%\tikz[remember picture,overlay]
+	%\node[anchor=north east,inner sep=1.5cm] at (current page.north east) {\includegraphics[height=4.9cm]{fh-logo-right.png}};
+	
+	\newlength
+	\logoheight
+	\settoheight
+	\logoheight{\includegraphics[]{fh_logo_right_black.pdf}}
+	\AddToShipoutPicture*{
+		\makebox[\paperwidth][r]{
+			\raisebox{\dimexpr(\paperheight-\height-20mm)}
+			{\includegraphics[]{fh_logo_right_black.pdf}}
+		}
+	}
+	\newgeometry{margin=20mm,bottom=25mm}
+	\thispagestyle{empty}
+
+	\vspace*{\fill}
+	\centering
+	\Huge
+	\thetitle\par
+	\normalsize
+	Bachelorarbeit\par
+	\vspace{0.25cm}
+	\normalsize
+	Fachhochschule Aachen\par
+	Fachbereich Elektrotechnik und Informationstechnik\par
+	Ingenieur-Informatik\par
+	\vspace{0.5cm}
+	Albert Kasdorf\par
+	geb. am 29.12.1984 in Pawlodar\par
+	Matr.-Nr.: 3029294\par
+	%\vspace{0.5cm}
+	%März -- Juli 2017\par
+	%01.03.2017 bis 31.07.2017\par
+	\vspace{0.5cm}
+	Gutachter:\par
+	Prof. Dr. rer. nat. Alexander Ferrein\par
+	Prof. Dipl.-Inf. Ingrid Scholl\par
+	Prof. Dr.-Ing. Thorsten Ringbeck\par
+	\vspace{\fill}
+\end{titlepage}

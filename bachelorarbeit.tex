@@ -1,8 +1,10 @@
 \documentclass[
 	%draft,
+	11pt,
 	a4paper,
+	twoside,
 	titlepage,
-	11pt
+	openright,
 ]{scrbook}
 
 \usepackage[utf8]{inputenc}
@@ -13,7 +15,12 @@
 \usepackage{comment}
 \usepackage[ngerman]{babel}
 \usepackage[babel, german=quotes]{csquotes}
-\usepackage[a4paper]{geometry}
+
+%\usepackage{showframe}
+\usepackage[
+	a4paper,
+	%showframe,
+]{geometry}
 
 % Quelltexte (Programmlistings)
 \usepackage{listings}
@@ -57,9 +64,12 @@
 
 \usepackage{tikz}
 
+\usepackage{wallpaper}
+
+
 \begin{document}
 
-	\input{titel}
+	\input{0_titelseite}
 
 	%\newpage
 	\thispagestyle{empty}
@@ -74,7 +84,6 @@
 	\input{ro_slam}
 	\input{evaluation}
 	\input{zusammenfassung_und_ausblick}
-
 
 %
 % Literatur
