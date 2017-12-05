@@ -1,0 +1,31 @@
+%
+% Forschungsstand:
+%
+% - Welche wissenschaftlichen Erkenntnisse liegen zu dem Thema bereits vor?
+% - Grundsätzlich gibt es zwei Möglichkeiten, einen Forschungsstand zu schreiben: Entweder ordnen Sie Ihren Literaturüberblick nach Themenkomplexen oder Sie geben einen rein chronologischen Überblick über die wichtigsten Publikationen.
+% - Auf keinen Fall sollten Sie den Forschungsstand zu voll packen. Es geht nicht darum, dem Leser zu zeigen, was Sie alles studiert haben (wie fleißig Sie waren), sondern um einen kompakten Überblick über die wichtigste Literatur.
+% - Wichtig: Listen Sie die Literatur nicht nur auf, sondern erklären Sie, welchen Beitrag die jeweilige Publikation zum Erkenntnisgewinn geleistet hat. Also, zum Beispiel: Was hat der Autor als Erster erkannt oder hinterfragt? Es muss ja einen Grund geben, weshalb Sie die betreffende Publikation unter die Meilensteine reihen – und den sollten Sie dem Leser deutlich machen.
+%
+% Ferrein:
+% - 4-5 Seiten in der Bachelorarbeit (deutlich umfangreicher als im Exposé)
+% - Was unterscheidet meinen Ansatz von den anderen verhandenen Ansätzen?
+%
+\chapter{Stand der Forschung und Technik}
+
+Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
+
+In \cite{smith1987closed} wird das grundlegende Prinzip erklärt um aus mehreren bekannten Sensoren die Position eines beweglichen Empfängers zu berechnen.
+
+Der theoretische Hintergrund des SLAM--Verfahrens wird in \cite{dissanayake2001solution} vorgestellt. Zusätzlich wird bewiesen das die Unsicherheit bei der Kartenerstellung und Lokalisierung eine untere Schranke erreicht.
+
+\citeauthor{kantor2002preliminary} stellen in Ihrer Arbeit \cite{kantor2002preliminary} ein Lokalisierungsverfahren vor, welches die Roboterposition anhand von Entfernungsmessungen zu vorher bekannten Landmarken bestimmen kann. Im letzten Abschnitt wird SLAM--Verfahren vorgestellt, welches über einen Kalman--Filter die Unsicherheit der Landmarkenposition modellieren kann.
+
+Die Autoren \citeauthor{blanco2008pure} gehen in ihren Arbeiten \cite{blanco2008pure, blanco2008efficient} einen Schritt weiter und bestimmen die unbekannte Roboterposition sowie die unbekannten Landmarkenpositionen. Hierzu nutzen Sie im ersten Schritt einen Partikelfilter (engl. Particle Filter) bis die Schätzung eine ausreichende Genauigkeit erreicht hat um dann im zweiten Schritt über einen Kalman--Filter ein Positionsverfolgung (engl. Position Tracking) durchzuführen.
+
+Die Arbeit \cite{ledergerber2015robot} von \citeauthor{ledergerber2015robot} gehen auf die Roboterlokalisierung unter Verwendung einer One-Way Ultra-Wideband Kommunikation ein. Dieses hat den Vorteil, das mit sehr wenigen Landmarken eine große Anzahl von Roboter lokalisiert werden kann.
+
+- The Cartesian EKF described above operates in the Cartesian space, we formulate our problem in polar coordinates.
+- The use of this parameterization derives motivation from the polar coordinate system, where annuli, crescents and other ringlike shapes can be easily modeled. This parameterization is called Relative Over Parameterized (ROP) because it over parameterizes the state relative to an origin.
+
+- EKF -> Polar EKF -> Multi-Hypothesis Filter
+- Partikel Filter

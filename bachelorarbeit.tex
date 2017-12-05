@@ -1,0 +1,96 @@
+\documentclass[
+	%draft,
+	a4paper,
+	titlepage,
+	11pt
+]{scrbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+  \graphicspath{ {Bilder/} }
+\usepackage{comment}
+\usepackage[ngerman]{babel}
+\usepackage[babel, german=quotes]{csquotes}
+\usepackage[a4paper]{geometry}
+
+% Quelltexte (Programmlistings)
+\usepackage{listings}
+  % Listings caption [duplicate]
+  % https://tex.stackexchange.com/questions/54819/listings-caption
+  \renewcommand{\lstlistingname}{Auflistung}
+  
+\usepackage{url}
+\usepackage{hyperref}
+
+% The biblatex Package - Programmable Bibliographies and Citations
+% 	- http://ftp.math.purdue.edu/mirrors/ctan.org/macros/latex/exptl/biblatex/doc/biblatex.pdf
+% Biblatex citation order
+%	- https://tex.stackexchange.com/questions/51434/biblatex-citation-order
+\usepackage[
+	backend=biber,
+	style=numeric-comp,
+	%sorting=ydnt,					% Sort by year (descending), name, title.
+	sorting=none,					% Do not sort at all. All entries are processed in citation order.
+]{biblatex}
+	\addbibresource{C:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\sources.bib}
+
+% How can I use @author, @date, and @title after maketitle?
+% https://tex.stackexchange.com/questions/27710/how-can-i-use-author-date-and-title-after-maketitle
+\usepackage{titling}
+	\title{Range Only Simultaneous Localization and Mapping with Ultra-Wideband}
+	\author{Albert Kasdorf}
+
+% Page layout in LATEX
+% http://www.ntg.nl/maps/16/29.pdf
+%\usepackage{fancyhdr}
+%	\pagestyle{fancy}
+%	\lhead{}\chead{}\rhead{}
+%	\lfoot{}\cfoot{\thepage}\rfoot{}
+%	\renewcommand{\headrulewidth}{0.0pt}
+%	\renewcommand{\footrulewidth}{0.4pt}
+
+% siunitx — A comprehensive (SI) units package
+% http://www.bakoma-tex.com/doc/latex/siunitx/siunitx.pdf
+\usepackage{siunitx}
+
+\usepackage{tikz}
+
+\begin{document}
+
+	\input{titel}
+
+	%\newpage
+	\thispagestyle{empty}
+	\input{inhaltsverzeichnis}
+
+	%\newpage
+	%\setcounter{page}{1}
+	\input{einfuehrung}
+	\input{grundlagen}
+	\input{stand_der_forschung_und_technik}
+	\input{uwb}
+	\input{ro_slam}
+	\input{evaluation}
+	\input{zusammenfassung_und_ausblick}
+
+
+%
+% Literatur
+%
+% 	- http://linorg.usp.br/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf
+% 		- bibnumbered, bibintoc
+%
+	\nocite{mcelroy2014comparison}
+	\nocite{herranz2014comparison}
+	\nocite{gonzalez2009mobile}
+	\nocite{durrant2006simultaneous}
+	\nocite{thrun2005probabilistic}
+	\nocite{schroeder2005low}
+	\nocite{smith2004tracking}
+	%\printbibliography[heading=bibnumbered]
+	\printbibliography
+
+
+\end{document}
