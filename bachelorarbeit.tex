@@ -10,17 +10,41 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{graphicx}
-  \graphicspath{ {Bilder/} }
 \usepackage{comment}
 \usepackage[ngerman]{babel}
-\usepackage[babel, german=quotes]{csquotes}
+\usepackage[autostyle]{csquotes}
 
-%\usepackage{showframe}
+\usepackage{showframe}
 \usepackage[
 	a4paper,
-	%showframe,
+	showframe,
+% FH Vorlage :$
+%	inner=35mm,
+%	outer=25mm,
+%	top=20mm,
+%	bottom=25mm,
+%	headsep=1em,
+%	headheight=1.5em,
+%	includehead,
+%	footskip=3em,
+%	includefoot
 ]{geometry}
+
+% change normal text style to 1.5 lineheight and remove paragraph indent
+% Das Setspace Paket ermöglicht es auch recht einfach Weise den Zeilenabstand zu ändern. Da es bei einer Vielzahl von Arbeiten gefordert wird, dass der Zeilenabstand zum Beispiel 1.5 betragen soll oder das ein doppelter Zeilenabstand gewünscht wird. Im Regelfall werden Seminar-, Bachelor-, Master- und Diplomarbeiten mit eineinhalbfachen Zeilenabstand gesetzt.
+%\usepackage[onehalfspacing]{setspace}
+%	\setlength{\parindent}{0em}
+%	\setlength{\parskip}{0.5em}
+
+% fix widows (Hurenkinder) and orphans (Schusterjungen)
+% http://mirror.hmc.edu/ctan/macros/latex/contrib/nowidow/nowidow.pdf
+%\usepackage[defaultlines=4,all]{nowidow}
+
+% use color package and define fh logo colors
+\usepackage{color}
+	\definecolor{fh-black}{RGB}{0,0,0}
+	\definecolor{fh-white}{RGB}{255,255,255}
+	\definecolor{fh-turquoise}{RGB}{0,177,172}
 
 % Quelltexte (Programmlistings)
 \usepackage{listings}
@@ -29,7 +53,13 @@
   \renewcommand{\lstlistingname}{Auflistung}
   
 \usepackage{url}
-\usepackage{hyperref}
+\usepackage[
+	breaklinks=true,
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=black,
+	citecolor=black,
+]{hyperref}
 
 % The biblatex Package - Programmable Bibliographies and Citations
 % 	- http://ftp.math.purdue.edu/mirrors/ctan.org/macros/latex/exptl/biblatex/doc/biblatex.pdf
@@ -38,8 +68,10 @@
 \usepackage[
 	backend=biber,
 	style=numeric-comp,
-	%sorting=ydnt,					% Sort by year (descending), name, title.
-	sorting=none,					% Do not sort at all. All entries are processed in citation order.
+	% Sort by year (descending), name, title.
+	%sorting=ydnt,
+	% Do not sort at all. All entries are processed in citation order.
+	sorting=none,
 ]{biblatex}
 	\addbibresource{C:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\sources.bib}
 
@@ -62,21 +94,85 @@
 % http://www.bakoma-tex.com/doc/latex/siunitx/siunitx.pdf
 \usepackage{siunitx}
 
-\usepackage{tikz}
+\usepackage{graphicx}
+  \graphicspath{ {Bilder/} }
+  
+\usepackage{eso-pic}
 
-\usepackage{wallpaper}
+%\usepackage{tikz}
+%	\usetikzlibrary{positioning}
+%	\usetikzlibrary{calc}
+%	\usetikzlibrary{decorations.markings}
+%	\usetikzlibrary{fit}
+
+\usepackage{float}
+
+%
+% acronym – Abkürzungsverzeichnis mit LATEX
+% http://namsu.de/Extra/pakete/Acronym.pdf
+%
+\usepackage[
+	nohyperlinks,
+	printonlyused,
+	withpage,
+	%footnote,
+	%smaller,
+]{acronym}
+%\usepackage[numbers,nonamebreak,sort]{natbib}
+
+% configure "fancy" page style
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\renewcommand\headrulewidth{0.2mm}
+%\renewcommand\footrulewidth{0mm}
+%\fancyhead[OR,EL]{\leftmark}
+%\fancyfoot[OR,EL]{\thepage}
+%\fancypagestyle{plain}{
+%    \fancyhead{}% remove header at chapter beginning
+%    \renewcommand{\headrulewidth}{0mm}
+%}
+
+% math
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% other packages
+\usepackage{enumitem}
+\usepackage{lipsum}
+
+%
+% The tocloft package provides means of controlling the typographic design of the Table of Contents, List of Figures and List of Tables.
+% http://mirrors.rit.edu/CTAN/macros/latex/contrib/tocloft/tocloft.pdf
+%
+%\usepackage{tocloft}
+
+%
+% http://ctan.math.illinois.edu/macros/latex/contrib/fncychap/fncychap.pdf
+%
+%\usepackage[Sonny]{fncychap}
 
 
 \begin{document}
 
+	% Dieser Befehl wird oftmals in großen Dokumenten für die ersten Seiten verwendet. Ziel ist es hierbei die Seiten wie Sperrklausel, Danksagung, Tabellen- oder Inhaltsverzeichnis von dem eigentlichen Inhalt des Dokumentes zu trennen. Dies geschieht durch Umschaltung der Seitennummerierung von arabisch auf römisch, wobei die Seitenzählung wieder bei 1 beginnt. 
+	\frontmatter
+
+	% titlepage
 	\input{0_titelseite}
+	\cleardoublepage
+	
+	% front matter
+	%\input{abstract}
 
-	%\newpage
-	\thispagestyle{empty}
-	\input{inhaltsverzeichnis}
-
-	%\newpage
-	%\setcounter{page}{1}
+	\input{0_inhaltsverzeichnis}
+	\input{0_abkuerzungsverzeichnis}
+	\input{0_abbildungsverzeichnis}
+	\input{0_tabellenverzeichnis}
+	
+	% Arabische Seitenummerierung
+	\mainmatter
+	
 	\input{einfuehrung}
 	\input{grundlagen}
 	\input{stand_der_forschung_und_technik}
@@ -84,12 +180,14 @@
 	\input{ro_slam}
 	\input{evaluation}
 	\input{zusammenfassung_und_ausblick}
+	\cleardoublepage
 
 %
 % Literatur
 %
 % 	- http://linorg.usp.br/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf
 % 		- bibnumbered, bibintoc
+%	- https://de.sharelatex.com/learn/Bibliography_management_with_biblatex
 %
 	\nocite{mcelroy2014comparison}
 	\nocite{herranz2014comparison}
@@ -98,8 +196,16 @@
 	\nocite{thrun2005probabilistic}
 	\nocite{schroeder2005low}
 	\nocite{smith2004tracking}
-	%\printbibliography[heading=bibnumbered]
-	\printbibliography
+	\printbibliography[
+		heading=bibintoc,
+		title={Literaturverzeichnis}
+	]
+	\cleardoublepage
 
+	% Beginn des Anhangs
+	\appendix
+
+	% Ende des Buches
+	\backmatter
 
 \end{document}
