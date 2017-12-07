@@ -1,19 +1,86 @@
+\begin{comment}
+Fragestellung:
+- Welche elektrische Beschaltung ist notwendig um das DWM1000 Modul von DecaWave in Betrieb nehmen zu können?
+- Wie erfolgt die Entfernungsmessung zwischen den einzelnen UWB--Modulen?
+- Wie erfolgt der Datenaustausch zwischen einem UWB--Modul und der Verarbeitungseinheit?
+- Kann über die Kalibrierung der Antennenverzögerung eine genauere Entfernungsmessung erreicht werden?
+- Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line--of--sight (LOS)) und indirekten Sichtverbindung (engl. Non--line--of--sight (NLOS))?
+\end{comment}
+
 \chapter{Ultrabreitband}
+
+
+yavari2014ultra - Ultra wideband wireless positioning systems
+	- The most important characteristic of UWB is large bandwidth in comparison with
+prevalent narrow-band systems.
+	- One result of the large bandwidth of UWB is that due to the inverse relatioship of
+time and frequency, the life-time of UWB signals is very short. Consequently, the
+time resolution of UWB signals is high and UWB is a good candidate for positioning
+systems.
+
+
 
 \section{Historie}
 
+eltaher2004positioning - Positioning of robots using ultra-wideband signals
+yang2004uwbcom - Ultra-wideband communications: an idea whose time has come
+	\cite{yang2004uwbcom}
+aiello2006ultra - Ultra wideband systems: technologies and applications
+	\cite{aiello2006ultra}
+	Interest in the technology has been steady, with more than 200 technical papers published in journals between 1960 and 1999 on the topic and more than 100 U.S. patents issued on UWB or UWB-related technology[3].
+	In 1945, Conrad H. Hoeppner filed for another UWB-related patent (which was granted in 1961) for a pulse communication system that reduces interference and jamming [4].
+	- Spectrum allocation by the FCC
+	- The FCC's definition of the criteria for devices operating in the UWB spectrum purposely did not specify the techniques related to the generation and detection of RF energy; rather, it mandated compliance with emission limits that would enable coexistence and minimize the threat of harmful interference with legacy systems, thus protecting the Global Positioning System (GPS), satellite receivers, cellular systems, and others.
+	- The concept of multiband is to break the available spectrum into subbands (each at least 500 MHz wide because of the FCC ruling) and to communicate in those independently.
+	- Moving forward, the coalition members recognized that their audience shared a common goal: securing an industry standard that would help produce the best possible physical layer (PHY) specification.
+	- The basic concept behind multiband OFDM divides spectrum into several 528 MHz bands (with each occupying more than 500 MHz at all times in order to comply with FCC regulations).
+	
+fontana2004recent - Recent system applications of short-pulse ultra-wideband (UWB) technology
+	- \cite{fontana2004recent}
+	- Fig. 21 illustrates a few of the more recent systems designs. The soldier tracking system was the first to be developed and fielded, and was designed to track personnel and vehicles without the use of GPS over areas exceeding a few square kilometers. The system was tested at the Ft. Benning, GA, McKenna military operations in urban terrain (MOUT) site in 1997 and demonstrated the ability to achieve foot-type resolutions over a 4-km area. A smaller version of this system was subsequently developed in 1998 to perform indoor mapping, wherein the UWB tracking system was used to correlate position information with video still imagery to construct a 3-D AutoCAD model of the inside of a facility. A further size reduction and improvement in performance resulted in development in 2002 of the precision asset location system (PALS) [38], which was used for tracking of ISO containers inside a Navy ship, a particularly severe multipath environment with all metal floors, walls, and ceilings
+	
+barrett2001technical - Technical features, history of ultra wideband communications and radar: part I, UWB communications
+	- \cite{barrett2001technical}
+
+	
+
 \section{Alternative Technologien}
+
+Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
+
+qigao2015tightly - Tightly Coupled Model for Indoor Positioning based on UWB/INS
+
+
 
 \section{Gegenüberstellung}
 
+
 \section{Erstelle Hardware}
+
+Vor der Herstellung der UWB--Module werden die Produktspezifikationen des Herstellers untersucht um aus diesen die notwendige Beschaltung herzuleiten, siehe \cite{decawave2016dwm1kdatasheet, decawave2013power}. Zusätzlich werden Erfahrungsberichte aus dem Internet ausgewertet um die Beschaltung weiter zu verfeinern, siehe \cite{Trojer2015, Holder2016, Holder2016a}.
+
+Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
+
 
 \subsection{Elektrischer Aufbau}
 
+
 \subsection{Platinendesign}
+
 
 \subsection{Steuersoftware}
 
+
 \subsection{Entfernungsmessung und Auswertung}
+Der Überblick und Vergleich der verschiedenen Abstandsbestimmungsverfahren erfolgt über eine klassische Literatursuche, siehe \cite{lee2007comparative, herranz2010studying, zekavat2011handbook}.
+
+
+isaacs2009optimal - Optimal sensor placement for time difference of arrival localization
+
+
 
 \subsection{Kalibrierung}
+
+Das Verfahren zur Kalibrierung der Antennenverzögerung kann ebenfalls der Hersteller--Dokumentation entnommen werden, siehe \cite{decawave2014calibration}. Hierfür muss ein Versuchsaufbau erstellt werden. Zusätzlich wird eine Anpassung der Steuer--/Auswerte-Software notwendig, um die Verzögerung zu berechnen.
+
+Die Genauigkeitsbestimmung der Entfernungsmessung mit LOS und NLOS wird über einen Versuchsaufbau realisiert. Hierfür werden mehrere Messreihen in verschiedenen Abständen aufgenommen und mit der tatsächlichen Entfernung verglichen.
