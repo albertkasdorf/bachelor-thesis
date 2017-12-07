@@ -1,0 +1,1091 @@
+% Encoding: UTF-8
+
+@InProceedings{smith2004tracking,
+  author       = {Smith, Adam and Balakrishnan, Hari and Goraczko, Michel and Priyantha, Nissanka},
+  title        = {Tracking moving devices with the cricket location system},
+  booktitle    = {Proceedings of the 2nd international conference on Mobile systems, applications, and services},
+  year         = {2004},
+  organization = {ACM},
+  pages        = {190--202},
+  comment      = {- tracking a moving device is harder because the inevitable errors that occur in the distance samples used to localize the device are easier to filter out if the device's position itself does not change during the averaging process. - Active/passive mobile architecture! - outlier rejection - extended Kalman filter (EKF) - least-squares solver (LSQ)},
+  file         = {:Tracking Moving Devices with the Cricket Location System.pdf:PDF},
+  groups       = {Kalman Filter},
+  keywords     = {rank5},
+}
+
+@Article{dissanayake2001solution,
+  author        = {Dissanayake, MWM Gamini and Newman, Paul and Clark, Steve and Durrant-Whyte, Hugh F and Csorba, Michael},
+  title         = {A solution to the simultaneous localization and map building (SLAM) problem},
+  journal       = {IEEE Transactions on robotics and automation},
+  year          = {2001},
+  volume        = {17},
+  number        = {3},
+  pages         = {229--241},
+  __markedentry = {[Albert:1]},
+  abstract      = {The simultaneous localization and map building (SLAM) problem asks if it is possible for an autonomous vehicle to start in an unknown location in an unknown environment and then to incrementally build a map of this environment while simultaneously using this map to compute absolute vehicle location. Starting from the estimation-theoretic foundations of this problem developed in [1]–[3], this paper proves that a solution to the SLAM problem is indeed possible. The underlying structure of the SLAM problem is first elucidated. A proof that the estimated map converges monotonically to a relative map with zero uncertainty is then developed. It is then shown that the absolute accuracy of the map and the vehicle location reach a lower bound defined only by the initial vehicle uncertainty. Together, these results show that it is possible for an autonomous vehicle to start in an unknown location in an unknown environment and, using relative observations only, incrementally build a perfect map of the world and to compute simultaneously a bounded estimate of vehicle location. This paper also describes a substantial implementation of the SLAM algorithm on a vehicle operating in an outdoor environment using millimeter-wave (MMW) radar to provide relative map observations. This implementation is used to demonstrate how some key issues such as map management and data association can be handled in a practical environment. The results obtained are cross-compared with absolute locations of the map landmarks obtained by surveying. In conclusion, this paper discusses a number of key issues raised by the solution to the SLAM problem including suboptimal map-building algorithms and map management.},
+  file          = {:A Solution to the Simultaneous Localization and Map Building (SLAM) Problem.pdf:PDF},
+  groups        = {Algorithmen, Kalman Filter, Ungelesen, SLAM},
+  publisher     = {IEEE},
+}
+
+@InProceedings{biswas2004probabilistic,
+  author       = {Biswas, Rahul and Thrun, Sebastian and Guibas, Leonidas J},
+  title        = {A probabilistic approach to inference with limited information in sensor networks},
+  booktitle    = {Information Processing in Sensor Networks, 2004. IPSN 2004. Third International Symposium on},
+  year         = {2004},
+  organization = {IEEE},
+  pages        = {269--276},
+  doi          = {10.1145/984622.984662},
+  file         = {:A probabilistic approach to inference with limited information in sensor networks.pdf:PDF},
+}
+
+@Article{oppermann2004uwb,
+  author    = {Oppermann, Ian and Stoica, Lucian and Rabbachin, Alberto and Shelby, Zack and Haapola, Jussi},
+  title     = {UWB wireless sensor networks: UWEN-a practical example},
+  journal   = {IEEE Communications Magazine},
+  year      = {2004},
+  volume    = {42},
+  number    = {12},
+  pages     = {S27--S32},
+  comment   = {- Non-Iterative Positioning Method => Interessante Anwendung von UWB in der Lokalisierung von Personen die Ski fahren.},
+  file      = {:UWB Wireless Sensor Networks - UWEN - A Practical Example.pdf:PDF},
+  groups    = {Anwendung},
+  publisher = {IEEE},
+}
+
+@Article{smith1987closed,
+  author    = {Smith, Julius and Abel, Jonathan},
+  title     = {Closed-form least-squares source location estimation from range-difference measurements},
+  journal   = {IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  year      = {1987},
+  volume    = {35},
+  number    = {12},
+  pages     = {1661--1669},
+  comment   = {=> Gute Beschreibung von drei Verfahren um einen Punkt über ein Sensorarray zu bestimmen. => Gute Reference Quelle},
+  file      = {:Closed-Form Least-Squares Source Location Estimation from Range-Difference Measurements.pdf:PDF},
+  keywords  = {rank5},
+  publisher = {IEEE},
+}
+
+@InProceedings{jourdan2005monte,
+  author       = {Jourdan, Damien B and Deyst, John J and Win, Moe Z and Roy, Nicholas},
+  title        = {Monte Carlo localization in dense multipath environments using UWB ranging},
+  booktitle    = {Ultra-Wideband, 2005. ICU 2005. 2005 IEEE International Conference on},
+  year         = {2005},
+  organization = {IEEE},
+  pages        = {314--319},
+  comment      = {However, reliable range-based localization using radio signals in indoor or urban environments can be a problem due to multipath fading and Line-of-Sight (LOS) blockage. The measurement bias introduced by these delays causes significant localization error, even when using additional sensors such as an Inertial Measurement Unit (IMU) to perform outlier rejection. the GPS signal is not strong enough to penetrate through most materials. As soon as an object occludes the GPS satellite, the signal is corrupted. => Die Modellierung des Wahrscheinlichkeitsmodells ist sehr interessant.},
+  file         = {:Monte Carlo Localization in Dense Multipath Environments Using UWB Ranging.pdf:PDF},
+}
+
+@InProceedings{lee2007comparative,
+  author       = {Lee, Jin-Shyan and Su, Yu-Wei and Shen, Chung-Chou},
+  title        = {A comparative study of wireless protocols: Bluetooth, UWB, ZigBee, and Wi-Fi},
+  booktitle    = {Industrial Electronics Society, 2007. IECON 2007. 33rd Annual Conference of the IEEE},
+  year         = {2007},
+  organization = {Ieee},
+  pages        = {46--51},
+  comment      = {- The maximum number of devices belonging to the network’s building cell is 8 (7 slaves plus one master) for a Bluetooth and UWB piconet, over 65000 for a ZigBee star network, and 2007 for a structured Wi-Fi BSS. => Guter Überblick über die verschiedenen Wireless-Protokolle},
+  file         = {:A Comparative Study of Wireless Protocols - Bluetooth, UWB, ZigBee, and Wi-Fi.pdf:PDF},
+  groups       = {Systemvergleiche},
+}
+
+@Article{gonzalez2009mobile,
+  author    = {Gonz{\'a}lez, Javier and Blanco, Jose-Luis and Galindo, Cipriano and Ortiz-de-Galisteo, A and Fern{\'a}ndez-Madrigal, Juan-Antonio and Moreno, Francisco Angel and Mart{\'\i}nez, Jorge L},
+  title     = {Mobile robot localization based on ultra-wide-band ranging: A particle filter approach},
+  journal   = {Robotics and autonomous systems},
+  year      = {2009},
+  volume    = {57},
+  number    = {5},
+  pages     = {496--507},
+  file      = {:Mobile Robot Localization based on Ultra-Wide-Band Ranging - A Particle Filter Approach.pdf:PDF},
+  keywords  = {rank5},
+  publisher = {Elsevier},
+}
+
+@Article{gezici2005localization,
+  author    = {Gezici, Sinan and Tian, Zhi and Giannakis, Georgios B and Kobayashi, Hisashi and Molisch, Andreas F and Poor, H Vincent and Sahinoglu, Zafer},
+  title     = {Localization via ultra-wideband radios: a look at positioning aspects for future sensor networks},
+  journal   = {IEEE signal processing magazine},
+  year      = {2005},
+  volume    = {22},
+  number    = {4},
+  pages     = {70--84},
+  comment   = {- While UWB positioning bears similarities to radar, there are distinct differences. For example, radar typically relies on a stand-alone transmitter/receiver, whereas a sensor network combines information from multiple sensor nodes to refine the position estimate. - Positioning systems can be divided into three main categories: time-of-arrival, direction-of-arrival, and signal-strength based systems. - angle of arrival (AOA) - signal strength (SS), path-loss - time-difference-of-arrival (TDOA) - Single-/Multi-Path - In the absence of a common clock between the nodes, round-trip time between two transceiver nodes can be measured to estimate the distance between two nodes [26], [27]. - When the direct LOS between two nodes is blocked, only reflections of the UWB pulse from scatterers reach the receiving node. Therefore, the delay of the first arriving pulse does not represent the true TOA. Since the pulse travels an extra distance, a positive bias called the NLOS error is present in the measured time delay. - The main idea behind nonparametric location estimation is to gather a set of TOA measurements from all the reference nodes at known locations beforehand and use this set as a reference when a new set of measurements is obtained. => Zum Ende hin sehr Mathematisch, der Anfang biete jedoch einen guten Überblick über die verschiedenen Lokalisierungsmöglichkeiten. TODO: Literaturliste durchgehen},
+  file      = {:Localization via ultra-wideband radios - a look at positioning aspects for future sensor networks.pdf:PDF},
+  publisher = {IEEE},
+}
+
+@InProceedings{schroeder2005low,
+  author       = {Schroeder, Jens and Galler, Stefan and Kyamakya, Kyandoghere},
+  title        = {A low-cost experimental ultra-wideband positioning system},
+  booktitle    = {Ultra-Wideband, 2005. ICU 2005. 2005 IEEE International Conference on},
+  year         = {2005},
+  organization = {IEEE},
+  pages        = {632--637},
+  comment      = {- TDOA LOCALIZATION ALGORITHMS - Here, we used Bancroft’s algorithm for solving the hyperbolic localization problem, which gives a direct solution valid for 3D positioning with at least four base stations and is easy to implement. - First, the low-cost clock of the microcontroller results in high jitter of the pulse position. => Interessant weil einige Algorithmen erklärt werden.},
+  file         = {:A Low-Cost Experimental Ultra-Wideband Positioning System.pdf:PDF},
+  keywords     = {rank5},
+}
+
+@InProceedings{adams2001ultra,
+  author       = {Adams, John Carl and Gregorwich, Walt and Capots, Larry and Liccardo, Darren},
+  title        = {Ultra-wideband for navigation and communications},
+  booktitle    = {Aerospace Conference, 2001, IEEE Proceedings.},
+  year         = {2001},
+  volume       = {2},
+  organization = {IEEE},
+  pages        = {2--785},
+  comment      = {=> Erzeugen eines UWB Impules und gleichzeitiges messen des Empfangen Impules. Daraus wurde dann mit Matlab und einigen Filtern der Abstand berechnet. Zusätzlich wurden der Mittelwert und die Standardabweichung berechnet.},
+  file         = {:Ultrawideband for navigation and communications.pdf:PDF},
+}
+
+@InProceedings{mcelroy2014comparison,
+  author       = {McElroy, Ciaran and Neirynck, Dries and McLaughlin, Michael},
+  title        = {Comparison of wireless clock synchronization algorithms for indoor location systems},
+  booktitle    = {Communications Workshops (ICC), 2014 IEEE International Conference on},
+  year         = {2014},
+  organization = {IEEE},
+  pages        = {157--162},
+  abstract     = {The advent of time based location systems paves the way to the introduction of many exciting applications. However, they can only function correctly if the system has a common concept of time. Often it is not practical to synchronize all receivers using wires so alternative methods must be found. This paper outlines the use of a DW1000 ScenSor, an IEEE 802.15.4a transceiver, as a test platform. It then describes and compares several methods of wirelessly synchronizing all the sensors in the location system.},
+  comment      = {- The DW1000 typically has a TOA variance of ~1.5×10-20s2. This corresponds to a standard deviation of ~3.5cm in a range estimate from a single packet.},
+  file         = {:Comparison of wireless clock synchronization algorithms for indoor location systems.pdf:PDF},
+  keywords     = {rank4},
+}
+
+@Article{bishop2001introduction,
+  author        = {Bishop, Gary and Welch, Greg},
+  title         = {An introduction to the kalman filter},
+  journal       = {Proc of SIGGRAPH, Course},
+  year          = {2001},
+  volume        = {8},
+  number        = {27599-23175},
+  pages         = {41},
+  __markedentry = {[Albert:1]},
+  file          = {:Introduction_to_Kalman_Filtering.pdf:PDF},
+  groups        = {Kalman Filter},
+}
+
+@Article{wu2011clock,
+  author    = {Wu, Yik-Chung and Chaudhari, Qasim and Serpedin, Erchin},
+  title     = {Clock synchronization of wireless sensor networks},
+  journal   = {IEEE Signal Processing Magazine},
+  year      = {2011},
+  volume    = {28},
+  number    = {1},
+  pages     = {124--138},
+  abstract  = {Clock synchronization is a critical component in the operation of wireless sensor networks (WSNs), as it provides a common time frame to different nodes. It supports functions such as fusing voice and video data from different sensor nodes, time-based channel sharing, and coordinated sleep wake-up node scheduling mechanisms. Early studies on clock synchronization for WSNs mainly focused on protocol design. However, the clock synchronization problem is inherently related to parameter estimation, and, recently, studies on clock synchronization began to emerge by adopting a statistical signal processing framework. In this article, a survey on the latest advances in the field of clock synchronization of WSNs is provided by following a signal processing viewpoint. This article illustrates that many of the proposed clock synchronization protocols can be interpreted and their performance assessed using common statistical signal processing methods. It is also shown that advanced signal processing techniques enable the derivation of optimal clock synchronization algorithms under challenging scenarios.},
+  file      = {:Clock synchronization of wireless sensor networks.pdf:PDF},
+  publisher = {IEEE},
+}
+
+@Article{dardari2009ranging,
+  author    = {Dardari, Davide and Conti, Andrea and Ferner, Ulric and Giorgetti, Andrea and Win, Moe Z},
+  title     = {Ranging with ultrawide bandwidth signals in multipath environments},
+  journal   = {Proceedings of the IEEE},
+  year      = {2009},
+  volume    = {97},
+  number    = {2},
+  pages     = {404--426},
+  file      = {:Ranging with ultrawide bandwidth signals in multipath environments.pdf:PDF},
+  publisher = {IEEE},
+}
+
+@InProceedings{ledergerber2015robot,
+  author       = {Ledergerber, Anton and Hamer, Michael and D'Andrea, Raffaello},
+  title        = {A robot self-localization system using one-way ultra-wideband communication},
+  booktitle    = {Intelligent Robots and Systems (IROS), 2015 IEEE/RSJ International Conference on},
+  year         = {2015},
+  organization = {IEEE},
+  pages        = {3131--3137},
+  abstract     = {A robot localization system is presented that enables a robot to estimate its position within some space by passively receiving ultra-wideband radio signals from fixedposition modules. Communication from the fixed-position modules is one-way, allowing the system to scale to multiple robots. Furthermore, the system’s high position update rate makes it suitable to be used in a feedback control system, and enables the robot to track and perform high-speed, dynamic motions. This paper describes the algorithmic underpinnings of the system, discusses design decisions and their impact on the performance of the resulting localization, and highlights challenges faced during implementation. Performance of the localization system is experimentally verified through comparison with data from a motion-capture system. Finally, the system’s application to robot self-localization is demonstrated through integration with a quadrocopter.},
+  file         = {:A robot self-localization system using one-way ultra-wideband communication.pdf:PDF},
+  groups       = {Ungelesen, UWB},
+  review       = {
+=> Erklärt gut den Unterschied zwischen TOA und TDOA, ansonsten nicht relevant.
+- This paper presents a localization system that enables a robot to self-localize based on the reception of UWB radio signals from fixed-position, wirelessly-connected modules (hereinafter referred as anchors). These anchors are placed at known locations, and periodically transmit UWB signals. By passively receiving these signals and recording their arrival times, the robot is able to self-localize relative to the anchors by using either time-of-arrival (TOA) or time-difference-ofarrival (TDOA) measurements.
+- the robot is not active in the communication process and is able to self-localize, its position is not centrally tracked and anonymous operation is enabled.
+- TOA algorithms calculate time of flight using the arrival time at the robot and the transmission time from the anchor, the robot’s clock must be synchronized to the anchor’s clock.
+- TDOA algorithms use the difference between the arrival times of two signals, and as such, the offset of the robot’s clock is canceled. Therefore, the robot’s clock does not need to be synchronized with the anchors’ clocks.},
+}
+
+@Article{segura2011ultra,
+  author        = {Segura, Marcelo J and Auat Cheein, Fernando A and Toibero, Juan M and Mut, Vicente and Carelli, Ricardo},
+  title         = {Ultra wide-band localization and SLAM: A comparative study for mobile robot navigation},
+  journal       = {Sensors},
+  year          = {2011},
+  volume        = {11},
+  number        = {2},
+  pages         = {2035--2055},
+  __markedentry = {[Albert:1]},
+  file          = {:Ultra Wide-Band Localization and SLAM A Comparative Study for Mobile Robot Navigation.pdf:PDF},
+  groups        = {Ungelesen},
+  publisher     = {Molecular Diversity Preservation International},
+}
+
+@Article{dellaert2006square,
+  author        = {Dellaert, Frank and Kaess, Michael},
+  title         = {Square Root SAM: Simultaneous localization and mapping via square root information smoothing},
+  journal       = {The International Journal of Robotics Research},
+  year          = {2006},
+  volume        = {25},
+  number        = {12},
+  pages         = {1181--1203},
+  __markedentry = {[Albert:1]},
+  abstract      = {Solving the SLAM (simultaneous localization and mapping) problem is one way to enable a robot to explore, map, and navigate in a previously unknown environment. Smoothing approaches have been investigated as a viable alternative to extended Kalman filter (EKF)-based solutions to the problem. In particular, approaches have been looked at that factorize either the associated information matrix or the measurement Jacobian into square root form. Such techniques have several significant advantages over the EKF: they are faster yet exact; they can be used in either batch or incremental mode; are better equipped to deal with non-linear process and measurement models; and yield the entire robot trajectory, at lower cost for a large class of SLAM problems. In addition, in an indirect but dramatic way, column ordering heuristics automatically exploit the locality inherent in the geographic nature of the SLAM problem. This paper presents the theory underlying these methods, along with an interpretation of factorization in terms of the graphical model associated with the SLAM problem. Both simulation results and actual SLAM experiments in large-scale environments are presented that underscore the potential of these methods as an alternative to EKF-based approaches.},
+  file          = {:Simultaneous Localization and Mapping via Square Root Information Smoothing.pdf:PDF},
+  groups        = {SLAM},
+  publisher     = {Sage Publications Sage CA: Thousand Oaks, CA},
+}
+
+@InProceedings{djugash2009robust,
+  author       = {Djugash, Joseph and Singh, Sanjiv},
+  title        = {A robust method of localization and mapping using only range},
+  booktitle    = {Experimental Robotics},
+  year         = {2009},
+  organization = {Springer},
+  pages        = {341--351},
+  abstract     = {In this paper we present results in mobile robot localization and simultaneous localization and mapping (SLAM) using range from radio. In previous work we have shown how range readings from radio tags placed in the environment can be used to localize a robot and map tag locations using a standard extended Kalman ¯lter (EKF) that linearizes the probability distribution due to range measurements based on prior estimates. Our experience with this method was that the ¯lter could perform poorly and even diverge in cases of missing data and poor initialization. Here we present a new formulation that gains robustness without sacri¯cing accuracy. Speci¯cally, our method is shown to have signi¯cantly better performance with poor and even no initialization, infrequent measurements, and incorrect data association. We present results from a mobile robot equipped with high accuracy groundtruth, operating over several kilometers.},
+  file         = {:A Robust Method of Localization and Mapping Using Only Range.pdf:PDF},
+  groups       = {SLAM},
+  review       = {
+- Focus on the problems of robust localization and SLAM given range data between a mobile robot and static "tags".
+- In the first case, the locations of the tags are known and the robot must accurately localize itself as it measures range to these tags while it moves.
+- In the second case, the location of the tags are not known ahead of time and must be determined in addition to being used for localization.},
+}
+
+@InProceedings{blanco2008pure,
+  author       = {Blanco, Jose-Luis and Gonz{\'a}lez, Javier and Fern{\'a}ndez-Madrigal, Juan-Antonio},
+  title        = {A pure probabilistic approach to range-only SLAM},
+  booktitle    = {Robotics and Automation, 2008. ICRA 2008. IEEE International Conference on},
+  year         = {2008},
+  organization = {IEEE},
+  pages        = {1436--1441},
+  abstract     = {Abstract— Range-Only SLAM represents a difficult problem due to the inherent ambiguity of localizing either the robot or the beacons from distance measurements only. Most previous approaches to this problem employ non-probabilistic batch optimizations or delay the initialization of new beacons within a probabilistic filter until a good estimate is available. The contribution of this work is the formulation of RO-SLAM as an online Bayesian estimation process based on a RaoBlackwellized Particle Filter. The conditional distribution for each beacon is initialized using an additional particle filter which, eventually, is transformed into an extended Kalman filter when the uncertainty becomes sufficiently small. This approach allows the introduction of new beacons without either delay or any special non-probabilistic processing. We validate our proposal with experiments for both simulated and real datasets.},
+  file         = {:A Pure Probabilistic Approach to Range-Only SLAM.pdf:PDF},
+  groups       = {Ungelesen, SLAM},
+  keywords     = {rank5},
+  review       = {
+=> Sehr gut, Kombination von einem PF und einem EKF, erst PF und wenn man sich sicher genug ist, wechselt man zum EKF.
+- The main difference with the present work is the usage of a least-square error minimization procedure instead of a probabilistic filter.
+- However, our solution has the advantages of working with any non-linearity and not requiring the explicit storage of all the map covariance matrices, with the subsequent improvement in memory usage and computation time.
+- In contrast to many previous works, we apply a Bayesian filter from the beginning, taking advantage of a Rao-Blackwellized particle filter (RBPF) [4] to decouple the estimation of the robot poses and the map.
+- we can freely choose the most convenient distribution for the beacons at each time step. We derive the equations for adding and updating a beacon to the map as a set of weighted samples, and then converting it into a Gaussian only when the distribution converges to a single location.
+- Another advantage of this approach is that we maintain the best estimation of each beacon at each time step, and this information is always available to improve the robot localization. In most previous works this information cannot be exploited until the knowledge about the beacon location becomes sufficiently precise.
+- for each beacon that is observed for the first time, we add a new auxiliary particle filter (PF) to each one of the RBPF samples in order to perform the Bayesian estimation of the new beacon. This auxiliary PF will eventually converge from the initial circular shape towards a small Gaussian-like shape, and at this moment it will be replaced by a standard EKF which performs reliably for reduced uncertainties.},
+}
+
+@InProceedings{olson2004robust,
+  author        = {Olson, Edwin and Leonard, John and Teller, Seth},
+  title         = {Robust range-only beacon localization},
+  booktitle     = {Autonomous Underwater Vehicles, 2004 IEEE/OES},
+  year          = {2004},
+  organization  = {IEEE},
+  pages         = {66--75},
+  __markedentry = {[Albert:1]},
+  abstract      = {Most Autonomous Underwater Vehicle (AUV) systems rely on prior knowledge of beacon locations for localization. We present a system capable of navigating without prior beacon locations. Noise and outliers are major issues; we present a powerful outlier rejection method that imposes geometric constraints on measurements. We have successfully applied our algorithm to real-world data and have demonstrated navigation performance comparable to that of systems that assume known beacon locations.},
+  file          = {:Robust Range-Only Beacon Localization.pdf:PDF},
+  groups        = {Ungelesen},
+}
+
+@InProceedings{herranz2010studying,
+  author    = {Herranz, F and Ocana, M and Bergasa, LM and Sotelo, MA and Llorca, DF and Hern{\'a}ndez, N and Llamazares, A and Fern{\'a}ndez, C},
+  title     = {Studying of WiFi range-only sensor and its application to localization and mapping systems},
+  booktitle = {IEEE ICRA},
+  year      = {2010},
+  pages     = {115--120},
+  abstract  = {The goal of this paper is to study a noisy WiFi range-only sensor and its application in the development of localization and mapping systems. Moreover, the paper shows several localization and mapping techniques to be compared. These techniques have been applied successfully with other technologies, like ultra-wide band (UWB), but we demonstrate that even using a much more noisier sensor these systems can be applied correctly. We use two trilateration techniques and a particle filter to develop the localization and mapping systems based on the range-only sensor. Some experimental results and conclusions are presented.},
+  file      = {:Studying of WiFi range-only sensor and its application to localization and mapping systems.pdf:PDF},
+  groups    = {Ungelesen},
+}
+
+@Article{loeliger2004introduction,
+  author    = {Loeliger, H-A},
+  title     = {An introduction to factor graphs},
+  journal   = {IEEE Signal Processing Magazine},
+  year      = {2004},
+  volume    = {21},
+  number    = {1},
+  pages     = {28--41},
+  abstract  = {A large variety of algorithms in coding, signal processing, and artificial intelligence may be viewed as instances of the summary-product algorithm (or belief/probability propagation algorithm), which operates by message passing in a graphical model. Specific instances of such algorithms include Kalman filtering and smoothing, the forwardbackward algorithm for hidden Markov models, probability propagation in Bayesian networks, and decoding algorithms for error correcting codes such as the Viterbi algorithm, the BCJR algorithm, and the iterative decoding of turbo codes, low-density parity check codes, and similar codes. New algorithms for complex detection and estimation problems can also be derived as instances of the summary-product algorithm. In this paper, we give an introduction to this unified perspective in terms of (Forney-style) factor graphs.},
+  file      = {:An introduction to factor graphs.pdf:PDF},
+  groups    = {Ungelesen},
+  publisher = {IEEE},
+}
+
+@Article{kschischang2001factor,
+  author    = {Kschischang, Frank R and Frey, Brendan J and Loeliger, H-A},
+  title     = {Factor graphs and the sum-product algorithm},
+  journal   = {IEEE Transactions on information theory},
+  year      = {2001},
+  volume    = {47},
+  number    = {2},
+  pages     = {498--519},
+  file      = {:Factor graphs and the sum-product algorithm.pdf:PDF},
+  groups    = {Ungelesen},
+  publisher = {IEEE},
+}
+
+@Article{sarkka2007rao,
+  author    = {S{\"a}rkk{\"a}, Simo and Vehtari, Aki and Lampinen, Jouko},
+  title     = {Rao-Blackwellized particle filter for multiple target tracking},
+  journal   = {Information Fusion},
+  year      = {2007},
+  volume    = {8},
+  number    = {1},
+  pages     = {2--15},
+  abstract  = {In this article we propose a new Rao-Blackwellized particle filtering based algorithm for tracking an unknown number of targets. The algorithm is based on formulating probabilistic stochastic process models for target states, data associations, and birth and death processes. The tracking of these stochastic processes is implemented using sequential Monte Carlo sampling or particle filtering, and the efficiency of the Monte Carlo sampling is improved by using Rao-Blackwellization.},
+  file      = {:Rao-Blackwellized Particle Filter for Multiple Target Tracking.pdf:PDF},
+  groups    = {Ungelesen},
+  publisher = {Elsevier},
+}
+
+@Article{hendeby2010rao,
+  author    = {Hendeby, Gustaf and Karlsson, Rickard and Gustafsson, Fredrik},
+  title     = {The Rao-Blackwellized particle filter: a filter bank implementation},
+  journal   = {EURASIP Journal on Advances in Signal processing},
+  year      = {2010},
+  volume    = {2010},
+  number    = {1},
+  pages     = {724087},
+  abstract  = {For computational efficiency, it is important to utilize model structure in particle filtering. One of the most important cases occurs when there exists a linear Gaussian substructure, which can be efficiently handled by Kalman filters. This is the standard formulation of the Rao-Blackwellized particle filter (RBPF). This contribution suggests an alternative formulation of this well-known result that facilitates reuse of standard filtering components and which is also suitable for object-oriented programming. Our RBPF formulation can be seen as a Kalman filter bank with stochastic branching and pruning.},
+  file      = {:The Rao-Blackwellized Particle Filter - A Filter Bank Implementation.pdf:PDF;:hendeby2010rao - The Rao-Blackwellized particle filter_ a filter bank implementation.pdf:PDF},
+  groups    = {Ungelesen},
+  publisher = {Springer},
+}
+
+@Article{grisetti2007fast,
+  author    = {Grisetti, Giorgio and Tipaldi, Gian Diego and Stachniss, Cyrill and Burgard, Wolfram and Nardi, Daniele},
+  title     = {Fast and accurate SLAM with Rao--Blackwellized particle filters},
+  journal   = {Robotics and Autonomous Systems},
+  year      = {2007},
+  volume    = {55},
+  number    = {1},
+  pages     = {30--38},
+  abstract  = {Rao–Blackwellized particle filters have become a popular tool to solve the simultaneous localization and mapping problem. This technique applies a particle filter in which each particle carries an individual map of the environment. Accordingly, a key issue is to reduce the number of particles and/or to make use of compact map representations. This paper presents an approximative but highly efficient approach to mapping with Rao–Blackwellized particle filters. Moreover, it provides a compact map model. A key advantage is that the individual particles can share large parts of the model of the environment. Furthermore, they are able to reuse an already computed proposal distribution. Both techniques substantially speed up the overall filtering process and reduce the memory requirements. Experimental results obtained with mobile robots in large-scale indoor environments and based on published standard datasets illustrate the advantages of our methods over previous mapping approaches using Rao–Blackwellized particle filters.},
+  file      = {:Fast and accurate SLAM with Rao–Blackwellized particle filters.pdf:PDF},
+  groups    = {Ungelesen},
+  publisher = {Elsevier},
+}
+
+@InProceedings{giremus2004rao,
+  author       = {Giremus, Audrey and Doucet, Arnaud and Calmettes, Vincent and Tourneret, J-Y},
+  title        = {A Rao-Blackwellized particle filter for INS/GPS integration},
+  booktitle    = {Acoustics, Speech, and Signal Processing, 2004. Proceedings.(ICASSP'04). IEEE International Conference on},
+  year         = {2004},
+  volume       = {3},
+  organization = {IEEE},
+  pages        = {iii--964},
+  abstract     = {The localization performance of a navigation system can be improved by coupling different types of sensors. This paper focuses on INS-GPS integration. INS and GPS measurements allow to define a non-linear state space model, which is appropriate to particle filtering. This model being conditionally linear Gaussian, a Rao-Blackwellization procedure can be applied to reduce the variance of the estimates.},
+  file         = {:A Rao-Blackwellized particle filter for INS,GPS integration.pdf:PDF},
+  groups       = {Ungelesen},
+  keywords     = {rank1},
+  review       = {
+=> This paper has addressed the problem of INS-GPS integration by using a Rao-Blackwellized filter.},
+}
+
+@InProceedings{herranz2014comparison,
+  author       = {Herranz, Fernando and Llamazares, {\'A}ngel and Molinos, Eduardo and Oca{\~n}a, Manuel},
+  title        = {A comparison of slam algorithms with range only sensors},
+  booktitle    = {Robotics and Automation (ICRA), 2014 IEEE International Conference on},
+  year         = {2014},
+  organization = {IEEE},
+  pages        = {4606--4611},
+  abstract     = {Localization and mapping in indoor environments, such as airports and hospitals, are key tasks for almost every robotic platform. Some researchers suggest the use of RO (Range Only) sensors based on WiFi (Wireless Fidelity) technology with SLAM (Simultaneous Localization And Mapping) techniques. The current state of the art in RO SLAM is mainly focused on the filtering approach, while the study of smoothing approach with RO sensors is quite incomplete. This paper presents a comparison between a filtering algorithm, the EKF, and a smoothing algorithm, the SAM (Smoothing And Mapping). Experimental results are obtained, first in an outdoor environment using two types of RO sensors and then in an indoor environment with WiFi sensors. The results demonstrate the feasibility of the smoothing approach with WiFi sensors in indoors.},
+  file         = {:A Comparison of SLAM Algorithms with Range Only Sensors.pdf:PDF},
+  groups       = {SLAM},
+  keywords     = {rank4},
+  review       = {
+=> Guter Überblick, ROP-EKF und SAM werden erklärt
+- Smoothing approaches for SLAM add the entire trajectory of the robot and the map in the estimation problem. While this seems counter-intuitive at first, because more variables are added to the problem, the simplification arises from the fact that the smoothing information matrix is naturally sparse. Therefore, smoothing approaches provide an exact and efficient solution of the problem.
+- Studies in RO SLAM identify two main problems to deal with. The first one consists in overcoming their lack of angle information while the second one is referred to the way the signal propagation is modeled.},
+}
+
+@Article{wang2017ultra,
+  author   = {Wang, Chen and Zhang, Handuo and Nguyen, Thien-Minh and Xie, Lihua},
+  title    = {Ultra-Wideband Aided Fast Localization and Mapping System},
+  journal  = {arXiv preprint arXiv:1710.00156},
+  year     = {2017},
+  abstract = {This paper proposes an ultra-wideband (UWB) aided localization and mapping system that leverages on inertial sensor and depth camera. Inspired by the fact that visual
+odometry (VO) system, regardless of its accuracy in the short term, still faces challenges with accumulated errors in the long run or under unfavourable environments, the UWB ranging measurements are fused to remove the visual drift and improve the robustness. A general framework is developed which consists of three parallel threads, two of which carry out the visualinertial odometry (VIO) and UWB localization respectively. The other mapping thread integrates visual tracking constraints into a pose graph with the proposed smooth and virtual range constraints, such that an optimization is performed to provide robust trajectory estimation. Experiments show that the proposed system is able to create dense drift-free maps in real-time even running on an ultra-low power processor in featureless environments.},
+  file     = {:Ultra-Wideband Aided Fast Localization and Mapping System.pdf:PDF},
+  groups   = {Ungelesen},
+}
+
+@InProceedings{alavi2006uwb,
+  author       = {Alavi, Bardia and Alsindi, Nayef and Pahlavan, Kaveh},
+  title        = {UWB channel measurements for accurate indoor localization},
+  booktitle    = {Military Communications Conference, 2006. MILCOM 2006. IEEE},
+  year         = {2006},
+  organization = {IEEE},
+  pages        = {1--7},
+  file         = {:UWB Channel Measurements for Accurate Indoor Localization.pdf:PDF},
+  groups       = {Signalauswertung},
+  review       = {
+=> Wie verhält sich der Lokalisierungfehler in verschiedenen Gebäudetypen.
+- direct path (DP)
+- first detected path (FDP)
+- path-loss
+--- Path loss (or path attenuation) is the reduction in power density (attenuation) of an electromagnetic wave as it propagates through space. Path loss is a major component in the analysis and design of the link budget of a telecommunication system.
+--- Der Pfadverlust L beschreibt den Verlust an elektromagnetischer Leistung P zwischen einem Sender und einem Empfänger. Ein geringer Pfadverlust kennzeichnet üblicherweise eine gute Empfangssituation.
+- In time-of-arrival (TOA) based systems we estimate the distance between the two sensors by the estimation of TOA of the DP.
+- When the sensor node's total received power falls below a certain threshold, then it is operating in the No Coverage (NC) area; where neither positioning nor communication can take place.
+},
+}
+
+@InProceedings{eltaher2004positioning,
+  author    = {Eltaher, Amr and Kaiser, Thomas},
+  title     = {Positioning of robots using ultra-wideband signals},
+  booktitle = {IRA workshop on Advanced control and Diagnosis},
+  year      = {2004},
+  file      = {:Positioning of Robots using Ultra-Wideband Signals.pdf:PDF},
+  groups    = {Signalauswertung},
+  review    = {
+- A novel aspect of UWB ranging is the capability to detect the direct path signal accurately using the the time resolution of an UWB signal.
+- For future work, we would like to investigate ranging in multipath environments.
+=> Kleiner Überblick über GPS und wie UWB funktioniert. Kleine Anhaltspunkte wie UWB auf dem Physikalischen Layer funktioniert.},
+}
+
+@Book{fernandez2012simultaneous,
+  author    = {Fern{\'a}ndez-Madrigal, Juan-Antonio},
+  title     = {Simultaneous Localization and Mapping for Mobile Robots: Introduction and Methods: Introduction and Methods},
+  year      = {2012},
+  publisher = {IGI Global},
+  groups    = {SLAM},
+}
+
+@InProceedings{mueller2015fusing,
+  author       = {Mueller, Mark W and Hamer, Michael and D'Andrea, Raffaello},
+  title        = {Fusing ultra-wideband range measurements with accelerometers and rate gyroscopes for quadrocopter state estimation},
+  booktitle    = {Robotics and Automation (ICRA), 2015 IEEE International Conference on},
+  year         = {2015},
+  organization = {IEEE},
+  pages        = {1730--1736},
+  abstract     = {A state estimator for a quadrocopter is presented,using measurements from an accelerometer, angular rate gyroscope,and a set of ultra-wideband ranging radios. The estimatoruses an extended aerodynamic model for the quadrocopter,where the full 3D airspeed is observable through accelerometermeasurements. The remaining quadrocopter states, includingthe yaw orientation, are rendered observable by fusing ultrawidebandrange measurements, under the assumption of nowind. The estimator is implemented on a standard microcontrollerusing readily-available, low-cost sensors. Performanceis experimentally investigated in a variety of scenarios, wherethe quadrocopter is flown under feedback control using theestimator output.},
+  file         = {:Fusing ultra-wideband range measurements with accelerometers and rate gyroscopes for quadrocopter state estimation.pdf:PDF},
+  groups       = {UWB},
+}
+
+@Book{dekking2005modern,
+  author        = {Dekking, Frederik Michel},
+  title         = {A Modern Introduction to Probability and Statistics: Understanding why and how},
+  year          = {2005},
+  publisher     = {Springer Science \& Business Media},
+  __markedentry = {[Albert:1]},
+  file          = {:A modern introduction to probability and statistics.pdf:PDF},
+}
+
+@InProceedings{isaacs2009optimal,
+  author       = {Isaacs, Jason T and Klein, Daniel J and Hespanha, Joao P},
+  title        = {Optimal sensor placement for time difference of arrival localization},
+  booktitle    = {Decision and Control, 2009 held jointly with the 2009 28th Chinese Control Conference. CDC/CCC 2009. Proceedings of the 48th IEEE Conference on},
+  year         = {2009},
+  organization = {IEEE},
+  pages        = {7878--7884},
+  abstract     = {This paper addresses the problem of localizing asource from noisy time-of-arrival measurements. In particular,we are interested in the optimal placement of M planar sensorsso as to yield the best expected source location estimate. Themain result, on maximizing the expected determinant of theFisher information matrix for truncated, radially-symmetricsource distributions, shows two features not previously observed.First, the sensors should be placed as far from theexpected source position as possible. Second, the sensors shouldbe arranged in a splay configuration in which neighboringsensors are separated by equal angle increments. Specificexamples are given for point, uniform, and truncated-Gaussiansource density functions.},
+  file         = {:Optimal Sensor Placement For Time Difference of Arrival Localization.pdf:PDF},
+  groups       = {Signalauswertung},
+}
+
+@Article{sundararaman2005clock,
+  author    = {Sundararaman, Bharath and Buy, Ugo and Kshemkalyani, Ajay D},
+  title     = {Clock synchronization for wireless sensor networks: a survey},
+  journal   = {Ad hoc networks},
+  year      = {2005},
+  volume    = {3},
+  number    = {3},
+  pages     = {281--323},
+  abstract  = {Recent advances in micro-electromechanical (MEMS) technology have led to the development of small, lowcost,and low-power sensors. Wireless sensor networks (WSNs) are large-scale networks of such sensors, dedicatedto observing and monitoring various aspects of the physical world. In such networks, data from each sensor is agglomeratedusing data fusion to form a single meaningful result, which makes time synchronization between sensorshighly desirable. This paper surveys and evaluates existing clock synchronization protocols based on a palette offactors like precision, accuracy, cost, and complexity. The design considerations presented here can help developerseither in choosing an existing synchronization protocol or in defining a new protocol that is best suited to the specificneeds of a sensor-network application. Finally, the survey provides a valuable framework by which designers cancompare new and existing synchronization protocols.},
+  file      = {:Clock Synchronization for Wireless Sensor Networks - A Survey.pdf:PDF},
+  publisher = {Elsevier},
+}
+
+@InProceedings{gurdan2007energy,
+  author       = {Gurdan, Daniel and Stumpf, Jan and Achtelik, Michael and Doth, Klaus-Michael and Hirzinger, Gerd and Rus, Daniela},
+  title        = {Energy-efficient autonomous four-rotor flying robot controlled at 1 kHz},
+  booktitle    = {Robotics and Automation, 2007 IEEE International Conference on},
+  year         = {2007},
+  organization = {IEEE},
+  pages        = {361--366},
+  abstract     = {We describe an efficient, reliable, and robust fourrotorflying platform for indoor and outdoor navigation. Currently,similar platforms are controlled at low frequencies dueto hardware and software limitations. This causes uncertaintyin position control and instable behavior during fast maneuvers.Our flying platform offers a 1 kHz control frequency andmotor update rate, in combination with powerful brushlessDC motors in a light-weight package. Following a minimalisticdesign approach this system is based on a small number of lowcostcomponents. Its robust performance is achieved by usingsimple but reliable highly optimized algorithms. The robot issmall, light, and can carry payloads of up to 350g.},
+  file         = {:Energy-efficient Autonomous Four-rotor Flying Robot Controlled at 1 kHz.pdf:PDF},
+}
+
+@InProceedings{montemerlo2002fastslam,
+  author    = {Montemerlo, Michael and Thrun, Sebastian and Koller, Daphne and Wegbreit, Ben and others},
+  title     = {FastSLAM: A factored solution to the simultaneous localization and mapping problem},
+  booktitle = {Aaai/iaai},
+  year      = {2002},
+  pages     = {593--598},
+  file      = {:FastSLAM - A factored solution to the simultaneous localization and mapping problem.pdf:PDF},
+  groups    = {SLAM},
+}
+
+@Article{thrun2006graph,
+  author    = {Thrun, Sebastian and Montemerlo, Michael},
+  title     = {The graph SLAM algorithm with applications to large-scale mapping of urban structures},
+  journal   = {The International Journal of Robotics Research},
+  year      = {2006},
+  volume    = {25},
+  number    = {5-6},
+  pages     = {403--429},
+  file      = {:The GraphSLAM algorithm with applications to large-scale mapping of urban structures.pdf:PDF},
+  groups    = {SLAM},
+  publisher = {SAGE Publications},
+}
+
+@Article{djugash2009navigating,
+  author        = {Djugash, Joseph and Hamner, Bradley and Roth, Stephan},
+  title         = {Navigating with ranging radios: Five data sets with ground truth},
+  journal       = {Journal of Field Robotics},
+  year          = {2009},
+  volume        = {26},
+  number        = {9},
+  pages         = {689--695},
+  __markedentry = {[Albert:1]},
+  file          = {:Navigating with ranging radios - Five datasets with groundtruth.pdf:PDF},
+  publisher     = {Wiley Online Library},
+  review        = {http://www.frc.ri.cmu.edu/projects/emergencyresponse/RangeData/index.html},
+}
+
+@InProceedings{djugash2006further,
+  author        = {Djugash, Joseph and Singh, Sanjiv and Corke, Peter},
+  title         = {Further results with localization and mapping using range from radio},
+  booktitle     = {Field and Service Robotics},
+  year          = {2006},
+  organization  = {Springer},
+  pages         = {231--242},
+  __markedentry = {[Albert:1]},
+  file          = {:Further results with localization and mapping using range from radio.pdf:PDF},
+  groups        = {SLAM},
+}
+
+@InProceedings{blanco2008efficient,
+  author       = {Blanco, Jose-Luis and Fern{\'a}ndez-Madrigal, Juan-Antonio and Gonz{\'a}lez, Javier},
+  title        = {Efficient probabilistic range-only SLAM},
+  booktitle    = {Intelligent Robots and Systems, 2008. IROS 2008. IEEE/RSJ International Conference on},
+  year         = {2008},
+  organization = {IEEE},
+  pages        = {1017--1022},
+  abstract     = {This work addresses Range-Only SLAM (ROSLAM) as the Bayesian inference problem of sequentially tracking a vehicle while estimating the location of a set of beacons without any prior information. The only assumptions are the availability of odometry and a range sensor able of identifying the different beacons.We propose exploiting the conditional independence between each beacon distribution within a Rao-Blackwellized Particle Filter (RBPF) for maintaining independent Sum of Gaussians (SOGs) for each map element. It is shown then that a proper probabilistic observation model can be derived for online operation with no need for delayed initializations unlike other approaches. We provide a rigorous statistical comparison of this proposal with previous work of the authors where a Monte-Carlo approximation was employed instead for the conditional densities. As verified experimentally, this new proposal represents a significant improvement in accuracy, computation time, and robustness against outliers.},
+  file         = {:Efficient probabilistic range-only SLAM.pdf:PDF;:Efficient probabilistic range-only SLAM.ppt:PowerPoint},
+  groups       = {SLAM},
+  keywords     = {rank5},
+  review       = {
+=> Folgeliteratur zu "A pure probabilistic approach to range-only SLAM"
+- There are two fundamental characteristics that render RO-SLAM specially challenging: the existence of outliers due to the sensor nature (typically sonar or radio pulses), and more importantly the high ambiguity of the measurements.
+- Therefore, two problems with these sensors are: (i) the large portion of the environment where a beacon could be, given just one observation, and (ii) the very likely possibility of multiple plausible hypotheses
+- On the other hand, an advantage of RO-SLAM is the non-existence of the data association problem, since the usage of active beacons allows most sensors to establish unique correspondences between sensed ranges and particular beacons.
+- The contributions of this paper over previous works are: (i) a new inverse sensor model for initializing map distributions as weighted Sums of Gaussians (SOGs), (ii) the explanation of how to update those Gaussians and their weights using a multi-hypothesis EKF, and (iii) the derivation of the corresponding observation model required for the RBPF. The present approach has the advantage of a reduced computation burden due to the limited number of Gaussians required for a proper representation, while still providing an accurate approximation of the strongly non-Gaussian and frequently multi-modal distributions found in RO-SLAM.
+- In the case of a ground vehicle building a 3D map, if we know in advance that all the beacons have been placed at a height above (or below) the robot, the prior becomes a uniform distribution over half of the space (and zero in the complementary part). This is important since, as shown in the experimental results, a vehicle moving on a flat scenario can build a 3D map only up to a symmetry with respect to the robot plane: it cannot be disambiguated whether a given beacon is above or below the robot.},
+}
+
+@Book{djugash2010geolocation,
+  author        = {Djugash, Joseph A},
+  title         = {Geolocation with range: Robustness, efficiency and scalability},
+  year          = {2010},
+  publisher     = {Carnegie Mellon University},
+  __markedentry = {[Albert:1]},
+  abstract      = {Numerous geolocation technologies, such as GPS, can pinpoint a person’s or object’s position on Earth under ideal conditions. However, autonomous navigation of mobile robots requires a precision localization system that can operate under a variety of environmental and resource constraints. Take for example an emergency response scenario where a hospital building is on fire. This is a time sensitive life or death scenario where it is critical for first responders to locate possible survivors in a smoke filled room. The robot’s sensors need to work past environmental occlusions such as excessive smoke, debris, etc to provide support to the first responders. The robot itself also needs to effectively and accurately navigate the room with minimal help from other agents that might be present in the building since it is unrealistic to deploy unlimited robots for this task. The available resources need to be effectively used to best aid the rescue crew and ensure the safety of the rescue workers.
+Scenarios such as this present a crucial need for solutions that can work effectively in the presence of environmental constraints that can interfere with a sensor while giving equal weighting to resource constraints that impact the localization ability of a robot. This thesis presents one such experimentally proven solution that offers superior accuracy, robustness and scalability demonstrated via several realworld robot experiments and simulations.
+The geolocation technique explored uses a recently discovered sensor technology called the ranging radios that are able to communicate and measure range in the absence of line-of-sight between radio nodes. This provides a straightforward approach to tackle unknown occlusions in the environment and enables the use of range to localize the agent in a variety of different situations. One shortcoming of range-only data created by these ranging radios is that they generate a nonlinear and multi-modal measurement distribution that existing estimation techniques fail to accurately and efficiently model. To overcome this shortcoming, a novel and robust method for localization and SLAM (Simultaneous Localization and Mapping) given range-only data to stationary feature/nodes is developed and presented here.
+In addition to this centralized filtering technique, two key extensions are investigated and experimentally proven in order to provide a comprehensive framework for geolocation with range. The first is a decentralized filtering technique that distributes computational needs across several agents. This technique is especially useful in real-world scenarios where leveraging a large number of agents in an environment is not unrealistic. The second is a novel cooperative localization strategy, based on first principles, that leverages the motion of mobile agents in the system to provide better accuracy in a featureless environment. This technique is useful in cases where a limited number of mobile agents need to coordinate with each other to mutually improve their estimates.
+The developed techniques offer a unified global framework for geolocation with range that spans everything from static network localization to multi-robot cooperative localization with a level of accuracy and robustness which no other existing techniques can provide.},
+  file          = {:Geolocation with range - Robustness, efficiency and scalability.pdf:PDF},
+  groups        = {SLAM},
+  review        = {
+=> Viele Anschauliche Bilder (Figure 3.1, 3.4); Zu jedem Abschnitt gibt es eine kleine Zusammenfassung; 
+- Additionally, it is assumed that a constant variance model or a pre-calibrated PDF (probability distribution function) is available for the range sensor that is being used by the system.
+- In other words, given that each node is identified with an unique ID and each observation provides the IDs of the two nodes involved in generating the measurement, we also know with perfect certainty to which pair of nodes the range observation corresponds.
+- These observations are important because, they require that any filtering technique designed to solve the range-only localization problem needs to accurately model both nonlinear and multi-modal distributions. (Figure 3.1)
+- One of the most commonly used methods for range-only localization is the standard Extended Kalman Filter (EKF), which we call the Cartesian EKF. Odometry and gyro measurements are used in the state propagation or the prediction step, while the range measurements are incorporated in the correction step. While many alternative filtering techniques for performing range-only localization exists (such as particle filtering and batch optimization techniques), we will use the standard Cartesian EKF since it is by far the most similar to the method proposed in this thesis.
+- Unlike the standard Cartesian EKF formulation, the ROP-EKF does not require the robot’s initial pose to be known.
+- Thus far, we have assumed an unimodal Gaussian model, capable of approximating the nonlinearities within single range observations. We have also presented a probabilistic filtering method that is well suited for an EKF-based robot localization system. While this approach deals with non-linearities of an annulus, it fails to adequately deal with the multi-modal distribution of the system ((Figure 3.4(d))).
+- Multi-Hypothesis Filter: To elaborate, whenever an annulus is split into separate modes, we simply duplicate the filter and adjust the mean of each hypothesis to represent the two distinct intersection points.},
+}
+
+@InProceedings{pmlr-v28-boots13,
+  author        = {Byron Boots and Geoff Gordon},
+  title         = {A Spectral Learning Approach to Range-Only {SLAM}},
+  booktitle     = {Proceedings of the 30th International Conference on Machine Learning},
+  year          = {2013},
+  editor        = {Sanjoy Dasgupta and David McAllester},
+  volume        = {28},
+  series        = {Proceedings of Machine Learning Research},
+  number        = {1},
+  publisher     = {PMLR},
+  month         = {17--19 Jun},
+  pages         = {19--26},
+  url           = {http://proceedings.mlr.press/v28/boots13.html},
+  __markedentry = {[Albert:1]},
+  abstract      = {We present a novel spectral learning algorithm for simultaneous localization and mapping (SLAM) from range data with known correspondences.  This algorithm is an instance of a general spectral system identification framework, from which it inherits several desirable properties, including statistical consistency and no local optima. Compared with popular batch optimization or multiple-hypothesis tracking (MHT) methods for range-only SLAM, our spectral approach offers guaranteed low computational requirements and good tracking performance. Compared with MHT and with popular extended Kalman filter (EKF) or extended information filter (EIF) approaches, our approach does not need to linearize a transition or measurement model. We provide a theoretical analysis of our method, including finite-sample error bounds.  Finally, we demonstrate on a real-world robotic SLAM problem that our algorithm is not only theoretically justified, but works well in practice: in a comparison of multiple methods, the lowest errors come from a combination of our algorithm with batch optimization, but our method alone produces nearly as good a result at far lower computational cost.},
+  address       = {Atlanta, Georgia, USA},
+  file          = {:A Spectral Learning Approach to Range-Only SLAM.pdf:PDF;boots13.pdf:http\://proceedings.mlr.press/v28/boots13.pdf:PDF},
+  groups        = {SLAM},
+}
+
+@Article{durrant2006simultaneous,
+  author    = {Durrant-Whyte, Hugh and Bailey, Tim},
+  title     = {Simultaneous localization and mapping: part I},
+  journal   = {IEEE robotics \& automation magazine},
+  year      = {2006},
+  volume    = {13},
+  number    = {2},
+  pages     = {99--110},
+  file      = {:Simultaneous Localization and Mapping (SLAM) - Part I.pdf:PDF},
+  groups    = {SLAM},
+  keywords  = {rank3},
+  publisher = {IEEE},
+  review    = {
+=> Grundlagen zum SLAM, Rao-Blackwellized Filter und EKF-SLAM.},
+}
+
+@Article{bailey2006simultaneous,
+  author        = {Bailey, Tim and Durrant-Whyte, Hugh},
+  title         = {Simultaneous localization and mapping (SLAM): Part II},
+  journal       = {IEEE Robotics \& Automation Magazine},
+  year          = {2006},
+  volume        = {13},
+  number        = {3},
+  pages         = {108--117},
+  __markedentry = {[Albert:1]},
+  file          = {:Simultaneous Localization and Mapping (SLAM) - Part II.pdf:PDF},
+  groups        = {SLAM},
+  publisher     = {IEEE},
+}
+
+@InProceedings{djugash2006range,
+  author       = {Djugash, Joseph and Singh, Sanjiv and Kantor, George and Zhang, Wei},
+  title        = {Range-only slam for robots operating cooperatively with sensor networks},
+  booktitle    = {Robotics and Automation, 2006. ICRA 2006. Proceedings 2006 IEEE International Conference on},
+  year         = {2006},
+  organization = {IEEE},
+  pages        = {2078--2084},
+  file         = {:Range-Only SLAM for Robots Operating Cooperatively with Sensor Networks.pdf:PDF},
+  groups       = {SLAM},
+}
+
+@InCollection{murphy2001rao,
+  author    = {Murphy, Kevin and Russell, Stuart},
+  title     = {Rao-Blackwellised particle filtering for dynamic Bayesian networks},
+  booktitle = {Sequential Monte Carlo methods in practice},
+  year      = {2001},
+  publisher = {Springer},
+  pages     = {499--515},
+  abstract  = {Particle filters (PFs) are powerful samplingbased inference/learning algorithms for dynamic Bayesian networks (DBNs). They allow us to treat, in a principled way, any type of probability distribution, nonlinearity and non-stationarity. They have appeared in several fields under such names as "condensation", "sequential Monte Carlo" and "survival of the fittest". In this paper, we show how we can exploit the structure of the DBN to increase the efficiency of particle filtering, using a technique known as RaoBlackwellisation. Essentially, this samples some of the variables, and marginalizes out the rest exactly, using the Kalman filter, HMM filter, junction tree algorithm, or any other finite dimensional optimal filter. We show that RaoBlackwellised particle filters (RBPFs) lead to more accurate estimates than standard PFs. We demonstrate RBPFs on two problems, namely non-stationary online regression with radial basis function networks and robot localization and map building. We also discuss other potential application areas and provide references to some finite dimensional optimal filters.},
+  file      = {:Rao-Blackwellised particle filtering for dynamic Bayesian networks.pdf:PDF},
+  keywords  = {rank2},
+  review    = {
+=> Sehr unverständlich geschrieben.},
+}
+
+@InProceedings{fernandez2007application,
+  author        = {Fernandez-Madrigal, Juan-Antonio and Cruz-Martin, E and Gonzalez, Javier and Galindo, Cipriano and Blanco, Jose-Luis},
+  title         = {Application of UWB and GPS technologies for vehicle localization in combined indoor-outdoor environments},
+  booktitle     = {Signal Processing and Its Applications, 2007. ISSPA 2007. 9th International Symposium on},
+  year          = {2007},
+  organization  = {IEEE},
+  pages         = {1--4},
+  __markedentry = {[Albert:1]},
+  file          = {:Application of UWB and GPS Technologies for Vehicle Localization in Combined Indoor-Outdoor Environments.pdf:PDF},
+  groups        = {UWB},
+}
+
+@InProceedings{kantor2002preliminary,
+  author       = {Kantor, George and Singh, Sanjiv},
+  title        = {Preliminary results in range-only localization and mapping},
+  booktitle    = {Robotics and Automation, 2002. Proceedings. ICRA'02. IEEE International Conference on},
+  year         = {2002},
+  volume       = {2},
+  organization = {Ieee},
+  pages        = {1818--1823},
+  abstract     = {This paper presents methods of localization using cooperating landmarks (beacons) that provide the ability to measure range only. Recent advances in radio frequency technology make it possible to measure range between inexpensive beacons and a transponder. Such a method has tremendous benefit since line of sight is not required between the beacons and the transponder, and because the data association problem can be completely avoided. If the positions of the beacons are known, measurements from multiple beacons can be combined using probability grids to provide an accurate estimate of robot location. This estimate can be improved by using Monte Carlo techniques and Kalman filters to incorporate odometry data. Similar methods can be used to solve the simultaneous localization and mapping problem (SLAM) when beacon locations are uncertain. Experimental results are presented for robot localization. Tracking and SLAM algorithms are demonstrated in simulation.},
+  file         = {:Preliminary results in range-only localization and mapping.pdf:PDF},
+  groups       = {SLAM},
+  keywords     = {rank3},
+  review       = {
+=> Leicht zu lesen und gibt einen guten Überblick.
+- In Section 2, we investigate the problem of robot localization in an environment with known beacon locations using Markovian probability grids. Experimental results are presented. Section 3 extends these ideas to position tracking using Kalman filtering and Monte Carlo localization. Section 4 addresses the problem of localization in an environment with uncertain beacon locations. Here we present a SLAM algorithm that combines intuition with Kalman filtering. Simulation results are given for position tracking and SLAM algorithms.},
+}
+
+@InProceedings{kurth2003experimental,
+  author       = {Kurth, Derek and Kantor, George and Singh, Sanjiv},
+  title        = {Experimental results in range-only localization with radio},
+  booktitle    = {Intelligent Robots and Systems, 2003.(IROS 2003). Proceedings. 2003 IEEE/RSJ International Conference on},
+  year         = {2003},
+  volume       = {1},
+  organization = {IEEE},
+  pages        = {974--979},
+  file         = {:Experimental results in range-only localization with radio.pdf:PDF},
+  groups       = {SLAM},
+}
+
+@InProceedings{newman2003pure,
+  author       = {Newman, Paul and Leonard, John},
+  title        = {Pure range-only sub-sea SLAM},
+  booktitle    = {Robotics and Automation, 2003. Proceedings. ICRA'03. IEEE International Conference on},
+  year         = {2003},
+  volume       = {2},
+  organization = {IEEE},
+  pages        = {1921--1926},
+  file         = {:Pure range-only sub-sea SLAM.pdf:PDF},
+  groups       = {SLAM},
+}
+
+@InProceedings{julier1997new,
+  author       = {Julier, Simon J and Uhlmann, Jeffrey K},
+  title        = {A new extension of the Kalman filter to nonlinear systems},
+  booktitle    = {Int. symp. aerospace/defense sensing, simul. and controls},
+  year         = {1997},
+  volume       = {3},
+  number       = {26},
+  organization = {Orlando, FL},
+  pages        = {182--193},
+  file         = {:A new extension of the Kalman filter to nonlinear systems.pdf:PDF},
+  groups       = {Kalman Filter},
+}
+
+@InProceedings{kwok2004efficient,
+  author       = {Kwok, Ngai Ming and Dissanayake, Gamini},
+  title        = {An efficient multiple hypothesis filter for bearing-only SLAM},
+  booktitle    = {Intelligent Robots and Systems, 2004.(IROS 2004). Proceedings. 2004 IEEE/RSJ International Conference on},
+  year         = {2004},
+  volume       = {1},
+  organization = {IEEE},
+  pages        = {736--741},
+  file         = {:An efficient multiple hypothesis filter for bearing-only SLAM.pdf:PDF},
+  groups       = {SLAM},
+}
+
+@InCollection{singh2003recent,
+  author    = {Singh, Sanjiv and Kantor, George and Strelow, Dennis},
+  title     = {Recent results in extensions to simultaneous localization and mapping},
+  booktitle = {Experimental Robotics VIII},
+  year      = {2003},
+  publisher = {Springer},
+  pages     = {210--221},
+  file      = {:Recent results in extensions to simultaneous localization and mapping.pdf:PDF},
+  groups    = {SLAM},
+}
+
+@Article{yavari2014ultra,
+  author  = {Yavari, Mohammadreza and Nickerson, Bradford G},
+  title   = {Ultra wideband wireless positioning systems},
+  journal = {Dept. Faculty Comput. Sci., Univ. New Brunswick, Fredericton, NB, Canada, Tech. Rep. TR14-230},
+  year    = {2014},
+  file    = {:Ultra Wideband Wireless Positioning Systems.pdf:PDF},
+  groups  = {UWB},
+  review  = {
+- The first one is the multi-path phenomenon. Simply, it means that several components of one signal have followed different paths to the receiver, experiencing different amounts of PL.
+- The second phenomenon is shadowing or large-scale fading. The main reason for this phenomenon is a changing environment over long distance propagation.},
+}
+
+@Article{pahlavan2002indoor,
+  author    = {Pahlavan, Kaveh and Li, Xinrong and Makela, Juha-Pekka},
+  title     = {Indoor geolocation science and technology},
+  journal   = {IEEE Communications Magazine},
+  year      = {2002},
+  volume    = {40},
+  number    = {2},
+  pages     = {112--118},
+  file      = {:Indoor geolocation science and technology.pdf:PDF},
+  publisher = {IEEE},
+}
+
+@Article{friedlander1987passive,
+  author    = {Friedlander, Benjamin},
+  title     = {A passive localization algorithm and its accuracy analysis},
+  journal   = {IEEE Journal of Oceanic engineering},
+  year      = {1987},
+  volume    = {12},
+  number    = {1},
+  pages     = {234--245},
+  file      = {:A passive localization algorithm and its accuracy analysis.pdf:PDF},
+  publisher = {IEEE},
+}
+
+@Article{schmidt1972new,
+  author    = {Schmidt, Ralph O},
+  title     = {A new approach to geometry of range difference location},
+  journal   = {IEEE Transactions on Aerospace and Electronic Systems},
+  year      = {1972},
+  number    = {6},
+  pages     = {821--835},
+  file      = {:A New Approach to Geometry of Range Difference Location.pdf:PDF},
+  publisher = {IEEE},
+}
+
+@Book{leonard2012directed,
+  author    = {Leonard, John J and Durrant-Whyte, Hugh F},
+  title     = {Directed sonar sensing for mobile robot navigation},
+  year      = {2012},
+  volume    = {175},
+  publisher = {Springer Science \& Business Media},
+  file      = {:Directed Sonar Sensing for Mobile Robot Navigation.pdf:PDF},
+  groups    = {Kalman Filter},
+}
+
+@InCollection{pitt2001auxiliary,
+  author        = {Pitt, Michael K and Shephard, Neil},
+  title         = {Auxiliary variable based particle filters},
+  booktitle     = {Sequential Monte Carlo methods in practice},
+  year          = {2001},
+  publisher     = {Springer},
+  pages         = {273--293},
+  __markedentry = {[Albert:1]},
+  file          = {:Auxiliary variable based particle filters.pdf:PDF},
+}
+
+@Manual{decawave2014calibration,
+  title     = {Antenna delay calibration of DW1000-based products and systems},
+  year      = {2014},
+  publisher = {DecaWave Limited},
+  version   = {1.01},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\Datenblätter\\decaWave - APS014 Antenna Delay Calibration Of DW1000-Based Products And Systems.pdf:PDF},
+  groups    = {DecaWave},
+  key       = {DecaWave},
+}
+
+@Manual{decawave2015twr,
+  title     = {The implementation of two-way ranging with the DW1000},
+  year      = {2015},
+  publisher = {DecaWave Limited},
+  version   = {2.2},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\Datenblätter\\decaWave - APS013 The implementation of two-way ranging with the DW1000.pdf:PDF},
+  groups    = {DecaWave},
+}
+
+@Manual{decawave2014error,
+  title     = {Sources of error In DW1000 based two-way ranging schemes},
+  year      = {2014},
+  publisher = {DecaWave Limited},
+  version   = {1.0},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\Datenblätter\\decaWave - APS011 Sources Of Error In DW1000 Based Two-Way Ranging (TWR) Schemes.pdf:PDF},
+  groups    = {DecaWave},
+}
+
+@Manual{decawave2014synchronization,
+  title     = {Wired synchronization of anchor nodes in a TDOA real time location system},
+  year      = {2014},
+  publisher = {DecaWave Limitied},
+  version   = {1.0},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\Datenblätter\\decaWave - APS007 Wired Synchronization Of Anchor Nodes In A TDOA Real Time Location System.pdf:PDF},
+  groups    = {DecaWave},
+}
+
+@Manual{decawave2014rtls,
+  title     = {Real time location systems - An Introduction},
+  date      = {2014},
+  publisher = {DecaWave Limited},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\Datenblätter\\decaWave - APS003 Real Time Location Systems - An Introduction.pdf:PDF},
+  groups    = {DecaWave},
+}
+
+@Manual{decawave2013power,
+  title     = {DW1000 power source selection guide},
+  year      = {2013},
+  publisher = {DecaWave Limited},
+  version   = {1.10},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\Datenblätter\\decaWave - APH005 DW1000 Power Source Selection Guide.pdf:PDF},
+  groups    = {DecaWave},
+}
+
+@Article{dadebysystem,
+  author   = {DÄDEBY, SEBASTIAN and HESSELGREN, JOAKIM},
+  title    = {A system for indoor positioning using ultra-wideband technology},
+  year     = {2017},
+  file     = {:A system for indoor positioning using ultra-wideband technology.pdf:PDF},
+  keywords = {rank4},
+  review   = {
+=> Optisch sehr ansprechend, Histogramme der Messverteilung},
+}
+
+@Manual{decawave2016dwm1kdatasheet,
+  title     = {DWM1000 Datasheet},
+  year      = {2016},
+  publisher = {DecaWave Limited},
+  version   = {1.6},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\Datenblätter\\decaWave - DWM1000 Datasheet 1.6.pdf:PDF},
+  groups    = {DecaWave},
+}
+
+@Online{Holder2016,
+  author = {Wayne Holder},
+  title  = {UWB Ranging with the DecaWave DWM1000},
+  year   = {2016},
+  url    = {https://sites.google.com/site/wayneholder/uwb-ranging-with-the-decawave-dwm1000},
+  groups = {DecaWave},
+}
+
+@Online{Holder2016a,
+  author = {Wayne Holder},
+  title  = {UWB Ranging with the DecaWave DWM1000 - Part II},
+  year   = {2016},
+  url    = {https://sites.google.com/site/wayneholder/uwb-ranging-with-the-decawave-dwm1000---part-ii},
+  groups = {DecaWave},
+}
+
+@Online{Trojer2015,
+  author   = {Thomas Trojer},
+  title    = {thotro/arduino-dw1000},
+  year     = {2015},
+  url      = {https://github.com/thotro/arduino-dw1000},
+  subtitle = {A library that offers functionality to use Decawave's DW1000 chips/modules with Arduino.},
+  groups   = {DecaWave},
+}
+
+@Book{thrun2005probabilistic,
+  author    = {Thrun, Sebastian and Burgard, Wolfram and Fox, Dieter},
+  title     = {Probabilistic robotics},
+  year      = {2005},
+  publisher = {MIT press},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Robotik WS1617\\Literatur\\Thrun, Burgard, Fox - Probabilistic Robotics.pdf:PDF},
+}
+
+@Article{riisgaard2003slam,
+  author        = {Riisgaard, S{\o}ren and Blas, Morten Rufus},
+  title         = {SLAM for Dummies},
+  journal       = {A Tutorial Approach to Simultaneous Localization and Mapping},
+  year          = {2003},
+  volume        = {22},
+  number        = {1-127},
+  pages         = {126},
+  __markedentry = {[Albert:1]},
+  file          = {:SLAM for Dummies.pdf:PDF},
+  groups        = {SLAM},
+  keywords      = {rank4},
+  review        = {
+=> Sehr gut erklärung des Kalman Filter, seiner Matrizen und der Anwendung der gleichen.},
+}
+
+@InProceedings{steux2010tinyslam,
+  author       = {Steux, Bruno and El Hamzaoui, Oussama},
+  title        = {tinySLAM: A SLAM algorithm in less than 200 lines C-language program},
+  booktitle    = {Control Automation Robotics \& Vision (ICARCV), 2010 11th International Conference on},
+  year         = {2010},
+  organization = {IEEE},
+  pages        = {1975--1979},
+  abstract     = {This paper presents a Laser-SLAM algorithm which has been programmed in less than 200 lines of Clanguage code. Our idea was to develop and implement a very simple SLAM algorithm that could be easily integrated into our particle-filter based localization subsystem. For our experiments, we have been using a homebrew robotic platform called MinesRover. It’s a six wheels robot fully equipped with sensors, including a Hokuyo URG04 laser scanner. A typical example of our experiments is presented, showing the good performance of the algorithm. Furthermore, the full source code of the map update and map matching functions are provided in this paper. This work shows the possibility to perform complex tasks using simple and easily programmable algorithms.},
+  file         = {:CoreSLAM - a SLAM Algorithm in less than 200 lines of C code.pdf:PDF},
+  groups       = {SLAM},
+  keywords     = {rank4},
+  review       = {
+=> Interessante Roboter Achitektur; SLAM Algorithmus in 200 Zeilen, richtig gut.
+- On the one hand, algorithms based on the use of Kalman filters [7], and on the other hand, we find algorithms using particle filters [2], or Rao-Blackwellized particle filters - a mix of particle and Kalman filtering - like FastSLAM[5].
+- The Mines Rover mechanical architecture. It’s a 6 wheel robot, with 4 steering and driving wheels, and 2 free-rotating wheels equipped with 2000 points encoders. The Qwerk module is at the center of the robot. Its 200Mhz microprocessor is able to manage all the sensors and actuators reliably.},
+}
+
+@Book{zekavat2011handbook,
+  author    = {Zekavat, Reza and Buehrer, R Michael},
+  title     = {Handbook of position location: Theory, practice and advances},
+  year      = {2011},
+  volume    = {27},
+  publisher = {John Wiley \& Sons},
+}
+
+@InProceedings{eliazar2003dp,
+  author    = {Eliazar, Austin and Parr, Ronald},
+  title     = {DP-SLAM: Fast, robust simultaneous localization and mapping without predetermined landmarks},
+  booktitle = {IJCAI},
+  year      = {2003},
+  volume    = {3},
+  pages     = {1135--1142},
+  file      = {:DP-SLAM - Fast, Robust Simultaneous Localization and Mapping Without Predetermined Landmarks.pdf:PDF},
+  groups    = {SLAM},
+}
+
+@Book{murphy2000introduction,
+  author    = {Murphy, Robin},
+  title     = {Introduction to AI robotics},
+  year      = {2000},
+  publisher = {MIT press},
+  file      = {:C\:\\Users\\Albert\\Documents\\Studium\\Robotik WS1617\\Literatur\\Murphy - Introduction to AI Robotics.pdf:PDF},
+}
+
+@InProceedings{tiemann2016atlas,
+  author       = {Tiemann, Janis and Eckermann, Fabian and Wietfeld, Christian},
+  title        = {Atlas-an open-source tdoa-based ultra-wideband localization system},
+  booktitle    = {Indoor Positioning and Indoor Navigation (IPIN), 2016 International Conference on},
+  year         = {2016},
+  organization = {IEEE},
+  pages        = {1--6},
+  abstract     = {IEEE 802.15.4a Ultra-wideband based wireless positioning has recently gained attention for precise localization. However, the multi-user scalability of those, mostly two-way ranging based, approaches is not considered. Due to the exchange of multiple frames per ranging, two-way ranging has significant downsides in terms of scalability. This paper proposes and validates a novel approach for a multi-user time-difference of arrival based localization system using wireless clock synchronization. The system accuracy is assessed using a complex experiment, covering robotic movement and an optical reference system for comparable results. It is shown, that the accuracies achievable by time-difference of arrival positioning with wireless clock synchronization are comparable to similar two-way ranging based approaches. All raw samples, reference data and processed positions are provided alongside this work.},
+  file         = {:ATLAS - An Open-Source TDOA-based Ultra-Wideband Localization System.pdf:PDF},
+}
+
+@InCollection{shi2016survey,
+  author    = {Shi, Guowei and Ming, Ying},
+  title     = {Survey of Indoor Positioning Systems Based on Ultra-wideband (UWB) Technology},
+  booktitle = {Wireless Communications, Networking and Applications},
+  year      = {2016},
+  publisher = {Springer},
+  pages     = {1269--1278},
+  abstract  = {Indoor positioning is a challenging research area, and various kinds of indoor positioning systems have been developed based on different technologies. Ultra-wideband (UWB) positioning technology is mainly used for high-accuracy indoor wireless positioning. This paper provides an overview of indoor positioning solution based on UWB technology. First, the conception, standardization, and advantages of UWB were introduced, and then four location measure techniques based on UWB technology are analyzed. Finally, the applications and future trends for the technology are provided.},
+}
+
+@Article{cotera2016indoor,
+  author    = {Cotera, Pablo and Velazquez, Miguel and Cruz, David and Medina, Luis and Bandala, Manuel},
+  title     = {Indoor robot positioning using an enhanced trilateration algorithm},
+  journal   = {International Journal of Advanced Robotic Systems},
+  year      = {2016},
+  volume    = {13},
+  number    = {3},
+  pages     = {110},
+  abstract  = {This paper presents algorithms implemented for positioning a wheeled robot on a production floor inside a factory by means of radio-frequency distance measurement and trilateration techniques. A set of radio-frequency transceivers located on the columns of the factory (anchors) create a grid with several triangular zones capable of measuring the line-of-sight distance between each anchor and the transceiver installed in the wheeled robot. After measuring only three of these distances (radii), an enhanced trilateration algorithm is applied to obtain X and Y coordinates in a Cartesian plane, i.e., the position of the robot on the factory floor. The embedded systems developed for the anchors and the robot are robust enough to establish communication, select the closest anchors for measuring radii, and identify in which of the grid zones the robot is located.},
+  file      = {:Indoor Robot Positioning using an Enhanced Trilateration Algorithm.pdf:PDF},
+  publisher = {SAGE Publications Sage UK: London, England},
+}
+
+@Article{alarifi2016ultra,
+  author    = {Alarifi, Abdulrahman and Al-Salman, AbdulMalik and Alsaleh, Mansour and Alnafessah, Ahmad and Al-Hadhrami, Suheer and Al-Ammar, Mai A and Al-Khalifa, Hend S},
+  title     = {Ultra wideband indoor positioning technologies: Analysis and recent advances},
+  journal   = {Sensors},
+  year      = {2016},
+  volume    = {16},
+  number    = {5},
+  pages     = {707},
+  abstract  = {In recent years, indoor positioning has emerged as a critical function in many end-user applications; including military, civilian, disaster relief and peacekeeping missions. In comparison with outdoor environments, sensing location information in indoor environments requires a higher precision and is a more challenging task in part because various objects reflect and disperse signals. Ultra WideBand (UWB) is an emerging technology in the field of indoor positioning that has shown better performance compared to others. In order to set the stage for this work, we provide a survey of the state-of-the-art technologies in indoor positioning, followed by a detailed comparative analysis of UWB positioning technologies. We also provide an analysis of strengths, weaknesses, opportunities, and threats (SWOT) to analyze the present state of UWB positioning technologies. While SWOT is not a quantitative approach, it helps in assessing the real status and in revealing the potential of UWB positioning to effectively address the indoor positioning problem. Unlike previous studies, this paper presents new taxonomies, reviews some major recent advances, and argues for further exploration by the research community of this challenging problem space.},
+  file      = {:Ultra Wideband Indoor Positioning Technologies - Analysis and Recent Advances.pdf:PDF},
+  publisher = {Multidisciplinary Digital Publishing Institute},
+}
+
+@Article{qigao2015tightly,
+  author    = {Qigao, Fan and Biwen, Sun and Yaheng, Wu},
+  title     = {Tightly Coupled Model for Indoor Positioning based on UWB/INS},
+  journal   = {International Journal of Computer Science Issues (IJCSI)},
+  year      = {2015},
+  volume    = {12},
+  number    = {4},
+  pages     = {11},
+  abstract  = {In this paper a tightly coupled indoor positioning system combining Ultra-Wideband (UWB) measurements with low-cost MEMS inertial navigation system (INS) measurements is proposed. Wireless sensor signal outage and severe multipath propagation very often lead to ranging errors, which make pure UWB-based localization less effective. Moreover, inertial sensors have their drift with time. A tightly coupled system is uesd to estimate moving target position and attitude in the indoor conditions. In order to eliminate the clock error, Time Difference of Arrival (TDOA) approach is used. Dynamic and static tests are carried on for the tightly coupled approach. Experimental results show that the tightly coupled indoor positioning system can improve the single system position accuracy and achieve the position and attitude real-time tracking of moving targets.},
+  file      = {:Tightly Coupled Model for Indoor Positioning based on UWB+INS.pdf:PDF},
+  publisher = {International Journal of Computer Science Issues (IJCSI)},
+}
+
+@Book{oppermann2005uwb,
+  author    = {Oppermann, Ian and H{\"a}m{\"a}l{\"a}inen, Matti and Iinatti, Jari},
+  title     = {UWB: theory and applications},
+  year      = {2005},
+  publisher = {John Wiley \& Sons},
+  file      = {:UWB Theory and Applications.pdf:PDF},
+  groups    = {UWB},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}
+
+@Comment{jabref-meta: fileDirectory:C:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\scientific publication;}
+
+@Comment{jabref-meta: grouping:
+0 AllEntriesGroup:;
+1 StaticGroup:Kalman Filter\;0\;1\;\;\;\;;
+1 StaticGroup:Algorithmen\;0\;1\;\;\;\;;
+1 StaticGroup:Anwendung\;0\;1\;\;\;\;;
+1 StaticGroup:Systemvergleiche\;0\;1\;\;\;\;;
+1 StaticGroup:Sonstige\;0\;1\;\;\;\;;
+1 StaticGroup:Ungelesen\;0\;1\;\;\;\;;
+1 StaticGroup:SLAM\;0\;1\;\;\;\;;
+1 SearchGroup:Unreviewed\;0\;NOT(review="")\;0\;0\;1\;\;\;\;;
+1 StaticGroup:Signalauswertung\;0\;1\;\;\;\;;
+1 StaticGroup:UWB\;0\;1\;\;\;\;;
+1 StaticGroup:DecaWave\;0\;1\;\;\;\;;
+}
