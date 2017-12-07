@@ -1,11 +1,15 @@
-\documentclass[
-	%draft,
-	11pt,
-	a4paper,
-	twoside,
-	titlepage,
-	openright,
-]{scrbook}
+%
+% Learn LaTeX in 30 minutes
+% https://de.sharelatex.com/learn/Learn_LaTeX_in_30_minutes
+%
+
+
+%
+% LaTeX documentclass options illustrated
+% https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/
+%
+\documentclass[11pt,a4paper,twoside,titlepage,openright]{scrbook}
+
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -13,173 +17,131 @@
 \usepackage{comment}
 \usepackage[ngerman]{babel}
 \usepackage[autostyle]{csquotes}
-
-\usepackage{showframe}
-\usepackage[
-	a4paper,
-	showframe,
-% FH Vorlage :$
-%	inner=35mm,
-%	outer=25mm,
-%	top=20mm,
-%	bottom=25mm,
-%	headsep=1em,
-%	headheight=1.5em,
-%	includehead,
-%	footskip=3em,
-%	includefoot
-]{geometry}
-
-% change normal text style to 1.5 lineheight and remove paragraph indent
-% Das Setspace Paket ermöglicht es auch recht einfach Weise den Zeilenabstand zu ändern. Da es bei einer Vielzahl von Arbeiten gefordert wird, dass der Zeilenabstand zum Beispiel 1.5 betragen soll oder das ein doppelter Zeilenabstand gewünscht wird. Im Regelfall werden Seminar-, Bachelor-, Master- und Diplomarbeiten mit eineinhalbfachen Zeilenabstand gesetzt.
-%\usepackage[onehalfspacing]{setspace}
-%	\setlength{\parindent}{0em}
-%	\setlength{\parskip}{0.5em}
-
+%\usepackage{showframe}
+%\usepackage[a4paper,showframe]{geometry}
+\usepackage[a4paper]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%
 % fix widows (Hurenkinder) and orphans (Schusterjungen)
 % http://mirror.hmc.edu/ctan/macros/latex/contrib/nowidow/nowidow.pdf
-%\usepackage[defaultlines=4,all]{nowidow}
-
+%
+%\usepackage[defaultlines=2,all]{nowidow}
+%
 % use color package and define fh logo colors
-\usepackage{color}
-	\definecolor{fh-black}{RGB}{0,0,0}
-	\definecolor{fh-white}{RGB}{255,255,255}
-	\definecolor{fh-turquoise}{RGB}{0,177,172}
-
+%
+%\usepackage{color}
+%	\definecolor{fh-black}{RGB}{0,0,0}
+%	\definecolor{fh-white}{RGB}{255,255,255}
+%	\definecolor{fh-turquoise}{RGB}{0,177,172}
+%
 % Quelltexte (Programmlistings)
+% Listings caption [duplicate]
+% 		- https://tex.stackexchange.com/questions/54819/listings-caption
+%
 \usepackage{listings}
-  % Listings caption [duplicate]
-  % https://tex.stackexchange.com/questions/54819/listings-caption
   \renewcommand{\lstlistingname}{Auflistung}
-  
 \usepackage{url}
-\usepackage[
-	breaklinks=true,
-	colorlinks=true,
-	linkcolor=black,
-	urlcolor=black,
-	citecolor=black,
-]{hyperref}
-
+\usepackage[breaklinks,colorlinks,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
+%
+% bibtex vs. biber and biblatex vs. natbib
+%	- https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
 % The biblatex Package - Programmable Bibliographies and Citations
 % 	- http://ftp.math.purdue.edu/mirrors/ctan.org/macros/latex/exptl/biblatex/doc/biblatex.pdf
 % Biblatex citation order
 %	- https://tex.stackexchange.com/questions/51434/biblatex-citation-order
-\usepackage[
-	backend=biber,
-	style=numeric-comp,
-	% Sort by year (descending), name, title.
-	%sorting=ydnt,
-	% Do not sort at all. All entries are processed in citation order.
-	sorting=none,
-]{biblatex}
+% 		- sorting=ydnt: Sort by year (descending), name, title.
+%		- sorting=none: Do not sort at all. All entries are processed in citation order.
+%
+\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
 	\addbibresource{C:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\sources.bib}
-
+%
 % How can I use @author, @date, and @title after maketitle?
 % https://tex.stackexchange.com/questions/27710/how-can-i-use-author-date-and-title-after-maketitle
+%
 \usepackage{titling}
 	\title{Range Only Simultaneous Localization and Mapping with Ultra-Wideband}
 	\author{Albert Kasdorf}
-
-% Page layout in LATEX
-% http://www.ntg.nl/maps/16/29.pdf
-%\usepackage{fancyhdr}
-%	\pagestyle{fancy}
-%	\lhead{}\chead{}\rhead{}
-%	\lfoot{}\cfoot{\thepage}\rfoot{}
-%	\renewcommand{\headrulewidth}{0.0pt}
-%	\renewcommand{\footrulewidth}{0.4pt}
-
+%
 % siunitx — A comprehensive (SI) units package
 % http://www.bakoma-tex.com/doc/latex/siunitx/siunitx.pdf
+%
 \usepackage{siunitx}
-
 \usepackage{graphicx}
   \graphicspath{ {Bilder/} }
-  
 \usepackage{eso-pic}
-
 %\usepackage{tikz}
 %	\usetikzlibrary{positioning}
 %	\usetikzlibrary{calc}
 %	\usetikzlibrary{decorations.markings}
 %	\usetikzlibrary{fit}
-
 \usepackage{float}
-
 %
 % acronym – Abkürzungsverzeichnis mit LATEX
 % http://namsu.de/Extra/pakete/Acronym.pdf
+% Arguments: footnote, smaller
 %
-\usepackage[
-	nohyperlinks,
-	printonlyused,
-	withpage,
-	%footnote,
-	%smaller,
-]{acronym}
-%\usepackage[numbers,nonamebreak,sort]{natbib}
-
-% configure "fancy" page style
-%\usepackage{fancyhdr}
-%\pagestyle{fancy}
-%\fancyhf{}
-%\renewcommand\headrulewidth{0.2mm}
-%\renewcommand\footrulewidth{0mm}
-%\fancyhead[OR,EL]{\leftmark}
-%\fancyfoot[OR,EL]{\thepage}
-%\fancypagestyle{plain}{
-%    \fancyhead{}% remove header at chapter beginning
-%    \renewcommand{\headrulewidth}{0mm}
-%}
-
-% math
-\usepackage{amssymb}
-\usepackage{amsthm}
-
-% other packages
-\usepackage{enumitem}
-\usepackage{lipsum}
-
+\usepackage[nohyperlinks,printonlyused,withpage]{acronym}
+\usepackage[headsepline]{scrlayer-scrpage}
+	\clearpairofpagestyles
+	\chead{\headmark}
+	%\cfoot*{\pagemark}
+	\ohead{\pagemark}
+	\setkomafont{pageheadfoot}{\sffamily}
+	\setkomafont{pagination}{}
+	\setkomafont{chapter}{\Huge\bfseries}
+	\renewcommand*{\chapterformat}{%
+  		\enskip\mbox{\scalebox{3}{\thechapter\autodot}}}
+	\renewcommand\chapterlinesformat[3]{%
+		\parbox[b]{\textwidth}{\hrulefill#2}\par%
+		#3\par\bigskip
+		\hrule}
+%	\renewcommand\chapterlinesformat[3]{%
+%  		\begin{center}#2\end{center}\par%
+%  		\begin{center}#3\end{center}\par\bigskip}
 %
-% The tocloft package provides means of controlling the typographic design of the Table of Contents, List of Figures and List of Tables.
-% http://mirrors.rit.edu/CTAN/macros/latex/contrib/tocloft/tocloft.pdf
+% List of Figures, List of tables in toc
+% https://tex.stackexchange.com/questions/299306/list-of-figures-list-of-tables-in-toc
 %
-%\usepackage{tocloft}
+\usepackage[nottoc]{tocbibind}
+\usepackage[toc,page]{appendix}
+	\renewcommand{\appendixname}{Anhang}
+	\renewcommand{\appendixtocname}{Anhang}
+	\renewcommand{\appendixpagename}{Anhang}
+%
+% Generating dummy text/blindtext with LaTeX for testing
+% https://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/
+%
+\usepackage{blindtext}
 
 %
-% http://ctan.math.illinois.edu/macros/latex/contrib/fncychap/fncychap.pdf
+% VIII Beispiel für den Aufbau einer Bachelorarbeit
+% https://www.tu-chemnitz.de/hsw/psychologie/professuren/owpsy/Service/Leitfaden-Bachelorarbeiten.pdf
 %
-%\usepackage[Sonny]{fncychap}
-
-
 \begin{document}
 
-	% Dieser Befehl wird oftmals in großen Dokumenten für die ersten Seiten verwendet. Ziel ist es hierbei die Seiten wie Sperrklausel, Danksagung, Tabellen- oder Inhaltsverzeichnis von dem eigentlichen Inhalt des Dokumentes zu trennen. Dies geschieht durch Umschaltung der Seitennummerierung von arabisch auf römisch, wobei die Seitenzählung wieder bei 1 beginnt. 
 	\frontmatter
-
-	% titlepage
+ 
 	\input{0_titelseite}
 	\cleardoublepage
 	
 	% front matter
 	%\input{abstract}
 
-	\input{0_inhaltsverzeichnis}
+	\input{0_eidesstattliche_erklaerung}
+	\tableofcontents
 	\input{0_abkuerzungsverzeichnis}
-	\input{0_abbildungsverzeichnis}
-	\input{0_tabellenverzeichnis}
+	\listoffigures
+	\listoftables
 	
-	% Arabische Seitenummerierung
 	\mainmatter
 	
-	\input{einfuehrung}
-	\input{grundlagen}
-	\input{stand_der_forschung_und_technik}
-	\input{uwb}
-	\input{ro_slam}
-	\input{evaluation}
-	\input{zusammenfassung_und_ausblick}
+	\input{1_einfuehrung}
+	\input{2_grundlagen}
+	\input{3_stand_der_forschung_und_technik}
+	\input{4_ultrabreitband}
+	\input{5_ro_slam}
+	\input{6_evaluation}
+	\input{7_zusammenfassung_und_ausblick}
 	\cleardoublepage
 
 %
@@ -196,16 +158,11 @@
 	\nocite{thrun2005probabilistic}
 	\nocite{schroeder2005low}
 	\nocite{smith2004tracking}
-	\printbibliography[
-		heading=bibintoc,
-		title={Literaturverzeichnis}
-	]
+	\printbibliography[heading=bibintoc,title={Literaturverzeichnis}]
 	\cleardoublepage
 
-	% Beginn des Anhangs
-	\appendix
+	\input{0_anhang}
 
-	% Ende des Buches
 	\backmatter
 
 \end{document}
