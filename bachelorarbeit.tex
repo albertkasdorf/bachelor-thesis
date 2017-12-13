@@ -8,7 +8,7 @@
 % LaTeX documentclass options illustrated
 % https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/
 %
-\documentclass[11pt,a4paper,twoside,titlepage,openright]{scrbook}
+\documentclass[11pt,a4paper,twoside,titlepage,openright,ngerman]{scrbook}
 
 
 \usepackage[utf8]{inputenc}
@@ -65,7 +65,8 @@
 % siunitx — A comprehensive (SI) units package
 % http://www.bakoma-tex.com/doc/latex/siunitx/siunitx.pdf
 %
-\usepackage{siunitx}
+\usepackage[mode=text]{siunitx}
+	\sisetup{locale=DE,range-phrase=--}
 \usepackage{graphicx}
   \graphicspath{ {Bilder/} }
 \usepackage{eso-pic}
@@ -112,6 +113,16 @@
 % https://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/
 %
 \usepackage{blindtext}
+
+%
+% Some packages from other authors may have problems with KOMA-Script.
+% Package scrhack contains all those improvement proposals for
+% other packages. This means, scrhack redefines macros of packages
+% from other authors! The redefinitions are only activated, if
+% those packages were loaded. Users may prevent scrhack from
+% redefining macros of individual packages.
+%
+\usepackage{scrhack}
 
 %
 % VIII Beispiel für den Aufbau einer Bachelorarbeit

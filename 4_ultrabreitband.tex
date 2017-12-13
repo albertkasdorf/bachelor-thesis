@@ -5,6 +5,9 @@ Fragestellung:
 - Wie erfolgt der Datenaustausch zwischen einem UWB--Modul und der Verarbeitungseinheit?
 \end{comment}
 
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \chapter{Ultrabreitband}
 
 \begin{comment}
@@ -34,6 +37,7 @@ systems.
 	- Sensor networks: Sensor networks consist of a large number of nodes spread across a geographical area. The nodes can be static, if deployed for, e.g., avalanche monitoring and pollution tracking, or mobile, if equipped on soldiers, firemen, or robots in military and emergency response situations. Key requirements for sensor networks operating in challenging environments include low cost, low power, and multifunctionality. High data-rate UWB communication systems are well motivated for gathering and disseminating or exchanging a vast quantity of sensory data in a timely manner. Typically, energy is more limited in sensor networks than in WPANs because of the nature of the sensing devices and the difficulty in recharging their batteries. Studies have shown that current commercial Bluetooth devices are less suitable for sensor network applications because of their energy requirements [62] and higher expected cost [2]. In addition, exploiting the precise localization capability of UWB promises wireless sensor networks with improved positioning accuracy. This is especially useful when GPSs are not available, e.g., due to obstruction.
 	- Imaging systems: Different from conventional radar systems where targets are typically considered as point scatterers, UWB radar pulses are shorter than the target dimensions. UWB reflections off the target exhibit not only changes in amplitude and time shift but also changes in the pulse shape. As a result, UWB waveforms exhibit pronounced sensitivity to scattering relative to conventional radar signals. This property has been readily adopted by radar systems (see e.g., [5] and references therein) and can be extended to additional applications, such as underground, through-wall and ocean imaging, as well as medical diagnostics and border surveillance devices [55], [57].
 	- Vehicular radar systems: UWB-based sensing has the potential to improve the resolution of conventional proximity and motion sensors. Relying on the high ranging accuracy and target differentiation capability enabled by UWB, intelligent collision-avoidance and cruise-control systems can be envisioned. These systems can also improve airbag deployment and adapt suspension/braking systems depending on road conditions. UWB technology can also be integrated into vehicular entertainment and navigation systems by downloading high-rate data from airport off ramp, road-side, or gas station UWB transmitters.
+		- By its rulemaking proposal in 2002, the Federal Communications Commission (FCC) in the United States essentially unleashed huge “new bandwidth’’ (3.6–10.1 GHz) at the noise floor, where UWB radios overlaying coexistent RF systems can operate using low-power ultra-short information bearing pulses.
 	
 \cite{win1998impulse}
 	- Impulse radio: How it works
@@ -48,84 +52,90 @@ systems.
 Medical applications of ultra-wideband (UWB)
 	- \cite{pan2007medical}
 	
-Ultra wideband communications: History, evolution and emergence
-	- \cite{lakkundi2006ultra}
-
-
-
-\section{Historie}
-
-\cite{eltaher2004positioning}
-	- Positioning of robots using ultra-wideband signals
-	- The origins of UWB technology lie in early work on time domain electromagnetics, which began in the early 1960s [4].
-	- In 1989 the term 'ultra wide-band' or 'UWB', was coined by the Department of Defense and since 1994 development work has been carried out for civil applications.
-	- Until 1994 the core technology was developed variously as 'baseband', 'carrier-free' or 'impulse' communications under classied research programmes carried out by the US Department of Defense, which had identied its particular suitability for radar and highly secure communications [4].
-	- DONE!
-
-\cite{yang2004uwbcom}
-	- Ultra-wideband communications: an idea whose time has come
-	- By its rulemaking proposal in 2002, the Federal Communications Commission (FCC) in the United States essentially unleashed huge “new bandwidth’’ (3.6–10.1 GHz) at the noise floor, where UWB radios overlaying coexistent RF systems can operate using low-power ultra-short information bearing pulses.
-	- Despite these attractive features, interest in UWB devices prior to 2001 was primarily limited to radar systems, mainly for military applications. With bandwidth resources becoming increasingly scarce, UWB radio was “a midsummer night’s dream’’ waiting to be fulfilled. But things changed drastically in the spring of 2002, when the FCC released a spectral mask allowing (even commercial) operation of UWB radios at the noise floor, but over an enormous bandwidth (up to 7.5 GHz).
-	- When invented by Guglielmo Marconi more than a century ago, radio communications utilized enormous bandwidth as information was conveyed using spark-gap transmitters.
-			- https://www.youtube.com/watch?v=YSf93g0heUA
-	- The next milestone of UWB technology came in the late 1960s, when the high sensitivity to scatterers and low power consumption motivated the introduction of UWB radar systems [5], [45], [46].
-	- Ross’ patent in 1973 set up the foundation for UWB communications. Readers are referred to [5] for an interesting and informative review of pioneer works in UWB radar and communications.
-	- In 1989, the U.S. Department of Defense (DoD) coined the term “ultra wideband” for devices occupying at least 1.5 GHz, or a -20 dB fractional bandwidth exceeding 25% [37].
-	- Similar definitions were also adopted by the FCC notice of proposed rule making that regulated UWB recently. The rule making of UWB was opened by FCC in 1998. The resulting First Report and Order (R\&O) that permitted deployment of UWB devices was announced on 14 February and released in April 2002 [12]. Three types of UWB systems are defined in this R\&O: imaging systems, communication and measurement systems, and vehicular radar systems. Spectral masks assigned to these applications are listed in Table 1. In particular, the FCC assigned bandwidth and spectral mask for indoor communications is illustrated in Figure 1.
-	- Although currently only the United States permits operation of UWB devices, regulatory efforts are under way both in Europe and in Japan.
-		- Wie sieht es 2017 aus?
-	- DONE!
-	
-\cite{fowler1990assessment}
-	- Assessment of ultra-wideband(UWB) technology (Military)
-	- DONE!
+\cite{lakkundi2006ultra}
+	- Ultra wideband communications: History, evolution and emergence
+	- Figure 1 und 2 sind gut
+	- The development of the sampling oscilloscope in the early 1960s and the corresponding techniques for generating sub-nanosecond baseband pulses speed up the development of UWB [1].
 	
 \cite{aiello2006ultra}
 	- Ultra wideband systems: technologies and applications
-	- The term ultra wideband was coined in the late 1980s, apparently by the U.S. Department of Defense [1], and the actual technology behind UWB has been known by many other names throughout its history, including baseband communication, carrier free communication, impulse radio, large relative bandwidth communication, nonsinusoidal communication, orthogonal functions, sequency theory, time domain, video-pulse transmission, and Walsh waves communication [2].
-	- Interest in the technology has been steady, with more than 200 technical papers published in journals between 1960 and 1999 on the topic and more than 100 U.S. patents issued on UWB or UWB-related technology[3].
-	In 1945, Conrad H. Hoeppner filed for another UWB-related patent (which was granted in 1961) for a pulse communication system that reduces interference and jamming [4].
-	- Spectrum allocation by the FCC
 	- The FCC's definition of the criteria for devices operating in the UWB spectrum purposely did not specify the techniques related to the generation and detection of RF energy; rather, it mandated compliance with emission limits that would enable coexistence and minimize the threat of harmful interference with legacy systems, thus protecting the Global Positioning System (GPS), satellite receivers, cellular systems, and others.
-	- The concept of multiband is to break the available spectrum into subbands (each at least 500 MHz wide because of the FCC ruling) and to communicate in those independently.
-	- Moving forward, the coalition members recognized that their audience shared a common goal: securing an industry standard that would help produce the best possible physical layer (PHY) specification.
-	- The basic concept behind multiband OFDM divides spectrum into several 528 MHz bands (with each occupying more than 500 MHz at all times in order to comply with FCC regulations).
-	- While the work in UWB theory was demonstrating that studying responses in the time domain was the right approach, measuring them was an entirely different matter. Barney Oliver at Hewlett-Packard broke the first logjam in 1962 with the development of the sampling oscilloscope. When combined with the technique of using avalanche transistors and tunnel diodes to generate very short pulses, the oscilloscope made it possible to observe and measure the impulse response of microwave networks directly.
-	- In the late 1960s, Tektronix developed commercial sample-and-hold receivers. Although not designed for UWB, these receivers used a technique that could be used to enable UWB signal averaging. (The sampling circuit is a transmission gate followed by a short-term integrator [6].)
-	- DONE!
-	
-\cite{fontana2004recent}
-	- Recent system applications of short-pulse ultra-wideband (UWB) technology
-	- The origins of the technology stem from work in the early 1960s on time-domain electromagnetics [1], the study of electromagnetic-wave propagation as viewed from a time domain, rather than from the more common frequency-domain perspective.
-	- In fact, one might reasonably argue that UWB actually had its origins in the spark gap transmission designs of Marconi in the late 1890s and in his celebrated cross-Atlantic transmission using spark techniques on December 12, 1901.
-	- The term “UWB” originated with the Defense Advanced Research Projects Agency (DARPA) in a radar study undertaken in 1990, serving as a convenient means for discriminating between conventional radar and those utilizing short-pulse waveforms having a large fractional bandwidth (i.e., 25%) [4].
-	- The first (1973) fundamental patent on UWB communications systems simply referred to the technology as “base-band pulse” [5].
-	- Fig. 21 illustrates a few of the more recent systems designs. The soldier tracking system was the first to be developed and fielded, and was designed to track personnel and vehicles without the use of GPS over areas exceeding a few square kilometers. The system was tested at the Ft. Benning, GA, McKenna military operations in urban terrain (MOUT) site in 1997 and demonstrated the ability to achieve foot-type resolutions over a 4-km area. A smaller version of this system was subsequently developed in 1998 to perform indoor mapping, wherein the UWB tracking system was used to correlate position information with video still imagery to construct a 3-D AutoCAD model of the inside of a facility. A further size reduction and improvement in performance resulted in development in 2002 of the precision asset location system (PALS) [38], which was used for tracking of ISO containers inside a Navy ship, a particularly severe multipath environment with all metal floors, walls, and ceilings
-		- In 1962, both Tektronix and Hewlett-Packard introduced time-domain sampling oscilloscopes based upon the tunnel diode for high-speed triggering and detection, first enabling the capture and display of UWB waveforms. The successful implementation of a sensitive portable short-pulse receiver [17] further accelerated system development. Early UWBreceiverwork culminated in the development by Nicolson and Mara [18] of the tunnel diode constant false-alarm rate (CFAR) receiver, with improved versions still in use today [19], [20].
-	- DONE!
-	
-\cite{barrett2001technical}
-	- Technical features, history of ultra wideband communications and radar: part I, UWB communications
-	- The term ultra wideband or UWB signal has come to signify a number of synonymous terms such as impulse, carrier-free, baseband, time domain, nonsinusoidal, orthogonal function and large-relative-bandwidth radio/radar signals. Here, the term UWB includes all of these. (The term ultra wideband, which is somewhat of a misnomer, was not applied to these systems until about 1989, apparently by the US Department of Defense.)
-	- Contributions to the development of a field addressing UWB RF signals commenced in the late 1960s with the pioneering contributions of Harmuth at Catholic University of America, Ross and Robbins at Sperry Rand Corp., Paul van Etten at the US Air Force's (USAF) Rome Air Development Center, and in Russia. The Harmuth books and published papers, 19691984, placed in the public domain the basic design for UWB transmitters and receivers.
-	- At approximately the same time, the Ross and Robbins (R\&R) patents, 19721987, pioneered the use of UWB signals in a number of application areas, including communications and radar, and also using coding schemes. Ross' US Patent 3,728,632, dated 17th April, 1973, is a landmark patent in UWB communications. Both Harmuth and R\&R applied the 50 year-old concept of matched filtering to UWB systems.
-	- Van Etten's empirical testing of UWB radar systems resulted in the development of system design and antenna concepts (Van Etten, 1977). In 1974 Morey designed a UWB radar system for penetrating the ground, which was to become a commercial success at Geophysical Survey Systems Inc. (GSSI). Other subsurface UWB radar designs followed (for example, Moffat \& Puskar, 1976).
-	- The commercial development of sample and hold receivers (mainly for oscilloscopes) at Tektronix Inc. in the late 1960s, for example, also aided the developing UWB field. For example, the Tektronix time domain receiver plug-in, model 7S12, utilized a technique which enabled UWB signal averaging -- the sampling circuit is a transmission gate followed by a short-term integrator (Tektronix, 1968). Other advances in the development of the sampling oscilloscope were made at the Hewlett Packard Co. These approaches were imported to UWB designs. Beginning in 1964, both Hewlett Packard and Tektronix produced the first time domain instruments for diagnostics.
-	- In the 1960s both Lawrence Livermore National Laboratory (LLNL) and Los Alamos National Laboratory (LANL) performed original research on pulse transmitters, receivers and antennas.
-	- Thus, by the early 1970s, the basic designs for UWB signal systems were available, and there remained no major impediment to progress in perfecting such systems. In fact, by 1975 a UWB system -- for communications or radar -- could be constructed from components purchased from Tektronix. After the 1970s, the only innovations in the UWB field could come from improvements in particular instances of subsystems, but not in the overall system concept itself, nor even in the overall subsystems' concepts.
-	- From 1977 to 1989, there was a USAF program in UWB system development headed by Col. J.D. Taylor. By 1988 the present author was able to organize a UWB workshop for the US Department of Defense's DDR\&E, which welcomed over 100 participants (Barrett, 1988). There were also very active academic programs (for example, at LLNL, LANL, University of Michigan, University of Rochester and Polytechnic University) which focused on the interesting physics of short pulse transmissions that differed from the physics of continuous or long pulse signals, especially with respect to interactions with matter.3
-	- In 1994, T.E. McEwan, then at LLNL, invented the micropower impulse radar (MIR), which provided for the first time a UWB operating at ultra low power, besides being extremely compact and inexpensive (McEwan, 1994, 2000). This was the first UWB radar to operate on only microwatts of battery drain. The methods of reception of this design also permitted for the first time extremely sensitive signal detection.
-	- Thus, by the early 1970s the basic designs for UWB signal systems, for radar or communications, were available and there remained no major impediment to progress in perfecting such systems.
-	- After the 1970s, the only innovations in the UWB field could come from improvements in particular instances of subsystems, but not in the overall system concept itself, or even in the overall subsystems' concepts. The basic components were known, including pulse train generators, pulse train modulators, switching pulse train generators, detection receivers and wideband antennas.
-	- DONE!
-	
-\cite{lakkundi2006ultra}
-	- Ultra wideband communications: History, evolution and emergence
-	- However, the dominant form of wireless communications became sinusoidal, and it was not until the 1960s that work began again in earnest on time domain electromagnetics. The development of the sampling oscilloscope in the early 1960s and the corresponding techniques for generating sub-nanosecond baseband pulses sped up the development of UWB [1].
-	- DONE!
-	
-	
+	- Interest in the technology has been steady, with more than 200 technical papers published in journals between 1960 and 1999 on the topic and more than 100 U.S. patents issued on UWB or UWB-related technology[3].
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{Historie}
+
+Die Ursprunge der \ac{uwb} technologie liegen in dem ``spark gap transmission designs'' von Guglielmo Marconi in den späten 1890er Jahren und in der erfolgreichen ``cross-Atlantic'' Übertragung mit der Verwendung der ``spark'' Technik im Jahre 1901. \cite{fontana2004recent}
+
+Vor der 1960er Jahren war die dominaten Funkübertragungsform sinusförmig. \cite{lakkundi2006ultra}
+
+Die Erforschung der \ac{uwb} Technologie gehen auf die Anfänge der 1960er Jahre zurück. Zu diesem Zeitpunkt versuchte man die Ausbreitung elektromagnetischer Wellen nicht zur im Frequenz- sondern auch im Zeitbereich zu untersuchen. \cite{eltaher2004positioning, fontana2004recent, lakkundi2006ultra}
+
+Grundlegende Erkenntnisse wurden dabei von \ac{llnl} und \ac{lanl} im bereich ``pulse transmitters'', ``receivers'' und ``antennas'' erforscht. 
+
+Durch die Einführung der ``time-domain sampling oscilloscopes'' im Jahre 1962 durch Tektronix und Hewlett-Packard war es zum ersten Mal möglich eine UWB Wellenform aufzufangen und anzuzeigen. Dieses wurde erst durch den Einsatz von Avalanchetransistoren und Tunneldioden möglich. (high-speed triggering and detection) \cite{fontana2004recent, lakkundi2006ultra, aiello2006ultra}
+
+Ab dem Jahre 1964 produzierten dann beide Hersteller Messgeräte für die Diagnose im Zeitbereich. \cite{barrett2001technical}
+
+Im Jahre 1973 wurde das erste grundlegende Patent (3,728,632) von Ross für die \ac{uwb} Kommunikation eingereicht/gewährt. \cite{fontana2004recent, barrett2001technical, yang2004uwbcom}
+\begin{comment}
+US 3728632 A
+Transmission and reception system for generating and receiving base-band pulse duration pulse signals without distortion for short base-band communication system
+Veröffentlichungsnummer: US3728632 A
+Publikationstyp: Erteilung
+Veröffentlichungsdatum	: 17. Apr. 1973
+Eingetragen: 12. März 1971
+Erfinder:	Ross G
+Ursprünglich Bevollmächtigter: Sperry Rand Corp
+ZUSAMMENFASSUNG
+An electromagnetic signal communication system utilizing short base-band pulse signals of sub-nanosecond duration employs dispersionless, broad band antenna transmission line elements for generating and preserving the character of the short base-band pulses in respective transmitter and receiver sub-systems.
+\end{comment}
+
+Die wichtigsten Patente für die \ac{uwb} Kommunikation- und Radarsysteme wurden von Harmuth an der \ac{cua}, Ross und Robbins bei der Sperry Rand Corp. and Paul van Etten an der \ac{usaf} im Rome Air Development Center eingereicht. \cite{barrett2001technical}
+
+\begin{comment}
+Rome Laboratory (Rome Air Development Center until 1991) is the US "Air Force 'superlab' for command, control, and communications"[4] research and development and is responsible for planning and executing the USAF science and technology program.
+\end{comment}
+
+Somit waren in den anfängen der 1970er Jahre alle Grundsteine für ein \ac{uwb} System für Kommunikation- bzw. Radaranwendungen gelegt.\cite{barrett2001technical}
+
+Im Jahre 1974 fertige Morey ein \ac{uwb} Radarsystem für die ``Ground Penetration'' welche zu einem komerziellen Erfolg bei der \ac{gssi} führte. \cite{barrett2001technical}
+
+In dem Zeitraum 1977 bis 1989 mehrere Workshops organisiert, darunter auch beim US-ame­ri­ka­nisch \ac{dod}, um das grundlegende Verständnis für die physik hinter der ``short pulse transmissions'' zu erörtern, die sich grundlegend von der ``continuous'' bzw. ``long pulse signals'' unterscheidet. \cite{barrett2001technical}
+
+Ab dem Jahre 1989 wurde der Name \ac{uwb} durch das US-ame­ri­ka­nisch \ac{dod} geprägt. Diese Definition galt für alle Geräte die mindestens eine Bandbreite von \SI{1.5}{\GHz} bzw. mindestens \SI{25}{\percent} der ``Fractional Bandwidth'' belegt. Vorher war die Technologie nur unter den Synonymen ``baseband communication'', ``carrier free communication'', ``impulse radio'', ``large relative bandwidth communication'', ``nonsinusoidal communication'', ``orthogonal functions'', ``sequency theory'', ``time domain'', ``large-relative-bandwidth radio/radar signals'', ``video-pulse transmission'' und/oder ``Walsh waves communication'' bekannt. \cite{eltaher2004positioning, fowler1990assessment, yang2004uwbcom, aiello2006ultra, fontana2004recent}
+
+Das Militär hatte dabei für sich die Anwendungsfälle im Bereich Radar und hochsicherheitskommunkation entdeckt.\cite{eltaher2004positioning}
+
+Im Jahre 1994 wurde von T.E. McEwan an der \ac{llnl} das \ac{mir} erfunden. Hierbei handelte es sich um ein \ac{uwb} Radar, das mit den folgenden Eigenschaften aufwartete. Sehr geringer Energieverbrauch im Bereich von Mikrowatt, d.h. es stand einer batteriebetriebenen Anwendung nichts im Wege. Zusätzlich war es sehr komplakt und zum anderen kostengünstig in der Hergestellung. (The methods of reception of this design also permitted for the first time extremely sensitive signal detection.) \cite{barrett2001technical}
+
+Ab dem Jahre 1998 beschäftigte sich die \ac{fcc} mit einer standartisierung der \ac{uwb} Nutzung. Im Jahre 2002 
+
+Vor dem Jahre 2001 war die Verwendung von \ac{uwb} auf Radarssytem beschränkt die größtenteils in Militärischen Anwendungen verwendung fanden.\cite{yang2004uwbcom}
+
+Das Änderte sich im Jahre 2002, als die \ac{fcc} in Amerika große Frequenzbereiche (\SIrange{3.6}{10.1}{\GHz}) für die kommerzielle Nutzung freigegeben hat, siehe First Report and Order (R\&O). Danach wurden auch Anwendungen im Bereich ``Imaging systems'', ``communication and measurement systems'' und ``vehicular radar systems'' möglich.\cite{yang2004uwbcom}
+
+\begin{comment}
+[12] FCC First Report and Order: In the matter of Revision of Part 15 of the
+Commission’s Rules Regarding Ultra-Wideband Transmission Systems,
+FCC 02–48, April 2002.
+\end{comment}
+
+Weitere Staten folgten der \ac{fcc} Regulierung und gaben ebenfalls große Frequenzbereiche für die \ac{uwb} Technologie frei. Details zu einzelnen Staten, siehe \cite{decawave2015uwbreg}.
+
+\begin{comment}
+Eine aktuelle Recherche (3. Januar 2017) in den einschlägigen deutschen Bestellportalen (Ebay, Amazon, Conrad, Euronics, …) ergab, dass Geräte mit CWUSB-Unterstützung dort derzeit in Deutschland nicht bestellbar sind. Bei Amazon ließen sich in den Kundenrezensionen Spuren finden, dass im Jahr 2010 entsprechende Geräte auch vertrieben wurden. Zwei Entwicklungen machen es den Geräten schwer, sich am Markt zu behaupten: Einerseits wurde mit USB 3.0 die Datendurchsatzrate deutlich angehoben, was die Anforderungen an den Wireless-USB-Standard verschärft. Andererseits hat die Marktentwicklung bei den Smartphones die Verbreitung des Bluetooth-Standards stark ausgebaut. Während das Bluetooth-Konsortium seinen Standard laufend weiterentwickelt (zuletzt 2016 mit Version 5), datiert die letzte Version des USBCV-Tools für den Test und die Entwicklung von Wireless USB auf den 17. Juli 2009. Vor diesem Hintergrund erscheint es derzeit fraglich, ob CWUSB noch einmal aus der Versenkung auftauchen wird. [Wikipedia, Wireless USB]
+
+Vielleicht sollte man sich diese Einschätzung für das Fazit aufgewahren? Komnsumer Markt nein, Spezial Markt ja.
+\end{comment}
+
+	
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{Alternative Technologien}
 
 \begin{comment}
@@ -137,7 +147,9 @@ Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. 
 qigao2015tightly - Tightly Coupled Model for Indoor Positioning based on UWB/INS
 
 
-
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{Gegenüberstellung}
 
 \begin{comment}
@@ -146,6 +158,9 @@ Warum hab ich mich für UWB entschieden?
 \end{comment}
 
 
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{Erstelle Hardware}
 
 Vor der Herstellung der UWB--Module werden die Produktspezifikationen des Herstellers untersucht um aus diesen die notwendige Beschaltung herzuleiten, siehe \cite{decawave2016dwm1kdatasheet, decawave2013power}. Zusätzlich werden Erfahrungsberichte aus dem Internet ausgewertet um die Beschaltung weiter zu verfeinern, siehe \cite{Trojer2015, Holder2016, Holder2016a}.
@@ -153,6 +168,9 @@ Vor der Herstellung der UWB--Module werden die Produktspezifikationen des Herste
 Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
 
 
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \subsection{Elektrischer Aufbau}
 
 \begin{comment}
@@ -160,14 +178,25 @@ Wie lange halten die Batterien durch?
 	- 4.7 m, LOS, Start 13:50-23:50, 12:50-20:00
 \end{comment}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \subsection{Platinendesign}
 
 \begin{comment}
 \end{comment}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \subsection{Steuersoftware}
 
 
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \subsection{Entfernungsmessung und Auswertung}
 
 \begin{comment}
@@ -184,7 +213,9 @@ Der Überblick und Vergleich der verschiedenen Abstandsbestimmungsverfahren erfo
 isaacs2009optimal - Optimal sensor placement for time difference of arrival localization
 
 
-
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \subsection{Kalibrierung}
 
 \begin{comment}
