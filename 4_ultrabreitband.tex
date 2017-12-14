@@ -68,69 +68,71 @@ Medical applications of ultra-wideband (UWB)
 \end{comment}
 \section{Historie}
 
-Die Ursprunge der \ac{uwb} technologie liegen in dem ``spark gap transmission designs'' von Guglielmo Marconi in den späten 1890er Jahren und in der erfolgreichen ``cross-Atlantic'' Übertragung mit der Verwendung der ``spark'' Technik im Jahre 1901. \cite{fontana2004recent}
+Als Vater der \ac{uwb} Kommunikation kann der italienische Funkpionier Guglielmo Marconi angesehen werden. In den späten 1890er Jahren entwickelte er den Knallfunkensender, der über eine Funkenstrecke ein hochfrequentes Signal zur Übertragung von Morsezeichen erzeugt. Mit dieser Apparatur gelang es Ihm, im Jahre 1901 einen Nachrichtenaustausch zwischen Nordamerika und Europa über den Nordatlantik durchzuführen.\cite{fontana2004recent}
 
-Vor der 1960er Jahren war die dominaten Funkübertragungsform sinusförmig. \cite{lakkundi2006ultra}
+% Weitere Quellen:
+% http://www.ieee.ca/millennium/radio/radio_differences.html
+% https://de.wikipedia.org/wiki/Knallfunkensender
 
-Die Erforschung der \ac{uwb} Technologie gehen auf die Anfänge der 1960er Jahre zurück. Zu diesem Zeitpunkt versuchte man die Ausbreitung elektromagnetischer Wellen nicht zur im Frequenz- sondern auch im Zeitbereich zu untersuchen. \cite{eltaher2004positioning, fontana2004recent, lakkundi2006ultra}
+Bis in die Anfänge der 1960er Jahre dominierte jedoch die sinusförmige Funkübertragungsform. Dies änderte sich als die Forscher vom \ac{llnl} und \ac{lanl} begangen die Ausbreitung elektromagnetischer Wellen nicht zur im Frequenz- sondern auch im Zeitbereich zu untersuchen. Grundlegende Erkenntnisse wurden dabei im Bereich der Impulssender, -empfänger und -antennen gesammelt.\cite{eltaher2004positioning, fontana2004recent, lakkundi2006ultra, aiello2006ultra}
 
-Grundlegende Erkenntnisse wurden dabei von \ac{llnl} und \ac{lanl} im bereich ``pulse transmitters'', ``receivers'' und ``antennas'' erforscht. 
+% TODO: time-domain sampling oscilloscopes
+Durch die Einführung der zeitbereichs basierten Abtast--Oszilloskope im Jahre 1962 durch Tektronix bzw. Hewlett-Packard war es zum ersten Mal möglich eine \ac{uwb} Wellenform aufzufangen und anzuzeigen. Ermöglicht wurde dies erst durch den Einsatz von Tunneldioden und Avalanchetransistoren. \cite{fontana2004recent, lakkundi2006ultra, aiello2006ultra}
 
-Durch die Einführung der ``time-domain sampling oscilloscopes'' im Jahre 1962 durch Tektronix und Hewlett-Packard war es zum ersten Mal möglich eine UWB Wellenform aufzufangen und anzuzeigen. Dieses wurde erst durch den Einsatz von Avalanchetransistoren und Tunneldioden möglich. (high-speed triggering and detection) \cite{fontana2004recent, lakkundi2006ultra, aiello2006ultra}
+Ab dem Jahre 1964 produzierten beide Hersteller Messgeräte für die Diagnose im Zeitbereich. \cite{barrett2001technical}
 
-Ab dem Jahre 1964 produzierten dann beide Hersteller Messgeräte für die Diagnose im Zeitbereich. \cite{barrett2001technical}
+Ab den Anfängen der 1970er Jahre waren alle wichtigen Grundsteine für ein \ac{uwb} System für Kommunikation- bzw. Radaranwendungen gelegt. Dazu zählten auch diverse eingereichte Patente von Harmuth an der \ac{cua}, Ross und Robbins bei der Sperry Rand Corporation und Paul van Etten an der \ac{usaf} im Rome Air Development Center.\cite{barrett2001technical, fontana2004recent, yang2004uwbcom} Hervorzuheben ist das eingereichte Patent von Ross im Jahre 1973, siehe \cite{g1973transmission}.
 
-Im Jahre 1973 wurde das erste grundlegende Patent (3,728,632) von Ross für die \ac{uwb} Kommunikation eingereicht/gewährt. \cite{fontana2004recent, barrett2001technical, yang2004uwbcom}
-\begin{comment}
-US 3728632 A
-Transmission and reception system for generating and receiving base-band pulse duration pulse signals without distortion for short base-band communication system
-Veröffentlichungsnummer: US3728632 A
-Publikationstyp: Erteilung
-Veröffentlichungsdatum	: 17. Apr. 1973
-Eingetragen: 12. März 1971
-Erfinder:	Ross G
-Ursprünglich Bevollmächtigter: Sperry Rand Corp
-ZUSAMMENFASSUNG
-An electromagnetic signal communication system utilizing short base-band pulse signals of sub-nanosecond duration employs dispersionless, broad band antenna transmission line elements for generating and preserving the character of the short base-band pulses in respective transmitter and receiver sub-systems.
-\end{comment}
+% INFO:
+% Rome Laboratory (Rome Air Development Center until 1991) is the US
+% "Air Force 'superlab' for command, control, and communications"[4] research and
+% development and is responsible for planning and executing the USAF science and
+% technology program.
 
-Die wichtigsten Patente für die \ac{uwb} Kommunikation- und Radarsysteme wurden von Harmuth an der \ac{cua}, Ross und Robbins bei der Sperry Rand Corp. and Paul van Etten an der \ac{usaf} im Rome Air Development Center eingereicht. \cite{barrett2001technical}
+% TODO: Warum ist gerade diese Patent hervorzuheben?
+% US 3728632 A
+% Transmission and reception system for generating and receiving base-band pulse
+% duration pulse signals without distortion for short base-band communication system
+% Veröffentlichungsnummer: US3728632 A
+% Publikationstyp: Erteilung
+% Veröffentlichungsdatum	: 17. Apr. 1973
+% Eingetragen: 12. März 1971
+% Erfinder:	Ross G
+% Ursprünglich Bevollmächtigter: Sperry Rand Corp
+% ZUSAMMENFASSUNG
+% An electromagnetic signal communication system utilizing short base-band pulse
+% signals of sub-nanosecond duration employs dispersionless, broad band antenna
+% transmission line elements for generating and preserving the character of the
+% short base-band pulses in respective transmitter and receiver sub-systems.
 
-\begin{comment}
-Rome Laboratory (Rome Air Development Center until 1991) is the US "Air Force 'superlab' for command, control, and communications"[4] research and development and is responsible for planning and executing the USAF science and technology program.
-\end{comment}
+Kurz darauf im Jahre 1974 wurde die \ac{uwb} Technologie kommerziell erfolgreich von Morey bei der \ac{gssi} für ein Bodenradar (engl. \acf{gpr}) angewendet. \cite{barrett2001technical}
 
-Somit waren in den anfängen der 1970er Jahre alle Grundsteine für ein \ac{uwb} System für Kommunikation- bzw. Radaranwendungen gelegt.\cite{barrett2001technical}
+Im Zeittraum von 1977 is 1989 wurden mehrere Programme und Workshops organisiert um die Entwicklung von \ac{uwb} Systemen voranzutreiben, darunter auch bei der \ac{usaf} und dem \ac{usdod}. Ebenfalls gabe es mehrere akademische Programme an diversen Instituten, darunter auch am \ac{llnl}, \ac{lanl}, University of Michigan, University of Rochester und
+Polytechnic University, mit dem Fokus auf den physikalischen Unterschieden zwischen der Kurzimpulsübertragung und den Langimpulssignalen bzw. kontinuierlichen Impulssignalen bei der Interaktion mit verschiedenen Materialien.\cite{barrett2001technical}
 
-Im Jahre 1974 fertige Morey ein \ac{uwb} Radarsystem für die ``Ground Penetration'' welche zu einem komerziellen Erfolg bei der \ac{gssi} führte. \cite{barrett2001technical}
+% TODO: Der letzte Satz ist zu lang. Aufspalten!
 
-In dem Zeitraum 1977 bis 1989 mehrere Workshops organisiert, darunter auch beim US-ame­ri­ka­nisch \ac{dod}, um das grundlegende Verständnis für die physik hinter der ``short pulse transmissions'' zu erörtern, die sich grundlegend von der ``continuous'' bzw. ``long pulse signals'' unterscheidet. \cite{barrett2001technical}
+Ab dem Jahre 1989 wurde der Name \ac{uwb} durch das \ac{usdod} geprägt. Diese Definition galt für alle Geräte die mindestens eine Bandbreite von \SI{1.5}{\GHz} bzw. \SI{25}{\percent} der \ac{fbw} belegten. Vorher war die \ac{uwb} Technologie nur unter den Synonymen ``baseband communication'', ``carrier free communication'', ``impulse radio'', ``large relative bandwidth communication'', ``nonsinusoidal communication'', ``orthogonal functions'', ``sequency theory'', ``time domain'', ``large-relative-bandwidth radio/radar signals'', ``video-pulse transmission'' und/oder ``Walsh waves communication'' bekannt. \cite{eltaher2004positioning, fowler1990assessment, yang2004uwbcom, aiello2006ultra, fontana2004recent}
 
-Ab dem Jahre 1989 wurde der Name \ac{uwb} durch das US-ame­ri­ka­nisch \ac{dod} geprägt. Diese Definition galt für alle Geräte die mindestens eine Bandbreite von \SI{1.5}{\GHz} bzw. mindestens \SI{25}{\percent} der ``Fractional Bandwidth'' belegt. Vorher war die Technologie nur unter den Synonymen ``baseband communication'', ``carrier free communication'', ``impulse radio'', ``large relative bandwidth communication'', ``nonsinusoidal communication'', ``orthogonal functions'', ``sequency theory'', ``time domain'', ``large-relative-bandwidth radio/radar signals'', ``video-pulse transmission'' und/oder ``Walsh waves communication'' bekannt. \cite{eltaher2004positioning, fowler1990assessment, yang2004uwbcom, aiello2006ultra, fontana2004recent}
+% TODO: Fachbegriffe Übersetzen?
 
-Das Militär hatte dabei für sich die Anwendungsfälle im Bereich Radar und hochsicherheitskommunkation entdeckt.\cite{eltaher2004positioning}
+% TODO: Sollen die Militärischen Anwendungfälle erwähnt werden? Vielleicht besser bei der FCC regulierung.
+% Das Militär hatte dabei für sich die Anwendungsfälle im Bereich Radar und hochsicherheitskommunkation entdeckt.\cite{eltaher2004positioning}
 
-Im Jahre 1994 wurde von T.E. McEwan an der \ac{llnl} das \ac{mir} erfunden. Hierbei handelte es sich um ein \ac{uwb} Radar, das mit den folgenden Eigenschaften aufwartete. Sehr geringer Energieverbrauch im Bereich von Mikrowatt, d.h. es stand einer batteriebetriebenen Anwendung nichts im Wege. Zusätzlich war es sehr komplakt und zum anderen kostengünstig in der Hergestellung. (The methods of reception of this design also permitted for the first time extremely sensitive signal detection.) \cite{barrett2001technical}
+Im Jahre 1994 wurde von McEwan an der \ac{llnl} das \ac{mir} konstruiert. Hierbei handelte es sich um ein \ac{uwb} Radarsystem mit bemerkenswerten Eigenschaften. Das Radarsystem verfügte über eine sehr hohe Signalsensitivität, einen kompakten Aufbau, eine kostengünstige Herstellung und einen der geringer Energieverbrauch, der sich im Bereich von Mikrowatt befanden und daher ideal für batteriebetriebene Anwendung eignete. \cite{barrett2001technical}
 
-Ab dem Jahre 1998 beschäftigte sich die \ac{fcc} mit einer standartisierung der \ac{uwb} Nutzung. Im Jahre 2002 
+% TODO: Zwei mal bemerkenswerte Eigenschaften. Korrigieren bzw. Umformulieren!!!
 
-Vor dem Jahre 2001 war die Verwendung von \ac{uwb} auf Radarssytem beschränkt die größtenteils in Militärischen Anwendungen verwendung fanden.\cite{yang2004uwbcom}
+Vor dem Jahre 2002 war die Verwendung von \ac{uwb} auf Radarssytem beschränkt, die größtenteils in militärischen Anwendungen aufzufinden waren. \cite{yang2004uwbcom} Das änderte sich ab dem Jahre 1998, als die \ac{fcc} mit der Standardisierung der \ac{uwb} Nutzung begann. Im Jahre 2002 wurden durch die \ac{fcc} in den Vereinigten Staten von Amerika große Frequenzbereiche (\SIrange{3.6}{10.1}{\GHz}) für die kommerzielle Nutzung freigegeben hat, siehe First Report and Order (R\&O). Danach wurden erstmals auch eine nicht militärische Anwendungen im Bereich ``Imaging systems'', ``communication and measurement systems'' und ``vehicular radar systems'' möglich. \cite{yang2004uwbcom}
 
-Das Änderte sich im Jahre 2002, als die \ac{fcc} in Amerika große Frequenzbereiche (\SIrange{3.6}{10.1}{\GHz}) für die kommerzielle Nutzung freigegeben hat, siehe First Report and Order (R\&O). Danach wurden auch Anwendungen im Bereich ``Imaging systems'', ``communication and measurement systems'' und ``vehicular radar systems'' möglich.\cite{yang2004uwbcom}
+% TODO: Zitieren des FCC R&O
+% [12] FCC First Report and Order: In the matter of Revision of Part 15 of the
+% Commission’s Rules Regarding Ultra-Wideband Transmission Systems,
+% FCC 02–48, April 2002.
+% Chrome: g FCC 02-48 bibtex
+% https://transition.fcc.gov/Bureaus/Engineering_Technology/Orders/2002/fcc02048.pdf
 
-\begin{comment}
-[12] FCC First Report and Order: In the matter of Revision of Part 15 of the
-Commission’s Rules Regarding Ultra-Wideband Transmission Systems,
-FCC 02–48, April 2002.
-\end{comment}
-
-Weitere Staten folgten der \ac{fcc} Regulierung und gaben ebenfalls große Frequenzbereiche für die \ac{uwb} Technologie frei. Details zu einzelnen Staten, siehe \cite{decawave2015uwbreg}.
-
-\begin{comment}
-Eine aktuelle Recherche (3. Januar 2017) in den einschlägigen deutschen Bestellportalen (Ebay, Amazon, Conrad, Euronics, …) ergab, dass Geräte mit CWUSB-Unterstützung dort derzeit in Deutschland nicht bestellbar sind. Bei Amazon ließen sich in den Kundenrezensionen Spuren finden, dass im Jahr 2010 entsprechende Geräte auch vertrieben wurden. Zwei Entwicklungen machen es den Geräten schwer, sich am Markt zu behaupten: Einerseits wurde mit USB 3.0 die Datendurchsatzrate deutlich angehoben, was die Anforderungen an den Wireless-USB-Standard verschärft. Andererseits hat die Marktentwicklung bei den Smartphones die Verbreitung des Bluetooth-Standards stark ausgebaut. Während das Bluetooth-Konsortium seinen Standard laufend weiterentwickelt (zuletzt 2016 mit Version 5), datiert die letzte Version des USBCV-Tools für den Test und die Entwicklung von Wireless USB auf den 17. Juli 2009. Vor diesem Hintergrund erscheint es derzeit fraglich, ob CWUSB noch einmal aus der Versenkung auftauchen wird. [Wikipedia, Wireless USB]
-
-Vielleicht sollte man sich diese Einschätzung für das Fazit aufgewahren? Komnsumer Markt nein, Spezial Markt ja.
-\end{comment}
+Weitere Staten folgten der \ac{fcc} Regulierung/Standardierung und gaben ebenfalls große Frequenzbereiche für die \ac{uwb} Technologie frei. Details zu den Regularien der einzelnen Staten können unter \cite{decawave2015uwbreg} eingesehen werden.
 
 	
 \begin{comment}

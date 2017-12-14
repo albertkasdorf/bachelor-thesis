@@ -1,0 +1,17 @@
+time-domain sampling oscilloscopes	=	zeitbereichs basiertes Abtast--Oszilloskop
+short pulse transmissions	=	Kurzimpulsübertragung
+long pulse signals	=	Langimpulssignal
+continuous pulse signals	= Kontinuierliches Impulssignal
+Fractional Bandwidth
+baseband communication
+carrier free communication
+impulse radio
+large relative bandwidth communication
+nonsinusoidal communication
+orthogonal functions
+sequency theory
+time domain		= Zeitbereich
+large-relative-bandwidth radio/radar signals
+video-pulse transmission
+Walsh waves communication
+Fractional Bandwidth	=	normierte Bandbreite
