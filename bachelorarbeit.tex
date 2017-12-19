@@ -76,6 +76,7 @@
 %
 \usepackage[mode=text]{siunitx}
 	\sisetup{locale=DE,range-phrase=--}
+	\DeclareSIUnit{\mAh}{mAh}
 \usepackage{graphicx}
   \graphicspath{ {Bilder/} }
 \usepackage{eso-pic}
@@ -122,7 +123,26 @@
 % https://texblog.org/2011/02/26/generating-dummy-textblindtext-with-latex-for-testing/
 %
 \usepackage{blindtext}
-
+%
+% Add source to figure caption
+% https://tex.stackexchange.com/questions/95029/add-source-to-figure-caption
+%
+\usepackage{caption}
+	%\newcommand{\source}[1]{\caption*{Quelle: {#1}} }
+	%\newcommand{\source}[1]{\caption*{\hfill Quelle: {#1}} }
+	\newcommand{\source}[1]{\vspace{-3pt} \caption*{ Quelle: {#1}} }
+%
+%
+%
+\usepackage{wrapfig}
+%
+%
+%
+\usepackage[bottom]{footmisc}
+%
+%
+%
+\usepackage{subcaption}
 %
 % Some packages from other authors may have problems with KOMA-Script.
 % Package scrhack contains all those improvement proposals for

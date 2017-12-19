@@ -1,0 +1,89 @@
+%
+% Spezielle Verzeichnisse (Glossar, Abkürzungsverzeichnis, Symbolverzeichnis) in LATEX mit glossaries und makeglossaries Vortrag bei DANTE 2015
+% https://www.dante.de/events/dante2015/Programm/vortraege/vortrage-partosch.pdf
+%
+% How to combine Acronym and Glossary
+% https://tex.stackexchange.com/questions/8946/how-to-combine-acronym-and-glossary
+%
+% LaTeX/Glossary
+% https://en.wikibooks.org/wiki/LaTeX/Glossary
+%
+
+
+%
+% \newacronym[plural={kurz-form-plural}, longplural={lang-form-plural}]{label}{kurz-form}{lang-form}
+% \newacronym[plural={LEDs}, longplural={light-emitting diodes}]{led}{LED}{light-emitting diode}
+% \newacronym[plural={}, longplural={}]{}{}{}
+%
+
+
+
+% A
+\newglossaryentry{anchor}
+{
+	name={Anker}
+	sort={Anker}
+	description={UWB-Modul das stationär befestig ist und sich nicht bewegt.}
+}
+% B
+% C
+% D
+% E
+% F
+\newglossaryentry{firmware}
+{
+	name={Firmware}
+	sort={Firmware}
+	description={Wikipedia: Software, die in elektronischen Geräten eingebettet ist.}
+}
+% G
+% H
+\newglossaryentry{host}
+{
+	name={Host}
+	sort={Host}
+	description={Verarbeitungseinheit der Entfernungsdaten.}
+}
+% I
+% J
+% K
+% L
+%Lötpad; Lötpads sind die Lötflächen, welche die Verbindung zwischen Bauteil und Leiterbahnen darstellt.;http://www.kurtzersa.de/electronics-production-equipment/loetlexikon/begriff/loetpad.html
+% M
+% N
+% O
+% P
+\newglossaryentry{pulldown_resistor}
+{
+	name={Pulldown--Widerstand}
+	sort={Pulldown--Widerstand}
+	description={Wikipedia: Der Begriff Pulldown bezeichnet in der Elektrotechnik einen (relativ hochohmigen) elektrischen Widerstand, der eine Signalleitung mit dem niedrigeren Spannungs-Potenzial verbindet, siehe Pulldown-Widerstand. (https://de.wikipedia.org/wiki/Pulldown)}
+}
+% Q
+% R
+% S
+% T
+\newglossaryentry{tag}
+{
+	name={Marker}
+	sort={Marker}
+	description={UWB-Modul das auf dem Roboter befestigt ist und mit diesem wandert.}
+}
+% U
+\newglossaryentry{UWB--Modul}
+{
+	name={UWB--Modul}
+	sort={UWB--Modul}
+	description={DW1000 µC mit der Beschaltung und Antenne.}
+}
+\newglossaryentry{UWB--Sensor}
+{
+	name={UWB--Sensor}
+	sort={UWB--Sensor}
+	description={Platine mit UWB--Modul, µC, Energieversorgung, usw.}
+}
+% V
+% W
+% X
+% Y
+% Z

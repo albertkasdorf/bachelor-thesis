@@ -16,8 +16,12 @@ Fragestellung:
 - Auflisten einige Eigenschaften
 \end{comment}
 
+\begin{comment}
+"C:\Users\Albert\Documents\Studium\Bachelor WS17\02133r1P802-15-WG_Ultra-Wideband-Tutorial.ppt"
+=> Möglicherweise hilfreich!
 
-yavari2014ultra - Ultra wideband wireless positioning systems
+Ultra wideband wireless positioning systems
+	- \cite{yavari2014ultra}
 	- The most important characteristic of UWB is large bandwidth in comparison with
 prevalent narrow-band systems.
 	- One result of the large bandwidth of UWB is that due to the inverse relatioship of
@@ -25,8 +29,8 @@ time and frequency, the life-time of UWB signals is very short. Consequently, th
 time resolution of UWB signals is high and UWB is a good candidate for positioning
 systems.
 
-\cite{yang2004uwbcom}
-	- Ultra-wideband communications: an idea whose time has come
+Ultra-wideband communications: an idea whose time has come
+	- \cite{yang2004uwbcom}
 	- UWB applications: short-range very high-speed broadband access to the Internet, covert communication links, localization at centimeter-level accuracy, high-resolution ground-penetrating radar, through-wall imaging, precision navigation and asset tracking, just to name a few.
 	- UWB characterizes transmission systems with instantaneous spectral occupancy in excess of 500 MHz or a fractional bandwidth of more than 20%.
 	- Such systems rely on ultra-short (nanosecond scale) waveforms that can be free of sine-wave carriers and do not require IF processing because they can operate at baseband. As information-bearing pulses with ultra-short duration have UWB spectral occupancy, UWB radios come with unique advantages that have long been appreciated by the radar and communications communities: i) enhanced capability to penetrate through obstacles; ii) ultra high precision ranging at the centimeter level; iii) potential for very high data rates along with a commensurate increase in user capacity; and iv) potentially small size and processing power.
@@ -61,6 +65,7 @@ Medical applications of ultra-wideband (UWB)
 	- Ultra wideband systems: technologies and applications
 	- The FCC's definition of the criteria for devices operating in the UWB spectrum purposely did not specify the techniques related to the generation and detection of RF energy; rather, it mandated compliance with emission limits that would enable coexistence and minimize the threat of harmful interference with legacy systems, thus protecting the Global Positioning System (GPS), satellite receivers, cellular systems, and others.
 	- Interest in the technology has been steady, with more than 200 technical papers published in journals between 1960 and 1999 on the topic and more than 100 U.S. patents issued on UWB or UWB-related technology[3].
+\end{comment}
 
 
 \begin{comment}
@@ -165,9 +170,238 @@ Warum hab ich mich für UWB entschieden?
 \end{comment}
 \section{Erstelle Hardware}
 
-Vor der Herstellung der UWB--Module werden die Produktspezifikationen des Herstellers untersucht um aus diesen die notwendige Beschaltung herzuleiten, siehe \cite{decawave2016dwm1kdatasheet, decawave2013power}. Zusätzlich werden Erfahrungsberichte aus dem Internet ausgewertet um die Beschaltung weiter zu verfeinern, siehe \cite{Trojer2015, Holder2016, Holder2016a}.
+\begin{comment}
+------------------------------------------------------------------------------------------
+- Datenübertragung zum Host
+- Batteriebetrieb
+- TODO: Erweiterbare Hardwareplattform
+\end{comment}
+\subsection{Anforderungen}
 
-Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
+An die zu erstellende Hardware werden mehrere Anforderungen gestellt.
+
+Um eine Entfernungsmessung durchzuführen wird immer ein Marker und mindestens ein Anker benötigt. Sowohl der Marker als auch der Anker sollen aus den gleichen elektrischen Komponenten bestehen, also eine gemeinsame Harewareplattform bilden. Die unterschiedliche Funktionalität pro Modul soll sich dann aus verschiedenen Software-Ständen der Firmware herausbilden.
+
+Die Anker sollen im Bedarfsfall frei im Raum verteilt werden können. Nicht an jeder Stelle steht eine Stromversorgung zur Verfügung, daher muss jedes Modul über eine separate Energiequelle verfügen.
+
+Zusätzlich muss der Marker über eine bidirektional Kommunikationsschnittstelle zur Verarbeitungseinheit verfügen. Über diese sollen zum einen Steuerbefehle an das UWB--Modul geschickt werden und zum anderen sollen die gemessenen Entfernungen zwischen dem Marker und den Ankern an die Verarbeitungsanleitung übertragen werden.
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsection{Hardware Zusammenstellung}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{\ac{uwb}--Transceiver}
+\label{subsec:uwb_transceiver}
+
+Als \ac{uwb}--Transceiver werden die Kompontenten der Firma DecaWave verwendet. Bei dem DW1000 handelt es sich nur um dem \ac{ic} der für die Erzeugen und Verarbeiten der \ac{uwb}--Funksignale zuständig ist. Der DWM1000 beinhaltet neben dem DW1000 auch die notwendige Beschaltung und zusätzlich eine Antenne für die Übertragung, siehe \figurename~\ref{fig:pin_assignment}.
+
+\begin{figure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{dw1000_pin_assignments.png}
+		\caption{DW1000 \ac{ic}}
+		\label{fig:dw1000_pin_assignments}
+		\source{\cite{decawave2016dw1kdatasheet}}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{dwm1000_pin_assignments.png}
+		\caption{DWM1000 Modul}
+		\label{fig:dwm1000_pin_assignments}
+		\source{\cite{decawave2016dwm1kdatasheet}}
+	\end{subfigure}
+	\caption{DecaWave \ac{ic} Pin Belegung}
+	\label{fig:pin_assignment}
+\end{figure}
+
+Der DWM1000 kann mit einer Spannung von \SIrange{2.8}{3.6}{\volt}\cite{decawave2016dwm1kdatasheet} betrieben werden, idealerweise mit \SI{3.3}{\volt}. Das bedeutet aber auch, dass die Logikpegelspannung für die \ac{spi} Schnittstelle \SI{3.3}{\volt} beträgt. Dieser Umstand muss bei der Auswahl des Mikrocontrollers berücksichtig werden.
+
+Die Kommunikation mit dem DWM1000 erfolgt über die \ac{spi} Schnittstelle, hierfür sind die Pins \ac{sclk}, \ac{mosi}, \ac{miso} und \ac{ss} zu verwenden \cite{decawave2016dwm1kdatasheet}. Bei der \ac{spi}--Schnittstelle handelt es sich um eine Master-Slave Architektur, das bedeutet das Daten vom Master gesendet und angefragt werden können. Der Slave kann jedoch nur Daten auf Anfrage senden. Um zu verhindern, das der Master periodisch auf das Eintreffen einer Nachrichten anfragen muss, kann der \ac{irq}--Pin des Slaves verwendet werden. Um zu verhindern das kurzfristige Spannungsspitzen einen Interrupt auslösen, muss der \ac{irq}--Pin über einen Pulldown--Widerstand auf Masse gezogen werden.
+
+Um das DWM1000 erfolgreich zu initalisieren muss zusätzlich der RSTn--Pin durch den Mikrocontroller angesteuert werden. Zusätzlich ergibt über die Beschaltung dieses Pins die Möglichkeit den DWM1000 per Hardware im laufenden Betrieb neuzustarten.
+
+Zusätzliche Informationen, wie der Versand und Empfang von Nachrichten, könnten über Status--Leuchtdioden ausgegeben werden. Hierfür wird jeder der Pins GPIO1 bis GPIO3 jeweils mit einem Vorwiderstand und einer Leuchtdiode verbunden.
+
+%TODO: Wie wird der Vorwiderstand berechnet? ca. 10mA bei 1.8V, R=(U_0-U_LED)/I_LED
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{Mikrocontroller}
+
+Wie bereits im vorherigen Abschnitt~\ref{subsec:uwb_transceiver} erwähnt beträgt die Logikpegelspannung \SI{3.3}{\volt}. Durch diesen Umstand entfallen alle Mikrocontroller die mit einer \SI{5}{\volt} Versorgungsspannung, wie z.B. der beliebte Arduino Uno, betrieben werden. Die Entscheidung viel auf den Pro Trinket der Firma Adafruit, der als Hauptprozessor den Atmel ATmega328/P verwendet. Dieser hat den Vorteil, dass er jeweils in einer \SI{5}{\volt} und \SI{3.3}{\volt} Variante existiert. Zusätzlich ist die \SI{3.3}{\volt} Variante mit einem Systemtakt von \SI{12}{\MHz} schneller als der vergleichbare Arduino Pro Mini \SI{3.3}{\volt} der nur mit \SI{8}{\MHz} getaktet ist.
+
+%\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{adafruit_pro_trinket_5v.png}
+	\caption[Adafruit Pro Trinket]{Adafruit Pro Trinket\protect\footnotemark}
+	\label{fig:adafruit_pro_trinket}
+	\source{\url{https://learn.adafruit.com/introducing-pro-trinket/pinouts}}
+\end{figure}
+
+\footnotetext{Der Adafruit Pro Trinket \SI{3.3}{\volt} ist zum Großteil pinkompatibel zu der \SI{5}{\volt} Variante. Nur der Pin \textit{BAT+} benötigte eine Batteriespannung von \SIrange{3.5}{16}{\volt} und der drei Reihen weiter unten liegende \SI{5}{\volt} Pin liefert nur \SI{3.3}{\volt}.}
+
+Um eine Kommunikationsverbindung zwischem dem DWM1000 und dem Mikrocontroller herzustellen, müssen die Pins anhand der \tablename~\ref{tab:pin_assignment_between_dwm1k_and_pro_trinket} verbunden werden.
+
+\begin{table}
+	\centering
+	\begin{tabular}{||c|c|c||} 
+		\hline
+		DWM1000 (Pin)&Pro Trinket (Pin)&Bedeutung\\\hline
+		\hline
+		SPICLK (20)&SCK (13)&SPI\\\hline
+		SPIMISO (19)&MISO (12)&SPI\\\hline
+		SPIMOSI (18)&MOSI (11)&SPI\\\hline
+		SPICSn (17)&SS (10)&SPI\\\hline
+		\hline
+		IRQ (22)&INT1 (3)&Interrupt\\\hline
+		\hline
+		RSTn (3)&PB1 (9)&Hardware Reset\\\hline
+	\end{tabular}
+	\caption{Pinbelegung zwischen dem DWM1000 und Pro Trinket.}
+	\label{tab:pin_assignment_between_dwm1k_and_pro_trinket}
+\end{table}
+
+
+\begin{comment}
+% Lithium Ion Cylindrical Battery - 3.7v 2200mAh
+% https://www.adafruit.com/product/1781
+% Lithium Ion Polymer Battery - 3.7v 2500mAh
+% https://www.adafruit.com/product/328
+% Adafruit Pro Trinket LiPoly/LiIon Backpack
+% https://learn.adafruit.com/adafruit-pro-trinket-lipoly-slash-liion-backpack?view=all
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{Energieversorgung}
+
+Um den \ac{uwb}--Transceiver und den Pro Trinket mit Energie zu versorgen wird ein Lithiumionenakku mit einer Spannung von \SI{3.7}{\volt} und einer Kapazität von \SI{2200}{\mAh} verwendet. Die Verbindung zwischen den beiden wird über einen Lithiumionenakku Lade--Chip hergestellt. Diesen gibt es als fertiges Modul von Adafruit mit der Bezeichnung Pro Trinket LiPoly/LiIon Backpack.
+
+Bevor jedoch dieses Modul eingesetz werden kann, müssen noch zwei Modifikationen durchgeführt werden. Zum einen kann die Energiequelle mittels eines Schalters vom Verbraucher getrennt werden. Per Standard sind jedoch diese zwei Pins mit einander verbunden und müssen mit einem schwarfen Messer unterbrochen werden, siehe \figurename~\ref{fig:pro_trinket_liion_backpack_top}. Zum anderen wird der Lithiumionakku nur mit einem Strom von \SI{100}{\mA} geladen. Bei einer Kapazität von \SI{2200}{\mAh} würde ein vollständiger Ladezyklus ca. \SI{22}{\hour} dauern. Um diese Zeit zu verkürzen, müssen die zwei Lötpads, siehe \figurename~\ref{fig:pro_trinket_liion_backpack_bottom}, miteinander verbunden werden. Danach wird der Lithiumionakku mit einem Strom von \SI{500}{\mA} geladen und demenstrechend verkürzt sich die Ladedauer auch auf ca. \SI{2.5}{\hour}.
+%TODO: 2.5 Stunden? Häh? Wie wäre es mit 2 1/2, laut Duden korrekt.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{adafruit_lipoly_backpad_top_with_marker}
+		\caption{Modifikation für den Schalter.}
+		\label{fig:pro_trinket_liion_backpack_top}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{adafruit_lipoly_backpad_back_with_marker}
+		\caption{Modifikation für einen höheren Ladestrom.}
+		\label{fig:pro_trinket_liion_backpack_bottom}
+	\end{subfigure}
+	\caption{Adafruit Pro Trinket LiPoly/LiIon Backpack}
+	\source{\url{https://learn.adafruit.com/adafruit-pro-trinket-lipoly-slash-liion-backpack}}
+	\label{fig:pro_trinket_liion_backpack}
+\end{figure}
+%TODO: URL ist zu lang und wird nicht umgebrochen.
+
+Um eine Verbindung zwischem dem LiIon Backpack und dem Pro Trinket herzustellen, müssen die Pins anhand der \tablename~\ref{tab:pin_assignment_between_liion_backpack_and_pro_trinket} verbunden werden.
+
+\begin{table}
+	\centering
+	\begin{tabular}{||c|c|c||} 
+		\hline
+		LiIon Backpack&Pro Trinket&Bedeutung\\\hline
+		\hline
+		BAT&BAT+&Batteriespannung\\\hline
+		5V&BUS&Ladespannung\\\hline
+		G&GND&Masse\\\hline
+		\hline
+		SW1&&Schalter\\\hline
+		SW2&&Schalter\\\hline
+	\end{tabular}
+	\caption{Pinbelegung zwischen dem LiIon Backpack und dem Pro Trinket.}
+	\label{tab:pin_assignment_between_liion_backpack_and_pro_trinket}
+\end{table}
+
+
+\begin{comment}
+- FTDI {Data Transfer}
+	- Wofür?
+	- Warum separat?
+	- USB to Serial
+	
+	- 
+	- 
+	
+% Adafruit CP2104 Friend - USB to Serial Converter
+% https://www.adafruit.com/product/3309
+% https://www.silabs.com/documents/public/data-sheets/cp2104.pdf
+% Universal Asynchronous Receiver Transmitter
+% https://de.wikipedia.org/wiki/Universal_Asynchronous_Receiver_Transmitter
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{Datenaustausch}
+
+% TODO: Computer? PC? Verarbeitungseinheit?
+Der ATmega328/P verfügt nicht über einen eingebauten USB--Controller, daher ist ein direkter Datenaustausch zwischen dem Mikrocontroller und einem Computer nicht möglich. Jedoch verfügt der ATmega328/P über eine \ac{uart}--Schnittstelle, mit der Daten seriell über die Leitungen RX und TX übertragen und empfangen werden können. Mittels einem zusätzlichen Modul kann diesen Datenstrom aufgefangen und über die USB--Schnittstelle übertragen werden. Das Adafruit CP2104 Friend erledigt genau diese Aufgabe. Angeschlossen wird es über den  \ac{ftdi}--Header, siehe \figurename~\ref{fig:adafruit_pro_trinket}. Dadurch ist es möglich die Module die einen Datenaustausch benötigen mit einem entsprechenden Modul auszurüsten.
+
+
+% GND & GND & Masse\\\hline
+% CTS & GND & Masse\\\hline
+% 5V & 5V & Versorgungsspannung\\\hline
+% TXD & RXD & Datenaustausch\\\hline
+% RXD & TXD & Datenaustausch\\\hline
+% RTS & RTS & Reset\\\hline
+
+
+
+
+
+
+
+\begin{comment}
+
+Zusätzlich werden Erfahrungsberichte aus dem Internet ausgewertet um die Beschaltung weiter zu verfeinern, siehe \cite{Trojer2015, Holder2016, Holder2016a}.
+	- Kosten für den Aufbau
+	- Schaltplan-Skizze
+		- Besonderheiten (NetLabels)
+		- SVG/PNG/PDF-Export
+		- Gruppierung nach Funktionsgruppen
+\subsection{Prototypen}
+	- 1. Prototyp Aufbau auf einem Breadboard
+		- UWB-Adapter von ...?
+		- SMD Löttechnik
+		- Funktionstest
+		- Skript als Anhang
+	- 2. Prototyp Aufbau auf einem Lochstreifen
+		- Kommunikations- und Entfernungsmessungstest
+	- Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
+\subsection{Platinen-Design}
+	- Antenne
+	- Aufrecht stehend
+	- Batterie auf der Rückseite bietet stabilität
+		- Flachere Akkus können auch verwendet werden
+	- Ansteckbares FTDI
+	- Preis pro Platinengröße
+	- Footprint of DWM1000
+	- AutoRoute
+	- TODO: Ground Fill with Copper
+\subsection{Steuersoftware}
+	- Klassendiagramme der wichtigsten Elemente
+	- Basisscript
+	- Ranging (Verfahren)
+	- Datenaustausch zwischen Host und µC
+\subsection{Entfernungsmessung und Auswertung}
+	- Versuchsaufbau
+	-
+\subsection{Kalibierung}
+	- Kalibierung nach DecaWave
+		- FlowCharts erklären
+		- Ergebnisse auswerten
+	- Wo liegen die Problem
+	- Script im Anhang
+\end{comment}
 
 
 \begin{comment}
@@ -177,7 +411,11 @@ Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusä
 
 \begin{comment}
 Wie lange halten die Batterien durch?
-	- 4.7 m, LOS, Start 13:50-23:50, 12:50-20:00
+	- 4.7 m, LOS, Start 13:50-23:50, 12:50-20:00 => 10+7 => 17 Stunden
+	
+LED Vorwiderstand berechnen
+	- https://www.youtube.com/watch?v=iNZj91TSRUg
+	- DW1000 Datasheet - 5.9 General Purpose Input Output (GPIO)
 \end{comment}
 
 
