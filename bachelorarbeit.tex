@@ -87,11 +87,8 @@
 %	\usetikzlibrary{fit}
 \usepackage{float}
 %
-% acronym – Abkürzungsverzeichnis mit LATEX
-% http://namsu.de/Extra/pakete/Acronym.pdf
-% Arguments: footnote, smaller, withpage
 %
-\usepackage[nohyperlinks,printonlyused]{acronym}
+%
 \usepackage[headsepline]{scrlayer-scrpage}
 	\clearpairofpagestyles
 	\chead{\headmark}
@@ -144,6 +141,12 @@
 %
 \usepackage{subcaption}
 %
+%
+%
+\usepackage[toc,acronyms,nonumberlist,nopostdot]{glossaries}
+	\makeglossaries
+	\loadglsentries{0_glossar}
+%
 % Some packages from other authors may have problems with KOMA-Script.
 % Package scrhack contains all those improvement proposals for
 % other packages. This means, scrhack redefines macros of packages
@@ -169,7 +172,14 @@
 
 	\input{0_eidesstattliche_erklaerung}
 	\tableofcontents
-	\input{0_abkuerzungsverzeichnis}
+	
+	\printglossary[title=Glossar,toctitle=Glossar]
+	\printglossary[
+		type=\acronymtype,
+		title=Abkürzungsverzeichnis,
+		toctitle=Abkürzungsverzeichnis]
+	%\printglossary[type=symbols]
+	
 	\listoffigures
 	\listoftables
 	
@@ -191,13 +201,13 @@
 % 		- bibnumbered, bibintoc
 %	- https://de.sharelatex.com/learn/Bibliography_management_with_biblatex
 %
-	\nocite{mcelroy2014comparison}
-	\nocite{herranz2014comparison}
-	\nocite{gonzalez2009mobile}
-	\nocite{durrant2006simultaneous}
-	\nocite{thrun2005probabilistic}
-	\nocite{schroeder2005low}
-	\nocite{smith2004tracking}
+	%\nocite{mcelroy2014comparison}
+	%\nocite{herranz2014comparison}
+	%\nocite{gonzalez2009mobile}
+	%\nocite{durrant2006simultaneous}
+	%\nocite{thrun2005probabilistic}
+	%\nocite{schroeder2005low}
+	%\nocite{smith2004tracking}
 	\printbibliography[heading=bibintoc,title={Literaturverzeichnis}]
 	\cleardoublepage
 
