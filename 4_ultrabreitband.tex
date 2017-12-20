@@ -313,12 +313,12 @@ Um eine Verbindung zwischem dem LiIon Backpack und dem Pro Trinket herzustellen,
 		\hline
 		LiIon Backpack&Pro Trinket&Bedeutung\\\hline
 		\hline
-		BAT&BAT+&Batteriespannung\\\hline
-		5V&BUS&Ladespannung\\\hline
-		G&GND&Masse\\\hline
+		BAT & BAT+ & Batteriespannung\\\hline
+		5V & BUS & Ladespannung\\\hline
+		G & GND & Masse\\\hline
 		\hline
-		SW1&&Schalter\\\hline
-		SW2&&Schalter\\\hline
+		SW1 & -- & Schalter\\\hline
+		SW2 & -- & Schalter\\\hline
 	\end{tabular}
 	\caption{Pinbelegung zwischen dem LiIon Backpack und dem Pro Trinket.}
 	\label{tab:pin_assignment_between_liion_backpack_and_pro_trinket}
@@ -326,36 +326,96 @@ Um eine Verbindung zwischem dem LiIon Backpack und dem Pro Trinket herzustellen,
 
 
 \begin{comment}
-- FTDI {Data Transfer}
-	- Wofür?
-	- Warum separat?
-	- USB to Serial
-	
-	- 
-	- 
-	
+------------------------------------------------------------------------------------------
 % Adafruit CP2104 Friend - USB to Serial Converter
 % https://www.adafruit.com/product/3309
 % https://www.silabs.com/documents/public/data-sheets/cp2104.pdf
 % Universal Asynchronous Receiver Transmitter
 % https://de.wikipedia.org/wiki/Universal_Asynchronous_Receiver_Transmitter
-------------------------------------------------------------------------------------------
 \end{comment}
 \subsubsection{Datenaustausch}
 
 % TODO: Computer? PC? Verarbeitungseinheit?
-Der ATmega328/P verfügt nicht über einen eingebauten USB--Controller, daher ist ein direkter Datenaustausch zwischen dem Mikrocontroller und einem Computer nicht möglich. Jedoch verfügt der ATmega328/P über eine \gls{uart}--Schnittstelle, mit der Daten seriell über die Leitungen RX und TX übertragen und empfangen werden können. Mittels einem zusätzlichen Modul kann diesen Datenstrom aufgefangen und über die USB--Schnittstelle übertragen werden. Das Adafruit CP2104 Friend erledigt genau diese Aufgabe. Angeschlossen wird es über den  \gls{ftdi}--Header, siehe \figurename~\ref{fig:adafruit_pro_trinket}. Dadurch ist es möglich die Module die einen Datenaustausch benötigen mit einem entsprechenden Modul auszurüsten.
+Der ATmega328/P verfügt nicht über einen eingebauten USB--Controller, daher ist ein direkter Datenaustausch zwischen dem Mikrocontroller und einem Computer nicht möglich. Jedoch verfügt der ATmega328/P über eine \gls{uart}--Schnittstelle, mit der Daten seriell über die Pins RX und TX übertragen und empfangen werden können. Mittels einem zusätzlichen Modul kann diesen Datenstrom aufgefangen und über die USB--Schnittstelle übertragen werden. Der CP2104 Friend von Adafruit erledigt genau diese Aufgabe. Angeschlossen wird er über den  \gls{ftdi}--Header, siehe \figurename~\ref{fig:adafruit_pro_trinket}. Dadurch ist es möglich die Module die einen Datenaustausch benötigen mit einem entsprechenden Modul auszurüsten.
+
+% TODO: In jedem Abschnitt der gleiche Satz :$
+Um eine Verbindung zwischem dem CP2104 Friend und dem Pro Trinket herzustellen, müssen die Pins anhand der \tablename~\ref{tab:pin_assignment_between_cp2104_and_pro_trinket} verbunden werden.
+
+\begin{table}
+	\centering
+	\begin{tabular}{||c|c|c||} 
+		\hline
+		CP2104 Friend & Pro Trinket & Bedeutung\\\hline
+		\hline
+		GND & GND & Masse\\\hline
+		CTS & GND & Masse\\\hline
+		\hline
+		5V & 5V & Versorgungsspannung\\\hline
+		\hline
+		TXD & RXD & Datenaustausch\\\hline
+		RXD & TXD & Datenaustausch\\\hline
+		\hline
+		RTS & RTS & Reset\\\hline
+	\end{tabular}
+	\caption{Pinbelegung zwischen dem CP2104 Friend und dem Pro Trinket.}
+	\label{tab:pin_assignment_between_cp2104_and_pro_trinket}
+\end{table}
 
 
-% GND & GND & Masse\\\hline
-% CTS & GND & Masse\\\hline
-% 5V & 5V & Versorgungsspannung\\\hline
-% TXD & RXD & Datenaustausch\\\hline
-% RXD & TXD & Datenaustausch\\\hline
-% RTS & RTS & Reset\\\hline
+\begin{comment}
+- Kosten für den Aufbau
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{Kosten pro Modul}
+
+Die Kosten pro Modul sind in der \tablename~\ref{tab:kosten_pro_modul} zu finden. Die Bauelemente die jeweils für einen Tag bzw. Anker benötigt werden sind in der dazugehörigen Spalte angekreuzt.
+
+\begin{sidewaystable}
+	\centering
+	\begin{tabular}{||c|c|l|c|l|c|r||} 
+		\hline
+		Tag & Anker & Anbieter & Artikelnummer & Komponente & Anzahl & Stückpreis\\\hline
+		\hline
+		\CheckedBox & \CheckedBox & Digi-Key & 1479-1002-1-ND & Decawave Limited DWM1000 & 1 & \SI{21.23}{\euro}\\\hline
+		\CheckedBox & \CheckedBox & Digi-Key & 1528-1040-ND & Adafruit Pro Trinket \SI{3}{\volt} & 1 & \SI{8.25}{\euro}\\\hline
+		\hline
+		\CheckedBox & \CheckedBox & Conrad & 1417697-62 & Kohleschicht-Widerstand \SI{10}{\kilo\ohm} & 1 & \SI{0.06}{\euro}\\\hline
+		\CheckedBox & \CheckedBox & Conrad & 1417644-62 & Kohleschicht-Widerstand \SI{180}{\ohm} & 4 & \SI{0.06}{\euro}\\\hline
+		\CheckedBox & \CheckedBox & Conrad & 180134-62 & LED Grün & 2 & \SI{0.25}{\euro}\\\hline
+		\CheckedBox & \CheckedBox & Conrad & 184756-62 & LED Rot & 2 & \SI{0.34}{\euro}\\\hline
+		\Square & \CheckedBox & Conrad & 251007-62 & Emmerich LiIon Akku ICR-18650 NH-SP mit Kabel & 1 & \SI{9.99}{\euro}\\\hline
+		\hline
+		\Square & \CheckedBox & EXP-Tech & EXP-R15-577 & Adafruit Pro Trinket LiPoly/LiIon Backpack & 1 & \SI{5.55}{\euro}\\\hline
+		\CheckedBox & \Square & EXP-Tech & EXP-R15-1157 & Adafruit CP2104 Friend & 1 & \SI{6.45}{\euro}\\\hline
+		\Square & \CheckedBox & EXP-Tech & EXP-R15-419 & Breadboard-friendly SPDT Slide Switch & 1 & \SI{1.20}{\euro}\\\hline
+		\Square & \CheckedBox & EXP-Tech & EXP-R15-1074 & JST 2-Pin Cable & 1 & \SI{0.80}{\euro}\\\hline
+		\hline
+		\CheckedBox & \CheckedBox & AISLER & -- & \acrlong{pcb} & 1 & \SI{7.74}{\euro}\\\hline
+		\hline
+		\multicolumn{6}{|r|}{Gesamtpreis für einen Tag:} & \SI{45.15}{\euro}\\\hline
+		\multicolumn{6}{|r|}{Gesamtpreis für einen Anker:} & \SI{56.24}{\euro}\\\hline
+	\end{tabular}
+	\caption{Kosten pro Tag bzw. Anker.}
+	\label{tab:kosten_pro_modul}
+\end{sidewaystable}
 
 
-\gls{anchor}
+\begin{comment}
+- Schaltplan-Skizze
+	- Besonderheiten (NetLabels)
+	- SVG/PNG/PDF-Export
+	- Gruppierung nach Funktionsgruppen
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{Schaltplan}
+
+Eine Übersicht der besprochenen Bauelemente, gruppiert nach Funktionsgruppen, können dem Schaltplan in \figurename~\ref{fig:schaltplan_uwb_modul} entnommen werden.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{Trinket_And_DWM1000_v3_schem}
+	\caption{Schaltplan des \gls{uwb}--Moduls.}
+	\label{fig:schaltplan_uwb_modul}
+\end{figure}
 
 
 
@@ -363,11 +423,8 @@ Der ATmega328/P verfügt nicht über einen eingebauten USB--Controller, daher is
 \begin{comment}
 
 Zusätzlich werden Erfahrungsberichte aus dem Internet ausgewertet um die Beschaltung weiter zu verfeinern, siehe \cite{Trojer2015, Holder2016, Holder2016a}.
-	- Kosten für den Aufbau
-	- Schaltplan-Skizze
-		- Besonderheiten (NetLabels)
-		- SVG/PNG/PDF-Export
-		- Gruppierung nach Funktionsgruppen
+	
+
 \subsection{Prototypen}
 	- 1. Prototyp Aufbau auf einem Breadboard
 		- UWB-Adapter von ...?
