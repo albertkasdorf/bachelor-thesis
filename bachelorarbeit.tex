@@ -71,6 +71,7 @@
 %
 \usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
 	\addbibresource{quellen.bib}
+	\defbibfilter{papersonly}{not type=online and not type=manual}
 %
 % How can I use @author, @date, and @title after maketitle?
 % https://tex.stackexchange.com/questions/27710/how-can-i-use-author-date-and-title-after-maketitle
@@ -83,7 +84,7 @@
 % http://www.bakoma-tex.com/doc/latex/siunitx/siunitx.pdf
 %
 \usepackage[mode=text]{siunitx}
-	\sisetup{locale=DE,range-phrase=--}
+	\sisetup{locale=DE,range-phrase=--,product-units=single}
 	\DeclareSIUnit{\mAh}{mAh}
 \usepackage{graphicx}
   \graphicspath{ {Bilder/} }
@@ -233,7 +234,9 @@
 	%\nocite{thrun2005probabilistic}
 	%\nocite{schroeder2005low}
 	%\nocite{smith2004tracking}
-	\printbibliography[heading=bibintoc,title={Literaturverzeichnis}]
+	\printbibliography[heading=bibintoc,filter=papersonly,title={Literaturverzeichnis}]
+	\printbibliography[heading=subbibintoc,type=online,title={Internetquellen}]
+	\printbibliography[heading=subbibintoc,type=manual,title={Handbücher}]
 	\cleardoublepage
 
 	\input{0_anhang}

@@ -1,5 +1,34 @@
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \chapter{Evaluation}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{Versuchsaufbau}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+TODO: Stimmen die 10Hz?
+\end{comment}
+\subsection{Batterielaufzeit}
+
+Beim Test der Batterielaufzeit wurden zwei \gls{uwbm} in einem Abstand von \SI{4.7}{\metre} aufgestellt. Beide \gls{uwbm} hatten eine direkte \gls{los} zu einandern. Über den kompletten Zeitraum wurden Entfernungsmessungen mit einer Rate von \SI{10}{\hertz} durchgeführt. Als Testprogramme wurden dabei \textit{DW1000Ranging\_ANCHOR} und \textit{DW1000Ranging\_TAG} aus dem GitHub--Projekt \cite{Trojer2015} verwendet.
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{Ergebnisse und Auswertung}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- Start 13:50-23:50, 12:50-20:00 => 10+7 => 17 Stunden
+\end{comment}
+\subsection{Batterielaufzeit}
+
+Der \gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig später folgte Ihm der \gls{tag}. Deutlich höhere Batterielaufzeiten können dadurch erzielt werden, dass die Senderate reduziert wird und die Stromsparfunktionen sowohl des DWM1000 als auch des ATmega328/P genutzt werden.

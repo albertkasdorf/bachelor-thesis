@@ -195,9 +195,13 @@ Zusätzlich muss der Marker über eine bidirektional Kommunikationsschnittstelle
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+TODO: Wie wird der Vorwiderstand berechnet? ca. 10mA bei 1.8V, R=(U_0-U_LED)/I_LED
+
+LED Vorwiderstand berechnen
+	- https://www.youtube.com/watch?v=iNZj91TSRUg
+	- DW1000 Datasheet - 5.9 General Purpose Input Output (GPIO)
 \end{comment}
-\subsubsection{\gls{uwb}--Transceiver}
-\label{subsec:uwb_transceiver}
+\subsubsection{\gls{uwb}--Transceiver}\label{subsec:uwb_transceiver}
 
 Als \gls{uwbt} werden die Komponenten der Firma DecaWave verwendet. Bei dem DW1000 handelt es sich nur um dem \gls{ic} der für die Erzeugen und Verarbeiten der \gls{uwb}--Funksignale zuständig ist. Der DWM1000 beinhaltet neben dem DW1000 auch die notwendige Beschaltung und zusätzlich eine Antenne für die Übertragung, siehe \figurename~\ref{fig:pin_assignment}.
 
@@ -227,8 +231,6 @@ Um das DWM1000 erfolgreich zu initalisieren muss zusätzlich der RSTn--Pin durch
 
 Zusätzliche Informationen, wie der Versand und Empfang von Nachrichten, könnten über Status--Leuchtdioden ausgegeben werden. Hierfür wird jeder der Pins GPIO1 bis GPIO3 jeweils mit einem Vorwiderstand und einer Leuchtdiode verbunden.
 
-%TODO: Wie wird der Vorwiderstand berechnet? ca. 10mA bei 1.8V, R=(U_0-U_LED)/I_LED
-
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
@@ -243,7 +245,7 @@ Wie bereits im vorherigen Abschnitt~\ref{subsec:uwb_transceiver} erwähnt beträ
 	\includegraphics[width=0.5\textwidth]{adafruit_pro_trinket_5v.png}
 	\caption[Adafruit Pro Trinket]{Adafruit Pro Trinket\protect\footnotemark}
 	\label{fig:adafruit_pro_trinket}
-	\source{\url{https://learn.adafruit.com/introducing-pro-trinket/pinouts}}
+	\source{\cite{adafruit2014protrinket}}
 \end{figure}
 
 \footnotetext{Der Adafruit Pro Trinket \SI{3.3}{\volt} ist zum Großteil pinkompatibel zu der \SI{5}{\volt} Variante. Nur der Pin \textit{BAT+} benötigte eine Batteriespannung von \SIrange{3.5}{16}{\volt} und der drei Reihen weiter unten liegende \SI{5}{\volt} Pin liefert nur \SI{3.3}{\volt}.}
@@ -300,7 +302,7 @@ Bevor jedoch dieses Modul eingesetz werden kann, müssen noch zwei Modifikatione
 		\label{fig:pro_trinket_liion_backpack_bottom}
 	\end{subfigure}
 	\caption{Adafruit Pro Trinket LiPoly/LiIon Backpack}
-	\source{\url{https://learn.adafruit.com/adafruit-pro-trinket-lipoly-slash-liion-backpack}}
+	\source{\cite{adafruit2014liionbackpack}}
 	\label{fig:pro_trinket_liion_backpack}
 \end{figure}
 %TODO: URL ist zu lang und wird nicht umgebrochen.
@@ -323,6 +325,8 @@ Um eine Verbindung zwischem dem LiIon Backpack und dem Pro Trinket herzustellen,
 	\caption{Pinbelegung zwischen dem LiIon Backpack und dem Pro Trinket.}
 	\label{tab:pin_assignment_between_liion_backpack_and_pro_trinket}
 \end{table}
+
+Um den Lithium--Ion--Akku zu laden, bedarf es nicht mehr als den USB--Stecker des \textit{Pro Trinket} mit dem Computer oder einem USB--Ladegerät zu verbinden.
 
 
 \begin{comment}
@@ -384,7 +388,7 @@ Die detailierte Auflistung der Materialkosten können in der \tablename~\ref{tab
 		\CheckedBox & \CheckedBox & Conrad & 1417644-62 & Kohleschicht-Widerstand \SI{180}{\ohm} & 4 & \SI{0.06}{\euro}\\\hline
 		\CheckedBox & \CheckedBox & Conrad & 180134-62 & LED Grün & 2 & \SI{0.25}{\euro}\\\hline
 		\CheckedBox & \CheckedBox & Conrad & 184756-62 & LED Rot & 2 & \SI{0.34}{\euro}\\\hline
-		\Square & \CheckedBox & Conrad & 251007-62 & Emmerich LiIon Akku ICR-18650 NH-SP mit Kabel & 1 & \SI{9.99}{\euro}\\\hline
+		\Square & \CheckedBox & Conrad & 251007-62 & Emmerich LiIon Akku ICR-18650 NH-SP& 1 & \SI{9.99}{\euro}\\\hline
 		\hline
 		\Square & \CheckedBox & EXP-Tech & EXP-R15-577 & Adafruit Pro Trinket LiPoly/LiIon Backpack & 1 & \SI{5.55}{\euro}\\\hline
 		\CheckedBox & \Square & EXP-Tech & EXP-R15-1157 & Adafruit CP2104 Friend & 1 & \SI{6.45}{\euro}\\\hline
@@ -465,33 +469,104 @@ Während dem Aufbau des ersten Prototypen wurde ein \gls{pcb}--Adapterboard, sie
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-\end{comment}
-\subsection{Elektrischer Aufbau}
-
-\begin{comment}
-Wie lange halten die Batterien durch?
-	- 4.7 m, LOS, Start 13:50-23:50, 12:50-20:00 => 10+7 => 17 Stunden
-	
-LED Vorwiderstand berechnen
-	- https://www.youtube.com/watch?v=iNZj91TSRUg
-	- DW1000 Datasheet - 5.9 General Purpose Input Output (GPIO)
-\end{comment}
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
-- Antenne
-- Aufrecht stehend
-- Batterie auf der Rückseite bietet stabilität
-	- Flachere Akkus können auch verwendet werden
-- Ansteckbares FTDI
-- Preis pro Platinengröße
++ Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
++ Antenne
++ Aufrecht stehend
++ Batterie auf der Rückseite bietet stabilität
+	+ Flachere Akkus können auch verwendet werden
++ Ansteckbares FTDI
++ Preis pro Platinengröße
 - Footprint of DWM1000
-- AutoRoute
++ AutoRoute
 - TODO: Ground Fill with Copper
+- Wikipedia: In der Antennentechnik (Satellitenfunk) bezeichnet der Azimutwinkel die horizontale Ausrichtung einer Antenne, im Gegensatz zur Elevation, die den vertikalen Winkel zwischen Horizont und Antennenrichtung angibt.
 \end{comment}
 \subsection{Platinendesign}
+
+Nachdem die Korrektheit des Schaltplans durch die Prototypen bestätigt wurde, kann nun das Layout für die entgültigen \gls{pcb}--Platinen erstellt werden. Sowohl der Schaltplan als auch das Platinen--Layout werden mit dem Programm \textit{fritzing}\cite{fritzing} erstellt. Jedes im Schaltplan verwendete elektrische Bauelement besitzt einen \gls{footprint}, der die Größe des Bauelementes und seine elektrischen Anschlüsse auf der Leiterplatte festlegt, siehe \figurename~\ref{fig:breadboard_schematic_pcb}. Anhand des \glspl{footprint} muss nun jedes Bauteil so plaziert werden, das es idealerweise möglichst wenig Platz auf der Leiterplatte verschwendet wird. Den je kleiner die Leiterplatte ist, desto günstiger in der Herstellung.
+
+\begin{figure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=0.5\textwidth]{pro_trinket_breadboard}
+		\caption{Reales Bauelement}
+		\label{fig:pro_trinket_breadboard}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{pro_trinket_schematic}
+		\caption{Bauelement im Schaltplan}
+		\label{fig:pro_trinket_schematic}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{pro_trinket_pcb}
+		\caption{Bauelement mit seinem \gls{footprint} auf einer Leiterplatte.}
+		\label{fig:pro_trinket_pcb}
+	\end{subfigure}
+	\caption{Designstufen eines elektrischen Bauelementes.}
+	\label{fig:breadboard_schematic_pcb}
+\end{figure}
+
+Die Leiterplatte besitzt eine rechteckige Form, mit den Maßen \SI{43 x 75}{\mm}. Am höchsten Punkt der Leiterplatte befindet sich die Antenne des \gls{uwbt}, dadurch wird gewährleistet das die Antenne in horizontaler Richtung ein gleichmäßiges Abstrahlmuster aufweist, siehe \figurename~\ref{fig:dwm1000_antenna_radiation_pattern}. Desweiteren empfehlen die \textit{Application Board Layout Guidelines} das unterhalb der Antenne sich keine Metall oder andere nicht RF transparente Materialien befinden und ein freier horizontaler Abstand von mindestens \SI{10}{\mm} eingehalten wird, siehe \figurename~\ref{fig:dwm1000_application_board_keep_out_areas}.
+
+Links neben dem \gls{uwbt} befinden sich gut sichtbar die Status-Leuchtdioden. Unterhalb der Status-Leuchtdioden befindet sich der Ladeschaltkreis für die Lithium-Ion Batterie sowie der Ein--Aus--Schalter. Auf der Rückseite der Leiterplatte wird die Batterie befestigt. Dadurch ist ein aufrechter Stand des \gls{uwbm} möglich. Die Leiterplatte ist mit \SI{75}{\mm} ca. \SI{10}{\mm} größer als die Batterie, sodass es zu keiner Beeinträchtigung der Antenne kommen sollte.
+
+Im unteren rechten Bereich der Leiterplatte befindet sich der \textit{Pro Trinket}, also die Verarbeitungseinheit. Direkt daneben auf der linken Seite ist das optionale Datenübertragungsmodul vorgesehen. Da der \gls{tag} auf dem Roboter in einer erhöhten Position befestigt wird, zeigt der USB--Stecker für das Datenübertragunsmodul in eine ideal Richtung.
+
+Nachdem jedes elektrische Bauelement auf der Leiterplatte positioniert wurde, muss noch die Verdrahtung der einzelnen Bauelemente erfolgen. Sehr bequem erfolgt die Verdrahtung über die \textit{Autoroute}--Funktion. Hierbei errechnet ein Algorithmus, welchen Weg die Leiterbahnen nehmen sollen um alle notwendigen Pins miteinander zu verbindungen ohne das sich ihre Wege überschneiden. Das fertige Layout der Leiterplatte ist in \figurename~\ref{fig:pcb_uwb_modul_board_top} abgebildet. In der \figurename~\ref{fig:uwb_modul} ist ein fertig aufgebautes \gls{uwbm} abgebildet.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{dwm1000_antenna_radiation_pattern}
+	\caption{Das Antennenabstrahlmuster in horizontaler Richtung.}
+	\label{fig:dwm1000_antenna_radiation_pattern}
+	\source{\cite{decawave2016dwm1kdatasheet}}
+\end{figure}
+	
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{dwm1000_application_board_keep_out_areas}
+	\caption{Antennenfreiräume}
+	\label{fig:dwm1000_application_board_keep_out_areas}
+	\source{\cite{decawave2016dwm1kdatasheet}}
+\end{figure}
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.25\textwidth]{pcb_uwb_modul_board_top}
+%	\caption{Das fertige Leiterplatten Layout.}
+%	\label{fig:pcb_uwb_modul_board_top}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.5\textwidth]{uwb_modul}
+%	\caption{Vorder- und Rückansicht eines \gls{uwbm}.}
+%	\label{fig:uwb_modul}
+%\end{figure}
+
+\begin{figure}
+	%\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{pcb_uwb_modul_board_top}
+		\caption{Das fertige Leiterplatten Layout.}
+		\label{fig:pcb_uwb_modul_board_top}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.6\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{uwb_modul}
+		\caption{Vorder- und Rückansicht eines \gls{uwbm}.}
+		\label{fig:uwb_modul}
+	\end{subfigure}
+	\caption{Fertige \glspl{uwbm}.}
+	\label{fig:fertige_uwb_module}
+\end{figure}
+
+
 
 
 
