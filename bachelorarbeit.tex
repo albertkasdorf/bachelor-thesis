@@ -40,7 +40,15 @@
 %
 \usepackage{listings}
   \renewcommand{\lstlistingname}{Auflistung}
-\usepackage{url}
+%
+% Wie kann ich hyperlinks mit \url umbrechen lassen?
+% http://texwelt.de/wissen/fragen/5361/wie-kann-ich-hyperlinks-mit-url-umbrechen-lassen
+% Mit der Verwendung der Option hyphens wird der Umbruch nach einem Bindestrich aktiviert.
+%
+\usepackage[hyphens]{url}
+%
+%
+%
 \usepackage[breaklinks,colorlinks,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 	\hypersetup
 	{
@@ -125,9 +133,9 @@
 % https://tex.stackexchange.com/questions/95029/add-source-to-figure-caption
 %
 \usepackage{caption}
-	%\newcommand{\source}[1]{\caption*{Quelle: {#1}} }
+	\newcommand{\source}[1]{\caption*{Quelle: {#1}} }
 	%\newcommand{\source}[1]{\caption*{\hfill Quelle: {#1}} }
-	\newcommand{\source}[1]{\vspace{-3pt} \caption*{ Quelle: {#1}} }
+	%\newcommand{\source}[1]{\vspace{-3pt} \caption*{ Quelle: {#1}} }
 %
 %
 %
@@ -187,6 +195,7 @@
 	%\input{abstract}
 
 	\input{0_eidesstattliche_erklaerung}
+	%\setcounter{tocdepth}{4}
 	\tableofcontents
 	
 	\printglossary[title=Glossar,toctitle=Glossar]

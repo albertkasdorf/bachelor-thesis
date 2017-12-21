@@ -199,7 +199,7 @@ Zusätzlich muss der Marker über eine bidirektional Kommunikationsschnittstelle
 \subsubsection{\gls{uwb}--Transceiver}
 \label{subsec:uwb_transceiver}
 
-Als \gls{uwb}--Transceiver werden die Kompontenten der Firma DecaWave verwendet. Bei dem DW1000 handelt es sich nur um dem \gls{ic} der für die Erzeugen und Verarbeiten der \gls{uwb}--Funksignale zuständig ist. Der DWM1000 beinhaltet neben dem DW1000 auch die notwendige Beschaltung und zusätzlich eine Antenne für die Übertragung, siehe \figurename~\ref{fig:pin_assignment}.
+Als \gls{uwbt} werden die Komponenten der Firma DecaWave verwendet. Bei dem DW1000 handelt es sich nur um dem \gls{ic} der für die Erzeugen und Verarbeiten der \gls{uwb}--Funksignale zuständig ist. Der DWM1000 beinhaltet neben dem DW1000 auch die notwendige Beschaltung und zusätzlich eine Antenne für die Übertragung, siehe \figurename~\ref{fig:pin_assignment}.
 
 \begin{figure}
 	\begin{subfigure}[t]{0.4\textwidth}
@@ -366,15 +366,16 @@ Um eine Verbindung zwischem dem CP2104 Friend und dem Pro Trinket herzustellen, 
 - Kosten für den Aufbau
 ------------------------------------------------------------------------------------------
 \end{comment}
-\subsubsection{Kosten pro Modul}
+\subsubsection{Materialkosten pro \gls{uwbm}}
 
-Die Kosten pro Modul sind in der \tablename~\ref{tab:kosten_pro_modul} zu finden. Die Bauelemente die jeweils für einen Tag bzw. Anker benötigt werden sind in der dazugehörigen Spalte angekreuzt.
+Die Materialkosten für einen \gls{tag} betragen jeweils \SI{45.15}{\euro} und für einen \gls{anchor} \SI{56.24}{\euro}. Der Unterschied ergibt sich dadurch, das z.B. für einen \gls{tag} keine Batterie benötigt wird, da dieser von der Energiequelle des Roboters gespeist wird.
+Die detailierte Auflistung der Materialkosten können in der \tablename~\ref{tab:kosten_pro_modul} nachgeschlagen werden. Die Bauelemente die jeweils für einen \gls{tag} bzw. \gls{anchor} benötigt werden, sind in der dazugehörigen Spalte angekreuzt.
 
 \begin{sidewaystable}
 	\centering
 	\begin{tabular}{||c|c|l|c|l|c|r||} 
 		\hline
-		Tag & Anker & Anbieter & Artikelnummer & Komponente & Anzahl & Stückpreis\\\hline
+		\gls{tag} & \gls{anchor} & Anbieter & Artikelnummer & Komponente & Anzahl & Stückpreis\\\hline
 		\hline
 		\CheckedBox & \CheckedBox & Digi-Key & 1479-1002-1-ND & Decawave Limited DWM1000 & 1 & \SI{21.23}{\euro}\\\hline
 		\CheckedBox & \CheckedBox & Digi-Key & 1528-1040-ND & Adafruit Pro Trinket \SI{3}{\volt} & 1 & \SI{8.25}{\euro}\\\hline
@@ -392,10 +393,10 @@ Die Kosten pro Modul sind in der \tablename~\ref{tab:kosten_pro_modul} zu finden
 		\hline
 		\CheckedBox & \CheckedBox & AISLER & -- & \acrlong{pcb} & 1 & \SI{7.74}{\euro}\\\hline
 		\hline
-		\multicolumn{6}{|r|}{Gesamtpreis für einen Tag:} & \SI{45.15}{\euro}\\\hline
-		\multicolumn{6}{|r|}{Gesamtpreis für einen Anker:} & \SI{56.24}{\euro}\\\hline
+		\multicolumn{6}{|r|}{Gesamtpreis für einen \gls{tag}:} & \SI{45.15}{\euro}\\\hline
+		\multicolumn{6}{|r|}{Gesamtpreis für einen \gls{anchor}:} & \SI{56.24}{\euro}\\\hline
 	\end{tabular}
-	\caption{Kosten pro Tag bzw. Anker.}
+	\caption{Materialkosten pro \gls{tag} bzw. \gls{anchor}.}
 	\label{tab:kosten_pro_modul}
 \end{sidewaystable}
 
@@ -407,7 +408,7 @@ Die Kosten pro Modul sind in der \tablename~\ref{tab:kosten_pro_modul} zu finden
 	- Gruppierung nach Funktionsgruppen
 ------------------------------------------------------------------------------------------
 \end{comment}
-\subsubsection{Schaltplan}
+\subsubsection{Schaltplan} \label{subsec:schaltplan_uwb_modul}
 
 Eine Übersicht der besprochenen Bauelemente, gruppiert nach Funktionsgruppen, können dem Schaltplan in \figurename~\ref{fig:schaltplan_uwb_modul} entnommen werden.
 
@@ -418,47 +419,48 @@ Eine Übersicht der besprochenen Bauelemente, gruppiert nach Funktionsgruppen, k
 \end{figure}
 
 
-
-
 \begin{comment}
-
-Zusätzlich werden Erfahrungsberichte aus dem Internet ausgewertet um die Beschaltung weiter zu verfeinern, siehe \cite{Trojer2015, Holder2016, Holder2016a}.
-	
-
-\subsection{Prototypen}
-	- 1. Prototyp Aufbau auf einem Breadboard
-		- UWB-Adapter von ...?
-		- SMD Löttechnik
-		- Funktionstest
-		- Skript als Anhang
-	- 2. Prototyp Aufbau auf einem Lochstreifen
-		- Kommunikations- und Entfernungsmessungstest
-	- Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
-\subsection{Platinen-Design}
-	- Antenne
-	- Aufrecht stehend
-	- Batterie auf der Rückseite bietet stabilität
-		- Flachere Akkus können auch verwendet werden
-	- Ansteckbares FTDI
-	- Preis pro Platinengröße
-	- Footprint of DWM1000
-	- AutoRoute
-	- TODO: Ground Fill with Copper
-\subsection{Steuersoftware}
-	- Klassendiagramme der wichtigsten Elemente
-	- Basisscript
-	- Ranging (Verfahren)
-	- Datenaustausch zwischen Host und µC
-\subsection{Entfernungsmessung und Auswertung}
-	- Versuchsaufbau
-	-
-\subsection{Kalibierung}
-	- Kalibierung nach DecaWave
-		- FlowCharts erklären
-		- Ergebnisse auswerten
-	- Wo liegen die Problem
-	- Script im Anhang
+------------------------------------------------------------------------------------------
+- 1. Prototyp Aufbau auf einem Breadboard
+	- UWB-Adapter von ...?
+	- SMD Löttechnik
+	- Funktionstest
+	- Skript als Anhang
+- 2. Prototyp Aufbau auf einem Lochstreifen
+	- Kommunikations- und Entfernungsmessungstest
 \end{comment}
+\subsection{Prototypen}
+
+Anhand eines vorläufigen Schaltplans wurden zwei Prototypen erstellt, siehe \figurename~\ref{fig:prototypen_der_uwb_module}.
+
+Der erste Prototyp wurde auf einer Steckplatine realisiert, siehe \figurename~\ref{fig:prototyp_eins_uwb_modul}. Die elektrische Verbindung zu dem DWM1000 \gls{ic} wurde dabei über eine Freiluftverdrahtung mit einem steckplatinenfähigen Adapter umgesetzt. Der erste Verbindungsaufbau wurde dabei mit dem Beispielprogramm \textit{BasicConnectivityTest} aus dem GitHub--Projekt \cite{Trojer2015} durchgeführt. Hierbei ist zu beachten das der \textit{PIN\_IRQ} bei dem \textit{Pro Trinket} nicht auf Pin 2 sondern auf Pin 3 liegt.
+
+Während dem Aufbau des ersten Prototypen wurde ein \gls{pcb}--Adapterboard, siehe \figurename~\ref{fig:pcb_dwm1000_adapterboard_top}, für den DWM1000 bestellt. Dieses \gls{pcb}--Adapterboard wurde ebenfalls dem GitHub--Projekt \cite{Trojer2015} entnommen. Mit diesem wurde dann ein zweiter Prototyp aufgebaut, siehe \figurename~\ref{fig:prototyp_zwei_uwb_modul}, der zusätzlich ohne eine externe Energieversorgung betrieben werden konnte. Mittels der beiden Prototypen war ein erster Nachrichtenaustausch bzw. eine erste Entfernungsmessung möglich. Der Nachrichtenaustauch wurden mit den Beispielprogrammen \textit{BasicReceiver} und \textit{BasicSender} erprobt, die Entfernungsmessung mit \textit{RangingAnchor} und \textit{RangingTag}.
+
+\begin{figure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{prototyp_eins_uwb_modul}
+		\caption{Erster Prototyp auf einer Steckplatine.}
+		\label{fig:prototyp_eins_uwb_modul}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{prototyp_zwei_uwb_modul}
+		\caption{Zweiter Prototyp auf einem Lochstreifen.}
+		\label{fig:prototyp_zwei_uwb_modul}
+	\end{subfigure}
+	\caption{Die ersten zwei Prototypen der \glspl{uwbm}.}
+	\label{fig:prototypen_der_uwb_module}
+\end{figure}
+
+\begin{figure}
+%\begin{wrapfigure}{r}{0.3\textwidth}
+  \centering
+  \includegraphics[width=0.28\textwidth]{pcb_dwm1000_adapterboard_top}
+  \caption{\gls{pcb}--Adapterboard für den DWM1000.}
+  \label{fig:pcb_dwm1000_adapterboard_top}
+%\end{wrapfigure}
+\end{figure}
 
 
 \begin{comment}
@@ -478,17 +480,45 @@ LED Vorwiderstand berechnen
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Der initiale Aufbau erfolgt zu Evaluationszwecken auf einem Steckboard und zusätzlich auf einer separaten Lochstreifenplatine um das Zusammenspiel zweier UWB--Module zu testen. Nach dem erfolgreichen Systemtest wird aus dem erstellten Schaltplan, ein PCB--Layout erstellt, mehrere PCB--Boards bestellt und nach der Lieferung zusammengebaut und noch mal getestet.
+- Antenne
+- Aufrecht stehend
+- Batterie auf der Rückseite bietet stabilität
+	- Flachere Akkus können auch verwendet werden
+- Ansteckbares FTDI
+- Preis pro Platinengröße
+- Footprint of DWM1000
+- AutoRoute
+- TODO: Ground Fill with Copper
 \end{comment}
 \subsection{Platinendesign}
 
-\begin{comment}
-\end{comment}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
 \subsection{Steuersoftware}
+
+\begin{comment}
+
+Zusätzlich werden Erfahrungsberichte aus dem Internet ausgewertet um die Beschaltung weiter zu verfeinern, siehe \cite{Trojer2015, Holder2016, Holder2016a}.
+	
+\subsection{Steuersoftware}
+	- Klassendiagramme der wichtigsten Elemente
+	- Basisscript
+	- Ranging (Verfahren)
+	- Datenaustausch zwischen Host und µC
+\subsection{Entfernungsmessung und Auswertung}
+	- Versuchsaufbau
+	-
+\subsection{Kalibierung}
+	- Kalibierung nach DecaWave
+		- FlowCharts erklären
+		- Ergebnisse auswerten
+	- Wo liegen die Problem
+	- Script im Anhang
+\end{comment}
 
 
 \begin{comment}
