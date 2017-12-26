@@ -20,22 +20,42 @@
 %
 
 
-
+% ----------------------------------------------------------------------------------------
 % A
 \newacronym{aoa}{AOA}{Angle of Arrival}
+\newacronym{auv}{AUV}{Autonomous Underwater Vehicle}
+
 \newglossaryentry{anchor}
 {
 	name={Anker}, sort={Anker},
 	description={UWB-Modul das stationär befestig ist und sich nicht bewegt.}
 }
+
+% ----------------------------------------------------------------------------------------
 % B
+\newglossaryentry{beacon}
+{
+	name={beacon}, sort={beacon}, plural={beacons},
+	description={jfdksl},
+	user1={
+	%https://en.wikipedia.org/wiki/Electric_beacon#Radio_beacons; https://de.wikipedia.org/wiki/Funkbake; http://www.spektrum.de/news/wo-bitte-gehts-zur-intelligenten-navigation/1410559
+	}
+}
+
+% ----------------------------------------------------------------------------------------
 % C
 \newacronym{cua}{CUA}{Catholic University of America}
+
+% ----------------------------------------------------------------------------------------
 % D
 \newacronym{darpa}{DARPA}{Defense Advanced Research Projects Agency}
 \newacronym{dod}{DoD}{Department of Defense}
+
+% ----------------------------------------------------------------------------------------
 % E
 \newacronym{ekf}{EKF}{Extended Kalman Filter}
+
+% ----------------------------------------------------------------------------------------
 % F
 \newacronym{fbw}{FBW}{Fractional Bandwidth}
 \newacronym{fcc}{FCC}{Federal Communications Commission}
@@ -46,6 +66,8 @@
 	sort={Firmware},
 	description={Wikipedia: Software, die in elektronischen Geräten eingebettet ist.}
 }
+
+% ----------------------------------------------------------------------------------------
 % G
 \newacronym{gps}{GPS}{Global Positioning System}
 \newacronym{gnss}{GNSS}{Global Navigation Satellite System}
@@ -57,6 +79,8 @@
 	name={Footprint}, sort={Footprint}, plural={Footprints},
 	description={Die Umrisse der Lötflächen von elektrischen Bauelementen auf einer Leiterplatte.}
 } % TODO: Wikipedia: Footprint (engl. Fußabdruck, Fußspur) die Umrisse von Lötflächen von elektrischen Bauelementen auf einer Leiterplatte.
+
+% ----------------------------------------------------------------------------------------
 % H
 \newacronym{hf}{HF}{Hochfrequenz}
 \newglossaryentry{host}
@@ -65,28 +89,61 @@
 	sort={Host},
 	description={Verarbeitungseinheit der Entfernungsdaten.}
 }
+
+% ----------------------------------------------------------------------------------------
 % I
 \newacronym{ins}{INS}{Inertial Navigation System}
 \newacronym{ips}{IPS}{Indoor Positioning System}
 \newacronym{ic}{IC}{Integrated Circuit}	% integrierter Schaltkreis
 \newacronym{irq}{IRQ}{Interrupt Request}
+\newglossaryentry{inlier}
+{
+	name={inlier}, sort={inlier},
+	description={In contrast, an inlier is an erroneous data value which actually lies in the interior of a statistical distribution, making it difficult to distinguish it from good data values.}
+} % Quelle: http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Outlier
+
+% ----------------------------------------------------------------------------------------
 % J
+
+% ----------------------------------------------------------------------------------------
 % K
+
+% ----------------------------------------------------------------------------------------
 % L
 \newacronym{los}{LoS}{Line of Sight}
 \newacronym{llnl}{LLNL}{Lawrence Livermore National Laboratory}
 \newacronym{lanl}{LANL}{Los Alamos National Laboratory}
 \newacronym{led}{LED}{Light-emitting diode} % Leuchtdiode
 %Lötpad; Lötpads sind die Lötflächen, welche die Verbindung zwischen Bauteil und Leiterbahnen darstellt.;http://www.kurtzersa.de/electronics-production-equipment/loetlexikon/begriff/loetpad.html
+
+% ----------------------------------------------------------------------------------------
 % M
 \newacronym{mems}{MEMS}{Micro Electro Mechanical Sensors}
 \newacronym{mir}{MIR}{Micropower Impulse Radar}
 \newacronym{mosi}{MOSI}{Master Output Slave Input}
 \newacronym{miso}{MISO}{Master Input Slave Output}
+\newglossaryentry{multipath}
+{
+	name={multipath}, sort={multipath},
+	description={},
+	% Wikipedia: Mehrwegempfang oder Mehrwegeempfang (engl. Multipath) tritt an einem Empfänger auf, wenn elektromagnetische Wellen eines Senders von Reflektoren abgelenkt werden und auf verschiedenen Wegen beim Empfänger ankommen.
+}
+
+% ----------------------------------------------------------------------------------------
 % N
 \newacronym{nlos}{NLos}{Non-line of Sight}
+
+% ----------------------------------------------------------------------------------------
 % O
 \newacronym{osd}{OSD}{Office of the Secretary of Defense}
+\newglossaryentry{outlier}
+{
+	name={outlier}, sort={outlier},
+	description={An outlier is a data value that lies in the tail of the statistical distribution of a set of data values. In the distribution of raw data, outliers are often regarded as more likely to be incorrect.}
+} % Quelle: http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Outlier
+% http://mars.wiwi.hu-berlin.de/mediawiki/teachwiki/index.php/Ausrei%C3%9Fer: In der Statistik spricht man von einem Ausreißer, wenn ein Beobachtungswert nicht in eine erhobene Messreihe passt, also den Erwartungen widerspricht. Die Erwartung wird meistens als Streuungsbereich um den Erwartungswert herum definiert, in dem sich die meisten aller Messwerte nach der Messung befinden.
+
+% ----------------------------------------------------------------------------------------
 % P
 \newacronym{pan}{PAN}{Personal Area Network}
 \newacronym{pcb}{PCB}{Printed Circuit Board} % gedruckte Leiterplatte 
@@ -96,15 +153,28 @@
 	sort={Pulldown--Widerstand},
 	description={Wikipedia: Der Begriff Pulldown bezeichnet in der Elektrotechnik einen (relativ hochohmigen) elektrischen Widerstand, der eine Signalleitung mit dem niedrigeren Spannungs-Potenzial verbindet, siehe Pulldown-Widerstand. (https://de.wikipedia.org/wiki/Pulldown)}
 }
+\newglossaryentry{payload}
+{
+	name={payload}, sort={payload},
+	description={},
+}
+
+% ----------------------------------------------------------------------------------------
 % Q
+
+% ----------------------------------------------------------------------------------------
 % R
 \newacronym{rtls}{RTLS}{Real-Time Location System}
 \newacronym{rss}{RSS}{Received Signal Strength}
 \newacronym{rf}{RF}{Radio Frequency}
+
+% ----------------------------------------------------------------------------------------
 % S
 \newacronym{spi}{SPI}{Serial Peripheral Interface}
 \newacronym{sclk}{SCLK}{Serial Clock}
 \newacronym{ss}{SS}{Slave Select}
+
+% ----------------------------------------------------------------------------------------
 % T
 \newacronym{tof}{ToF}{Time of Flight}
 \newacronym{toa}{ToA}{Time of Arrival}
@@ -115,6 +185,8 @@
 	name={Tag}, sort={Tag},
 	description={UWB-Modul das am Roboter befestig ist und sich durch den Raum bewegt.}
 }
+
+% ----------------------------------------------------------------------------------------
 % U
 \newacronym{uwb}{UWB}{Ultra-Wideband} % Ultra WideBand (UWB),
 \newacronym{usaf}{USAF}{United States Air Force}
@@ -130,9 +202,19 @@
 	name={UWB--Transceiver}, sort={UWB--Transceiver},
 	description={DWM1000 \gls{ic}, also der DW1000 Mikrocontroller mit der notwendigen Beschaltung und der Antenne.}
 }
+
+% ----------------------------------------------------------------------------------------
 % V
+
+% ----------------------------------------------------------------------------------------
 % W
 \newacronym{wpan}{WPAN}{Wireless Personal Area Network}
+
+% ----------------------------------------------------------------------------------------
 % X
+
+% ----------------------------------------------------------------------------------------
 % Y
+
+% ----------------------------------------------------------------------------------------
 % Z

@@ -10,9 +10,54 @@
 % - 4-5 Seiten in der Bachelorarbeit (deutlich umfangreicher als im Exposé)
 % - Was unterscheidet meinen Ansatz von den anderen verhandenen Ansätzen?
 %
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \chapter{Stand der Forschung und Technik}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{\citefield{kantor2002preliminary}{title}(189)}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{\citefield{kurth2003experimental}{title}(82)}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- Wie funktioniert die Exploration Strategy?
+	- Die Ungünstigeste strategy ist das geradeausfahren mit einem beacon links und rechts.
+	- Das Gradientenfeld der abstanddifferenz zwischen den beiden beacons führt einen auf den optimalen weg um die Abstandsdifferenz zu maximieren. (Aktive Exploration)
+\end{comment}
+\section{\citefield{olson2004robust}{title}(264)}
+
+In \citetitle{olson2004robust}\cite{olson2004robust} werden autonome Unterwasserfahrzeuge (engl. \gls{auv}) verwendet um den Ozeanen der Welt die letzten Geheimnisse zu entlocken. Hierfür ist eine genaue Lokalisierung der \gls{auv} notwendig. Dies wird über die Messung der Signallaufzeit zwischen dem \gls{auv} und mehreren stationären akustischen Transponder--\Gls{beacon} erreicht. Vor der eigentlichen Messung müssen jedoch die \Glspl{beacon} im Messbereich verteilt werden, deren Position genau bestimmt werden und zusätzlich dafür gesorgt werden, dass die \Glspl{beacon} ihre Position nicht ändern. Dadurch handelt es sich um ein sehr kostspieliges Prozedere und soll in dem vorgestellt Verfahren dahingehend optimierte werden, dass die \Gls{beacon}--Position vorher nicht bekannt sein muss. Dadurch ist eine autonome Verteilung der \Glspl{beacon} möglich und zusätzlich kann auch detektiert werden ob ein \Gls{beacon} seine Position verändert hat.
+
+% TODO: Spectral Graph Partitioning
+Bevor jedoch die Laufzeitmessungen verwendet werden können, müssen diese um \Gls{outlier} (dt. Ausreißer) bereinigt werden. Diese entstehen z.B. durch unterschiedliche Ausbreitungsgeschwindigkeiten der Schallwellen im Wasser, durch Reflektionen am Meeresgrund (engl. \Gls{multipath}) oder durch Interferenzen der Nutzlast (engl. \Gls{payload}) mit den Sensoren. Die Bereinigung der Messdaten erfolgt hierbei über das \textit{Spectral Graph Partitioning} Verfahren. Hierbei wird jede Messung als Kreis dargestellt. Überschneiden sich zwei Kreise gelten diese beiden Messungen als konsistent. Jede der Messungen wird in einem Graphen zu einem Vertex und jede konsistente Messung zu einer Kante. Bei dem fertigen Graphen ist nun zu beobachten, dass \Gls{outlier} weniger stark untereinander verbunden sind als \Gls{inlier}. Diese durchschnittliche Konnektivität der \Gls{inlier} wir als Metrik für den Partitionierungsalogorithmus verwendet um die Messdaten zu filtern.
+
+Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messwerte von zwei verschiedenen \Glspl{beacon} wieder mit einandern überschnitten. Hieraus entstehen zwei mögliche Positionen des \gls{auv}. In einem Grid erhöhen diese beiden Positionen dann den Ihnen zugeordneten Zähler. Dieser Vorgang wird für weiter Messwerte wiederholt. Durch das daraus resultierende Voting--System entstehen zwei Gipfel (engl. Peak) die die mögliche Position des \gls{auv} approximieren. Ist der Höhenunterschied zwischen den Gipfeln ausreichend groß, wird die \gls{auv}--Position mit dem höchsten Gipfel an einen EKF--SLAM übergeben.
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{\citefield{smith2004tracking}{title}(547)}
+
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{Übersicht der Meilensteine [Remove in final version]}
+
 \begin{description}
+
 \item[2001]
 \begin{itemize}
 \item !A solution to the simultaneous localization and map building (SLAM) problem (Zitiert von: 2803)
@@ -30,7 +75,6 @@
 
 \item[2003]
 \begin{itemize}
-\item !Robust range-only beacon localization (264)
 \item !Experimental results in range-only localization with radio (82)
 \item !Pure range-only sub-sea SLAM (174)
 \item +Recent results in extensions to simultaneous localization and mapping (18)
@@ -115,16 +159,18 @@
 \item ?Range-only SLAM schemes exploiting robot-sensor network cooperation (0)
 \end{itemize}
 
-\item[]
-\begin{itemize}
-\item 
-\end{itemize}
-
+%\item[]
+%\begin{itemize}
+%\item 
+%\end{itemize}
 
 \end{description}
 
 
-
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{Informationen aus dem Expose [Remove in final version]}
 
 Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
 
