@@ -7,84 +7,19 @@ Fragestellung:
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+Schmalbandkommunikation (engl. Narrowband)
+Frequenzband (engl. Radio spectrum)
+Frequenzspreizung (engl. spread spectrum)
+Basisband (engl. Baseband)
+https://en.wikipedia.org/wiki/Ultra-wideband
 \end{comment}
-\chapter{Ultrabreitband}
+\chapter{\acrlong{uwb}}
 
-\begin{comment}
-- Was ist UWB überhaupt?
+Bei der normalen Funkübertragung werden die zu übermittelnden \Gls{basisband}signale auf eine sinusförmige Trägerfrequenz aufmoduliert. Bei der \Gls{uwb}--Übertragung ist das nicht der Fall, die Signale werden im \Gls{basisband} übertragen. Hierfür werden im Nanosekunden--Bereich kurze Impulse erzeugt. \Gls{uwb}--Signale verwenden eine Bandbreite von bis zu \SI{500}{\MHz} und können im Frequenzbereich von \SIrange{3.6}{10.1}{\GHz} eingesetzt werden. Um zu verhindern das bestehende Dienste wie \Gls{gps} oder \Gls{wlan} gestört werden, wurde durch die \Gls{fcc} die maximale Abgabeleistung von \Gls{uwb}--Sendern stark begrenzt (unter \SI[per-mode=symbol]{-41.3}{\dBm\per\MHz}). Dadurch ist eine Koexistenz mit den bereits bestehenden Diensten möglich, ohne das diese sich gegenseitig stören. \cite{win1998impulse, yang2004uwbcom, fontana2004recent, aiello2006ultra, yavari2014ultra}
 
-- Wie unterscheidet es sich von der bisherigen Verfahren?
+Zu den bemerkenswerten Eigenschaften der \Gls{uwb}--Technologie zählt das verlustfreie Durchdringen von Hindernissen, präzise Entfernungsmessung im Zentimeterbereich, eine hohe Datenübertragungsrate von über \SI[per-mode=symbol]{110}{\mega\byte\per\second} in einem Bereich von \SIrange{10}{15}{\metre} und der geringe Energieverbrauch. \cite{yang2004uwbcom}
 
-- Welche Eigenschaften besitzt UWB?
-
-- Welche Einsatzgebiete erschließen sich durch UWB?
-	- R&O authorizes 5 classes of devices
-		- Imaging Systems
-			- Ground penetrating radars, wall imaging, medical imaging
-			- Thru-wall Imaging & Surveillance Systems
-		- Communication and Measurement Systems
-			- Indoor Systems 
-			- Outdoor Hand-held Systems
-		- Vehicular Radar Systems
-			- collision avoidance, improved airbag activation,  suspension systems, etc.
-
-- Was wurde gemacht um bestehende Systeme zu schützen?
-	- GPS
-	- Allows UWB technology to coexist with existing radio services without causing interference.
-	- The R&O rules are “designed to ensure that existing and planned radio services, particularly safety services, are protected.”
-
-\end{comment}
-
-\begin{comment}
-"C:\Users\Albert\Documents\Studium\Bachelor WS17\02133r1P802-15-WG_Ultra-Wideband-Tutorial.ppt"
-=> Möglicherweise hilfreich!
-
-Ultra wideband wireless positioning systems
-	- \cite{yavari2014ultra}
-	- The most important characteristic of UWB is large bandwidth in comparison with
-prevalent narrow-band systems.
-	- One result of the large bandwidth of UWB is that due to the inverse relatioship of
-time and frequency, the life-time of UWB signals is very short. Consequently, the
-time resolution of UWB signals is high and UWB is a good candidate for positioning
-systems.
-
-Ultra-wideband communications: an idea whose time has come
-	- \cite{yang2004uwbcom}
-	- UWB applications: short-range very high-speed broadband access to the Internet, covert communication links, localization at centimeter-level accuracy, high-resolution ground-penetrating radar, through-wall imaging, precision navigation and asset tracking, just to name a few.
-	- UWB characterizes transmission systems with instantaneous spectral occupancy in excess of 500 MHz or a fractional bandwidth of more than 20%.
-	- Such systems rely on ultra-short (nanosecond scale) waveforms that can be free of sine-wave carriers and do not require IF processing because they can operate at baseband. As information-bearing pulses with ultra-short duration have UWB spectral occupancy, UWB radios come with unique advantages that have long been appreciated by the radar and communications communities: i) enhanced capability to penetrate through obstacles; ii) ultra high precision ranging at the centimeter level; iii) potential for very high data rates along with a commensurate increase in user capacity; and iv) potentially small size and processing power.
-	- This huge “new bandwidth” opens the door for an unprecedented number of bandwidth-demanding position-critical low-power applications in wireless communications, networking, radar imaging, and localization systems [64].
-	- These include short-range, high-speed access to the Internet, accurate personnel and asset tracking for increased safety and security, precision navigation, imaging of steel reinforcement bars in concrete or pipes hidden inside walls, surveillance, and medical monitoring of the heart’s actual contractions.
-	- For wireless communications in particular, the FCC regulated power levels are very low (below -41.3 dBm), which allows UWB technology to overlay already available services such as the global positioning system (GPS) and the IEEE 802.11 wireless local area networks (WLANs) that coexist in the 3.6--10.1 GHz band. Although UWB signals can propagate greater distances at higher power levels, current FCC regulations enable high-rate (above 110 MB/s) data transmissions over a short range (10--15 m) at very low power.
-	- Wireless personal area networks (WPANs): Also known as in-home networks, WPANs address short-range (generally within 10--20 m) ad hoc connectivity among portable consumer electronic and communication devices. They are envisioned to provide high-quality real-time video and audio distribution, file exchange among storage systems, and cable replacement for home entertainment systems. UWB technology emerges as a promising physical layer candidate for WPANs, because it offers high-rates over short range, with low cost, high power efficiency, and low duty cycle.
-	- Sensor networks: Sensor networks consist of a large number of nodes spread across a geographical area. The nodes can be static, if deployed for, e.g., avalanche monitoring and pollution tracking, or mobile, if equipped on soldiers, firemen, or robots in military and emergency response situations. Key requirements for sensor networks operating in challenging environments include low cost, low power, and multifunctionality. High data-rate UWB communication systems are well motivated for gathering and disseminating or exchanging a vast quantity of sensory data in a timely manner. Typically, energy is more limited in sensor networks than in WPANs because of the nature of the sensing devices and the difficulty in recharging their batteries. Studies have shown that current commercial Bluetooth devices are less suitable for sensor network applications because of their energy requirements [62] and higher expected cost [2]. In addition, exploiting the precise localization capability of UWB promises wireless sensor networks with improved positioning accuracy. This is especially useful when GPSs are not available, e.g., due to obstruction.
-	- Imaging systems: Different from conventional radar systems where targets are typically considered as point scatterers, UWB radar pulses are shorter than the target dimensions. UWB reflections off the target exhibit not only changes in amplitude and time shift but also changes in the pulse shape. As a result, UWB waveforms exhibit pronounced sensitivity to scattering relative to conventional radar signals. This property has been readily adopted by radar systems (see e.g., [5] and references therein) and can be extended to additional applications, such as underground, through-wall and ocean imaging, as well as medical diagnostics and border surveillance devices [55], [57].
-	- Vehicular radar systems: UWB-based sensing has the potential to improve the resolution of conventional proximity and motion sensors. Relying on the high ranging accuracy and target differentiation capability enabled by UWB, intelligent collision-avoidance and cruise-control systems can be envisioned. These systems can also improve airbag deployment and adapt suspension/braking systems depending on road conditions. UWB technology can also be integrated into vehicular entertainment and navigation systems by downloading high-rate data from airport off ramp, road-side, or gas station UWB transmitters.
-		- By its rulemaking proposal in 2002, the Federal Communications Commission (FCC) in the United States essentially unleashed huge “new bandwidth’’ (3.6–10.1 GHz) at the noise floor, where UWB radios overlaying coexistent RF systems can operate using low-power ultra-short information bearing pulses.
-	
-\cite{win1998impulse}
-	- Impulse radio: How it works
-	
-\cite{fontana2004recent}
-	- Recent system applications of short-pulse ultra-wideband (UWB) technology	
-	- In its infancy, UWB was commonly referred to as “carrier-free,” “baseband,” or “impulse,” reflecting the fact that the underlying signal generation strategy was the result of a broad-band extremely fast rise time, step, or impulse, which shock, or impulse, excited a wide-band antenna (e.g., TEM, mode horn).
-	- The origins of UWB technology stem from work in time-domain electromagnetics begun in the early 1960s to fully describe the transient behavior of certain classes of microwave networks by examining their characteristic impulse response [7]–[12].
-	- For up until 1962, there were no convenient means to observe, let alone measure, waveforms having subnanosecond durations, as were required to suitably approximate an ideal impulsive excitation. Fortuitously, at about the same time [15], Hewlett-Packard introduced the time-domain sampling oscilloscope, which greatly facilitated these measurements.
-	- The last element that needed to be developed before real system development could begin was the short-pulse, or threshold, receiver. In the early 1970s, both avalanche transistor and tunnel diode detectors were constructed in attempts to detect these very short duration signals. The tunnel diode, invented in 1957 by Esaki who would later receive the Nobel Prize in physics in 1973 for this accomplishment, was the first known practical application of quantum physics. This unique device, with its extremely wide bandwidth (at the time, tens of gigahertz) permitted not only subnanosecond pulse generation essential for impulse excitation, but also could be used as a sensitive thresholding device for the detection of short-pulse waveforms.
-	
-Medical applications of ultra-wideband (UWB)
-	- \cite{pan2007medical}
-	
-\cite{lakkundi2006ultra}
-	- Ultra wideband communications: History, evolution and emergence
-	- Figure 1 und 2 sind gut
-	- The development of the sampling oscilloscope in the early 1960s and the corresponding techniques for generating sub-nanosecond baseband pulses speed up the development of UWB [1].
-	
-\cite{aiello2006ultra}
-	- Ultra wideband systems: technologies and applications
-	- The FCC's definition of the criteria for devices operating in the UWB spectrum purposely did not specify the techniques related to the generation and detection of RF energy; rather, it mandated compliance with emission limits that would enable coexistence and minimize the threat of harmful interference with legacy systems, thus protecting the Global Positioning System (GPS), satellite receivers, cellular systems, and others.
-	- Interest in the technology has been steady, with more than 200 technical papers published in journals between 1960 and 1999 on the topic and more than 100 U.S. patents issued on UWB or UWB-related technology[3].
-\end{comment}
+Die Einsatzgebiete werden dabei in die Klassen Bildgebene--, Kommunikation--, Mess-- und Fahrzeugradarsysteme unterteilt. Der Bereich der Bildgebenensysteme ist weiter unterteilt in Bodenradar, Medizinische Überwachung und Diagnostik und in Überwachungsysteme die Objekte durch Wände erkennen können. Kommunikations-- und Messsysteme werden ihrerseit unterteilt in Indoor-- und Outdoor--Systeme unterweilt. Hierzu zählen auch Systeme für die Navigation, Güternachverfolgung und Hochgeschwindigkeitsdatenübertragung. Die letzte Klasse wird in die Bereiche der Kollisionsvermeidung und Abstandssysteme unterteilt. \cite{yang2004uwbcom, lakkundi2006ultra, pan2007medical}
 
 
 \begin{comment}

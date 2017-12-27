@@ -82,10 +82,14 @@
 %
 % siunitx — A comprehensive (SI) units package
 % http://www.bakoma-tex.com/doc/latex/siunitx/siunitx.pdf
+% Dezibel Milliwatt: dBm
+%	- https://de.wikipedia.org/wiki/Leistungspegel
 %
 \usepackage[mode=text]{siunitx}
-	\sisetup{locale=DE,range-phrase=--,product-units=single}
+	\sisetup{locale=DE, range-phrase=--, product-units=single, binary-units=true}
 	\DeclareSIUnit{\mAh}{mAh}
+	\DeclareSIUnit{\belmilliwatt}{Bm}
+	\DeclareSIUnit{\dBm}{\deci\belmilliwatt}
 \usepackage{graphicx}
   \graphicspath{ {Bilder/} }
 \usepackage{eso-pic}
