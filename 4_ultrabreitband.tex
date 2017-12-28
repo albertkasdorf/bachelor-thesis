@@ -96,33 +96,47 @@ Weitere Staten folgten der \gls{fcc} Regulierung/Standardierung und gaben ebenfa
 	
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Welche alternativen Technologien gibt es zu UWB?
+- Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
+	- Bluetooth
+		- Piconet/Scatternet
+		- low data rate
+		- small data sizes (around smaller than 339 bytes)
+		- is the most complicated protocol with 188 primitives and events in total
+		- intended for portable products, short ranges, and limited battery power.
+	- ZigBee
+		- supporting simple devices that consume minimal power and typically operate in the personal operating space (POS) of 10m.
+		- full-function device (FFD) and a reduced-function device (RFD)
+		- low data rate
+		- highest transmission time
+		- data size smaller than 102 bytes
+		- is the simplest one with only 48 primitives
+		- the simplicity makes ZigBee very suitable for sensor networking applications due to their limited memory and computational capacity.
+		- intended for portable products, short ranges, and limited battery power.
+	- UWB
+		- Indoor short-range high-speed wireless communication
+		- high data rate
+		- lowest transmission time
+		- large data sizes much better efficiency
+		- proposed for shortrange and high data rate applications.
+		- have better efficiency in energy consumption.
+	- WiFi
+		- allows users to surf the Internet at broadband speeds when connected to an access point (AP) or in ad hoc mode.
+		- high data rate
+		- large data sizes much better efficiency
+		- designed for a longer connection and supports devices with a substantial power supply
+		- have better efficiency in energy consumption.
+- For a wireless sensor network in factory automation systems, since most data size of industrial monitoring and control are generally small, (e.g. the temperature data in an environmental monitoring may required less than 4 bytes only), Bluetooth and ZigBee protocols may be a good selection (from a data coding efficiency point of view) in spite of their slow data rate.
+- Welche Eigenschaften haben die alternativen Technologien?
+- Warum hab ich mich für UWB entschieden?
 \end{comment}
-\section{Alternative Technologien}
-
-\begin{comment}
-Welche alternativen Technologien gibt es zu UWB?
-\end{comment}
-
-Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
-
-qigao2015tightly - Tightly Coupled Model for Indoor Positioning based on UWB/INS
+%\section{Alternative Technologien/Gegenüberstellung}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\section{Gegenüberstellung}
-
-\begin{comment}
-Welche Eigenschaften haben die alternativen Technologien?
-Warum hab ich mich für UWB entschieden?
-\end{comment}
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
-\section{Erstelle Hardware}
+\section{Erstellte Hardware}
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
