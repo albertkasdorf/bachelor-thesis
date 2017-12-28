@@ -8,7 +8,15 @@
 % LaTeX documentclass options illustrated
 % https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/
 %
-\documentclass[draft,11pt,a4paper,twoside,titlepage,openright,ngerman]{scrbook}
+\documentclass[
+	%draft,
+	11pt,
+	a4paper,
+	twoside,
+	titlepage,
+	openright,
+	ngerman
+]{scrbook}
 
 
 \usepackage[utf8]{inputenc}
@@ -176,6 +184,12 @@
 %
 \usepackage{rotating}
 %
+% LATEX Mathematical Symbols
+% https://reu.dimacs.rutgers.edu/Symbols.pdf
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+%
+\usepackage{amssymb}
+%
 % Some packages from other authors may have problems with KOMA-Script.
 % Package scrhack contains all those improvement proposals for
 % other packages. This means, scrhack redefines macros of packages
@@ -184,6 +198,7 @@
 % redefining macros of individual packages.
 %
 \usepackage{scrhack}
+
 
 %
 % VIII Beispiel für den Aufbau einer Bachelorarbeit

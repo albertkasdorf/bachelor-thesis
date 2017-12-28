@@ -1,11 +1,84 @@
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \chapter{Grundlagen}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{Verfahren für die Reichweiten-Bestimmung}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- Theorie: Wahrscheinlichkeitsverfahren
+	- Positionsschätzer in Form einer Wahrscheinlichkeitsverteilung über den Zustandraum.
+	- Kalman fitering
+		- Multivariate Gaussian distribution (Mehrdimensionale Normalverteilung)
+		- \url{https://de.wikipedia.org/wiki/Mehrdimensionale_Normalverteilung}
+		- Kompakte Beschreibung der Normalverteilung über den Erwartungswert $\mu$ und die Kovarianzmatrix $\Sigma$ ($\mu$ und $\sigma^2$)
+		- \url{https://matheguru.com/stochastik/normalverteilung.html}
+	- Markov methods
+		- Probability Grid
+		- Robot--Position ist diskretisiert
+		- Nutzen von Bayes Rule um Grids zu kombinieren/neuerzeugen
+	- Monte Carlo Lokalisierung
+		- Multimodal Distribution for position estimation
+		- Important Sampling
+\end{comment}
 \section{Wahrscheinlichkeitstheorie}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- Theorie: Lokalisierungsprobleme
+	- Statische Lokalisierung
+		- Akkurate Schätzung seiner globalen Position anhand der Sensordaten
+		- Annahme: Umgebungskarte der Landmarken ist vorhanden
+	- Position Tracking/Positionsverfolgung
+		- Initiale Position ist gegeben
+		- Verfogenden der Roboterposition
+		- Annahme: Umgebungskarte der Landmarken ist vorhanden
+	- SLAM
+		- Verwenden der Sensordaten um sich zu Lokalisierung...
+		- und eine Karte der Landmarken zu erzeugen.
+		- Bisher Winkel und Entferung zu einer Landmarke gegeben
+			- Computer Vision, Structure from Motion
+		- Hier nur die Entfernung
+\end{comment}
 \section{Bayes/Kalman/Partikel Filter}
 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{Kalman Filter}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsection{Extended Kalman Filter}
+
+% Linearisierung
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{Monte Carlo Partikel Filter}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{SLAM}
 
+% Zuerst wird die Position geschätzt und danach die Positionen der Landmarken.
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \section{ROS}

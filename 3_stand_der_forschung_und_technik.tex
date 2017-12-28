@@ -15,11 +15,85 @@
 \end{comment}
 \chapter{Stand der Forschung und Technik}
 
+In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \textit{Range--Only SLAM} geliefert.
+
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Section 2
+	- Statische Lokalisierung
+		- Vorherige Sensorinformationen und Positionsschätzung werden nicht genutzt.
+		- Annahme: Position der Beacons ist bekannt und fix.
+	- Markovian probability grids
+	- Mit fehlerfreien Messungen ist die Positionsbestimmung trivial
+	- Entfernungsmessung mit einem erwarteten Fehler von 6 feet, also 1,82 meter. (1Fuß==30cm)
+	- 1. Characterizing Range Measurements
+		- Erstellen einer Verteilungsfunktion für die Entfernungsmessung
+		- experimentel bestimmt
+		- Diskrete Messungen in einem Set {0,6,12,...,50}
+	- 2. Creating Probability Grids
+		- Für jede Zelle des Grid wird die Wahrscheinlichkeit mittels der PDF berechnet.
+	- 3. Combine Probability Grids
+		- Multiply in a pointwise manner
+		- scale the result so that the sum over the squares is one.
+		- Aus den kombinierten Ergebnisgrid kann die schätzte Position mittels der gewichteten Durchschnitt der Gridzellen berechnet werden.
+		- Covariance Matrix lässt sich auch bestimmen
+	- Durchschnittlich geschätzer Fehler lag ab 1,62 feet bei einem geschätzen Entfernungsmess Fehler von 5.82 bis 7.18 feet.
+- Section 3
+	- Beacon positionen sind bekannt
+	- Vorherige Positionsschätzung und Odometry daten werden verwendet.
+	- Positionsverfolgung mittels Kalman und Monte Carlo
+	- Kalman
+		- Initiale Positionsschätzung wie in Section 2, jedoch mit drei Beacons.
+		- Approximieren eines ringförmigen Gauß-Verteilung um die geschätzte Position.
+		- Füttern eines entsprechenden EKF mit den Parametern
+	- Monte Carlo
+		- Verwendet die pdf aus Section 2 um die Partikels zu gewichten.
+	- Durchschnittliche Geschätzter Fehler
+		- EKT: 0,73 feet
+		- MC: 0,93 feet
+- Section 4
+	- Lokalisieren in einer Umgebung mit unsicheren beacon positionen
+		- Approximately known, good but not perfect
+		- crude measurement or estimate location on blueprint
+	- SLAM mit EKF
+		- State ist die Robot-- und Beacon--Position
+		- Error: init 5.13 feet, end 0.77 feet
 \end{comment}
 \section{\citefield{kantor2002preliminary}{title}(189)}
+
+In \citetitle{kantor2002preliminary}\cite{kantor2002preliminary} verwendet der Author \Glspl{beacon} die eine Entfernungsschätzung mit einem mittleren Fehler von \SI{1.82}{\metre} (6 Fuß) liefern. Um das Problem der Datenzuordnung zu trivialisieren, liefert jeder \Gls{beacon} zusätzlich zur Messung eine eindeutigen Identifikationsnummer mit. Nur mit diesen Daten werden die Probleme der Roboter Lokalisierung, Positionsverfolgung und \Gls{slam} behandelt. Das algorithmische Fundament wird dabei durch den \Gls{ekf} und \Gls{mc} Partikelfilter gebildet.
+
+Im ersten Abschnitt wird die statische Lokalisierung thematisiert, die für eine Positionsschätzung auf vorherige Sensorinformationen und Positionsschätzungen verzichtet. Bei einer fehlerfreien Entfernungsmessungen ist die Positionsbestimmung ein mathematisch triviales Problem. Da die Messungenauigkeit mit \SI{1.82}{\metre} jedoch sehr hoch ist, werden Methoden der Wahrscheinlichkeitstheorie verwendet. Im ersten Schritt wird die Verteilungsfunktion experimentell für einige diskreten Abstände bestimmt. Unter zuhilfenahme der erstellten Verteilungsfunktion wird für jeden \Gls{beacon} und für jede Zelle des \Gls{propgrid} die Wahrscheinlichkeit berechnet, siehe \figurename~\ref{fig:kantor2002preliminary_figure1b} links. Im letzten Schritt werden die einzelnen \Gls{propgrid} miteinandern multipliziert und im Abschluss skaliert damit die Summe über alle Zellen gleich eins ist, siehe \figurename~\ref{fig:kantor2002preliminary_figure1c} rechts. Aus dem gewichteten Durchschnitt der Zellen lässt sich die Position schätzen, siehe \figurename~\ref{fig:kantor2002preliminary_figure1c}. Der durchschnittliche Schätzungsfehler beträgt \SI{0.49}{\metre} bei einem erwarteten Fehler von \SIrange{1,77}{2,18}{\metre} bei der Entfernungsmessung.
+
+\begin{figure}[htbp]
+  \begin{minipage}[t]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{kantor2002preliminary_figure1b}
+    \caption{Links: \Gls{propgrid} pro \Gls{beacon}. Rechts: Kombination zweier \Glspl{propgrid}.}
+    \label{fig:kantor2002preliminary_figure1b}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{kantor2002preliminary_figure1c}
+    \caption{Kombiniertes \Gls{propgrid} aller \Glspl{beacon}.}
+    \label{fig:kantor2002preliminary_figure1c}
+  \end{minipage}
+	\source{\cite{kantor2002preliminary}}
+\end{figure}
+
+Im nächsten Abschnitt wird die Positionsverfolgung mittels eines \Gls{ekf} bzw. \Gls{mc} Partikelfilter behandelt. Hier für werden die Odometrydaten und die vorhergie Positionsschätzung verwendet. Für eine initiale Positionsschätzung wird das Verfahren aus dem vorherigen Abschnitt verwendet. Aus der Entfernungsschätzung eines \Glspl{beacon} ergibt sich eine ringförmige Verteilungsfunktion, die mit einer unimodalen Verteilung nicht modelliert werden kann. Als Annäherung wird eine Normalverteilung verwendet, die in tangentialer Richtung gestreckt und in radialer Richtung gestaucht ist. Als Mittelwert wird die vorherige Positionsschätzung verwendet, siehe \figurename~\ref{fig:kantor2002preliminary_figure2}. Um die Partikel im \Gls{mc} Partikelfilter zu gewichten ist die ringförmige Verteilung vollkommen ausreichend. Der durchschnittliche Schätzungsfehler beträgt beim \Gls{ekf} \SI{0.22}{\metre} und \SI{0.28}{\metre} beim \Gls{mc} Partikelfilter.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\linewidth]{kantor2002preliminary_figure2}
+	\caption{Annäherung einer ringförmigen Verteilung an eine Normalverteilung.}
+	\label{fig:kantor2002preliminary_figure2}
+	\source{\cite{kantor2002preliminary}}
+\end{figure}
+
+Der letzte Abschnitt wird ein \Gls{slam}--Verfahren mittels einem \Gls{ekf} behandelt. Die initiale Roboter-- und \Gls{beacon}--Position muss nicht genau jedoch ungefähr bekannt sein. Der Zustandsvektor des \Gls{ekf} beinhaltet die Roboter-- und alle \Gls{beacon}--Positionen. Der durchschnittliche Fehler in der initalen Schätzung beträgt \SI{1.56}{\metre} und verbessert sich zum Schluss hin auf \SI{0.23}{\metre}.
 
 
 \begin{comment}
@@ -38,7 +112,7 @@
 
 In \citetitle{olson2004robust}\cite{olson2004robust} werden autonome Unterwasserfahrzeuge (engl. \gls{auv}) verwendet um den Ozeanen der Welt die letzten Geheimnisse zu entlocken. Hierfür ist eine genaue Lokalisierung der \gls{auv} notwendig. Dies wird über die Messung der Signallaufzeit zwischen dem \gls{auv} und mehreren stationären akustischen Transponder--\Gls{beacon} erreicht. Vor der eigentlichen Messung müssen jedoch die \Glspl{beacon} im Messbereich verteilt werden, deren Position genau bestimmt werden und zusätzlich dafür gesorgt werden, dass die \Glspl{beacon} ihre Position nicht ändern. Dadurch handelt es sich um ein sehr kostspieliges Prozedere und soll in dem vorgestellt Verfahren dahingehend optimierte werden, dass die \Gls{beacon}--Position vorher nicht bekannt sein muss. Dadurch ist eine autonome Verteilung der \Glspl{beacon} möglich und zusätzlich kann auch detektiert werden ob ein \Gls{beacon} seine Position verändert hat.
 
-% TODO: Spectral Graph Partitioning
+% TODO: Spectral Graph Partitioning Übersetzung? 
 Bevor jedoch die Laufzeitmessungen verwendet werden können, müssen diese um \Gls{outlier} (dt. Ausreißer) bereinigt werden. Diese entstehen z.B. durch unterschiedliche Ausbreitungsgeschwindigkeiten der Schallwellen im Wasser, durch Reflektionen am Meeresgrund (engl. \Gls{multipath}) oder durch Interferenzen der Nutzlast (engl. \Gls{payload}) mit den Sensoren. Die Bereinigung der Messdaten erfolgt hierbei über das \textit{Spectral Graph Partitioning} Verfahren. Hierbei wird jede Messung als Kreis dargestellt. Überschneiden sich zwei Kreise gelten diese beiden Messungen als konsistent. Jede der Messungen wird in einem Graphen zu einem Vertex und jede konsistente Messung zu einer Kante. Bei dem fertigen Graphen ist nun zu beobachten, dass \Gls{outlier} weniger stark untereinander verbunden sind als \Gls{inlier}. Diese durchschnittliche Konnektivität der \Gls{inlier} wir als Metrik für den Partitionierungsalogorithmus verwendet um die Messdaten zu filtern.
 
 Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messwerte von zwei verschiedenen \Glspl{beacon} wieder mit einandern überschnitten. Hieraus entstehen zwei mögliche Positionen des \gls{auv}. In einem Grid erhöhen diese beiden Positionen dann den Ihnen zugeordneten Zähler. Dieser Vorgang wird für weiter Messwerte wiederholt. Durch das daraus resultierende Voting--System entstehen zwei Gipfel (engl. Peak) die die mögliche Position des \gls{auv} approximieren. Ist der Höhenunterschied zwischen den Gipfeln ausreichend groß, wird die \gls{auv}--Position mit dem höchsten Gipfel an einen EKF--SLAM übergeben.
@@ -69,7 +143,6 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 \item[2002]
 \begin{itemize}
 \item +FastSLAM: A factored solution to the simultaneous localization and mapping problem (2469)
-\item !Preliminary results in range-only localization and mapping (187)
 \item Indoor geolocation science and technology (985)
 \end{itemize}
 
