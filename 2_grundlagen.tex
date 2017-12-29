@@ -52,12 +52,25 @@
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- \cite{kalman1960new}
+- \cite{kurth2003experimental}
+	- Originally introduced in 1960, the Kalman lter assumes a multivariate Gaussian distribution [6]. The Kalman lter has the advantage that the representation of the distribution is compact; a Gaussian distribution can be represented by a mean and a covariance matrix. The robot's pose estimation is maintained as a Gaussian distribution and sensor data from dead reckoning and landmark observations is fused to obtain a new position distribution.
+	- Our results with Kalman ltering require an under-standing of the characteristics of the noise present in ranges reported by the radio tags. We gain this by look-ing at the probability distribution functions for each tag measurement.
+	- We obtain the PDFs as follows: for every reported measurement, we nd the true range to the robot when that distance was reported. We do this by comparing the known location of the reporting tag to the times-tamped true location of the robot when the report was received.
+	- the covariance matrix, which describes the uncertainty and correlation of the terms in the state estimate.
+	- However, when the same initial noisy tag locations are used with Test 2, our SLAM technique fails to converge. Since the Kalman lter uses a linearization of the nonlinear range measurements, if the linearized estimate is too far away from the truth, the lter may be unable to recover and will diverge.
+	-
+
 \end{comment}
 \section{Kalman Filter}
 
 
+
+
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- \cite{kurth2003experimental}
+	- Recent extensions of Kalman ltering allow for non-Gaussian, multimodal probability distributions through multiple hypothesis tracking. The result is a more versatile estimation technique that still preserves many of the computational advantages of the Kalman filter.
 \end{comment}
 \subsection{Extended Kalman Filter}
 
@@ -67,11 +80,50 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\section{Monte Carlo Partikel Filter}
+\section{Partikel Filter}
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- \cite{kurth2003experimental}
+	- Monte Carlo localization, or particle ltering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
+\end{comment}
+\subsection{Monte Carlo}
+
+\cite{fox1999monte}, 
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+Rao-Blackwellized Particle Filtering
+https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
+\end{comment}
+\subsection{Rao-Blackwellized}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- \cite{kurth2003experimental}
+	- We are currently developing a batch localization method, which considers all the data collected by the robot and nds the best path estimate given all the data. Although time consuming computationally, this will produce the theoretically optimal result obtainable from the collected data; we can then evaluate the results of our online localization method by comparing to this optimal solution.
+\end{comment}
+\section{Batch optimization [Optional]}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- \cite{kurth2003experimental}
+	- Additionally, we will extend the batch method to produce a variable dimension lter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
+\end{comment}
+\section{Variable Dimension Filter [Optional]}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+Embodied Localisation and Mapping
+http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
+
+- \cite{sarkka2013bayesian}
+	- Bayesian filtering and smoothing
+- \cite{kurth2003experimental}
+	- The Kalman lter approach described in Section 5 can be reformulated for the SLAM problem. To perform SLAM, we include position estimates for each tag in the state, producing a state vector of the form: q(k) = [xk; yk; k; xb1; yb1 ; :::; xbn; ybn]T , where n is the number of beacons.
 \end{comment}
 \section{SLAM}
 

@@ -541,65 +541,81 @@ Nachdem jedes elektrische Bauelement auf der Leiterplatte positioniert wurde, mu
 - Woher kommt die Steuersoftware und wer ist für diese Zustandig?
 	- Aktive Entwicklung wurde eingestellt
 	- Was kann ich mit dieser Software machen?
+\end{comment}
+\subsection{Steuersoftware}
+
+Als Basis für die Steuersoftware wurde das GitHub--Projekt \cite{Trojer2015} verwendet. Neben einer stabilen Basis für die Kommunikation mit dem DWM1000, existiert eine Implementierung des \Gls{twr}--Verfahrens von \textit{DecaWave}. Die aktive Entwicklung ist mittlerweile eingestellt, es werden jedoch weiterhin \textit{Pull--Requests\footnotemark} für Fehlerkorrekturen und neue Funktionalitäten angenommen.
+
+% https://blog.seibert-media.net/blog/2014/05/12/git-workflows-der-pull-request-workflow-teil-1/
+\footnotetext{Ein Pull--Request dient dazu, eine Weiterentwicklung oder Fehlerkorrektur mit anderen Entwicklern zu disktuieren und dann auf einfach Weise in den Hauptentwicklungszweig zu integrieren.}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
 - Klassendiagramme der wichtigsten Elemente
 	- Auswelchen wichtigen Elementen besteht diese Bibliothek?
 	- DW1000
 	- DW1000Time
 	- DW1000Device
 	- DW1000Ranging
-- Basisscript
-	- Für das DW1000Ranging
-	- Wie kann man Daten austauschen?
-- Datenaustausch zwischen Host und µC
-- Theorie: Ranging (Verfahren)
+- Die Steuersoftware besteht aus den Klassen \textit{DW1000}, \textit{DW1000Time}, \textit{DW1000Ranging}, \textit{DW1000Device} die im folgenden Beschrieben werden.
 \end{comment}
-\subsection{Steuersoftware}
+\subsubsection{Klassenübersicht}
+
+Die Klasse \textit{DW1000} enthält alle Basisfunktionalität um mit dem \textit{DWM1000} arbeiten zukönnen. Dazu gehören die Kommunikation über den \Gls{spi}--Bus, das Lesen und Schreiben der Konfiguration und das Erstellen und Empfangen von Nachrichten. Über einen Low-Level Zugriff ist es zusätzlich möglich auf Funktionalitäten des \textit{DW1000} zuzugreifen die in dem ursprunglichen Design nicht vorgesehen waren.
+
+Zeitstempel spielen beim Nachrichtenaustausch und bei der Entfernungsmessung eine zentrale Rolle. Jedoch werden die Zeitstempel als 40 bit Zahl gespeichert. Um die Verwendung zu erleichtern und Fehlerquellen auszuschließen wurde die Hilfsklasse \textit{DW1000Time} bereitgestellt.
+
+Über die Klasse \textit{DW1000Ranging} ist eine Implementierung des \Gls{twr}--Verfahrens von \textit{DecaWave} verfügbar. Mittels drei Rückruffunktionen (engl. Callback function) teilt die Klasse dem Anwender mit, welche Entfernungen gemessen wurde und ob neue Quellen für Entfernungsmessungen hinzugekommen oder verschwunden sind. Jede Quelle für eine Entfernungsmessung wird mit der Klasse \textit{DW1000Device} modelliert. Neben der gemessenen Entfernung beinhaltet die Klasse auch eine eindeutige Identifikationsnummer. 
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Basisscript
+	- Wie sieht ein ganz triviales Beispiel aus?
+	- Wie ist der Programmablauf des Beispiels?
+	- Für das DW1000Ranging
+	- Wie kann man Daten austauschen? JSON
+- Datenaustausch zwischen Host und µC
+- Theorie: Ranging (Verfahren)
+	- \cite{decawave2015twr}
 \end{comment}
-\subsection{Entfernungsmessung und Auswertung}
+\subsubsection{Datenaustausch}
+
 
 \begin{comment}
-\subsection{Entfernungsmessung und Auswertung}
-	- Versuchsaufbau
-	-
-\subsection{Kalibierung}
-	- Kalibierung nach DecaWave
-		- FlowCharts erklären
-		- Ergebnisse auswerten
-	- Wo liegen die Problem
-	- Script im Anhang
-\end{comment}
-
-\begin{comment}
+------------------------------------------------------------------------------------------
+- Versuchsaufbau
 - Mit welchen Einstellungen kommt man auf die Entfernungsmessung?
 - Streuung?
 - LOS/NLOS {Holz, Bücher, Menschlicher Körper}
 	- Welcher Fehler ergibt zwischen LOS/NLOS?
 - Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line--of--sight (LOS)) und indirekten Sichtverbindung (engl. Non--line--of--sight (NLOS))?
+- Der Überblick und Vergleich der verschiedenen Abstandsbestimmungsverfahren erfolgt über eine klassische Literatursuche, siehe \cite{lee2007comparative, herranz2010studying, zekavat2011handbook}.
+- isaacs2009optimal - Optimal sensor placement for time difference of arrival localization
+- Diagramme
+	- \cite{kurth2003experimental}
+		- Fig. 2: Sample PDFs showing the true ranges associated with 20, 30, and 50 ft measured ranges. (X: true range, Y:count)
+		- Fig. 3: The mean true distances to RF tags vs. measured distances (X:measured range, Y: true range)
+		- Fig. 4: The variance in true distances to RF tags vs. measured distances (X:measured range (ft), Y: variance (ft^2))
+	
 \end{comment}
-
-Der Überblick und Vergleich der verschiedenen Abstandsbestimmungsverfahren erfolgt über eine klassische Literatursuche, siehe \cite{lee2007comparative, herranz2010studying, zekavat2011handbook}.
-
-
-isaacs2009optimal - Optimal sensor placement for time difference of arrival localization
+\subsection{Entfernungsmessung und Auswertung}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-\end{comment}
-\subsection{Kalibrierung}
-
-\begin{comment}
+- Kalibierung nach DecaWave
+	- FlowCharts erklären
+	- Ergebnisse auswerten
+- Wo liegen die Probleme
+- Script im Anhang
 - Kalibierungsalgorithmus nach decaWave
 	- Hab ich den Überhaupt richtig implementiert?
 - Kalibierung über die Anpassung der einer Antennen Delay für alle.
 - Kann über die Kalibrierung der Antennenverzögerung eine genauere Entfernungsmessung erreicht werden?
+- Das Verfahren zur Kalibrierung der Antennenverzögerung kann ebenfalls der Hersteller--Dokumentation entnommen werden, siehe \cite{decawave2014calibration}. Hierfür muss ein Versuchsaufbau erstellt werden. Zusätzlich wird eine Anpassung der Steuer--/Auswerte-Software notwendig, um die Verzögerung zu berechnen.
+- Die Genauigkeitsbestimmung der Entfernungsmessung mit LOS und NLOS wird über einen Versuchsaufbau realisiert. Hierfür werden mehrere Messreihen in verschiedenen Abständen aufgenommen und mit der tatsächlichen Entfernung verglichen.
 \end{comment}
+\subsection{Kalibrierung}
 
-
-Das Verfahren zur Kalibrierung der Antennenverzögerung kann ebenfalls der Hersteller--Dokumentation entnommen werden, siehe \cite{decawave2014calibration}. Hierfür muss ein Versuchsaufbau erstellt werden. Zusätzlich wird eine Anpassung der Steuer--/Auswerte-Software notwendig, um die Verzögerung zu berechnen.
-
-Die Genauigkeitsbestimmung der Entfernungsmessung mit LOS und NLOS wird über einen Versuchsaufbau realisiert. Hierfür werden mehrere Messreihen in verschiedenen Abständen aufgenommen und mit der tatsächlichen Entfernung verglichen.
