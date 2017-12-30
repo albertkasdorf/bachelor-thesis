@@ -742,19 +742,17 @@ def main():
     pub.publish(orb)
 \end{lstlisting}
 
+Der vollständige Quellcode mit Kommentaren und Fehlerbehandlung können in dem GitHub--Projekt \cite{kasdorf2017roslamwithuwb} eingesehen werden.
+
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-- Theorie: Ranging (Verfahren)
-	- \cite{decawave2015twr}
-
 - Versuchsaufbau
 - Mit welchen Einstellungen kommt man auf die Entfernungsmessung?
 - Streuung?
 - LOS/NLOS {Holz, Bücher, Menschlicher Körper}
 	- Welcher Fehler ergibt zwischen LOS/NLOS?
 - Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line--of--sight (LOS)) und indirekten Sichtverbindung (engl. Non--line--of--sight (NLOS))?
-- Der Überblick und Vergleich der verschiedenen Abstandsbestimmungsverfahren erfolgt über eine klassische Literatursuche, siehe \cite{lee2007comparative, herranz2010studying, zekavat2011handbook}.
 - isaacs2009optimal - Optimal sensor placement for time difference of arrival localization
 - Diagramme
 	- \cite{kurth2003experimental}
@@ -763,7 +761,7 @@ def main():
 		- Fig. 4: The variance in true distances to RF tags vs. measured distances (X:measured range (ft), Y: variance (ft^2))
 	
 \end{comment}
-\subsection{Entfernungsmessung und Auswertung}
+\subsection{Entfernungsmessung und Auswertung [todo]}
 
 
 \begin{comment}
@@ -780,5 +778,5 @@ def main():
 - Das Verfahren zur Kalibrierung der Antennenverzögerung kann ebenfalls der Hersteller--Dokumentation entnommen werden, siehe \cite{decawave2014calibration}. Hierfür muss ein Versuchsaufbau erstellt werden. Zusätzlich wird eine Anpassung der Steuer--/Auswerte-Software notwendig, um die Verzögerung zu berechnen.
 - Die Genauigkeitsbestimmung der Entfernungsmessung mit LOS und NLOS wird über einen Versuchsaufbau realisiert. Hierfür werden mehrere Messreihen in verschiedenen Abständen aufgenommen und mit der tatsächlichen Entfernung verglichen.
 \end{comment}
-\subsection{Kalibrierung}
+\subsection{Kalibrierung [todo]}
 

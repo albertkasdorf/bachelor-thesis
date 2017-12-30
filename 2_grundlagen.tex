@@ -1,13 +1,18 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\chapter{Grundlagen}
+\chapter{Grundlagen [todo]}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Der Überblick und Vergleich der verschiedenen Abstandsbestimmungsverfahren erfolgt über eine klassische Literatursuche, siehe \cite{lee2007comparative, herranz2010studying, zekavat2011handbook}.
+	- TDoA, ToF, ToA, OneWayRanging, TWR
+- Theorie: Ranging (Verfahren)
+	- \cite{decawave2015twr}
 \end{comment}
-\section{Verfahren für die Reichweiten-Bestimmung}
+\section{Verfahren für die Reichweiten-Bestimmung [todo]}
+
 
 
 \begin{comment}
@@ -27,7 +32,7 @@
 		- Multimodal Distribution for position estimation
 		- Important Sampling
 \end{comment}
-\section{Wahrscheinlichkeitstheorie}
+\section{Wahrscheinlichkeitstheorie [todo]}
 
 
 \begin{comment}
@@ -47,7 +52,7 @@
 			- Computer Vision, Structure from Motion
 		- Hier nur die Entfernung
 \end{comment}
-\section{Bayes/Kalman/Partikel Filter}
+\section{Bayes/Kalman/Partikel Filter [todo]}
 
 
 \begin{comment}
@@ -62,7 +67,7 @@
 	-
 
 \end{comment}
-\section{Kalman Filter}
+\section{Kalman Filter [todo]}
 
 
 
@@ -72,7 +77,7 @@
 - \cite{kurth2003experimental}
 	- Recent extensions of Kalman ltering allow for non-Gaussian, multimodal probability distributions through multiple hypothesis tracking. The result is a more versatile estimation technique that still preserves many of the computational advantages of the Kalman filter.
 \end{comment}
-\subsection{Extended Kalman Filter}
+\subsection{Extended Kalman Filter [todo]}
 
 % Linearisierung
 
@@ -80,14 +85,14 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\section{Partikel Filter}
+\section{Partikel Filter [todo]}
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
 - \cite{kurth2003experimental}
 	- Monte Carlo localization, or particle ltering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
 \end{comment}
-\subsection{Monte Carlo}
+\subsection{Monte Carlo [todo]}
 
 \cite{fox1999monte}, 
 
@@ -96,7 +101,7 @@
 Rao-Blackwellized Particle Filtering
 https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 \end{comment}
-\subsection{Rao-Blackwellized}
+\subsection{Rao-Blackwellized [todo]}
 
 
 \begin{comment}
@@ -104,7 +109,7 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 - \cite{kurth2003experimental}
 	- We are currently developing a batch localization method, which considers all the data collected by the robot and nds the best path estimate given all the data. Although time consuming computationally, this will produce the theoretically optimal result obtainable from the collected data; we can then evaluate the results of our online localization method by comparing to this optimal solution.
 \end{comment}
-\section{Batch optimization [Optional]}
+\section{Batch optimization [todo,optional]}
 
 
 \begin{comment}
@@ -112,7 +117,7 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 - \cite{kurth2003experimental}
 	- Additionally, we will extend the batch method to produce a variable dimension lter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
 \end{comment}
-\section{Variable Dimension Filter [Optional]}
+\section{Variable Dimension Filter [todo,optional]}
 
 
 \begin{comment}
@@ -125,7 +130,7 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 - \cite{kurth2003experimental}
 	- The Kalman lter approach described in Section 5 can be reformulated for the SLAM problem. To perform SLAM, we include position estimates for each tag in the state, producing a state vector of the form: q(k) = [xk; yk; k; xb1; yb1 ; :::; xbn; ybn]T , where n is the number of beacons.
 \end{comment}
-\section{SLAM}
+\section{SLAM [todo]}
 
 % Zuerst wird die Position geschätzt und danach die Positionen der Landmarken.
 
@@ -133,4 +138,4 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\section{ROS}
+\section{ROS [todo]}
