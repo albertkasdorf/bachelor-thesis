@@ -544,7 +544,7 @@ Nachdem jedes elektrische Bauelement auf der Leiterplatte positioniert wurde, mu
 \end{comment}
 \subsection{Steuersoftware}
 
-Als Basis für die Steuersoftware wurde das GitHub--Projekt \cite{Trojer2015} verwendet. Neben einer stabilen Basis für die Kommunikation mit dem DWM1000, existiert eine Implementierung des \Gls{twr}--Verfahrens von \textit{DecaWave}. Die aktive Entwicklung ist mittlerweile eingestellt, es werden jedoch weiterhin \textit{Pull--Requests\footnotemark} für Fehlerkorrekturen und neue Funktionalitäten angenommen.
+Als Basis für die Steuersoftware wurde das GitHub--Projekt \cite{Trojer2015} verwendet. Neben einer stabilen Basis für die Kommunikation mit dem \textit{DWM1000}, existiert eine Implementierung des \Gls{twr}--Verfahrens von \textit{DecaWave}. Die aktive Entwicklung ist mittlerweile eingestellt, es werden jedoch weiterhin \textit{Pull--Requests\footnotemark} für Fehlerkorrekturen und neue Funktionalitäten angenommen.
 
 % https://blog.seibert-media.net/blog/2014/05/12/git-workflows-der-pull-request-workflow-teil-1/
 \footnotetext{Ein Pull--Request dient dazu, eine Weiterentwicklung oder Fehlerkorrektur mit anderen Entwicklern zu disktuieren und dann auf einfach Weise in den Hauptentwicklungszweig zu integrieren.}
@@ -562,9 +562,9 @@ Als Basis für die Steuersoftware wurde das GitHub--Projekt \cite{Trojer2015} ve
 \end{comment}
 \subsubsection{Klassenübersicht}
 
-Die Klasse \textit{DW1000} enthält alle Basisfunktionalität um mit dem \textit{DWM1000} arbeiten zukönnen. Dazu gehören die Kommunikation über den \Gls{spi}--Bus, das Lesen und Schreiben der Konfiguration und das Erstellen und Empfangen von Nachrichten. Über einen Low-Level Zugriff ist es zusätzlich möglich auf Funktionalitäten des \textit{DW1000} zuzugreifen die in dem ursprunglichen Design nicht vorgesehen waren.
+Die Klasse \textit{DW1000} enthält alle Basisfunktionalität um mit dem \textit{DWM1000} arbeiten zukönnen. Dazu gehören die Kommunikation über den \Gls{spi}--Bus, das Lesen und Schreiben der Konfiguration und das Erstellen und Empfangen von Nachrichten. Über einen Low--Level Zugriff ist es zusätzlich möglich auf Funktionalitäten des \textit{DW1000} zuzugreifen die in dem ursprunglichen Klassendesign nicht vorgesehen waren.
 
-Zeitstempel spielen beim Nachrichtenaustausch und bei der Entfernungsmessung eine zentrale Rolle. Jedoch werden die Zeitstempel als 40 bit Zahl gespeichert. Um die Verwendung zu erleichtern und Fehlerquellen auszuschließen wurde die Hilfsklasse \textit{DW1000Time} bereitgestellt.
+Zeitstempel spielen beim Nachrichtenaustausch und bei der Entfernungsmessung eine zentrale Rolle. Jedoch werden die Zeitstempel als \SI{40}{\bit} Zahl gespeichert. Um die Verwendung zu erleichtern und Fehlerquellen auszuschließen wurde die Hilfsklasse \textit{DW1000Time} bereitgestellt.
 
 Über die Klasse \textit{DW1000Ranging} ist eine Implementierung des \Gls{twr}--Verfahrens von \textit{DecaWave} verfügbar. Mittels drei Rückruffunktionen (engl. Callback function) teilt die Klasse dem Anwender mit, welche Entfernungen gemessen wurde und ob neue Quellen für Entfernungsmessungen hinzugekommen oder verschwunden sind. Jede Quelle für eine Entfernungsmessung wird mit der Klasse \textit{DW1000Device} modelliert. Neben der gemessenen Entfernung beinhaltet die Klasse auch eine eindeutige Identifikationsnummer. 
 
@@ -577,14 +577,177 @@ Zeitstempel spielen beim Nachrichtenaustausch und bei der Entfernungsmessung ein
 	- Für das DW1000Ranging
 	- Wie kann man Daten austauschen? JSON
 - Datenaustausch zwischen Host und µC
-- Theorie: Ranging (Verfahren)
-	- \cite{decawave2015twr}
+- ArduinoJson Assistant
+	- https://arduinojson.org/assistant/
 \end{comment}
 \subsubsection{Datenaustausch}
+
+Der erste Bereich des Datenaustausches findet zwischen den \Glspl{uwbm}n statt. Hierfür wird mindestens ein \Gls{anchor} und \Gls{tag} benötigt. In der \lstlistingname~\ref{lst:uwb_modul_as_anchor} ist der Quellcode eines \Gls{anchor} abgebildet.
+Über die ersten zwei Zeile wird die \textit{\Gls{spi}--} und \textit{DW1000Ranging}--Bibliothek in das Programm eingebunden.
+Um eine Kommunikation mit dem \textit{DWM1000} aufzubauen muss der Methode \textit{initCommunication} die Belegung des \textit{Reset--}, \textit{\Gls{ss}--} und \textit{\Gls{irq}--Pin} übergeben werden.
+Nach dem Aufruf der Methode \textit{startAsAnchor} fungiert das \Gls{uwbm} als \Gls{anchor}. Die notwendigen Parameter sind dabei die eindeutige Adresse, der Messmodus und ob eine zufällige Geräteadresse generiert werden soll. Wenn der letzte Parameter \textit{false} ist, werden aus den ersten zwei Bytes der eindeutigen Adresse, die Geräteadresse gebildet. Der zyklische Aufruf der Methode \textit{loop} sorgt für die Nachrichtenverarbeitung des \Gls{uwbm}s.
+
+\begin{lstlisting}[
+	frame=shadowbox,
+	breaklines=true,
+	caption={Quellcode für ein \Gls{uwbm} das als \Gls{anchor} konfiguriert ist.},
+	captionpos=b,
+	label={lst:uwb_modul_as_anchor},
+	language=C++,
+	columns=fullflexible,
+	numbers=none,
+	float,
+]
+#include <SPI.h>
+#include <DW1000Ranging.h>
+
+void setup() {
+  Serial.begin(115200);
+
+  DW1000Ranging.initCommunication(9, SS, 3);
+  
+  DW1000Ranging.startAsAnchor("B1:00:00:00:B1:6B:00:B5",
+    DW1000.MODE_LONGDATA_RANGE_ACCURACY, false);
+}
+
+void loop() { DW1000Ranging.loop(); }
+\end{lstlisting}
+
+Das Gegenstück zum \Gls{anchor} ist in der \lstlistingname~\ref{lst:uwb_modul_as_tag} abgebildet. Jede gemessene Entfernung zwischen dem \Gls{tag} und einem \Gls{anchor} soll per \Gls{usb} an den Computer übertragen werden. Der Datenaustausch erfolgt dabei im \Gls{json}--Format, daher wird die Bibliothek \textit{ArduinoJson} benötigt.
+Da dieses \Gls{uwbm} als \Gls{tag} fungieren soll, muss anstatt \textit{startAsAnchor} die Methode \textit{startAsTag} aufgerufen werden. Die Bedeutung der Parameter zwischen den beiden Methoden bleibt identisch.
+Neu ist der Aufruf der Methode \textit{attachNewRange}, \textit{attachNewDevice} und \textit{attachInactiveDevice}. Jeder der Methoden wird die Adresse einer Rückruffunktion übergeben. Diese Funktionen werden immer dann aufgerufen, wenn eine neue Entfernungen gemessen wurde und wenn eine neue Quellen für die Entfernungsmessungen hinzugekommen oder verschwunden ist.
+Alle Rückruffunktionen rufen ihrerseit die Funktion \textit{transmitDATA} auf. In dieser wird mittels der Klasse \textit{StaticJsonBuffer} ein \textit{JsonObject} erstellt, mit Daten im Schlüssel--Wert--Format (engl. Key--Value) belegt und dann mittels der Methode \textit{printTo(Serial)} über die \Gls{usb}--Schnittstelle an den Computer versendet. Das Format der Daten ist in der \lstlistingname~\ref{lst:data_in_json_format} abgebildet.
+
+\begin{lstlisting}[
+	frame=shadowbox,
+	breaklines=true,
+	caption={Quellcode für ein \Gls{uwbm} das als \Gls{tag} konfiguriert ist.},
+	captionpos=b,
+	label={lst:uwb_modul_as_tag},
+	language=C++,
+	columns=fullflexible,
+	numbers=none,
+	float,
+]
+#include <SPI.h>
+#include <DW1000Ranging.h>
+#include <ArduinoJson.h>
+
+enum class Events : byte {
+  NEW_RANGE=0, NEW_DEVICE=1, INACTIVE_DEVICE=2
+};
+
+void setup() {
+  Serial.begin(115200);
+  
+  DW1000Ranging.initCommunication(9, SS, 3);
+  DW1000Ranging.attachNewRange(newRange);
+  DW1000Ranging.attachNewDevice(newDevice);
+  DW1000Ranging.attachInactiveDevice(inactiveDevice);
+
+  DW1000Ranging.startAsTag("A0:00:00:00:B1:6B:00:B5",
+    DW1000.MODE_LONGDATA_RANGE_ACCURACY, false);
+}
+
+void loop() {
+  DW1000Ranging.loop();
+}
+
+void newRange() {
+  transmitDATA(Events::NEW_RANGE, DW1000Ranging.getDistantDevice());
+}
+
+void newDevice(DW1000Device* device) {
+  transmitDATA(Events::NEW_DEVICE, device);
+}
+
+void inactiveDevice(DW1000Device* device) {
+  transmitDATA(Events::INACTIVE_DEVICE, device);
+}
+
+void transmitDATA(const Events event, const DW1000Device* device) {
+  StaticJsonBuffer<200> jsonBuffer;
+  JsonObject& root = jsonBuffer.createObject();
+
+  root["type"] = static_cast<byte>(event);
+  root["aa"] = device->getShortAddress();
+  root["r"] = (event==Events::NEW_RANGE) ? device->getRange() : 0.0f;
+  
+  root.printTo(Serial);
+  Serial.println();
+}
+\end{lstlisting}
+
+\begin{lstlisting}[
+	frame=shadowbox,
+	breaklines=true,
+	caption={Datenzeile im \Gls{json}--Format beim Austausch zwischen \Gls{uwbm} und Computer.},
+	captionpos=b,
+	label={lst:data_in_json_format},
+	columns=fullflexible,
+	numbers=none,
+	float,
+]
+{"type": 0, "aa": 160, "r": 1.01}
+\end{lstlisting}
+
+Nach dem die Daten an den Computer gesendet wurde, müssen diese entgegengenommen und in das \Gls{ros}--System eingespeist werden. Dies geschieht über die \lstlistingname~\ref{lst:json_to_ros}.
+Zuerst wird das \Gls{ros}--System über \textit{rospy.init\_node} initalisiert. Um Nachrichten versendet zu können, wird zusätzlich ein \textit{Publisher} benötigt. Dieser wird über den Aufruf von \textit{rospy.Publisher} erstellt. Die Verbindung zu dem \Gls{uwbm} wird über den Aufruf \textit{serial.Serial} hergestellt.
+Mittels der \Gls{ros}--Nachricht \textit{ObservationRangeBeacon} wird die Sensor--Charakteristik des \Gls{uwbm}s beschrieben. Hierzu gehören die minimal und maximal messbare Entfernung, das Sensorrauschen, eine oder mehrere Entfernungsmessungen und einige \Gls{ros} spezifische Angaben wie z.B. das Koordinatensystem in dem sich das \Gls{uwbm} befindet.
+Danach werden solange Daten von dem \Gls{uwbm} gelesen bis der \Gls{ros}--Knoten beendet wird. Jeder gelesen Datensatz wird mittels der Methode \textit{json.loads(line)} untersucht, in ein \Gls{json}--Objekt konvertiert, und im Fehlerfall übersprungen. Gültige Entfernungsdaten werden in den Attributen \textit{range} und \textit{id} des Feldes \textit{orb.sensed\_data} gespeichert.
+Der Aufruf \textit{pub.publish(orb)} übergibt die zuvor erstellte Nachricht an das \Gls{ros}--System.
+
+\begin{lstlisting}[
+	frame=shadowbox,
+	breaklines=true,
+	caption={JSON to ROS OberservationRangeBeacon},
+	captionpos=b,
+	label={lst:json_to_ros},
+	language=Python,
+	columns=fullflexible,
+	numbers=none,
+	float,
+]
+import json
+import rospy
+import serial
+
+from mrpt_msgs.msg import ObservationRangeBeacon
+from mrpt_msgs.msg import SingleRangeBeaconObservation
+
+def main():
+  rospy.init_node('beacon_publisher')
+  pub = rospy.Publisher('/beacon', ObservationRangeBeacon, queue_size=10)
+  ser = serial.Serial('/dev/CP2104_Friend', 115200, timeout=2)
+
+  orb = ObservationRangeBeacon()
+  orb.header.frame_id = 'uwb_reciever_link'
+  orb.min_sensor_distance = 0.0
+  orb.max_sensor_distance = 120.0
+  orb.sensor_std_range = 0.1
+  orb.sensed_data.append(SingleRangeBeaconObservation())
+
+  while not rospy.is_shutdown():
+    line = ser.readline()
+    try:
+      obj = json.loads(line)
+    except ValueError:
+      continue
+
+    orb.header.stamp = rospy.Time.now()
+    orb.header.seq = orb.header.seq + 1
+    orb.sensed_data[0].range = obj["r"]
+    orb.sensed_data[0].id = obj["aa"]
+
+    pub.publish(orb)
+\end{lstlisting}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Theorie: Ranging (Verfahren)
+	- \cite{decawave2015twr}
+
 - Versuchsaufbau
 - Mit welchen Einstellungen kommt man auf die Entfernungsmessung?
 - Streuung?
