@@ -8,24 +8,22 @@
 ------------------------------------------------------------------------------------------
 - Der Überblick und Vergleich der verschiedenen Abstandsbestimmungsverfahren erfolgt über eine klassische Literatursuche, siehe \cite{herranz2010studying, zekavat2011handbook}.
 
-	- TDoA, ToF, ToA, AoA, Signal Strength(SS), received signal strength (RSS) , OneWayRanging, TWR
 - Wie lange dauert es bis eine Nachricht ausgetauscht worden ist?
 	- Beispiel mit einer konkreten Entfernung?
 - Wie schnell drifted ein Quarz in einem µc?
 	- What is the ppm in the crystal oscillator?
 	- https://electronics.stackexchange.com/questions/15851/what-is-the-ppm-in-the-crystal-oscillator
+	- In the 1930s, such precise time measurements simply weren't possible; a clock of the required accuracy was difficult enough to build in fixed form, let alone portable. A crystal oscillator, for instance, drifts about 1 to 2 seconds in a month, or 1.4x10−3 seconds an hour.[1] This may sound small, but as light travels 3x108 m/s, this represents a drift of 400 m per hour. Only a few hours of flight time would render such a system unusable, a situation that remained in force until the introduction of commercial atomic clocks in the 1960s.
+	- Clock accuracy in ppm
+	- http://www.best-microcontroller-projects.com/ppm.html
 	
-\cite{herranz2010studying}
-	- Studying of WiFi range-only sensor and its application to localization and mapping systems
 \cite{zekavat2011handbook}
 	- Handbook of position location: Theory, practice and advances
 
 - \cite{liu2007survey}
 	- Survey of wireless indoor positioning techniques and systems (3151)
-	- These may be classified based on: 1) the location positioning algorithm, i.e., the method of determining location, making use of various types of measurement of the signal such as Time Of Flight (TOF), angle, and signal strength;
 	- Triangulation uses the geometric properties of triangles to estimate the target location. It has two derivations: lateration and angulation.
 	- Lateration estimates the position of an object by measuring its distances from multiple reference points. So, it is also called range measurement techniques. Instead of measuring the distance directly using received signal strengths (RSS), time of arrival (TOA) or time difference of arrival (TDOA) is usually measured, and the distance is derived by computing the attenuation of the emitted signal strength or by multiplying the radio signal velocity and the travel time. Roundtrip time of flight (RTOF) or received signal phase method is also used for range estimation in some systems.
-	- Angulation locates an object by computing angles relative to multiple reference points. In this survey, we focus on the aforementioned measurements in the shorter range, low-antenna, and indoor environment.
 	- TOA: The distance from the mobile target to the measuring unit is directly proportional to the propagation time. In order to enable 2-D positioning, TOA measurements must be made with respect to signals from at least three reference points, as shown in Fig. 1 [4]. For TOA-based systems, the one-way propagation time is measured, and the distance between measuring unit and signal transmitter is calculated. In general, direct TOAresults in two problems. First, all transmitters and receivers in the system have to be precisely synchronized. Second, a timestamp must be labeled in the transmitting signal in order for the measuring unit to discern the distance the signal has traveled.
 		- A straightforward approach uses a geometric method to compute the intersection points of the circles of TOA. The position of the target can also be computed by minimizing the sum of squares of a nonlinear cost function, i.e., least-squares algorithm [4], [5].
 	- TDOA: The idea of TDOA is to determine the relative position of the mobile transmitter by examining the difference in time at which the signal arrives at multiple measuring units, rather than the absolute arrival time of TOA. For each TDOA measurement, the transmitter must lie on a hyperboloid with a constant range difference between the two measuring units.
@@ -37,15 +35,12 @@
 	- Received Signal Phase Method: The received signal phase method uses the carrier phase (or phase difference) to estimate the range. This method is also called phase of arrival (POA) [2].
 		- As long as the transmitted signal’s wavelength is longer than the diagonal of the cubic building, i.e., 0 < φi < 2π, we can get the range estimationDi = (cφi)/(2πf).
 		- It needs an LOS signal path, otherwise it will cause more errors for the indoor environment.
-	- Angulation Techniques (AOA Estimation): In AOA, the location of the desired target can be found by the intersection of several pairs of angle direction lines, each formed by the circular radius from a base station or a beacon station to the mobile target. As shown in Fig. 5, AOA methods may use at least two known reference points (A, B), and twomeasured angles θ1, θ2 to derive the 2-D location of the target P. Estimation of AOA, commonly referred to as direction finding (DF), can be accomplished either with directional antennae or with an array of antennae. The advantages of AOA are that a position estimate may be determined with as few as three measuring units for 3-D positioning or two measuring units for 2-D positioning, and that no time synchronization between measuring units is required. The disadvantages include relatively large and complex hardware requirement(s), and location estimate degradation as the mobile target moves farther from the measuring units. For accurate positioning, the angle measurements need to be accurate, but the high accuracy measurements in wireless networks may be limited by shadowing, by multipath reflections arriving from misleading directions, or by the directivity of the measuring aperture. Some literatures also call AOA as direction of arrival (DOA). For more detailed discussions on AO
 	- UWB is based on sending ultrashort pulses (typically <1 ns), with a low duty cycle (typically 1 : 1000). On the spectral domain, the system, thus, uses an UWB (even >500 MHz wide). UWB location has the following advantages [32]. Unlike conventional RFID systems, which operate on single bands of the radio spectrum, UWB transmits a signal over multiple bands of frequencies simultaneously, from 3.1 to 10.6 GHz.
 		- At the same time, the signal passes easily through walls, equipment and clothing. However metallic and liquid materials cause UWB signal interference. Use of more UWB readers and strategic placement of UWB readers could overcome this disadvantage. Short-pulse waveforms permit an accurate determination of the precise TOA and, namely, the precise TOF of a burst transmission from a short-pulse transmitter to a corresponding receiver [33], [32]. UWB location exploits the characteristics of time synchronization of UWB communication to achieve very high indoor location accuracy (20 cm). So it is suitable for high-precision real-time 2-D and 3-D location. 3-D location positioning can be performed by using two different measuringmeans: TDOA, which ismeasuring the time difference between a UWB pulse arriving at multiple sensors, and AOA.
 		
 - \cite{gezici2005localization}
 	- Localization via ultra-wideband radios: a look at positioning aspects for future sensor networks (1922)
-	- Depending on the positioning technique, the angle of arrival (AOA), the signal strength (SS), or time delay information can be used to determine the location of a node [20]. The AOA technique measures the angles between a given node and a number of reference nodes to estimate the location, while the SS and time-based approaches estimate the distance between nodes by measuring the energy and the travel time of the received signal, respectively.
-	- An AOA-based positioning technique involves measuring angles of the target node seen by reference nodes, which is done by means of antenna arrays.
-		- The AOA approach is not suited to UWB positioning for the following reasons. First, use of antenna arrays increases the system cost, annulling the main advantage of a UWB radio equipped with low-cost transceivers. More importantly, due to the large bandwidth of a UWB signal, the number of paths may be very large, especially in indoor environments. Therefore, accurate angle estimation becomes very challenging due to scattering from objects in the environment.
+	- Depending on the positioning technique, the signal strength (SS), or time delay information can be used to determine the location of a node [20]. While the SS and time-based approaches estimate the distance between nodes by measuring the energy and the travel time of the received signal, respectively.
 	- SS: Relying on a path-loss model, the distance between two nodes can be calculated by measuring the energy of the received signal at one node. This distance-based technique requires at least three reference nodes to determine the 2-D location of a given node, using the well-known triangulation approach depicted in Figure 2 [20]. To determine the distance from SS measurements, the characteristics of the channel must be known. Therefore, SS-based positioning algorithms are very sensitive to the estimation of those parameters.
 	- Time-based positioning techniques rely on measurements of travel times of signals between nodes. If two nodes have a common clock, the node receiving the signal can determine the time of arrival (TOA) of the incoming signal that is time-stamped by the reference node.
 		- Since the achievable accuracy under ideal conditions is very high, clock synchronization between the nodes becomes an important factor affecting TOA estimation accuracy. Hence, clock jitter must be considered in evaluating the accuracy of a UWB positioning system [25].
@@ -78,11 +73,6 @@
 			- Using a mathematical technique known as multi-lateration it is then possible to derive the position of the tag
 			- Since the tag only transmits and does not receive, this is also known as One Way ranging but is not possible with only one reader since it relies on the difference in the arrival times at several readers to calculate the location
 			- The most important system issue here is that the anchors must be synchronized in time. Any error in the synchronization of time in the anchors translates directly to an error in the reported location. When you think that 1ns = approx 30cm then it’s clear that synchronization needs to be to the sub-nanosecond level. Traditionally this has been achieved by wiring clock signals from a central clock distribution point to all the anchors and compensating for delays in the distribution cabling. As you can imagine this makes system installation very expensive. DecaWave have developed a wireless synchronization scheme that allows the anchors to be synchronized to the required level of accuracy without extra cables.
-		- Angle of Arrival (AoA): Angle of Arrival involves determining the angle at which the radio signal from the tag arrives at the anchor relative to a predefined direction.
-			- This scheme is generally implemented using an array of antennas in the anchor.
-			- If the tag is at some angle to the array then the incident signal will reach one antenna in the array first followed by the next and so on.
-			- Assuming these arrival times can be measured accurately then a measure of the angle of arrival can be made.
-			- Angle of Arrival schemes don’t deal particularly well with multipath propagation between the transmitter and the receiver antenna array and so are best suited to Line of Sight scenarios.
 			
 - \cite{decawave2015twr}
 	- The implementation of two-way ranging with the DW1000
@@ -101,16 +91,53 @@
 		- Where the clock in device A runs at ka times the desired frequency and the clock in device B runs at kb times the desired frequency and both ka & kb are close to 1.
 		- To give some idea of the size of this error, if devices A and B have clocks where each are 20 ppm away (the worst case specification) from the nominal clock in directions which make their combined error additive and equal to 40 ppm, then ka and kb might both be 0.99998 or 1.00002.
 		- Even with a relatively large UWB operating range of say 100 m, the TOF is just 333 ns, so the error is 20 × 10-6 × 333 × 10-9 seconds, which is 6.7 × 10-12 seconds or 6.7 picoseconds which is approximately 2.2 mm.
+		
+		
+- Hyperbolic navigation, Wikipedia.en:
+	- Consider the same examples as our original absolute-timed cases. If the receiver is located on the midpoint of the baseline the two signals will be received at exactly the same time, so the delay between them will be zero. However, the delay will be zero not only if they are located 150 km from both stations and thus in the middle of the baseline, but also if they are located 200 km from both stations, and 300 km, and so forth. So in this case the receiver cannot determine their exact location, only that their location lies somewhere along a line perpendicular to the baseline.
+	- In the second example the receivers determined the timing to be 0.25 and 0.75 ms, so this would produce a measured delay of 0.5 ms. There are many locations that can produce this difference - 0.25 and 0.75 ms, but also 0.3 and 0.8 ms, 0.5 and 1 ms, etc. If all of these possible locations are plotted, they form a hyperbolic curve centred on the baseline. Navigational charts can be drawn with the curves for selected delays, say every 0.1 ms. The operator can then determine which of these lines they lie on by measuring the delay and looking at the chart.
+	- A single measurement reveals a range of possible locations, not a single fix. The solution to this problem is to simply add another secondary station at some other location. In this case two delays will be measured, one the difference between the master and secondary "A", and the other between the master and secondary "B". By looking up both delay curves on the chart, two intersections will be found, and one of these can be selected as the likely location of the receiver. This is a similar determination as in the case with direct timing/distance measurements, but the hyperbolic system consists of nothing more than a conventional radio receiver hooked to an oscilloscope.
+	- Because a secondary could not instantaneously transmit its signal pulse on receipt of the master signal, a fixed delay was built into the signal. No matter what delay is selected, there will be some locations where the signal from two secondary would be received at the same time, and thus make them difficult to see on the display. Some method of identifying one secondary from another was needed. Common methods included transmitting from the secondary only at certain times, using different frequencies, adjusting the envelope of the burst of signal, or broadcasting several bursts in a particular pattern. A set of stations, master and secondaries, was known as a "chain". Similar methods are used to identify chains in the case where more than one chain may be received in a given location.
 
+- Unterschied zwischen Triangulation / Trilateration?
+	- Die Ortsbestimmung eines Punktes kann über die \textit{Triangulation} und \textit{Trilateration} durchgeführt werden. Bei der \textit{Triangulation} werden die Winkel zwischen mehreren Referenzpunkten bestimmt. Wobei hingegen bei der \textit{Trilateration} die Entfernungen zwischen mehreren Referenzpunkten betrachtet wird. \cite{liu2007survey}
++ Triangulation
+	+ Angle of arrival (AOA), direction of arrival (DOA)
+
+https://de.wikipedia.org/wiki/Fading_(Elektrotechnik)
 	
 \end{comment}
-\section{Verfahren für die Reichweiten-Bestimmung [todo]}
+\section{Verfahren für die Orts-/Abstands-/Reichweiten-Bestimmung [todo]}
 
-% Wikipedia: Lateration (lat. lateral = seitlich) oder Trilateration ist ein Messverfahren zur Positionsbestimmung eines Punktes. Während die Triangulation auf der Vermessung dreier Winkel basiert, beruht die Trilateration auf Entfernungs- bzw. Abstandsmessungen zu drei Punkten. https://de.wikipedia.org/wiki/Lateration
+Bei der \textit{Triangulation} werden die Winkel zwischen mehreren Referenzpunkten bestimmt und dann die dazu gehörige Entfernung mittels trigonometrischer Funktionen berechnet. Dieses Verfahren ist auch unter den Namen \Gls{aoa} bzw. \Gls{doa} bekannt. Um eine genau Ortsbestimmung durchzuführen müssen die Winkel sehr genau bestimmt werden. Um das zu bewerkstelligen werden im Empfänger mehrere Antennen zu einem Feld (engl. Antenna Array) zusammengefasst. Jedoch ist diese Konstruktion sehr teuer und empfindlich für Mehrwegeempfang (engl. Multipath) bzw. Signalabschattungen. \cite{gezici2005localization, liu2007survey, decawave2014rtls}
+
+Im Gegensatz dazu werden bei der Trilateration die Entfernungen zwischen mehreren Referenzpunkten betrachtet. Die Ortsbestimmung erfolgt dann über die Schnittpunkte von Kreisen bzw. Kugeln. Die Entfernung ergibt sich dabei aus der Signallaufzeit zwischen zwei Punkten/Knoten. 
+
+
+% TODO: Unterschied LOS / NLOS?
+
+%- Time Of Flight (TOF)
+%- Time Of Arrival (TOA)
+%- Time Difference Of Arrival (TDOA)
+%
+%
+%
+%- Signal Strength (SS), received signal strength (RSS), Received Signal Strength Indication (RSSI)
+%- Roundtrip time of flight (RTOF)
+%- Received Signal Phase, phase of arrival (POA)
+%
+%Unterteilung:
+%- Signal Strength Based Schemes \ Time Based Schemes
+%- Signal Strength Based Schemes \ Time Based Schemes \ Angle Based Schemes
+%- RSS-Based \ Angulation Techniques
 
 
 
-\subsection{Two Way Ranging}
+\subsection{Trilateration}
+
+
+\subsection{One Way Ranging (OWR)}
+\subsection{Two Way Ranging (TWR)}
 \subsection{Symmetric Double-Sided Two-Way Ranging (SDS-TWR)}
 
 
@@ -196,10 +223,10 @@
 ------------------------------------------------------------------------------------------
 - \cite{kurth2003experimental}
 	- Monte Carlo localization, or particle ltering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
+- \cite{fox1999monte}
 \end{comment}
 \subsection{Monte Carlo [todo]}
 
-\cite{fox1999monte}, 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
