@@ -1,54 +1,12 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\chapter{Grundlagen [todo]}
+\chapter{Grundlagen}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-- Wie lange dauert es bis eine Nachricht ausgetauscht worden ist?
-	- Beispiel mit einer konkreten Entfernung?
-- Wie schnell drifted ein Quarz in einem µc?
-	- What is the ppm in the crystal oscillator?
-	- https://electronics.stackexchange.com/questions/15851/what-is-the-ppm-in-the-crystal-oscillator
-	- In the 1930s, such precise time measurements simply weren't possible; a clock of the required accuracy was difficult enough to build in fixed form, let alone portable. A crystal oscillator, for instance, drifts about 1 to 2 seconds in a month, or 1.4x10−3 seconds an hour.[1] This may sound small, but as light travels 3x108 m/s, this represents a drift of 400 m per hour. Only a few hours of flight time would render such a system unusable, a situation that remained in force until the introduction of commercial atomic clocks in the 1960s.
-	- Clock accuracy in ppm
-	- http://www.best-microcontroller-projects.com/ppm.html
-
-		
-- \cite{decawave2014rtls}
-	- Real time location systems - An Introduction
-		- Unsynchronized Transmitter and Receiver: In this case the tagged object communicates with each of the fixed anchors in what’s called a two-way ranging exchange. The tag and each anchor exchange timing information so that the anchor can calculate the time-of-flight of the signal from the tag to the anchor without the necessity for tag and anchor to be synchronized in time. Once each anchor has this information, a location engine can calculate the position of the tagged object.
-			- This requires that the tag be capable of receiving as well as transmitting which means that this method generally consumes more power than the Time Difference of Arrival solution we’ll see in the next section.
-				 The anchor transmits a message to the tag and records the time the message left its antenna (let’s call it t1).
-				 The tag receives the message and sends back a reply.
-				 The anchor records the time it receives the reply (let’s call it t2)
-				 The anchor then calculates the time difference Tr = t2 – t1
-				 The anchor then calculates the distance using the formula d = cTr/2, where c is the speed of light.
-			- This is what’s known as Two Way Ranging.
-			
-- \cite{decawave2015twr}
-	- The implementation of two-way ranging with the DW1000
-	- In this application note two-way ranging (TWR) scheme as used by Decawave’s example application (DecaRanging) is described. TWR is a basic concept to calculate the distance between two objects by determining the time of flight (TOF) of signals travelling between them.
-	- The DW1000 uses mathematical and electronic techniques to implement a very precise clock. By recording the state of this clock when certain events occur during DW1000 transmission and reception of the radio wave signals, the DW1000 has the ability to ‘timestamp’ those events.
-	- DW1000 based TWR
-		- The initiator transmits a radio message to the responder and records its time of transmission (transmit timestamp) t1. The responder receives the message and transmits a response (a radio message) back to the initiator after a particular delay treply. The initiator then receives this response and records a receive timestamp t2.
-		- If we assume the speed of radio waves through air is the same as the speed of light c, then the distance between the initiator and responder can be calculated by,
-		- there are a number of sources of error due to clock drift and frequency drift [4]. Asymmetric double sided TWR method is used in Decawave’s implementation. It reduces the error due to clock and frequency drift.
-	- Discovery and Ranging phase message exchanges
-	
-- \cite{decawave2016dw1kusermanual}
-	- Single-sided two-way ranging (SS-TWR)
-	- Double-sided two-way ranging (DS-TWR)
-		- The four messages of DS-TWR, shown in Figure 37, can be reduced to three messages by using the reply of the first round-trip measurement as the initiator of the second round-trip measurement.
-	- Error
-		- Where the clock in device A runs at ka times the desired frequency and the clock in device B runs at kb times the desired frequency and both ka & kb are close to 1.
-		- To give some idea of the size of this error, if devices A and B have clocks where each are 20 ppm away (the worst case specification) from the nominal clock in directions which make their combined error additive and equal to 40 ppm, then ka and kb might both be 0.99998 or 1.00002.
-		- Even with a relatively large UWB operating range of say 100 m, the TOF is just 333 ns, so the error is 20 × 10-6 × 333 × 10-9 seconds, which is 6.7 × 10-12 seconds or 6.7 picoseconds which is approximately 2.2 mm.
-		
-	
-
-https://de.wikipedia.org/wiki/Fading_(Elektrotechnik)
+- https://de.wikipedia.org/wiki/Fading_(Elektrotechnik)
 \end{comment}
 \section{Verfahren für die Entfernungsbestimmung}
 
@@ -60,19 +18,94 @@ Bei dem \Gls{tdoa}--Verfahren werden die Zeitdifferenz zwischen dem Empfang des 
 
 Neben der \textit{Triangulation} und \textit{Trilateration} besteht auch die Möglichkeit auf Grund der empfangenen Signalstärke (engl. \acrfull{ss_radio}, \acrfull{rss} oder auch \acrfull{rssi}) Rückschlüsse über die Entfernung zu ziehen. Dazu muss die ursprüngliche Signalstärke und die Ausbreitungscharakteristik der elektromagnetischen Welle in der spezifischen Umgebung bekannt sein. \cite{gezici2005localization, decawave2014rtls}
 
-In den nächsten zwei Abschnitten werden die \textit{DecaWave} Entfernungsmessverfahren vorgestellt.
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-
-\end{comment}
-\subsection{\acrlong{sstwr} [todo]}
+In den nächsten zwei Abschnitten werden die \textit{DecaWave} Entfernungsmessverfahren vorgestellt. Diese haben den Vorteil, dass keine Synchronisierung der Zeit zwischen Sender und Empfänger notwendig ist. Weiterhin besitzen die \textit{DecaWave} \Gls{uwbt} zwei Eigenschaften die die Entfernungsmessung ideal ergänzt. Zum einen wird jede erhaltene Nachricht mit einem lokalen Zeitstempel versehen, der über eine minimale Auflösung von ungefähr \SI{15.65}{\pico\second} verfügt. Hiermit wäre eine theoretische Ortsauflösung von ungefähr \SI{5}{\milli\metre} möglich. Des Weiteren ist es möglich, den Sendezeitpunkt einer Nachricht in die Zukunft zu legen. Damit lässt sich die Zeitspanne zwischen dem Empfang und der Antwort auf eine Nachricht im Voraus berechnen. Die Zeitspanne kann dann der Antwortnachricht als Nutzlast mitgegeben werden, um beim Empfänger die Umlaufzeit zu berechnen.
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Wie lange dauert es bis eine Nachricht ausgetauscht worden ist?
+	- Beispiel mit einer konkreten Entfernung?
+	
+- Wie schnell drifted ein Quarz in einem µc?
+	- What is the ppm in the crystal oscillator?
+	- https://electronics.stackexchange.com/questions/15851/what-is-the-ppm-in-the-crystal-oscillator
+	- In the 1930s, such precise time measurements simply weren't possible; a clock of the required accuracy was difficult enough to build in fixed form, let alone portable. A crystal oscillator, for instance, drifts about 1 to 2 seconds in a month, or 1.4x10−3 seconds an hour.[1] This may sound small, but as light travels 3x108 m/s, this represents a drift of 400 m per hour. Only a few hours of flight time would render such a system unusable, a situation that remained in force until the introduction of commercial atomic clocks in the 1960s.
+	- Clock accuracy in ppm
+	- http://www.best-microcontroller-projects.com/ppm.html
+	
+
 \end{comment}
-\subsection{\arclong{dstwr} [todo]}
+\subsection{\acrlong{sstwr}}
+
+Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr}--Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort-- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \figurename~\ref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\linewidth]{single_sided_two_way_ranging}
+	\caption{Ablauf des \acrlong{sstwr}.}
+	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\label{fig:single_sided_two_way_ranging}
+\end{figure}
+
+Die ungefähre \Gls{tof}--Zeitspanne ergibt sich aus der folgenden Gleichung:
+
+\[T_{prop}=\frac{1}{2}\left(T_{round}-T_{reply}\right)\]
+
+Damit der \Gls{tag} die \Gls{tof}--Zeitspanne berechnen kann, benötigt er die $T_{reply}$--Zeitspanne. Zu diesem Problem gibt es mehrere Lösungen. Die einfachste Lösung ist eine feste Antwortzeit die jedem Modul bekannt ist. Alternativ kann der \Gls{anchor} in der Antwortnachricht seine individuelle Antwortzeit übermitteln. Oder der \Gls{tag} übermittelt dem \Gls{anchor} mit der initialen Nachricht wie lange der \Gls{anchor} warten muss bis er die Antwortnachricht verschickt. Hierbei muss die Zeitspanne groß genug gewählt sein, um den \Gls{anchor} die Möglichkeit zur Antwort zu lassen. Je nach Anforderung wird eine der vorherigen Methoden verwendet.
+
+Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit abhängt. Bei Module verwenden zur Berechnung von $T_{round}$ und $T_{reply}$ ihre lokalen Zeitgeber. Beide Zeitgeber haben einen Offsetfehler $e_{A}$ und $e_{B}$ der von der Nennfrequenz abweicht. Die daraus abgeleitete \Gls{tof}--Zeitschätzung hat damit einen Fehler der mit der Antwortzeit wächst:
+
+\[error\approx\frac{1}{2}\left(e_B-e_A\right)\times T_{reply}\]
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- \cite{decawave2016dw1kusermanual}
+	- Where the clock in device A runs at ka times the desired frequency and the clock in device B runs at kb times the desired frequency and both ka & kb are close to 1.
+	- To give some idea of the size of this error, if devices A and B have clocks where each are 20 ppm away (the worst case specification) from the nominal clock in directions which make their combined error additive and equal to 40 ppm, then ka and kb might both be 0.99998 or 1.00002.
+	- Even with a relatively large UWB operating range of say 100 m, the TOF is just 333 ns, so the error is 20 × 10-6 × 333 × 10-9 seconds, which is 6.7 × 10-12 seconds or 6.7 picoseconds which is approximately 2.2 mm.
+\end{comment}
+\subsection{\acrlong{dstwr}}
+
+Das \Gls{dstwr}--Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}--Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \figurename~\ref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.70\linewidth]{double_sided_two_way_ranging}
+	\caption{Ablauf des \acrlong{dstwr}.}
+	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\label{fig:double_sided_two_way_ranging}
+\end{figure}
+
+Die ungefähre \Gls{tof}--Zeitspanne ergibt sich aus der folgenden Gleichung:
+
+\[T_{prop}=\frac{\left(T_{round1}\times T_{round2}-T_{reply1}\times T_{reply2}\right)}{\left(T_{round1}+T_{round2}+T_{reply1}+T_{reply2}\right)}\]
+
+Der Fehler bei diesem Verfahren ergibt sich aus der folgenden Gleichung:
+
+\[error=T_{prop}\times\left(1-\frac{k_a+k_b}{2}\right)\] 
+
+Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber von der Nennfrequenz und liegen beide sehr Nahe bei eins.
+
+Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initalen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf-- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}--Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\linewidth]{double_sided_two_way_ranging_with_three_anchor}
+	\caption{Ablauf des \acrlong{dstwr} mit einem \Gls{tag} und drei \Gls{anchor}.}
+	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\label{fig:double_sided_two_way_ranging_with_three_anchor}
+\end{figure}
+
+In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der\Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \figurename~\ref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseit nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochen Entfernungsmessung.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.40\linewidth]{discovery_and_ranging_phase}
+	\caption{Ablauf der \textit{Discovery} und \textit{Range Phase} zwischen einem \Gls{tag} und mehreren \Gls{anchor}n.}
+	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\label{fig:discovery_and_ranging_phase}
+\end{figure}
 
 
 \begin{comment}
