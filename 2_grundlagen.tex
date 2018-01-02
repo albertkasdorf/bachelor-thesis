@@ -85,9 +85,9 @@ Der Fehler bei diesem Verfahren ergibt sich aus der folgenden Gleichung:
 
 \[error=T_{prop}\times\left(1-\frac{k_a+k_b}{2}\right)\] 
 
-Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber von der Nennfrequenz und liegen beide sehr Nahe bei eins.
+Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber von der Nennfrequenz und liegen beide sehr nahe bei eins.
 
-Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initalen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf-- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}--Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
+Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf-- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}--Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
 
 \begin{figure}[ht]
 	\centering
@@ -97,7 +97,7 @@ Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr
 	\label{fig:double_sided_two_way_ranging_with_three_anchor}
 \end{figure}
 
-In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der\Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \figurename~\ref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseit nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochen Entfernungsmessung.
+In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der\Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \figurename~\ref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
 
 \begin{figure}[ht]
 	\centering
@@ -237,3 +237,8 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 => Maximal eine Seite
 \end{comment}
 \section{ROS [todo]}
+
+
+
+
+
