@@ -10,16 +10,38 @@
 % - 4-5 Seiten in der Bachelorarbeit (deutlich umfangreicher als im Exposé)
 % - Was unterscheidet meinen Ansatz von den anderen verhandenen Ansätzen?
 %
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- Informationen aus dem Expose
+	- Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
+	- In \cite{smith1987closed} wird das grundlegende Prinzip erklärt um aus mehreren bekannten Sensoren die Position eines beweglichen Empfängers zu berechnen.
+	- Der theoretische Hintergrund des SLAM--Verfahrens wird in \cite{dissanayake2001solution} vorgestellt. Zusätzlich wird bewiesen das die Unsicherheit bei der Kartenerstellung und Lokalisierung eine untere Schranke erreicht.
+	- \citeauthor{kantor2002preliminary} stellen in Ihrer Arbeit \cite{kantor2002preliminary} ein Lokalisierungsverfahren vor, welches die Roboterposition anhand von Entfernungsmessungen zu vorher bekannten Landmarken bestimmen kann. Im letzten Abschnitt wird SLAM--Verfahren vorgestellt, welches über einen Kalman--Filter die Unsicherheit der Landmarkenposition modellieren kann.
+	- Die Autoren \citeauthor{blanco2008pure} gehen in ihren Arbeiten \cite{blanco2008pure, blanco2008efficient} einen Schritt weiter und bestimmen die unbekannte Roboterposition sowie die unbekannten Landmarkenpositionen. Hierzu nutzen Sie im ersten Schritt einen Partikelfilter (engl. Particle Filter) bis die Schätzung eine ausreichende Genauigkeit erreicht hat um dann im zweiten Schritt über einen Kalman--Filter ein Positionsverfolgung (engl. Position Tracking) durchzuführen.
+	- Die Arbeit \cite{ledergerber2015robot} von \citeauthor{ledergerber2015robot} gehen auf die Roboterlokalisierung unter Verwendung einer One-Way Ultra-Wideband Kommunikation ein. Dieses hat den Vorteil, das mit sehr wenigen Landmarken eine große Anzahl von Roboter lokalisiert werden kann.
+	
+	- The Cartesian EKF described above operates in the Cartesian space, we formulate our problem in polar coordinates.
+	
+	- The use of this parameterization derives motivation from the polar coordinate system, where annuli, crescents and other ringlike shapes can be easily modeled. This parameterization is called Relative Over Parameterized (ROP) because it over parameterizes the state relative to an origin.
+
+	- EKF -> Polar EKF -> Multi-Hypothesis Filter
+	
+	- Partikel Filter
+\end{comment}
+
+
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\chapter{Stand der Forschung und Technik [todo]}
+\chapter{Stand der Forschung und Technik}
 
-In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \textit{Range--Only SLAM} geliefert.
+In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \Gls{roslam} geliefert.
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Preliminary results in range-only localization and mapping (189)
 - Section 2
 	- Statische Lokalisierung
 		- Vorherige Sensorinformationen und Positionsschätzung werden nicht genutzt.
@@ -60,7 +82,7 @@ In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publ
 		- State ist die Robot-- und Beacon--Position
 		- Error: init 5.13 feet, end 0.77 feet
 \end{comment}
-\section{\citefield{kantor2002preliminary}{title}(189)}
+\section{\citefield{kantor2002preliminary}{title}}
 
 In \citetitle{kantor2002preliminary}\cite{kantor2002preliminary} verwendet der Author \Glspl{beacon} die eine Entfernungsschätzung mit einem mittleren Fehler von \SI{1.82}{\metre} (6 Fuß) liefern. Um das Problem der Datenzuordnung zu trivialisieren, liefert jeder \Gls{beacon} zusätzlich zur Messung eine eindeutigen Identifikationsnummer mit. Nur mit diesen Daten werden die Probleme der Roboter Lokalisierung, Positionsverfolgung und \Gls{slam} behandelt. Das algorithmische Fundament wird dabei durch den \Gls{ekf} und \Gls{mc} Partikelfilter gebildet.
 
@@ -98,17 +120,19 @@ Der letzte Abschnitt wird ein \Gls{slam}--Verfahren mittels einem \Gls{ekf} beha
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Experimental results in range-only localization with radio (82)
 \end{comment}
-\section{\citefield{kurth2003experimental}{title}(82) [todo]}
+\section{\citefield{kurth2003experimental}{title} [todo]}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Robust range-only beacon localization (264)
 - Wie funktioniert die Exploration Strategy?
 	- Die Ungünstigeste strategy ist das geradeausfahren mit einem beacon links und rechts.
 	- Das Gradientenfeld der abstanddifferenz zwischen den beiden beacons führt einen auf den optimalen weg um die Abstandsdifferenz zu maximieren. (Aktive Exploration)
 \end{comment}
-\section{\citefield{olson2004robust}{title}(264)}
+\section{\citefield{olson2004robust}{title}}
 
 In \citetitle{olson2004robust}\cite{olson2004robust} werden autonome Unterwasserfahrzeuge (engl. \gls{auv}) verwendet um den Ozeanen der Welt die letzten Geheimnisse zu entlocken. Hierfür ist eine genaue Lokalisierung der \gls{auv} notwendig. Dies wird über die Messung der Signallaufzeit zwischen dem \gls{auv} und mehreren stationären akustischen Transponder--\Gls{beacon} erreicht. Vor der eigentlichen Messung müssen jedoch die \Glspl{beacon} im Messbereich verteilt werden, deren Position genau bestimmt werden und zusätzlich dafür gesorgt werden, dass die \Glspl{beacon} ihre Position nicht ändern. Dadurch handelt es sich um ein sehr kostspieliges Prozedere und soll in dem vorgestellt Verfahren dahingehend optimierte werden, dass die \Gls{beacon}--Position vorher nicht bekannt sein muss. Dadurch ist eine autonome Verteilung der \Glspl{beacon} möglich und zusätzlich kann auch detektiert werden ob ein \Gls{beacon} seine Position verändert hat.
 
@@ -120,8 +144,9 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- Tracking moving devices with the cricket location system (547)
 \end{comment}
-\section{\citefield{smith2004tracking}{title}(547) [todo]}
+\section{\citefield{smith2004tracking}{title} [todo]}
 
 
 
@@ -238,27 +263,3 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 %\end{itemize}
 
 \end{description}
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
-\section{Informationen aus dem Expose [Remove in final version]}
-
-Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
-
-In \cite{smith1987closed} wird das grundlegende Prinzip erklärt um aus mehreren bekannten Sensoren die Position eines beweglichen Empfängers zu berechnen.
-
-Der theoretische Hintergrund des SLAM--Verfahrens wird in \cite{dissanayake2001solution} vorgestellt. Zusätzlich wird bewiesen das die Unsicherheit bei der Kartenerstellung und Lokalisierung eine untere Schranke erreicht.
-
-\citeauthor{kantor2002preliminary} stellen in Ihrer Arbeit \cite{kantor2002preliminary} ein Lokalisierungsverfahren vor, welches die Roboterposition anhand von Entfernungsmessungen zu vorher bekannten Landmarken bestimmen kann. Im letzten Abschnitt wird SLAM--Verfahren vorgestellt, welches über einen Kalman--Filter die Unsicherheit der Landmarkenposition modellieren kann.
-
-Die Autoren \citeauthor{blanco2008pure} gehen in ihren Arbeiten \cite{blanco2008pure, blanco2008efficient} einen Schritt weiter und bestimmen die unbekannte Roboterposition sowie die unbekannten Landmarkenpositionen. Hierzu nutzen Sie im ersten Schritt einen Partikelfilter (engl. Particle Filter) bis die Schätzung eine ausreichende Genauigkeit erreicht hat um dann im zweiten Schritt über einen Kalman--Filter ein Positionsverfolgung (engl. Position Tracking) durchzuführen.
-
-Die Arbeit \cite{ledergerber2015robot} von \citeauthor{ledergerber2015robot} gehen auf die Roboterlokalisierung unter Verwendung einer One-Way Ultra-Wideband Kommunikation ein. Dieses hat den Vorteil, das mit sehr wenigen Landmarken eine große Anzahl von Roboter lokalisiert werden kann.
-
-- The Cartesian EKF described above operates in the Cartesian space, we formulate our problem in polar coordinates.
-- The use of this parameterization derives motivation from the polar coordinate system, where annuli, crescents and other ringlike shapes can be easily modeled. This parameterization is called Relative Over Parameterized (ROP) because it over parameterizes the state relative to an origin.
-
-- EKF -> Polar EKF -> Multi-Hypothesis Filter
-- Partikel Filter
