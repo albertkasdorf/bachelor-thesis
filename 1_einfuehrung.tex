@@ -104,7 +104,7 @@ Innerhalb geschlossener Räumlichkeiten (engl. Indoor), wie in öffentlichen Geb
 
 Häufig werden \Gls{slam} Algorithmen verwendet um aus Kamerabildern oder \SI{360}{\degree} Abstandsmessungen eine Karte der Umgebung zu erstellen und sich in der gleichen zu lokalisieren. Diese Sensoren setzen eine ungehinderte \Gls{los} voraus und reagieren sehr Empfindlich auf Verschmutzungen ihrer optischen Elemente. Sensoren deren Funktionsprinzip auf elektromagnetischen Wellen basieren, kommen auch ohne eine direkte Sichtverbindung (engl. \glsreset{nlos}\Gls{nlos}) aus. Zu dieser Klasse von Sensoren gehört die \Gls{uwb}--Technologie. Mit den hier in der Arbeit erstellten \Glsuseri{uwbm} ist nur eine Entfernungsmessung untereinander möglich. Diese beschränkten Informationen reichen jedoch für einen reinen entfernungsbasieren \Gls{slam} (engl. \glsreset{roslam}\gls{roslam}) Algorithmus aus. Hierbei werden nur die Informationen der Eigenbewegung und die Entfernungen zu mehreren, vorher unbekannten, \Glsuseri{uwbm} genutzt um sich selbst zu Lokalisieren und eine Karte mit den Positionen der \Glspl{uwbm} zu erstellen.
 
-Die \Glspl{uwbm} die stationär befestigt sind, ihre Position also nicht ändern und als fixe Referenzpunkte angesehen werden können, werden im Folgenden nur noch als \Gls{anchor} bezeichnet. Der Gegenspieler zum \Gls{anchor} ist der \Gls{tag}. Dieser befindet sich auf der Roboterplattform und kann sich durch den Raum bewegen.
+Die \Glspl{uwbm} die stationär befestigt sind, ihre Position also nicht ändern und als fixe Referenzpunkte angesehen werden können, werden im Folgenden nur noch als \Gls{anchor} bezeichnet. Der Gegenspieler zum \Gls{anchor} ist der \Gls{tag}. Dieser befindet sich auf der Roboterplattform und kann sich dementsprechend durch den Raum bewegen.
 
 
 \begin{comment}
@@ -126,12 +126,19 @@ Die \Glspl{uwbm} die stationär befestigt sind, ihre Position also nicht ändern
 - Welche Ziele sollen erreicht werden?
 	- Aufbau von UWB Hardware
 	- Testen der Out-Of-Box UWB Hardware mit einem RO-SLAM Algorithmus
+- Ziele:
+	- UWB Hardware aufbauen
+	- Charakteristik bestimmen {Streubreite, Varianz, LOS/NLOS, Kalibierung?}
+	- Roboterplattform mit UWB Hardware ausrüsten;
+	- MRPT--Software konfigurieren;
+	- Lokalisierung vergleichen mit {Odometry; LaserOdometry; Ground TRuth; RO-SLAM}
 \end{comment}
-\section{Zielsetzung [rework]}
+\section{Zielsetzung}
 
-Die vorliegen Arbeit spaltet sich in zwei Bereiche auf. Im ersten Teil werden die uwbm erstellt. Hierfür müssen die passenden elektrischen Komponenten ausgesucht, prototypen gebaut und erprobte werden, und ein Platinendesign für die fertigen uwbm bereitgestellt werden. Danach wird die Charakteristik der Entfernungsmessung mit Hilfe von empirschen Versuchen und statischtischen Mitteln bestimmt. Konkret geht es um die Fragen wie groß ist die Streuung um die tatsächliche Entfernung.
+Diese Arbeit spaltet sich in zwei Bereiche auf. Im ersten Teil geht es um die Erstellung der \Glspl{uwbm}. Hierfür müssen die passenden elektrischen Komponenten ausgesucht, Prototypen entworfen und erprobt werden, ein Platinen--Layout erstellt und im Anschluss die \Glspl{uwbm} zusammengebaut werden. Mit der fertigen Hardware werden dann im folgenden empirische Versuche durchgeführt um die Sensorcharakteristiken wie Streubreite, Varianz und \Gls{los}/\Gls{nlos}--Verhalten zu bestimmen.
 
-Auf diesen Vorarbeiten aufbauend wird eine Roboterplattform bereitgestellt die mit den uwbm ausgerüstet wird. Mittels ros-- und dem mrpt--Framework wird der roslam, welcher Bestandteil des mrpt--Frameworks ist, erprobt.
+In dem darauf aufbauenden zweiten Teil wird eine Roboterplattform mit einem \Gls{uwbm} ausgerüstet und ein Versuchsgelände mit mehreren \Gls{anchor} präpariert. Mit einem Steuergerät wird die Roboterplattform mehrmals durch das Versuchsgelände gesteuert und während dessen alle Sensordaten aufgezeichnet.
+Im Nachgang wird dann der \Gls{roslam}--Algorithmus aus dem \Gls{mrpt}--Framework mit den Aufzeichnungen erprobt. Untersucht werden dabei die Genauigkeit der Roboter Lokalisierung und das Erstellen einer Karte von den zuvor unbekannten \Gls{anchor}--Positionen.
 
 
 \begin{comment}
@@ -146,6 +153,7 @@ Auf diesen Vorarbeiten aufbauend wird eine Roboterplattform bereitgestellt die m
 - Die Vorgehensweise und die Wahl der Methode sollte begründet und dargelegt werden.
 \end{comment}
 %\section{Methodik / Methode}
+
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
