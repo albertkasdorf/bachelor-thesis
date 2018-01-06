@@ -65,7 +65,7 @@ Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit 
 	- To give some idea of the size of this error, if devices A and B have clocks where each are 20 ppm away (the worst case specification) from the nominal clock in directions which make their combined error additive and equal to 40 ppm, then ka and kb might both be 0.99998 or 1.00002.
 	- Even with a relatively large UWB operating range of say 100 m, the TOF is just 333 ns, so the error is 20 × 10-6 × 333 × 10-9 seconds, which is 6.7 × 10-12 seconds or 6.7 picoseconds which is approximately 2.2 mm.
 \end{comment}
-\subsection{\acrlong{dstwr}}
+\subsection{\acrlong{dstwr}}\label{subsec:double_sided_two_way_ranging}
 
 Das \Gls{dstwr}--Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}--Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \figurename~\ref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
