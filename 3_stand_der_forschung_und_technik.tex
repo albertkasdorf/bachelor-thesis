@@ -34,13 +34,14 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\chapter{Stand der Forschung und Technik}
+\chapter{Stand der Forschung und Technik [todo]}
 
 In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \Gls{roslam} geliefert.
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- \cite{kantor2002preliminary}
 - Preliminary results in range-only localization and mapping (189)
 - Section 2
 	- Statische Lokalisierung
@@ -82,7 +83,7 @@ In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publ
 		- State ist die Robot-- und Beacon--Position
 		- Error: init 5.13 feet, end 0.77 feet
 \end{comment}
-\section{\citefield{kantor2002preliminary}{title}}
+\section{Preliminary results in range-only localization and mapping}
 
 In \citetitle{kantor2002preliminary}\cite{kantor2002preliminary} verwendet der Author \Glspl{beacon} die eine Entfernungsschätzung mit einem mittleren Fehler von \SI{1.82}{\metre} (6 Fuß) liefern. Um das Problem der Datenzuordnung zu trivialisieren, liefert jeder \Gls{beacon} zusätzlich zur Messung eine eindeutigen Identifikationsnummer mit. Nur mit diesen Daten werden die Probleme der Roboter Lokalisierung, Positionsverfolgung und \Gls{slam} behandelt. Das algorithmische Fundament wird dabei durch den \Gls{ekf} und \Gls{mc} Partikelfilter gebildet.
 
@@ -120,19 +121,21 @@ Der letzte Abschnitt wird ein \Gls{slam}--Verfahren mittels einem \Gls{ekf} beha
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-- Experimental results in range-only localization with radio (82)
+- \cite{kurth2003experimental}
+	- Experimental results in range-only localization with radio (82)
 \end{comment}
-\section{\citefield{kurth2003experimental}{title} [todo]}
+%\section{Experimental results in range-only localization with radio [todo]}
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-- Robust range-only beacon localization (264)
-- Wie funktioniert die Exploration Strategy?
-	- Die Ungünstigeste strategy ist das geradeausfahren mit einem beacon links und rechts.
-	- Das Gradientenfeld der abstanddifferenz zwischen den beiden beacons führt einen auf den optimalen weg um die Abstandsdifferenz zu maximieren. (Aktive Exploration)
+- \cite{olson2004robust}
+	- Robust range-only beacon localization (264)
+	- Wie funktioniert die Exploration Strategy?
+		- Die Ungünstigeste strategy ist das geradeausfahren mit einem beacon links und rechts.
+		- Das Gradientenfeld der abstanddifferenz zwischen den beiden beacons führt einen auf den optimalen weg um die Abstandsdifferenz zu maximieren. (Aktive Exploration)
 \end{comment}
-\section{\citefield{olson2004robust}{title}}
+\section{Robust range-only beacon localization}
 
 In \citetitle{olson2004robust}\cite{olson2004robust} werden autonome Unterwasserfahrzeuge (engl. \gls{auv}) verwendet um den Ozeanen der Welt die letzten Geheimnisse zu entlocken. Hierfür ist eine genaue Lokalisierung der \gls{auv} notwendig. Dies wird über die Messung der Signallaufzeit zwischen dem \gls{auv} und mehreren stationären akustischen Transponder--\Gls{beacon} erreicht. Vor der eigentlichen Messung müssen jedoch die \Glspl{beacon} im Messbereich verteilt werden, deren Position genau bestimmt werden und zusätzlich dafür gesorgt werden, dass die \Glspl{beacon} ihre Position nicht ändern. Dadurch handelt es sich um ein sehr kostspieliges Prozedere und soll in dem vorgestellt Verfahren dahingehend optimierte werden, dass die \Gls{beacon}--Position vorher nicht bekannt sein muss. Dadurch ist eine autonome Verteilung der \Glspl{beacon} möglich und zusätzlich kann auch detektiert werden ob ein \Gls{beacon} seine Position verändert hat.
 
@@ -144,9 +147,10 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-- Tracking moving devices with the cricket location system (547)
+-\cite{smith2004tracking}
+	- Tracking moving devices with the cricket location system (547)
 \end{comment}
-\section{\citefield{smith2004tracking}{title} [todo]}
+%\section{Tracking moving devices with the cricket location system [todo]}
 
 
 \begin{comment}
@@ -154,7 +158,7 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 \end{comment}
 \section{A pure probabilistic approach to range-only SLAM}\label{sec:blanco2008pure}
 
-Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}--Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure}\cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}--Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein reines probabilistische Verfahren genutzt.
+Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}--Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure} \cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}--Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein reines probabilistische Verfahren genutzt.
 
 Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades von der Karte mit den Landmarken entkoppelt \cite{murphy2001rao, montemerlo2002fastslam}. Jeder Partikel des \Gls{rbpf} beschreibt dabei pro \textit{Beacon} die Verteilung die am besten zu seiner Positionsschätzung passt. Die Verteilung wird dabei zuerst von einem Hilfspartikelfilter (engl. Auxiliary Particle Filter) modelliert. Seine Partikel besitzen dabei eine ringförmige Verteilung mit dem Abstand des \textit{Beacon}, siehe \figurename~\ref{fig:blanco2008pure_fig3e}. Partikel mit einer geringen Wahrscheinlichkeit werden über eine Gewichtung aussortiert, siehe \figurename~\ref{fig:blanco2008pure_fig3f}. Sobald der Hilfspartikelfilter gegen eine bestimmte \textit{Beacon}--Position konvergiert ist, wird dieser in einen Normalverteilung umgewandelt und über einen \Gls{ekf} modelliert, siehe \figurename~\ref{fig:blanco2008pure_fig3g}.
 
@@ -189,14 +193,47 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 \end{comment}
 \section{Efficient probabilistic range-only SLAM}
 
-\ref{sec:blanco2008pure}
+Aufbauend auf der vorherigen Arbeit im Abschnitt~\ref{sec:blanco2008pure} wird in \citetitle{blanco2008efficient} \cite{blanco2008efficient} nicht mehr ein Hilfspartikelfilter verwendet, der ab einer gewissen Sicherheit in einen \Gls{ekf} umgewandelt wird. Stattdessen wird die ringförmiger Verteilung über radial angeordnete Normalverteilungen angenähert deren Nachbarschaftsabstand über den Parameter \textit{K} bestimmt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig17a}~--~\ref{fig:blanco2008efficient_fig17b}. Die Gesamtverteilung ergibt sich dabei über eine gewichtete Summe der Normalverteilungen (engl. Sum of Gaussians). Über die Gewichte lässt sich dabei steuern, ob eine der Normalverteilungen in dem Ring für die \textit{Beacon}--Position noch relevant ist oder entfernt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig10a}~--~\ref{fig:blanco2008efficient_fig10b}.
 
-		
+Sowohl das Verfahren aus dem Abschnitt~\ref{sec:blanco2008pure} als auch dieses sind in dem \Gls{mrpt}--Framework vorhanden und werden im Kapitel~\ref{ch:ro_slam} verwendet.
+
+\begin{figure}[!ht]
+	\begin{subfigure}[t]{0.24\linewidth}
+		\includegraphics[width=\linewidth]{blanco2008efficient_fig17a}
+		\caption{}
+		\label{fig:blanco2008efficient_fig17a}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.24\linewidth}
+		\includegraphics[width=\linewidth]{blanco2008efficient_fig17b}
+		\caption{}
+		\label{fig:blanco2008efficient_fig17b}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.24\linewidth}
+		\includegraphics[width=\linewidth]{blanco2008efficient_fig10a}
+		\caption{}
+		\label{fig:blanco2008efficient_fig10a}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.24\linewidth}
+		\includegraphics[width=\linewidth]{blanco2008efficient_fig10b}
+		\caption{}
+		\label{fig:blanco2008efficient_fig10b}
+	\end{subfigure}
+	\caption{Modellierung der ringförmigen Verteilung über radial angeordnete Normalverteilungen.}
+	\label{fig:blanco2008efficient}
+	\source{\cite{blanco2008efficientppt}}
+\end{figure}
+
+
+
+
+
 
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
-\end{comment}
 \section{Übersicht der Meilensteine [Remove in final version]}
 
 \begin{description}
@@ -307,3 +344,4 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 %\end{itemize}
 
 \end{description}
+\end{comment}

@@ -562,14 +562,6 @@ odometry (VO) system, regardless of its accuracy in the short term, still faces 
   abstract     = {This work addresses Range-Only SLAM (ROSLAM) as the Bayesian inference problem of sequentially tracking a vehicle while estimating the location of a set of beacons without any prior information. The only assumptions are the availability of odometry and a range sensor able of identifying the different beacons.We propose exploiting the conditional independence between each beacon distribution within a Rao-Blackwellized Particle Filter (RBPF) for maintaining independent Sum of Gaussians (SOGs) for each map element. It is shown then that a proper probabilistic observation model can be derived for online operation with no need for delayed initializations unlike other approaches. We provide a rigorous statistical comparison of this proposal with previous work of the authors where a Monte-Carlo approximation was employed instead for the conditional densities. As verified experimentally, this new proposal represents a significant improvement in accuracy, computation time, and robustness against outliers.},
   file         = {:Efficient probabilistic range-only SLAM.pdf:PDF;:Efficient probabilistic range-only SLAM.ppt:PowerPoint},
   groups       = {SLAM},
-  keywords     = {rank5},
-  review       = {
-=> Folgeliteratur zu "A pure probabilistic approach to range-only SLAM"
-- There are two fundamental characteristics that render RO-SLAM specially challenging: the existence of outliers due to the sensor nature (typically sonar or radio pulses), and more importantly the high ambiguity of the measurements.
-- Therefore, two problems with these sensors are: (i) the large portion of the environment where a beacon could be, given just one observation, and (ii) the very likely possibility of multiple plausible hypotheses
-- On the other hand, an advantage of RO-SLAM is the non-existence of the data association problem, since the usage of active beacons allows most sensors to establish unique correspondences between sensed ranges and particular beacons.
-- The contributions of this paper over previous works are: (i) a new inverse sensor model for initializing map distributions as weighted Sums of Gaussians (SOGs), (ii) the explanation of how to update those Gaussians and their weights using a multi-hypothesis EKF, and (iii) the derivation of the corresponding observation model required for the RBPF. The present approach has the advantage of a reduced computation burden due to the limited number of Gaussians required for a proper representation, while still providing an accurate approximation of the strongly non-Gaussian and frequently multi-modal distributions found in RO-SLAM.
-- In the case of a ground vehicle building a 3D map, if we know in advance that all the beacons have been placed at a height above (or below) the robot, the prior becomes a uniform distribution over half of the space (and zero in the complementary part). This is important since, as shown in the experimental results, a vehicle moving on a flat scenario can build a 3D map only up to a symmetry with respect to the robot plane: it cannot be disambiguated whether a given beacon is above or below the robot.},
 }
 
 @Book{djugash2010geolocation,
@@ -1405,6 +1397,14 @@ The developed techniques offer a unified global framework for geolocation with r
   year     = {2017},
   url      = {https://github.com/albertkasdorf/ro_slam_with_uwb},
   subtitle = {Range Only SLAM with Ultra Wideband},
+}
+
+@Online{blanco2008efficientppt,
+  author = {Blanco, Jose-Luis and Fern{\'a}ndez-Madrigal, Juan-Antonio and Gonz{\'a}lez, Javier},
+  title = {Efficient probabilistic range-only SLAM},
+  year = {2008},
+  url = {http://ingmec.ual.es/~jlblanco/papers/iros08ro-slam.ppt},
+  file = {:Efficient probabilistic range-only SLAM.ppt:PowerPoint},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
