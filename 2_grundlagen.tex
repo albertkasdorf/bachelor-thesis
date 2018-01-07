@@ -124,6 +124,8 @@ In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurd
 	- Monte Carlo Lokalisierung
 		- Multimodal Distribution for position estimation
 		- Important Sampling
+- http://www.mathepedia.de/Stochastik.html
+- https://www.youtube.com/watch?v=DoHTsDrzAQk
 \end{comment}
 \section{Wahrscheinlichkeitstheorie [todo]}
 
@@ -193,6 +195,9 @@ In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurd
 ------------------------------------------------------------------------------------------
 Rao-Blackwellized Particle Filtering
 https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
+
+- \cite{murphy2001rao}
+	- Rao-Blackwellised particle filtering for dynamic Bayesian networks
 \end{comment}
 \subsection{Rao-Blackwellized [todo]}
 
@@ -202,7 +207,7 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 - \cite{kurth2003experimental}
 	- We are currently developing a batch localization method, which considers all the data collected by the robot and nds the best path estimate given all the data. Although time consuming computationally, this will produce the theoretically optimal result obtainable from the collected data; we can then evaluate the results of our online localization method by comparing to this optimal solution.
 \end{comment}
-\section{Batch optimization [todo,optional]}
+%\section{Batch optimization [todo,optional]}
 
 
 \begin{comment}
@@ -210,7 +215,7 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 - \cite{kurth2003experimental}
 	- Additionally, we will extend the batch method to produce a variable dimension lter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
 \end{comment}
-\section{Variable Dimension Filter [todo,optional]}
+%\section{Variable Dimension Filter [todo,optional]}
 
 
 \begin{comment}
@@ -218,10 +223,16 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 Embodied Localisation and Mapping
 http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 
+
+- \citez{montemerlo2002fastslam}
+	- FastSLAM: A factored solution to the simultaneous localization and mapping problem
+
 - \cite{sarkka2013bayesian}
 	- Bayesian filtering and smoothing
 - \cite{kurth2003experimental}
 	- The Kalman lter approach described in Section 5 can be reformulated for the SLAM problem. To perform SLAM, we include position estimates for each tag in the state, producing a state vector of the form: q(k) = [xk; yk; k; xb1; yb1 ; :::; xbn; ybn]T , where n is the number of beacons.
+	
+- The purpose of a probabilistic approach to RO-SLAM is to obtain the joint probability distribution of the robot pose (or path) and the map, given all the available data at some instant of time. This distribution represents our knowledge about the robot path, the map, and all their correlations.
 \end{comment}
 \section{SLAM [todo]}
 

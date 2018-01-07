@@ -149,6 +149,50 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 \section{\citefield{smith2004tracking}{title} [todo]}
 
 
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{A pure probabilistic approach to range-only SLAM}\label{sec:blanco2008pure}
+
+Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}--Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure}\cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}--Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein reines probabilistische Verfahren genutzt.
+
+Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades von der Karte mit den Landmarken entkoppelt \cite{murphy2001rao, montemerlo2002fastslam}. Jeder Partikel des \Gls{rbpf} beschreibt dabei pro \textit{Beacon} die Verteilung die am besten zu seiner Positionsschätzung passt. Die Verteilung wird dabei zuerst von einem Hilfspartikelfilter (engl. Auxiliary Particle Filter) modelliert. Seine Partikel besitzen dabei eine ringförmige Verteilung mit dem Abstand des \textit{Beacon}, siehe \figurename~\ref{fig:blanco2008pure_fig3e}. Partikel mit einer geringen Wahrscheinlichkeit werden über eine Gewichtung aussortiert, siehe \figurename~\ref{fig:blanco2008pure_fig3f}. Sobald der Hilfspartikelfilter gegen eine bestimmte \textit{Beacon}--Position konvergiert ist, wird dieser in einen Normalverteilung umgewandelt und über einen \Gls{ekf} modelliert, siehe \figurename~\ref{fig:blanco2008pure_fig3g}.
+
+\begin{figure}
+	\begin{subfigure}[t]{0.3\linewidth}
+		\includegraphics[width=\linewidth]{blanco2008pure_fig3e}
+		\caption{}
+		\label{fig:blanco2008pure_fig3e}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.3\linewidth}
+		\includegraphics[width=\linewidth]{blanco2008pure_fig3f}
+		\caption{}
+		\label{fig:blanco2008pure_fig3f}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.3\linewidth}
+		\includegraphics[width=\linewidth]{blanco2008pure_fig3g}
+		\caption{}
+		\label{fig:blanco2008pure_fig3g}
+	\end{subfigure}
+	\caption{Entwicklung eines Hilfspartikelfilters zu einem \Gls{ekf}.}
+	\label{fig:blanco2008pure_fig3}
+	\source{\cite{blanco2008pure}}
+\end{figure}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- \cite{blanco2008efficient}
+	- Efficient probabilistic range-only SLAM (71)
+\end{comment}
+\section{Efficient probabilistic range-only SLAM}
+
+\ref{sec:blanco2008pure}
+
+		
+
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
@@ -201,11 +245,11 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 \item +Rao-Blackwellized particle filter for multiple target tracking (264)
 \end{itemize}
 
-\item[2008]
-\begin{itemize}
-\item !Efficient probabilistic range-only SLAM (Zitiert von: 70)
-\item !A pure probabilistic approach to range-only SLAM (Zitiert von: 36)
-\end{itemize}
+%\item[2008]
+%\begin{itemize}
+%\item !Efficient probabilistic range-only SLAM (Zitiert von: 70)
+%\item !A pure probabilistic approach to range-only SLAM (Zitiert von: 36)
+%\end{itemize}
 
 \item[2009]
 \begin{itemize}
