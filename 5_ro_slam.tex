@@ -31,4 +31,77 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
+\subsubsection{hector\_trajectory\_server}
+
+Mit diesem Modul ist es möglich die gefahrene Trajektorie eine Roboters in einem bestimmten Koordinatensystem auszugeben. Hierfür muss im TF--Tree eine Verbindung zwischen dem \textit{source\_frame\_name}(base\_link) und dem \textit{target\_frame\_name}(odom oder map) bestehen. Die Trajektorie bezieht sich mit ihren Koordinaten auf das target\_frame und ist vom Datentyp nav\_msgs/Path.
+
+Über einen Service lässt die sich Trajektorie auch abfragen: \textit{rosservice call /trajectory}
+
+\url{http://wiki.ros.org/hector_trajectory_server}
+
+\url{http://docs.ros.org/api/nav_msgs/html/msg/Path.html}
+
+\begin{lstlisting}[
+	frame=shadowbox,
+	breaklines=true,
+	caption={Konfiguration der hector\_trajectory\_server--Nodes.},
+	captionpos=b,
+	label={lst:hector_trajectory_server_node},
+	columns=fullflexible,
+	language=XML,r
+	numbers=none,
+	float,
+]
+<node 
+  name="hector_trajectory_server"
+  pkg="hector_trajectory_server"
+  type="hector_trajectory_server"
+  output="screen">
+
+  <param name="target_frame_name" value="map"/>
+  <param name="source_frame_name" value="base_link" />
+  <param name="trajectory_update_rate" value="10.0" />
+  <param name="trajectory_publish_rate" value="10"/>
+</node>
+\end{lstlisting}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{rf2o\_laser\_odometry}
+
+\url{http://wiki.ros.org/rf2o}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{robotino\_node}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{robotino\_odometry\_node}
+
+Sorgt dafür, dass die Odometry--Nachrichten vom Robotino ins ROS--System veröffentlicht werden.
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsubsection{Vergleich der Trajektorie von Odom und rf2o}
+
+- Trajektorie der Robotino--Odometry bestimmen.
+- Herausfiltern der Odometry Nachrichten aus den Bag--Dateien
+- Odometry aus den Laser--Scans bestimmen und Trajektorie aufzeichen.
+- Trajektorien vergleichen
+
+
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \subsection{MRPT Module [todo]}
