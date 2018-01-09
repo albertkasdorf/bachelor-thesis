@@ -31,6 +31,19 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
+\subsubsection{gmapping}
+
+- This package contains a ROS wrapper for OpenSlam's Gmapping.
+- The gmapping package provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping.
+- Using slam_gmapping, you can create a 2-D occupancy grid map from laser and pose data collected by a mobile robot.
+\url{http://wiki.ros.org/gmapping}
+
+Benötigt eine TF--Transformation zwischen base\_link und odom. Mittels der Odometry und dem Laser--Scans erzeugt er eine TF--Transformation zwischen map und odom.
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
 \subsubsection{hector\_trajectory\_server}
 
 Mit diesem Modul ist es möglich die gefahrene Trajektorie eine Roboters in einem bestimmten Koordinatensystem auszugeben. Hierfür muss im TF--Tree eine Verbindung zwischen dem \textit{source\_frame\_name}(base\_link) und dem \textit{target\_frame\_name}(odom oder map) bestehen. Die Trajektorie bezieht sich mit ihren Koordinaten auf das target\_frame und ist vom Datentyp nav\_msgs/Path.

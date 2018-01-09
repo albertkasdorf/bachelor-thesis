@@ -156,12 +156,14 @@ In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurd
 ------------------------------------------------------------------------------------------
 - \cite{kalman1960new}
 - \cite{kurth2003experimental}
-	- Originally introduced in 1960, the Kalman lter assumes a multivariate Gaussian distribution [6]. The Kalman lter has the advantage that the representation of the distribution is compact; a Gaussian distribution can be represented by a mean and a covariance matrix. The robot's pose estimation is maintained as a Gaussian distribution and sensor data from dead reckoning and landmark observations is fused to obtain a new position distribution.
-	- Our results with Kalman ltering require an under-standing of the characteristics of the noise present in ranges reported by the radio tags. We gain this by look-ing at the probability distribution functions for each tag measurement.
-	- We obtain the PDFs as follows: for every reported measurement, we nd the true range to the robot when that distance was reported. We do this by comparing the known location of the reporting tag to the times-tamped true location of the robot when the report was received.
+	- Originally introduced in 1960, the Kalman Filter assumes a multivariate Gaussian distribution [6]. The Kalman Filter has the advantage that the representation of the distribution is compact; a Gaussian distribution can be represented by a mean and a covariance matrix. The robot's pose estimation is maintained as a Gaussian distribution and sensor data from dead reckoning and landmark observations is fused to obtain a new position distribution.
+	- Our results with Kalman Filtering require an under-standing of the characteristics of the noise present in ranges reported by the radio tags. We gain this by look-ing at the probability distribution functions for each tag measurement.
+	- We obtain the PDFs as follows: for every reported measurement, we and the true range to the robot when that distance was reported. We do this by comparing the known location of the reporting tag to the times-tamped true location of the robot when the report was received.
 	- the covariance matrix, which describes the uncertainty and correlation of the terms in the state estimate.
-	- However, when the same initial noisy tag locations are used with Test 2, our SLAM technique fails to converge. Since the Kalman lter uses a linearization of the nonlinear range measurements, if the linearized estimate is too far away from the truth, the lter may be unable to recover and will diverge.
-	-
+	- However, when the same initial noisy tag locations are used with Test 2, our SLAM technique fails to converge. Since the Kalman Filter uses a linearization of the nonlinear range measurements, if the linearized estimate is too far away from the truth, the Filter may be unable to recover and will diverge.
+
+- https://www.youtube.com/watch?v=CaCcOwJPytQ
+	- Special Topics - The Kalman Filter (1 of 55) What is a Kalman Filter?
 
 \end{comment}
 \subsection{Kalman Filter [todo]}
