@@ -18,11 +18,14 @@
 	ngerman
 ]{scrbook}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}		% LuaTex do not need this
+%\usepackage[T1]{fontenc}			% LuaTex do not need this
+\usepackage{fontspec}					% LuaTex need this
 \usepackage{lmodern}
 \usepackage{comment}
-\usepackage[ngerman]{babel}
+%\usepackage[ngerman]{babel}
+\usepackage{polyglossia}
+	\setdefaultlanguage[spelling=new]{german}
 \usepackage[autostyle]{csquotes}
 %\usepackage{showframe}
 %\usepackage[a4paper,showframe]{geometry}
@@ -54,16 +57,23 @@
 %
 \usepackage[hyphens]{url}
 %
+% https://www.dante.de/events/Archiv/dante2012/Programm/Vortraege/vortrag-ferber.pdf
 %
-%
-\usepackage[breaklinks,colorlinks,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
+\usepackage[
+	breaklinks,
+	colorlinks,
+	linkcolor=black,
+	urlcolor=black,
+	citecolor=black,
+	pdfencoding=auto,	
+]{hyperref}
 	\hypersetup
 	{
 		pdftitle    = {Range-Only Simultaneous Localization and Mapping mittels Ultra-Wideband},
-		pdfsubject  = {},
+		pdfsubject  = {Range-Only Simultaneous Localization and Mapping mittels Ultra-Wideband},
 		pdfauthor   = {Albert Kasdorf},
 		pdfkeywords = {Range-Only Simultaneous Localization and Mapping, RO-SLAM, Ultra-Wideband, UWB},
-		pdfcreator  = {pdflatex},
+		pdfcreator  = {LuaTex},
 		pdfproducer = {LaTeX with hyperref}
 	}
 %

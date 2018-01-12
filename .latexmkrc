@@ -24,3 +24,9 @@ sub run_makeglossaries {
 push @generated_exts, 'glo', 'gls', 'glg';
 push @generated_exts, 'acn', 'acr', 'alg';
 $clean_ext .= ' %R.ist %R.xdy';
+
+#
+# If equal to 4, generate a pdf version of the document using lualatex, using
+# the command specified by the $lualatex variable
+#
+$pdf_mode = 4
