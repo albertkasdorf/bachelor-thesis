@@ -54,17 +54,8 @@ Mit diesem Modul ist es möglich die gefahrene Trajektorie eine Roboters in eine
 
 \url{http://docs.ros.org/api/nav_msgs/html/msg/Path.html}
 
-\begin{lstlisting}[
-	frame=shadowbox,
-	breaklines=true,
-	caption={Konfiguration der hector\_trajectory\_server--Nodes.},
-	captionpos=b,
-	label={lst:hector_trajectory_server_node},
-	columns=fullflexible,
-	language=XML,
-	numbers=none,
-	float,
-]
+\begin{listing}
+	\begin{minted}[frame=single]{xml}
 <node 
   name="hector_trajectory_server"
   pkg="hector_trajectory_server"
@@ -76,7 +67,11 @@ Mit diesem Modul ist es möglich die gefahrene Trajektorie eine Roboters in eine
   <param name="trajectory_update_rate" value="10.0" />
   <param name="trajectory_publish_rate" value="10"/>
 </node>
-\end{lstlisting}
+	\end{minted}
+	\unskip
+	\caption{Konfiguration der hector\_trajectory\_server--Nodes.}
+	\label{lst:hector_trajectory_server_node}
+\end{listing}
 
 
 \begin{comment}

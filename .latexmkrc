@@ -29,4 +29,5 @@ $clean_ext .= ' %R.ist %R.xdy';
 # If equal to 4, generate a pdf version of the document using lualatex, using
 # the command specified by the $lualatex variable
 #
-$pdf_mode = 4
+$pdf_mode = 4;
+$lualatex = 'lualatex --shell-escape %O %S';

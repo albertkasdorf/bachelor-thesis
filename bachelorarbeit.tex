@@ -48,8 +48,17 @@
 % Listings caption [duplicate]
 % 		- https://tex.stackexchange.com/questions/54819/listings-caption
 %
-\usepackage{listings}
-  \renewcommand{\lstlistingname}{Auflistung}
+%\usepackage{listings}
+%  \renewcommand{\lstlistingname}{Auflistung}
+%
+% http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/minted/minted.pdf
+%
+\usepackage[chapter]{minted}
+	\usemintedstyle{vs}
+	\setminted{frame=single, breaklines}
+	\renewcommand{\listingscaption}{Auflistung}
+	%\renewcommand{\listoflistingscaption}{List of Program Code}
+	\providecommand*{\listingautorefname}{Auflistung}
 %
 % Wie kann ich hyperlinks mit \url umbrechen lassen?
 % http://texwelt.de/wissen/fragen/5361/wie-kann-ich-hyperlinks-mit-url-umbrechen-lassen
@@ -198,6 +207,17 @@
 % https://en.wikibooks.org/wiki/LaTeX/Mathematics
 %
 \usepackage{amssymb}
+%
+% http://osl.ugr.es/CTAN/macros/latex/contrib/draftwatermark/draftwatermark.pdf
+%
+\usepackage[
+	%nostamp
+	firstpage
+]{draftwatermark}
+	\SetWatermarkColor{red}
+	%\SetWatermarkColor[rgb]{0,1,0}
+	\SetWatermarkText{CONFIDENTIAL}
+	\SetWatermarkScale{0.75}
 %
 % Some packages from other authors may have problems with KOMA-Script.
 % Package scrhack contains all those improvement proposals for

@@ -553,22 +553,13 @@ Zeitstempel spielen beim Nachrichtenaustausch und bei der Entfernungsmessung ein
 \end{comment}
 \subsubsection{Datenaustausch}
 
-Der erste Bereich des Datenaustausches findet zwischen den \Glsuseri{uwbm} statt. Hierfür wird mindestens ein \Gls{anchor} und \Gls{tag} benötigt. In der \lstlistingname~\ref{lst:uwb_modul_as_anchor} ist der Quellcode eines \Gls{anchor} abgebildet.
+Der erste Bereich des Datenaustausches findet zwischen den \Glsuseri{uwbm} statt. Hierfür wird mindestens ein \Gls{anchor} und \Gls{tag} benötigt. In der \autoref{lst:uwb_modul_as_anchor} ist der Quellcode eines \Gls{anchor} abgebildet.
 Über die ersten zwei Zeile wird die \textit{\Gls{spi}--} und \textit{DW1000Ranging}--Bibliothek in das Programm eingebunden.
 Um eine Kommunikation mit dem \textit{DWM1000} aufzubauen muss der Methode \textit{initCommunication} die Belegung des \textit{Reset--}, \textit{\Gls{ss}--} und \textit{\Gls{irq}--Pin} übergeben werden.
 Nach dem Aufruf der Methode \textit{startAsAnchor} fungiert das \Gls{uwbm} als \Gls{anchor}. Die notwendigen Parameter sind dabei die eindeutige Adresse, der Messmodus und ob eine zufällige Geräteadresse generiert werden soll. Wenn der letzte Parameter \textit{false} ist, werden aus den ersten zwei Bytes der eindeutigen Adresse, die Geräteadresse gebildet. Der zyklische Aufruf der Methode \textit{loop} sorgt für die Nachrichtenverarbeitung des \Glsuserii{uwbm}.
 
-\begin{lstlisting}[
-	frame=shadowbox,
-	breaklines=true,
-	caption={Quellcode für ein \Gls{uwbm} das als \Gls{anchor} konfiguriert ist.},
-	captionpos=b,
-	label={lst:uwb_modul_as_anchor},
-	language=C++,
-	columns=fullflexible,
-	numbers=none,
-	float,
-]
+\begin{listing}
+	\begin{minted}{cpp}
 #include <SPI.h>
 #include <DW1000Ranging.h>
 
@@ -577,29 +568,23 @@ void setup() {
 
   DW1000Ranging.initCommunication(9, SS, 3);
   
-  DW1000Ranging.startAsAnchor("B1:00:00:00:B1:6B:00:B5",
-    DW1000.MODE_LONGDATA_RANGE_ACCURACY, false);
+  DW1000Ranging.startAsAnchor("B1:00:00:00:B1:6B:00:B5", DW1000.MODE_LONGDATA_RANGE_ACCURACY, false);
 }
 
 void loop() { DW1000Ranging.loop(); }
-\end{lstlisting}
+	\end{minted}
+	\unskip
+	\caption{Quellcode für ein \Gls{uwbm} das als \Gls{anchor} konfiguriert ist.}
+	\label{lst:uwb_modul_as_anchor}
+\end{listing}
 
-Das Gegenstück zum \Gls{anchor} ist in der \lstlistingname~\ref{lst:uwb_modul_as_tag} abgebildet. Jede gemessene Entfernung zwischen dem \Gls{tag} und einem \Gls{anchor} soll per \Gls{usb} an den Computer übertragen werden. Der Datenaustausch erfolgt dabei im \Gls{json}--Format, daher wird die Bibliothek \textit{ArduinoJson} benötigt.
+Das Gegenstück zum \Gls{anchor} ist in der \autoref{lst:uwb_modul_as_tag} abgebildet. Jede gemessene Entfernung zwischen dem \Gls{tag} und einem \Gls{anchor} soll per \Gls{usb} an den Computer übertragen werden. Der Datenaustausch erfolgt dabei im \Gls{json}--Format, daher wird die Bibliothek \textit{ArduinoJson} benötigt.
 Da dieses \Gls{uwbm} als \Gls{tag} fungieren soll, muss anstatt \textit{startAsAnchor} die Methode \textit{startAsTag} aufgerufen werden. Die Bedeutung der Parameter zwischen den beiden Methoden bleibt identisch.
 Neu ist der Aufruf der Methode \textit{attachNewRange}, \textit{attachNewDevice} und \textit{attachInactiveDevice}. Jeder der Methoden wird die Adresse einer Rückruffunktion übergeben. Diese Funktionen werden immer dann aufgerufen, wenn eine neue Entfernungen gemessen wurde und wenn eine neue Quelle für die Entfernungsmessungen hinzugekommen oder verschwunden ist.
-Alle Rückruffunktionen rufen ihrerseits die Funktion \textit{transmitDATA} auf. In dieser wird mittels der Klasse \textit{StaticJsonBuffer} ein \textit{JsonObject} erstellt, mit Daten im Schlüssel--Wert--Format (engl. Key--Value) belegt und dann mittels der Methode \textit{printTo(Serial)} über die \Gls{usb}--Schnittstelle an den Computer versendet. Das Format der Daten ist in der \lstlistingname~\ref{lst:data_in_json_format} abgebildet.
+Alle Rückruffunktionen rufen ihrerseits die Funktion \textit{transmitDATA} auf. In dieser wird mittels der Klasse \textit{StaticJsonBuffer} ein \textit{JsonObject} erstellt, mit Daten im Schlüssel--Wert--Format (engl. Key--Value) belegt und dann mittels der Methode \textit{printTo(Serial)} über die \Gls{usb}--Schnittstelle an den Computer versendet. Das Format der Daten ist in der \autoref{lst:data_in_json_format} abgebildet.
 
-\begin{lstlisting}[
-	frame=shadowbox,
-	breaklines=true,
-	caption={Quellcode für ein \Gls{uwbm} das als \Gls{tag} konfiguriert ist.},
-	captionpos=b,
-	label={lst:uwb_modul_as_tag},
-	language=C++,
-	columns=fullflexible,
-	numbers=none,
-	float,
-]
+\begin{listing}
+	\begin{minted}{cpp}
 #include <SPI.h>
 #include <DW1000Ranging.h>
 #include <ArduinoJson.h>
@@ -616,8 +601,7 @@ void setup() {
   DW1000Ranging.attachNewDevice(newDevice);
   DW1000Ranging.attachInactiveDevice(inactiveDevice);
 
-  DW1000Ranging.startAsTag("A0:00:00:00:B1:6B:00:B5",
-    DW1000.MODE_LONGDATA_RANGE_ACCURACY, false);
+  DW1000Ranging.startAsTag("A0:00:00:00:B1:6B:00:B5", DW1000.MODE_LONGDATA_RANGE_ACCURACY, false);
 }
 
 void loop() {
@@ -647,38 +631,30 @@ void transmitDATA(const Events event, const DW1000Device* device) {
   root.printTo(Serial);
   Serial.println();
 }
-\end{lstlisting}
+	\end{minted}
+	\unskip
+	\caption{Quellcode für ein \Gls{uwbm} das als \Gls{tag} konfiguriert ist.}
+	\label{lst:uwb_modul_as_tag}
+\end{listing}
 
-\begin{lstlisting}[
-	frame=shadowbox,
-	breaklines=true,
-	caption={Datenzeile im \Gls{json}--Format beim Austausch zwischen \Gls{uwbm} und Computer.},
-	captionpos=b,
-	label={lst:data_in_json_format},
-	columns=fullflexible,
-	numbers=none,
-	float,
-]
+
+\begin{listing}
+	\begin{minted}{json}
 {"type": 0, "aa": 160, "r": 1.01}
-\end{lstlisting}
+	\end{minted}
+	\unskip
+	\caption{Datenzeile im \Gls{json}--Format beim Austausch zwischen \Gls{uwbm} und Computer.}
+	\label{lst:data_in_json_format}
+\end{listing}
 
-Nach dem die Daten an den Computer gesendet wurde, müssen diese entgegengenommen und in das \Gls{ros}--System eingespeist werden. Dies geschieht über die \lstlistingname~\ref{lst:json_to_ros}.
+Nach dem die Daten an den Computer gesendet wurde, müssen diese entgegengenommen und in das \Gls{ros}--System eingespeist werden. Dies geschieht über die \autoref{lst:json_to_ros}.
 Zuerst wird das \Gls{ros}--System über \textit{rospy.init\_node} initalisiert. Um Nachrichten versendet zu können, wird zusätzlich ein \textit{Publisher} benötigt. Dieser wird über den Aufruf von \textit{rospy.Publisher} erstellt. Die Verbindung zu dem \Gls{uwbm} wird über den Aufruf \textit{serial.Serial} hergestellt.
 Mittels der \Gls{ros}--Nachricht \textit{ObservationRangeBeacon} wird die Sensor--Charakteristik des \Glsuserii{uwbm} beschrieben. Hierzu gehören die minimal und maximal messbare Entfernung, das Sensorrauschen, eine oder mehrere Entfernungsmessungen und einige \Gls{ros} spezifische Angaben wie z.B. das Koordinatensystem in dem sich das \Gls{uwbm} befindet.
 Danach werden solange Daten von dem \Gls{uwbm} gelesen bis der \Gls{ros}--Knoten beendet wird. Jeder gelesen Datensatz wird mittels der Methode \textit{json.loads(line)} untersucht, in ein \Gls{json}--Objekt konvertiert, und im Fehlerfall übersprungen. Gültige Entfernungsdaten werden in den Attributen \textit{range} und \textit{id} des Feldes \textit{orb.sensed\_data} gespeichert.
 Der Aufruf \textit{pub.publish(orb)} übergibt die zuvor erstellte Nachricht an das \Gls{ros}--System.
 
-\begin{lstlisting}[
-	frame=shadowbox,
-	breaklines=true,
-	caption={Quellcode um eine Entfernungsmessung an das \Gls{ros}--System zu übergeben.},
-	captionpos=b,
-	label={lst:json_to_ros},
-	language=Python,
-	columns=fullflexible,
-	numbers=none,
-	float,
-]
+\begin{listing}
+	\begin{minted}{python}
 import json
 import rospy
 import serial
@@ -711,7 +687,11 @@ def main():
     orb.sensed_data[0].id = obj["aa"]
 
     pub.publish(orb)
-\end{lstlisting}
+	\end{minted}
+	\unskip
+	\caption{Quellcode um eine Entfernungsmessung an das \Gls{ros}--System zu übergeben.}
+	\label{lst:json_to_ros}
+\end{listing}
 
 Der vollständige Quellcode mit Kommentaren und Fehlerbehandlung kann in dem GitHub--Projekt \cite{kasdorf2017roslamwithuwb} eingesehen werden.
 
