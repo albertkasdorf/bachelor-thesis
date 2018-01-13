@@ -34,9 +34,9 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\chapter{Stand der Forschung und Technik [todo]}
+\chapter{Stand der Forschung und Technik [rework]}
 
-In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \Gls{roslam} geliefert.
+In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \Gls{roslam} geliefert. Jeder Autor verwendet eine etwas andere Terminologie, auch wenn es sich im Kern um die gleiche Sache handelt. Daher werden in diesem Kapitel die Begriffe Anker, Tag und Beacon synonym verwendet.
 
 
 \begin{comment}
@@ -227,9 +227,84 @@ Sowohl das Verfahren aus dem Abschnitt~\ref{sec:blanco2008pure} als auch dieses 
 \end{figure}
 
 
+\begin{comment}
+--------------------------------------------------------------------------------
+- \cite{djugash2009robust}
+	- A robust method of localization and mapping using only range
+\end{comment}
+\section{A robust method of localization and mapping using only range}
 
+Jede bisherige Veröffentlichung die einen \Gls{roslam} mittels eines \Gls{ekf} umsetzen will, muss mit dem Problem der Linearisierung und der Multimodalität der Verteilung kämpfen. Hierfür wurde das Problem bisher immer im kartesischen Koordinatensystem betrachtet. Die Autoren dieses Werkes \cite{djugash2009robust} sind einen anderen Weg gegangen und haben das Problem ins Polarkoordinatensystem überführt. Dieses Vorgehen hat den großen Vorteil, dass ringförmige Verteilungen sehr gut im Polarkoordinatensystem modelliert werden können. Auch ist eine Vorverarbeitung (engl. Batch Process) der Entfernungsmessungen nicht mehr notwendig. Die Ergebnisse der Messung kann direkt an den Filter übergeben werden.
 
+Wie bereits im Grundlagenkapitel besprochen besteht der Zustandsvektor eines \Gls{ekf} für die Lokalisierung aus der Pose (Position und Orientierung) des Roboters:
 
+\[ q_k = \left[ x_k^r, y_k^r, \phi_k^r \right]^T. \]
+
+Für das \Gls{slam} Problem muss der Zustandsvektor um die Positionen der Tags erweitert werden:
+
+\[ q_k = \left[ x_k^r, y_k^r, \phi_k^r, x_k^1, y_k^1, \dots, x_k^N, y_k^N \right]^T. \]
+
+Die Beschreibung des Zustandsvektors in Polarkoordinaten erfolgt dabei über die Festlegung der Mitte des Polarkoordinatensytems $\left( c_{x,k}, c_{y,k} \right)$ und über die Entfernung und den Winkel $\left( r_k, \theta_k \right)$:
+
+\[ q_k = \left[ c_{x,k}^r, c_{y,k}^r, r_k^r, \theta_k^r, \phi_k^r, c_{x,k}^1, c_{y,k}^1, r_k^1, \theta_k^1, \dots, c_{x,k}^N, c_{y,k}^N, r_k^N, \theta_k^N \right]^T .~\footnote{Da für die Beschreibung der Zustände deutlich mehr Parameter benötigt werden, bezeichnet man dieses auch als relative Überparameterisierung (engl. \acrfull{rop}).}\]
+
+Damit können alle Tags beschrieben werden, für den Roboter benötigt man aber noch den zusätzlichen Parameter $\phi_k^r$ um die Ausrichtung (engl. Heading) festzulegen.
+
+Das vorherige Bewegungsmodell (engl. Motion Model) für das kartesischen Koordinatensystem kann weiterverwendet werden, nur die Parameterzuweisungen an $\left( c_{x,k}^r, c_{y,k}^r, \phi_k^r \right)$ ändern sich. Einzig das Messmodell (engl. Measurement Model) muss angepasst werden, um die erwartete Entfernung zu berechnen. Hierfür findet eine Konvertierung der Polarkoordinaten in Kartesische Koordinaten statt.
+
+Die Abbildungen~\ref{fig:djugash2009robust_fig1} verdeutlichen zum einen, wie die Verteilung in Polarkoordinaten dargestellt wird und zum andern, wie mehrere Messungen miteinander kombiniert werden.
+
+\autoref{fig:djugash2009robust_fig1a} beschreibt die tatsächliche Verteilung einer Einzelmessung. Das blaue Rechteck repräsentiert die Roboterposition und der rote Diamant die tatsächliche Tagposition. Die tatsächliche Verteilung einer Einzelmessung wird in Polarkoordinaten als grüne Fläche modelliert, siehe \autoref{fig:djugash2009robust_fig1b}. Über die blaue Ellipse wird die tatsächliche Verteilung mittels einer Normalverteilung angenähert und ergibt dabei die ringförmige Verteilung in der \autoref{fig:djugash2009robust_fig1c}.
+
+Nachdem zwei Messungen von verschiedenen Positionen aus durchgeführt wurden, ergibt sich die tatsächliche Verteilung aus den beiden Schnittpunkten der Ringe, siehe \autoref{fig:djugash2009robust_fig1d}. Die Multimodalität der Verteilung kann über einen \Gls{ekf} nicht mehr abgebildet werden, daher wird zu diesem Zeitpunkt pro Verteilung ein eigener \Gls{ekf} angelegt. \autoref{fig:djugash2009robust_fig1e} beschreibt wie im vorherigen Abschnitt die tatsächlichen und angenäherten Verteilungen in Polarkoordinaten und \autoref{fig:djugash2009robust_fig1f} die Verteilung die sich aus der Annäherung der Verteilung ergibt.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{djugash2009robust_fig1a}
+		\caption{}
+		\label{fig:djugash2009robust_fig1a}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.26\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{djugash2009robust_fig1b}
+		\caption{}
+		\label{fig:djugash2009robust_fig1b}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{djugash2009robust_fig1c}
+		\caption{}
+		\label{fig:djugash2009robust_fig1c}
+	\end{subfigure}
+	\bigskip
+		\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{djugash2009robust_fig1d}
+		\caption{}
+		\label{fig:djugash2009robust_fig1d}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.26\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{djugash2009robust_fig1e}
+		\caption{}
+		\label{fig:djugash2009robust_fig1e}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{djugash2009robust_fig1f}
+		\caption{}
+		\label{fig:djugash2009robust_fig1f}
+	\end{subfigure}
+	\caption{Darstellung der tatsächlichen und angenäherten Verteilung in Kartesischen und Polarkoordinaten.}
+	\label{fig:djugash2009robust_fig1}
+	\source{\cite{djugash2009robust}}
+\end{figure}
 
 
 \begin{comment}
@@ -292,7 +367,7 @@ Sowohl das Verfahren aus dem Abschnitt~\ref{sec:blanco2008pure} als auch dieses 
 \begin{itemize}
 \item !Navigating with ranging radios: Five data sets with ground truth (18)
 \item !Mobile robot localization based on ultra-wide-band ranging: A particle filter approach (90)
-\item !A robust method of localization and mapping using only range (45)
+%\item !A robust method of localization and mapping using only range (45)
 \item !Range-only SLAM with a mobile robot and a wireless sensor networks (109)
 \end{itemize}
 

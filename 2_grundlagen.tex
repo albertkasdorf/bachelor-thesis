@@ -35,7 +35,7 @@ In den nächsten zwei Abschnitten werden die \textit{DecaWave} Entfernungsmessve
 	
 
 \end{comment}
-\subsection{\acrlong{sstwr}}
+\subsection{Single-sided Two-way Ranging}
 
 Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr}--Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort-- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \figurename~\ref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
@@ -65,7 +65,8 @@ Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit 
 	- To give some idea of the size of this error, if devices A and B have clocks where each are 20 ppm away (the worst case specification) from the nominal clock in directions which make their combined error additive and equal to 40 ppm, then ka and kb might both be 0.99998 or 1.00002.
 	- Even with a relatively large UWB operating range of say 100 m, the TOF is just 333 ns, so the error is 20 × 10-6 × 333 × 10-9 seconds, which is 6.7 × 10-12 seconds or 6.7 picoseconds which is approximately 2.2 mm.
 \end{comment}
-\subsection{\acrlong{dstwr}}\label{subsec:double_sided_two_way_ranging}
+\subsection{Double-sided Two-way Ranging}
+\label{subsec:double_sided_two_way_ranging}
 
 Das \Gls{dstwr}--Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}--Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \figurename~\ref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
@@ -151,6 +152,10 @@ In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurd
 		- Bisher Winkel und Entferung zu einer Landmarke gegeben
 			- Computer Vision, Structure from Motion
 		- Hier nur die Entfernung
+- A Short Introduction to the Bayes Filter and Related Models
+	- http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam02-bayes-filter-short.pdf
+- Bayes Filter
+	- https://www.tu-chemnitz.de/informatik/KI/edu/robotik/ws2012/robotik_6_2.pdf
 \end{comment}
 \section{Bayes Filter [todo]}
 
@@ -175,11 +180,11 @@ In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurd
 \begin{comment}
 ------------------------------------------------------------------------------------------
 - \cite{kurth2003experimental}
-	- Recent extensions of Kalman ltering allow for non-Gaussian, multimodal probability distributions through multiple hypothesis tracking. The result is a more versatile estimation technique that still preserves many of the computational advantages of the Kalman filter.
+	- Recent extensions of Kalman Filtering allow for non-Gaussian, multimodal probability distributions through multiple hypothesis tracking. The result is a more versatile estimation technique that still preserves many of the computational advantages of the Kalman filter.
 \end{comment}
 \subsection{Extended Kalman Filter [todo]}
 
-% Linearisierung
+% Linearisierung, 
 
 
 \begin{comment}
@@ -190,7 +195,7 @@ In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurd
 \begin{comment}
 ------------------------------------------------------------------------------------------
 - \cite{kurth2003experimental}
-	- Monte Carlo localization, or particle ltering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
+	- Monte Carlo localization, or particle filtering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
 - \cite{fox1999monte}
 \end{comment}
 \subsection{Monte Carlo [todo]}
@@ -210,7 +215,12 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 \begin{comment}
 ------------------------------------------------------------------------------------------
 - \cite{kurth2003experimental}
-	- We are currently developing a batch localization method, which considers all the data collected by the robot and nds the best path estimate given all the data. Although time consuming computationally, this will produce the theoretically optimal result obtainable from the collected data; we can then evaluate the results of our online localization method by comparing to this optimal solution.
+	- We are currently developing a batch localization method, which considers all the data collected by the robot and finds the best path estimate given all the data. Although time consuming computationally, this will produce the theoretically optimal result obtainable from the collected data; we can then evaluate the results of our online localization method by comparing to this optimal solution.
+- \cite{}
+	- Comparison of Batch and Kalman Filtering for Radar Tracking
+	- http://www.dtic.mil/dtic/tr/fulltext/u2/p011192.pdf
+	- The EKF propagates the filter state between measurements, and incorporates measurements sequentially, with the error dynamics and observation models respectively. It is an implementation of the often referenced linear-minimum-variance (Kalman) formulas, adapted by first-variation approximations of the nonlinear models, centered at the current state estimate, and described in Reference [4] (Jazwinski). 	
+	- The Batch algorithm, in comparison, processes those same measurements simultaneously via iterative least-squares estimation. An overview of the comparison of measurement processing among the two algorithms is shown in Figure-1. Batch algorithm estimations were made in parallel with those of the EKF for comparison of estimation error time histories.
 \end{comment}
 %\section{Batch optimization [todo,optional]}
 
@@ -218,7 +228,7 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 \begin{comment}
 ------------------------------------------------------------------------------------------
 - \cite{kurth2003experimental}
-	- Additionally, we will extend the batch method to produce a variable dimension lter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
+	- Additionally, we will extend the batch method to produce a variable dimension filter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
 \end{comment}
 %\section{Variable Dimension Filter [todo,optional]}
 
