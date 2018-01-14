@@ -1,19 +1,38 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 - \cite{kurth2003experimental}
-	- Numerically, we can evaluate the performance of the dead reckoning and Kalman lter localization methods by considering the cross-track error (XTE). That is, for each pose we measure how far left or right of the true position our estimation is, orthogonal to the true heading. We compile these errors for every point along the path, then nd the maximum value along with the mean and standard deviation of the errors to produce the evaluative statistics in Table 1.
+	- Numerically, we can evaluate the performance of the dead reckoning and Kalman Filter localization methods by considering the cross-track error (XTE). That is, for each pose we measure how far left or right of the true position our estimation is, orthogonal to the true heading. We compile these errors for every point along the path, then and the maximum value along with the mean and standard deviation of the errors to produce the evaluative statistics in Table 1.
 	- https://de.wikipedia.org/wiki/Querabweichung
 - Diagramme
 	- \cite{kurth2003experimental}
-		- Fig. 5: (1) The ground truth path with tags indicated by circles. The numbers indicate how many range measurements were received from each tag over the duration of Test 1. (2) The path estimate from dead reckoning alone. (3) The path estimate from localization using a Kalman lter. The lter fuses data from odometry and a gyro with absolute measurements from RF tags to produce this path estimate. Numerical results are given in Table 1. (X: position in x(m), Y: position in y(m), Ground truth path with tag locations, Dead reckoning path, Kalman filter localization path)
+		- Fig. 5: (1) The ground truth path with tags indicated by circles. The numbers indicate how many range measurements were received from each tag over the duration of Test 1. (2) The path estimate from dead reckoning alone. (3) The path estimate from localization using a Kalman Filter. The Filter fuses data from odometry and a gyro with absolute measurements from RF tags to produce this path estimate. Numerical results are given in Table 1. (X: position in x(m), Y: position in y(m), Ground truth path with tag locations, Dead reckoning path, Kalman filter localization path)
 \end{comment}
 \chapter{RO-SLAM}\label{ch:ro_slam}
 
 
 \begin{comment}
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+- Einsatz mobiler Roboter in der Logistik am Beispiel des Robotino
+	- http://www.r-moehrle.de/wissenschaftlicheArbeiten/robotino1.pdf
 \end{comment}
-\section{Roboterplattform [todo]}
+\section{Roboterplattform}
+
+Um die Messungen für den \Gls{roslam} aufzuzeichnen wird eine Roboterplattform benötigt auf der das \Gls{uwbm} montiert werden kann. Zusätzlich wird noch eine Reihe weiterer Sensoren benötigt, die im Folgenden vorgestellt werden.
+
+Also Roboterplattform dient dabei der Robotino 2 von \textit{Festo Didactic}. Er gehört zur Klasse der holonomen Roboter, d.h. seinen Bewegungsmöglichkeiten unterliegen keinerlei Einschränkungen im zweidimensionalen Raum. Ermöglicht wird das, durch drei voneinander unabhängig arbeitenden omnidirektionalen Antriebseinheiten. Jede der drei Antriebseinheiten verfügt über einen Inkrementalgeber, mit dem sich abschätzen lässt, wie weit der Robotino gefahren ist. Um den Fehler der Inkrementalgeber in Kurvenfahrten zu reduzieren wird das digitale Gyroskop\footnote{Model: CruizCore XG1000 / XG1010} von \textit{Microinfinity} eingesetzt. Gesteuert wird der Robotino über eine \SI{300}{\MHz} starke Verarbeitungseinheit auf Basis eines Linux Betriebssystems mit einem Echtzeitkernel. \cite{festo2007robotinomanual}
+
+An der höchsten Position des Robotinos befindet sich ein 2D-LiDAR-Sensor\footnote{Model: TiM571-2050101} der Firma \textit{Sick}. Mit einem Öffnungswinkel von \SI{270}{\degree} und einem Arbeitsbereich von \SIrange{0.05}{25}{\meter} ist es möglich, genaue Belegungskarten der Umgebung zu erstellen. \cite{sick2016operatingmanual}
+
+Die Verarbeitungseinheit des Robotinos ist leistungsfähig genug um die anstehenden Steuerungsaufgaben zu erfüllen. Jedoch ist diese von leistungshungrigen Anwendungen wie dem \Gls{roslam} überfordert. Aus diesem Grund wird eine zusätzliche Verarbeitungseinheit\footnote{Model: NUC5i7RYH} mit einem Intel Core i7\footnote{5. Generation des Intel Core i7-5557U Prozessor mit bis zu \SI{3.4}{\GHz}. \cite{intel2015nucproductbrief}} verwendet.
+
+Die Fahrbefehle werden dem Robotino über einen Xbox Wireless Controller übermittelt.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{robotino_front}
+	\caption{[todo] Frontansicht des fertig aufgebauten Robotinos.}
+	\label{fig:robotino_front}
+\end{figure}
 
 
 \begin{comment}
