@@ -11,7 +11,7 @@ Aufgaben:
 + Versuchsaufbau Skizzieren
 + Projekte erstellen mit Tag und Anchor
 + Programmierung von Linux aus
-- Matlab Script erstellen
++ Matlab Script erstellen
 ? Ersatz Beacon erstellen
 
 

@@ -6,17 +6,19 @@ c0 = physconst('LightSpeed');
 unit_of_low_order_bit = 1 / (128 * 499.2 * 10^6);
 
 % Column ID Tag/Anker
-cid_t = 2;
-cid_a = 3;
-cid_r = 5;
+cid_t = 4;
+cid_a = 5;
+cid_r = 6;
 
 % Ground Truth der kurzen und langen Seiten des Pentagramms
 gt_a = 5.01;
 gt_d = (gt_a * (1 + sqrt(5))) / 2;
 gt = [
-    177, 178, 2.0; 177, 179, 2.0;
-    178, 177, 2.0; 178, 179, 2.0;
-    179, 177, 2.0; 179, 178, 2.0;
+    176, 177, gt_a; 176, 178, gt_d; 176, 179, gt_d; 176, 180, gt_a;
+    177, 176, gt_a; 177, 178, gt_a; 177, 179, gt_d; 177, 180, gt_d;
+    178, 176, gt_d; 178, 177, gt_a; 178, 179, gt_a; 178, 180, gt_d;
+    179, 176, gt_d; 179, 177, gt_d; 179, 178, gt_a; 179, 180, gt_a;
+    180, 176, gt_a; 180, 177, gt_d; 180, 178, gt_d; 180, 179, gt_a;
 ];
 
 % Umkreisradius des Pentagramms
@@ -28,7 +30,7 @@ x = [];
 b = [];
 
 % Daten einlesen
-data = dlmread('b.csv', ';', 1, 0);
+data = dlmread('data.csv', ';', 1, 0);
 
 % Eindeutige Tag/Anker kombinationen
 comb_ta = unique(data(:, [cid_t, cid_a]), 'rows');
