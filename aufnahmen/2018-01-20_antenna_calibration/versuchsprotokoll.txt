@@ -1,0 +1,49 @@
+Aufgaben:
++ Anzahl der Messungen festlegen
+	!1000
++ Messdauer
+	+ 1-4 Beacon => 20Hz
+	+ 4000 => 200s => ca. 3 min
+	+ 5 Messvorgänge => ca. 15 min
++ beacon_writer
++ Leichtgewichtige Verkabelung für die Datenübertragung
++ Tabelle mit Name<->Addresse<->ID
++ Versuchsaufbau Skizzieren
++ Projekte erstellen mit Tag und Anchor
++ Programmierung von Linux aus
+- Matlab Script erstellen
+? Ersatz Beacon erstellen
+
+
+Ablauf:
++ Akkus am Vorabend laden
+
++ cd ~/Arduino/libraries/arduino-dw1000
+	+ git checkout antenna_delay_calibration
+
++ Beacons mit einem Null Antennenverzögerung und richtiger Addresse programmieren
+	+ ro_slam_with_uwb/arduino/RO_SLAM_TAG/RO_SLAM_TAG.ino
+	+ ro_slam_with_uwb/arduino/RO_SLAM_ANCHOR/RO_SLAM_ANCHOR.ino
+
++ roslaunch ro_slam_with_uwb beacon_publisher.launch
+
++ Warten bis alle Beacons registiert sind (10 Sekunden)
+	+ rostopic echo "/beacon/sensed_data[0]/id"
+
++ Power at receiver input (dBm/MHz): -104 with 64MHz PRF at Channel 5
+	+ rostopic echo "/beacon_raw/receive_power"
+
++ rosrun ro_slam_with_uwb beacon_writer.py _csv_file_name:=test _csv_file_max:=1000
+
++ Daten mit matlab auswerten
+
++ Beacons mit der persönlichen Antennenverzögerung programmieren
+
++ Genauigkeit verifizieren
+
++ Fertig
+
+
+Resourcen:
+- https://rechneronline.de/pi/pentagramm.php
+- https://de.wikipedia.org/wiki/F%C3%BCnfeck

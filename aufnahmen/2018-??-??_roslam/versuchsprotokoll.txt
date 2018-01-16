@@ -1,0 +1,28 @@
+- Aufzeichnungsrichtlinien (RO-SLAM)
+	+ Robotino Odom zurücksetzen
+		+ rosservice call /reset_odometry 0 0 0
+	+ Warten bis alle Beacons registiert sind (10 Sekunden)
+		+ rostopic echo "/beacon/sensed_data[0]/id"
+	- Beacon Platzierung
+		+ Beacons auf keinen Fall symmetrisch plazieren.
+		+ Beacon-Position muss im Nachhinein bestimmt werden können.
+		? Beacons erhöht positionieren, damit sie vom Laser erkannt werden.
+		- Karte erstellen mit Beacon-Positionen
+	- Robotino Platzierung
+		+ Horizontale wird an dem Türrahmen ausgerichtet
+		+ Rückkehren zum Startpunkt, sinnvoll wegen Drift.
+		- Startpunkt festlegen auf der Karte
+		- Startpunkt mit Tape abkleben
+	+ Skizze des Raums anfertigen mit Maßen
+		+ Breite: 2.008m
+		+ Segmentlänge: 4.062m
+		+ Türbreite: 0.926m
+		+ Türrahmen: 4.6cm
+	- Platzierung von Kisten um Features für den LaserScan zu haben
+	- Robotino Geschwindigkeit anpassen
+		- Custom joystick teleop
+			- [todo]
+			- http://wiki.ros.org/teleop_twist_joy
+			- http://yardbot.ca/2014/10/writing-custom-joystick-teleop-node-ros/
+	- URDF-Modell anpassen
+		- [todo] Position des Beacons anpassen

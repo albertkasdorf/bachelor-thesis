@@ -1,0 +1,40 @@
+Aufgaben:
++ Nicht RF-Transparentes Material bestimmen
+	+ Alumniumplatte (stark Dämpfung)
+	+ Holzplatten (schwache Dämpfung)
+	+ Behälter mit Wasser (mittlere Dämpfung)
+
++ Messanzahl festlegen
+	+ Dauer
+		+ 1-1 Beacon => 8Hz
+		+ 1-2 Beacon => 13Hz
+		+ 1-3 Beacon => 17Hz
+		+ 1-4 Beacon => 20Hz
+	+ 250 => 31s, 500 => 62s, 1000 => 125s
+
++ Messabstände festlegen
+	+ 0m Beacon; 0.5m Hinterniss; 1-??m Becaon
+	- 1:1:15 Meter? => 15 Messungen
+	- 1:0.5:15 Meter? => 30 Messungen
+	- 1:0.1:8 Meter? => 80 Messungen
+
+Ablauf:
++ Akkus am Vorabend laden
+
++ cd ~/Arduino/libraries/arduino-dw1000
+	+ git checkout antenna_delay_calibration
+
++ Beacons mit individueller Antennenverzögerung und richtiger Addresse programmieren
+	+ ro_slam_with_uwb/arduino/RO_SLAM_TAG/RO_SLAM_TAG.ino
+	+ ro_slam_with_uwb/arduino/RO_SLAM_ANCHOR/RO_SLAM_ANCHOR.ino
+
++ roslaunch ro_slam_with_uwb beacon_publisher.launch
+
++ Warten bis der Beacon registiert ist (10 Sekunden)
+	+ rostopic echo "/beacon/sensed_data[0]/id"
+
++ rosrun ro_slam_with_uwb beacon_writer.py _csv_file_name:=test _csv_file_max:=1000
+	+ LOS Messung
+	+ NLOS Messung (Alublech, )
+
++ Fertig

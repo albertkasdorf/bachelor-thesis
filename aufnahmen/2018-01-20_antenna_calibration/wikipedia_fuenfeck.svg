@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="220mm" height="220mm" viewBox="0 0 22000 22000" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#0F0" stroke-width="56">
+ <circle cx="11000" cy="11000" r="9999"/>
+ <circle cx="11000" cy="11000" r="8088"/>
+ <g stroke-width="7">
+ <circle cx="11000" cy="11000" r="3800"/>
+ <circle cx="11000" cy="11000" r="3050"/></g>
+ <path stroke="#00F" stroke-width="48" stroke-dasharray="510"
+ d="M11000,11000l9500-3090M11000,11000l-9500-3090M11000,11000V1000M11000
+ 11000l5890,8100M11000,11000l-5890,8100"/>
+ <path stroke="#F0F" d="M1550,7908h18900l-15290,11109 5840-17975 5840,17975z"/>
+ <path stroke="#F00" stroke-width="90" d="M11000,999l9510,6890-3620,11200h-11780l-3620-11200z"/>
+ <path stroke="#888" d="M11000,11000v8100"/>
+</g>
+<g style="font-family:Arial;font-weight:400" font-size="800">
+ <g stroke="none" fill="#000">
+  <text x="4600"  y="19702">A</text>
+  <text x="17007" y="19702">B</text>
+  <text x="20650" y="8000" >C</text>
+  <text x="10700" y="817"  >D</text>
+  <text x="800"   y="8000" >E</text>
+  <text x="11176" y="10602">M</text>
+  <text x="10823" y="19945">F</text>
+  <text x="19061" y="13628">a</text>
+  <text x="13871" y="9122" >d</text>
+  <text x="2893"  y="17935">k</text>
+  <text x="4660"  y="15770">k</text>
+  <text x="11154" y="6737" >r</text>
+  <text x="11154" y="16764">r</text>
+  <g font-size="500" font-weight="700">
+   <text x="3291" y="18191">u</text>
+   <text x="5058" y="16026">i</text>
+   <text x="11419" y="17020">i</text>
+   <text x="11419" y="6993">u</text>
+  </g>
+ </g>
+</g>
+</svg>
