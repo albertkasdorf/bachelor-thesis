@@ -40,6 +40,7 @@ Ablauf:
 + Beacons mit der persönlichen Antennenverzögerung programmieren
 
 + Genauigkeit verifizieren
+	+ Erneut eine Messungen durchführen jedoch mit der Antennenverzögerung :/
 
 + Fertig
 

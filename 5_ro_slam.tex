@@ -36,60 +36,28 @@ Die Fahrbefehle werden dem Robotino über einen Xbox Wireless Controller übermi
 - Welche Funktion erfüllt dieses Modul
 - Welche ROS-Messages/-Topics/-Services bietet dieses Modul
 \end{comment}
-\section{Softwarearchitektur [todo]}
+\section{Softwarearchitektur}
+
+Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{mrpt} werden in den \Gls{ros} Hauptmodulen besprochen. In den Abschnitt \Gls{ros} Nebenmodulen werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
 - Begrifflichkeiten wie Topic, Sessage, Service usw. wurden bereits im Grundlagenkapitel geklärt.
-- TODO: Grundlagen ROS: URDF, Lauch-Files, TF-Tree (odom, base_link, map?)
+- TODO: Grundlagen ROS: URDF, Lauch-Files, TF-Tree (odom, base_link, map?), Wofür braucht man Koordinatensystemtransformationen?
 \end{comment}
 \subsection{ROS Hauptmodule [todo]}
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-"max_linear_vel", "min_linear_vel", "max_angular_vel", "min_angular_vel"
-
-<node name="robotino_node" pkg="robotino_node" type="robotino_node" output="screen">
-	<param name="hostname" value="$(arg hostname)" />
-	<param name="max_linear_vel" value="0.5" />
-	<param name="min_linear_vel" value="0.05" />
-	<param name="max_angular_vel" value="3.0" />
-	<param name="min_angular_vel" value="0.1" />
-	<remap from="robotino_joint_states" to="joint_states" />
-</node>
-
-OmniDriveROS::OmniDriveROS()
-{
-	cmd_vel_sub_ = nh_.subscribe("cmd_vel", 1, &OmniDriveROS::cmdVelCallback, this);
-}
+- \url{http://wiki.ros.org/robotino_node}
 \end{comment}
-\subsubsection{Robotino robotino\_node}
+\subsubsection{Robotino Steuerung}
 
-Kommunikation mit der Robotino-Steuereinheit, Auslesen der Sensoren, Bewegungssteuerung über das Topic cmd\_vel, begrenzen der maximalen Parameter.
+Zur Steuerung der Roboterplattform muss die Verarbeitungseinheit Befehle zur Steuereinheit des Robotinos schicken. Diese Aufgabe erfüllt das \Gls{ros} Modul \textit{robotino\_node} aus dem Paket \textit{robotino\_node}. Über das Topic \textit{cmd\_vel} können die Geschwindigkeiten in X--/Y--Richtung und um die Z--Achse festgelegt werden. Um den Robotino zu stoppen, müssen alle drei Parameter auf den Wert Null gesetzt werden.
 
-
-\begin{comment}
---------------------------------------------------------------------------------
-
-odometry_pub_ = nh_.advertise<nav_msgs::Odometry>("odom", 1, true);
-
-Transformation: odom <- base_link
-odometry_transform_broadcaster_.sendTransform( odometry_transform_ );
-
-reset_odometry_server_ = nh_.advertiseService("reset_odometry",
-			&OdometryROS::resetOdometryCallback, this);
-			
-<node name="robotino_odometry_node" pkg="robotino_node" type="robotino_odometry_node" output="screen">
-	<param name="hostname" value="$(arg hostname)" />
-</node>
-\end{comment}
-\subsubsection{robotino\_odometry\_node}
-
-Erzeugt die Transformation zwischen odom und base\_link Koordinatensystem.
-Sorgt dafür, dass die Odometry--Nachrichten vom Robotino ins ROS--System veröffentlicht werden.
-
+Um an die Informationen der Inkrementalgeber zu kommen muss das \Gls{ros} Modul \textit{robotino\_odometry\_node} aus dem Paket \textit{robotino\_node} gestartet werden. Nach dem Start steht das Topic \textit{odom} mit den aktuellen Werte der Inkrementalgeber zur Verfügung. Zusätzlich sorgt dieses Modul auch für die dynamische Transformation zwischen dem \textit{odom} und \textit{base\_link} Koordinatensystem.
 
 
 \begin{comment}
@@ -99,11 +67,15 @@ Sorgt dafür, dass die Odometry--Nachrichten vom Robotino ins ROS--System veröf
 	<param name="publish_frequency" type="double" value="20.0" />
 </node>
 
-- Bild von dem Robotino + TF Tree
+- TODO: Bild von dem Robotino + TF Tree
+- TODO: Laser--Scanner?
+- TODO: UWB--Modul und ROS Modul?
+- \url{http://wiki.ros.org/robot_state_publisher}
+- \url{http://wiki.ros.org/urdf}
 \end{comment}
 \subsubsection{state\_publisher}
 
-
+Neben den dynamischen Transformationen besteht der Robotino auch aus vielen statischen Transformationen. Hierzu gehört z.B. die Transformation vom Robotermittelpunkt zum Laser--Scanner oder \Gls{uwbm}. Diese statischen Transformationen werden in einer \Gls{urdf} Datei einmalig gespeichert und dann über das \Gls{ros} Modul \textit{state\_publisher} aus dem Paket \textit{robot\_state\_publisher} zur Laufzeit bereitgestellt.
 
 
 \begin{comment}
@@ -124,7 +96,8 @@ Parameters
 ~autorepeat_rate (double, default: 0.0 (disabled)): Rate in Hz at which a joystick that has a non-changing state will resend the previously sent message.
 
 \end{comment}
-\subsubsection{joy\_node}
+%\subsubsection{joy\_node}
+\subsubsection{Teleoperation}
 
 
 ROS driver for a generic Linux joystick. The joy package contains joy\_node, a node that interfaces a generic Linux joystick to ROS. This node publishes a "Joy" message, which contains the current state of each one of the joystick's buttons and axes.
