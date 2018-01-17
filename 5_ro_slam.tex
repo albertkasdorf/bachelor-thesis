@@ -38,7 +38,7 @@ Die Fahrbefehle werden dem Robotino über einen Xbox Wireless Controller übermi
 \end{comment}
 \section{Softwarearchitektur}
 
-Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{mrpt} werden in den \Gls{ros}--Hauptmodulen besprochen. In den Abschnitt \Gls{ros}--Nebenmodulen werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
+Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{roslam} werden in den \Gls{ros}--Hauptmodulen besprochen. In den Abschnitt \Gls{ros}--Nebenmodulen werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
 
 
 \begin{comment}
@@ -102,92 +102,69 @@ Die Abstandsmessungen zwischen dem \Gls{tag} und den vorhandenen \Glspl{anchor} 
 \begin{comment}
 --------------------------------------------------------------------------------
 \end{comment}
-\subsection{ROS Hilfsmodule [todo]}
-
-- Erstellen einer Umgebungskarte und der Trajektorie in der Umgebungskarte.
-- Vergleichen der Roboter--Odometrie mit zwei Laser--Odometrien.
+\subsection{ROS--Hilfsmodule}
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
 - \url{http://wiki.ros.org/sick_tim}
-A ROS driver for the SICK TiM series of laser scanners.
-Auslesen des 2D-LiDAR-Sensors und erstellen einer 
-TIM571-2050101 (P/N 1075091); frequency: 15 Hz, angular resolution: 0.333°, range: 25m; see sick_tim571_2050101.launch
-
-scan (sensor_msgs/LaserScan): The published laser scans.
-
-~frame_id (str, default: laser): The TF frame in which laser scans will be returned.
 \end{comment}
-\subsubsection{sick\_tim}
+\subsubsection{2D--Laser--Entfernungsmesser}
 
+Der 2D--Laser--Entfernungsmesser gehört zu einem der am häufigsten verwendeten Sensoren für die präzise visuelle Erfassen der Umwelt. Für mehrere der nachfolgenden \Gls{rosm} ist eine 2D--Laser--Entfernungsmessung eine zwingende Voraussetzung. Um die Daten dem \Gls{ros}--System bereitzustellen wird das \Gls{rosm} \textit{sick\_tim551\_2050001} aus dem Paket \textit{sick\_tim} verwendet. Dieses Modul stellt über dem Topic \textit{scan} mit einer Rate von \SI{15}{\hertz} Messages vom Typ \textit{sensor\_msgs/LaserScan} bereit.
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-<node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
-  <param name="scan_topic" value="scan" />
-  <param name="base_frame" value="base_link" />
-  <param name="odom_frame" value="odom" />
-  <param name="map_frame" value="map" />
-
-  <param name="pub_map_odom_transform" value="true" />
-
-  <param name="map_resolution" value="0.02" />
-  <param name="laser_min_dist" value="0.05" />
-	<param name="laser_max_dist" value="30.0" />
-</node>
 - \url{http://wiki.ros.org/hector_mapping}
-- hector_mapping is a SLAM approach that can be used without odometry as well as on platforms that exhibit roll/pitch motion (of the sensor, the platform or both). It leverages the high update rate of modern LIDAR systems like the Hokuyo UTM-30LX and provides 2D pose estimates at scan rate of the sensors (40Hz for the UTM-30LX). While the system does not provide explicit loop closing ability, it is sufficiently accurate for many real world scenarios. The system has successfully been used on Unmanned Ground Robots, Unmanned Surface Vehicles, Handheld Mapping Devices and logged data from quadrotor UAVs.
-- Bild vom OccupanyGrid
 \end{comment}
-\subsubsection{hector\_mapping}
+\subsubsection{Belegungskarten}
 
+Das erste \Gls{rosm}, das von der 2D--Laser--Entfernungsmessung Gebrauch macht, ist das \textit{hector\_mapping} aus dem Paket \textit{hector\_mapping}. Mit diesem Modul können präzise Belegungskarten (engl. Occupancy Grid Map) erstellt werden, die für jede Koordinate der Karte festlegen ob diese durch ein Hindernis belegt (schwarz) oder frei (weiß) ist. Bereiche die von Hindernissen verdeckt sind oder außerhalb der Sensorreichweite liegen, werden als unbestimmt (grau) markiert, siehe \autoref{fig:rviz_occupancy_grid_map}. In \Gls{ros} werden Belegungskarten mit dem Message Typ \textit{nav\_msgs/OccupancyGrid} repräsentiert.
+
+Zu den wichtigsten Parametern zählt die minimale und maximale Sensorreichweite (\textit{laser\_min\_dist} bzw. \textit{laser\_max\_dist}) die für die Kartenerstellung berücksichtigt wird und die Auflösung (\textit{map\_resolution}) einer Zelle in der Karte.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{rviz_occupancy_grid_map}
+	\caption{Die Belegungskarte der Messstrecke.}
+	\label{fig:rviz_occupancy_grid_map}
+\end{figure}
+ 
+
+\begin{comment}
+--------------------------------------------------------------------------------
+- \url{http://wiki.ros.org/hector_trajectory_server}
+- \url{http://docs.ros.org/api/nav_msgs/html/msg/Path.html}
+\end{comment}
+\subsubsection{Trajektorie}
+
+Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Odometrie aus. Als Quelle für die Odometrie dienen dabei die Inkrementalgeber des Robotino. Im nächsten Abschnitt werden weitere Quellen für die Odometrie vorgestellt. Um nun die Güte der Odometrie--Quellen zu vergleichen, wird die verfahrene Trajektorie jeder Quelle benötigt. Diese Informationen werden von dem \Gls{rosm} \textit{hector\_trajectory\_server} aus dem Paket {hector\_trajectory\_server} bereitgestellt. Die Daten liegen dabei als Message vom Typ \textit{nav\_msgs/Path} bereit und können in die Belegungskarte integriert werden, siehe \autoref{fig:rviz_trajektorie}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{rviz_trajektorie}
+	\caption{Die Trajektorie einer Messfahrt des Robotino.}
+	\label{fig:rviz_trajektorie}
+\end{figure}
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-\end{comment}
-\subsubsection{hector\_trajectory\_server}
+- \url{http://wiki.ros.org/rf2o}
+- \url{http://wiki.ros.org/laser_scan_matcher}
 
-Mit diesem Modul ist es möglich die gefahrene Trajektorie eine Roboters in einem bestimmten Koordinatensystem auszugeben. Hierfür muss im TF--Tree eine Verbindung zwischen dem \textit{source\_frame\_name}(base\_link) und dem \textit{target\_frame\_name}(odom oder map) bestehen. Die Trajektorie bezieht sich mit ihren Koordinaten auf das target\_frame und ist vom Datentyp nav\_msgs/Path.
-
-Über einen Service lässt die sich Trajektorie auch abfragen: \textit{rosservice call /trajectory}
-
-\url{http://wiki.ros.org/hector_trajectory_server}
-
-\url{http://docs.ros.org/api/nav_msgs/html/msg/Path.html}
-
-\begin{listing}
-	\begin{minted}[frame=single]{xml}
-<node 
-  name="hector_trajectory_server"
-  pkg="hector_trajectory_server"
-  type="hector_trajectory_server"
-  output="screen">
-
-  <param name="target_frame_name" value="map"/>
-  <param name="source_frame_name" value="base_link" />
-  <param name="trajectory_update_rate" value="10.0" />
-  <param name="trajectory_publish_rate" value="10"/>
-</node>
-	\end{minted}
-	\unskip
-	\caption{Konfiguration der hector\_trajectory\_server--Nodes.}
-	\label{lst:hector_trajectory_server_node}
-\end{listing}
+rf2o\_laser\_odometry
+Estimation of 2D odometry based on planar laser scans. Useful for mobile robots with innacurate base odometry. For full description of the algorithm, please refer to: Planar Odometry from a Radial Laser Scanner. A Range Flow-based Approach. ICRA 2016 Available at: http://mapir.isa.uma.es/mapirwebsite/index.php/mapir-downloads/papers/217
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
-\subsubsection{rf2o\_laser\_odometry}
+laser\_scan\_matcher
+An incremental laser scan matcher, using Andrea Censi's Canonical Scan Matcher (CSM) implementation. See the web site for more about CSM. NOTE the CSM library is licensed under the GNU Lesser General Public License v3, whereas the rest of the code is released under the BSD license.
 
-\url{http://wiki.ros.org/rf2o}
+The laser_scan_matcher package is an incremental laser scan registration tool. The package allows to scan match between consecutive sensor_msgs/LaserScan messages, and publish the estimated position of the laser as a geometry_msgs/Pose2D or a tf transform.
 
+The package can be used without any odometry estimation provided by other sensors. Thus, it can serve as a stand-alone odometry estimator. Alternatively, you can provide several types of odometry input to improve the registration speed and accuracy.
 
-\begin{comment}
---------------------------------------------------------------------------------
     <node
         if="$(arg enable_laser_scan_matcher)"
         pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node"
@@ -198,11 +175,24 @@ Mit diesem Modul ist es möglich die gefahrene Trajektorie eine Roboters in eine
         <param name="use_odom" value="true" />
         <param name="use_imu" value="false" />
     </node>
+
+- Vergleichen der Roboter--Odometrie mit zwei Laser--Odometrien.
+
 \end{comment}
-\subsubsection{laser\_scan\_matcher}
+\subsubsection{Laser--Odometrie}
 
-\url{http://wiki.ros.org/laser_scan_matcher}
+Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quelle für die Odometrie vorgestellt. Beide \Glspl{rosm} nutzen nur die Daten der 2D--Laser--Ent\-fern\-ungs\-mes\-sung um eine Schätzung für die aktuelle Pose zu erstellen. Bei dem ersten handelt es sich um den \textit{laser\_scan\_matcher\_node} aus dem Paket \textit{laser\_scan\_matcher} und bei dem zweiten um den \textit{rf2o\_laser\_odometry\_node} aus dem Paket \textit{rf2o\_laser\_odometry}.
 
+
+\begin{comment}
+--------------------------------------------------------------------------------
+\subsubsection{Vergleich der Trajektorie von Odom und rf2o}
+
+- Trajektorie der Robotino--Odometry bestimmen.
+- Herausfiltern der Odometry Nachrichten aus den Bag--Dateien
+- Odometry aus den Laser--Scans bestimmen und Trajektorie aufzeichen.
+- Trajektorien vergleichen
+\end{comment}
 
 
 
@@ -221,15 +211,7 @@ Benötigt eine TF--Transformation zwischen base\_link und odom. Mittels der Odom
 
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-\subsubsection{Vergleich der Trajektorie von Odom und rf2o}
 
-- Trajektorie der Robotino--Odometry bestimmen.
-- Herausfiltern der Odometry Nachrichten aus den Bag--Dateien
-- Odometry aus den Laser--Scans bestimmen und Trajektorie aufzeichen.
-- Trajektorien vergleichen
-\end{comment}
 
 
 

@@ -48,9 +48,11 @@
 \end{comment}
 \chapter{Auflistungen}
 
+
 \begin{listing}
 	\begin{minted}[frame=single]{xml}
 <node pkg="joy" type="joy_node" name="joy_node">
+
   <param name="dev" type="string" value="/dev/input/js0" />
 </node>
 	\end{minted}
@@ -59,6 +61,21 @@
 	\label{lst:joy_node}
 \end{listing}
 
+
+\begin{listing}
+	\begin{minted}[frame=single]{xml}
+<node pkg="hector_trajectory_server" type="hector_trajectory_server" name="hector_trajectory_server_node">
+
+  <param name="target_frame_name" value="map"/>
+  <param name="source_frame_name" value="base_link" />
+  <param name="trajectory_update_rate" value="10.0" />
+  <param name="trajectory_publish_rate" value="10"/>
+</node>
+	\end{minted}
+	\unskip
+	\caption{Konfiguration der \textit{hector\_trajectory\_server}.}
+	\label{lst:hector_trajectory_server_node}
+\end{listing}
 
 
 \end{appendices}
