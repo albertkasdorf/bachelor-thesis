@@ -1,0 +1,4 @@
+- Trajektorie der Robotino--Odometry bestimmen.
+- Herausfiltern der Odometry Nachrichten aus den Bag--Dateien
+- Odometry aus den Laser--Scans bestimmen und Trajektorie aufzeichen.
+- Trajektorien vergleichen
