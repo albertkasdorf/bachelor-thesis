@@ -16,7 +16,7 @@ Um die Messungen für den \Gls{roslam} aufzuzeichnen wird eine Roboterplattform 
 
 Also Roboterplattform dient dabei der Robotino 2 von \textit{Festo Didactic}. Er gehört zur Klasse der holonomen Roboter, d.h. seinen Bewegungsmöglichkeiten unterliegen keinerlei Einschränkungen im zweidimensionalen Raum. Ermöglicht wird das, durch drei voneinander unabhängig arbeitenden omnidirektionalen Antriebseinheiten. Jede der drei Antriebseinheiten verfügt über einen Inkrementalgeber, mit dem sich abschätzen lässt, wie weit der Robotino gefahren ist. Um den Fehler der Inkrementalgeber in Kurvenfahrten zu reduzieren wird das digitale Gyroskop\footnote{Model: CruizCore XG1000 / XG1010} von \textit{Microinfinity} eingesetzt. Gesteuert wird der Robotino über eine \SI{300}{\MHz} starke Verarbeitungseinheit auf Basis eines Linux Betriebssystems mit einem Echtzeitkernel. \cite{festo2007robotinomanual}
 
-An der höchsten Position des Robotinos befindet sich ein 2D-LiDAR-Sensor\footnote{Model: TiM571-2050101} der Firma \textit{Sick}. Mit einem Öffnungswinkel von \SI{270}{\degree} und einem Arbeitsbereich von \SIrange{0.05}{25}{\meter} ist es möglich, genaue Belegungskarten der Umgebung zu erstellen. \cite{sick2016operatingmanual}
+An der höchsten Position des Robotinos befindet sich ein 2D--Laser--Entfernungsmesser\footnote{Model: TiM571-2050101} der Firma \textit{Sick}. Mit einem Öffnungswinkel von \SI{270}{\degree} und einem Arbeitsbereich von \SIrange{0.05}{25}{\meter} ist es möglich, genaue Belegungskarten der Umgebung zu erstellen. \cite{sick2016operatingmanual}
 
 Die Verarbeitungseinheit des Robotinos ist leistungsfähig genug um die anstehenden Steuerungsaufgaben zu erfüllen. Jedoch ist diese von leistungshungrigen Anwendungen wie dem \Gls{roslam} überfordert. Aus diesem Grund wird eine zusätzliche Verarbeitungseinheit\footnote{Model: NUC5i7RYH} mit einem Intel Core i7\footnote{5. Generation des Intel Core i7-5557U Prozessor mit bis zu \SI{3.4}{\GHz}. \cite{intel2015nucproductbrief}} verwendet.
 
@@ -38,92 +38,79 @@ Die Fahrbefehle werden dem Robotino über einen Xbox Wireless Controller übermi
 \end{comment}
 \section{Softwarearchitektur}
 
-Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{mrpt} werden in den \Gls{ros} Hauptmodulen besprochen. In den Abschnitt \Gls{ros} Nebenmodulen werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
+Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{mrpt} werden in den \Gls{ros}--Hauptmodulen besprochen. In den Abschnitt \Gls{ros}--Nebenmodulen werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
 - Begrifflichkeiten wie Topic, Sessage, Service usw. wurden bereits im Grundlagenkapitel geklärt.
-- TODO: Grundlagen ROS: URDF, Lauch-Files, TF-Tree (odom, base_link, map?), Wofür braucht man Koordinatensystemtransformationen?
+- todo: Grundlagen ROS: URDF--Files, Lauch--Files, TF--Tree (odom, base_link, map?), Wofür braucht man Koordinatensystemtransformationen?
+- todo: Übersicht über alle Module und deren Verbindung zu einander?
 \end{comment}
-\subsection{ROS Hauptmodule [todo]}
+\subsection{ROS--Hauptmodule}
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
 - \url{http://wiki.ros.org/robotino_node}
+- todo: Service reset_odometry
 \end{comment}
-\subsubsection{Robotino Steuerung}
+\subsubsection{Robotino--Steuerung}
 
-Zur Steuerung der Roboterplattform muss die Verarbeitungseinheit Befehle zur Steuereinheit des Robotinos schicken. Diese Aufgabe erfüllt das \Gls{ros} Modul \textit{robotino\_node} aus dem Paket \textit{robotino\_node}. Über das Topic \textit{cmd\_vel} können die Geschwindigkeiten in X--/Y--Richtung und um die Z--Achse festgelegt werden. Um den Robotino zu stoppen, müssen alle drei Parameter auf den Wert Null gesetzt werden.
+Zur Steuerung der Roboterplattform muss die Verarbeitungseinheit Befehle zur Steuereinheit des Robotinos schicken. Diese Aufgabe erfüllt das \Gls{rosm} \textit{robotino\_node} aus dem Paket \textit{robotino\_node}. Über das Topic \textit{cmd\_vel} können die Geschwindigkeiten in X--/Y--Richtung und um die Z--Achse festgelegt werden. Um den Robotino zu stoppen, müssen alle drei Parameter auf den Wert Null gesetzt werden.
 
-Um an die Informationen der Inkrementalgeber zu kommen muss das \Gls{ros} Modul \textit{robotino\_odometry\_node} aus dem Paket \textit{robotino\_node} gestartet werden. Nach dem Start steht das Topic \textit{odom} mit den aktuellen Werte der Inkrementalgeber zur Verfügung. Zusätzlich sorgt dieses Modul auch für die dynamische Transformation zwischen dem \textit{odom} und \textit{base\_link} Koordinatensystem.
+Um an die Informationen der Inkrementalgeber zu kommen muss das \Gls{rosm} \textit{robotino\_odometry\_node} aus dem Paket \textit{robotino\_node} gestartet werden. Nach dem Start steht das Topic \textit{odom} mit den aktuellen Werte der Inkrementalgeber zur Verfügung. Zusätzlich sorgt dieses Modul auch für die dynamische Transformation zwischen dem \textit{odom} und \textit{base\_link} Koordinatensystem.
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-<param name="robot_description" textfile="$(find robotino_description)/urdf/robotino.urdf" />
-<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" output="screen">
-	<param name="publish_frequency" type="double" value="20.0" />
-</node>
-
-- TODO: Bild von dem Robotino + TF Tree
-- TODO: Laser--Scanner?
-- TODO: UWB--Modul und ROS Modul?
 - \url{http://wiki.ros.org/robot_state_publisher}
 - \url{http://wiki.ros.org/urdf}
 \end{comment}
-\subsubsection{state\_publisher}
+\subsubsection{Koordinatentransformation}
 
-Neben den dynamischen Transformationen besteht der Robotino auch aus vielen statischen Transformationen. Hierzu gehört z.B. die Transformation vom Robotermittelpunkt zum Laser--Scanner oder \Gls{uwbm}. Diese statischen Transformationen werden in einer \Gls{urdf} Datei einmalig gespeichert und dann über das \Gls{ros} Modul \textit{state\_publisher} aus dem Paket \textit{robot\_state\_publisher} zur Laufzeit bereitgestellt.
+Neben den dynamischen Transformationen besteht der Robotino auch aus vielen statischen Transformationen. Hierzu gehört z.B. die Transformation vom Robotino--Mittelpunkt zum 2D--Laser--Entfernungsmesser oder \Gls{uwbm}. Diese statischen Transformationen werden in einer \Gls{urdf}--Datei einmalig gespeichert und dann über das \Gls{rosm} \textit{state\_publisher} aus dem Paket \textit{robot\_state\_publisher} zur Laufzeit bereitgestellt, siehe \autoref{fig:rviz_robotino_tf2}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{rviz_robotino_tf2}
+	\caption{Statische Transformationen des Robotino.}
+	\label{fig:rviz_robotino_tf2}
+\end{figure}
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-- http://wiki.ros.org/teleop_twist_joy
-- http://yardbot.ca/2014/10/writing-custom-joystick-teleop-node-ros/
-
-<node pkg="joy" type="joy_node" name="joy_node" output="screen">
-	<param name="dev" type="string" value="/dev/input/js0" />
-</node>
-
-Published Topics
-- joy (joy/Joy): Outputs the joystick state.
-- joy (sensor_msgs/Joy): Outputs the joystick state.
-
-Parameters
-~dev (string, default: /dev/input/js0): Linux joystick device from which to read joystick events.
-~autorepeat_rate (double, default: 0.0 (disabled)): Rate in Hz at which a joystick that has a non-changing state will resend the previously sent message.
-
+- \url{http://wiki.ros.org/joy}
+- todo: Referenz auf das lst:joy_node stehen lassen?
 \end{comment}
-%\subsubsection{joy\_node}
 \subsubsection{Teleoperation}
 
+Um die Roboterplattform zu steuern wird ein Eingabegerät benötigt. Ein \textit{Xbox Wireless Controller} wird dabei als Eingabegerät verwendet. Zustandsänderungen am Eingabegerät werden über das \Gls{rosm} \textit{joy\_node} aus dem Paket \textit{joy} registriert und über das Topic \textit{joy} bereitgestellt. Das überwachte Eingabegerät wird über den Parameter \textit{dev} festgelegt, siehe \autoref{lst:joy_node}.
 
-ROS driver for a generic Linux joystick. The joy package contains joy\_node, a node that interfaces a generic Linux joystick to ROS. This node publishes a "Joy" message, which contains the current state of each one of the joystick's buttons and axes.
-
-
-
+Mit den generischen Daten des Eingabegerätes kann die Roboterplattform jedoch nichts anfangen, diese benötigt eine Message vom Typ \textit{geometry\_msgs/Twist}. Die Transformation zwischen der Message \textit{sensor\_msgs/Joy} und \textit{geometry\_msgs/Twist} erfolgt durch das \Gls{rosm} \textit{xbox\_teleop.py} aus dem Paket \textit{ro\_slam\_with\_uwb}.
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-rospy.Subscriber('joy', Joy, callback)
-
-# TurtleSim commands
-# http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics
-pub = rospy.Publisher('/cmd_vel', Twist, queue_size=60)
 \end{comment}
-\subsubsection{xbox\_teleop.py}
+\subsubsection{UWB--Abstandsmessungen}
 
-Erzeugt aus der joy-Message eine cmd\_vel-Message.
-
-
-
+Die Abstandsmessungen zwischen dem \Gls{tag} und den vorhandenen \Glspl{anchor} werden durch das \Gls{uwbm} über die \Gls{usb}--Schnittstelle bereitgestellt. Die Daten werden dann von dem \Gls{rosm} \textit{beacon\_publisher.py} aus dem Paket \textit{ro\_slam\_with\_uwb} aufgefangen und auf den Topics \textit{beacon} und \textit{beacon\_raw} veröffentlicht. Das erste Topic ist vom Typ \textit{mrpt\_msgs/ObservationRangeBeacon} und wird von dem \Gls{mrpt}--Modul für den \Gls{roslam} benötigt. Das zweite Topic wird die Auswertung der Abstandmessungen im \autoref{ch:eval} benötigt und ist vom Typ \textit{ro\_slam\_with\_uwb/Beacon}.
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
+\end{comment}
+\subsection{ROS Hilfsmodule [todo]}
+
+- Erstellen einer Umgebungskarte und der Trajektorie in der Umgebungskarte.
+- Vergleichen der Roboter--Odometrie mit zwei Laser--Odometrien.
+
+
+\begin{comment}
+--------------------------------------------------------------------------------
+- \url{http://wiki.ros.org/sick_tim}
 A ROS driver for the SICK TiM series of laser scanners.
 Auslesen des 2D-LiDAR-Sensors und erstellen einer 
 TIM571-2050101 (P/N 1075091); frequency: 15 Hz, angular resolution: 0.333°, range: 25m; see sick_tim571_2050101.launch
@@ -134,31 +121,6 @@ scan (sensor_msgs/LaserScan): The published laser scans.
 \end{comment}
 \subsubsection{sick\_tim}
 
-
-\url{http://wiki.ros.org/sick_tim}
-
-
-\begin{comment}
---------------------------------------------------------------------------------
-pub = rospy.Publisher('beacon', ObservationRangeBeacon, queue_size=10)
-pub_raw = rospy.Publisher('beacon_raw', Beacon, queue_size=10)
-
-antenna_delay = rospy.get_param('~antenna_delay', 16450)
-sensor_frame_id = rospy.get_param('~sensor_frame_id', 'uwb_reciever_link')
-serial_port = rospy.get_param('~serial_port', '/dev/CP2104_Friend')
-\end{comment}
-\subsubsection{beacon\_publisher\_node}
-
-
-
-
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
-\subsection{ROS Hilfsmodule [todo]}
-
-- Erstellen einer Umgebungskarte und der Trajektorie in der Umgebungskarte.
-- Vergleichen der Roboter--Odometrie mit zwei Laser--Odometrien.
 
 
 \begin{comment}

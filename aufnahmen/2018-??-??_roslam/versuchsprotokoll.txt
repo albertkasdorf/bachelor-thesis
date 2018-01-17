@@ -1,3 +1,16 @@
+Aufgaben:
+- Teleop-Node
+	- http://wiki.ros.org/teleop_twist_joy
+	- http://yardbot.ca/2014/10/writing-custom-joystick-teleop-node-ros/
+	- ~autorepeat_rate (double, default: 0.0 (disabled)): Rate in Hz at which a joystick that has a non-changing state will resend the previously sent message.
+	- Test with TurtleSim
+	- http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics
+	- Map-Funktion verwenden um vom Bereich 0-1 auf den Geschwindigkeitsbereich zu übertragen.
+	- Unter-/Obere Grenze der Bereiche soll parametriert werden können
+		- d.h. Nur der Bereich 0.3-1.0 soll gemappt werden
+		- Werte unterhalb der Zielwerte werden verworfen, also gleich Null gesetzt.
+		- Werte oberhalb der Zielwerte werden auf den oberen Zielwert gesetzt.
+
 - Aufzeichnungsrichtlinien (RO-SLAM)
 	+ Robotino Odom zurücksetzen
 		+ rosservice call /reset_odometry 0 0 0

@@ -7,6 +7,10 @@
 \section{Blindtext Abschnitt}
 \blindtext
 
+
+\begin{comment}
+--------------------------------------------------------------------------------
+\end{comment}
 \chapter{Tabellen}
 
 \begin{sidewaystable}
@@ -37,5 +41,24 @@
 	\caption{Materialkosten pro \gls{tag} bzw. \gls{anchor}.}
 	\label{tab:kosten_pro_modul}
 \end{sidewaystable}
+
+
+\begin{comment}
+--------------------------------------------------------------------------------
+\end{comment}
+\chapter{Auflistungen}
+
+\begin{listing}
+	\begin{minted}[frame=single]{xml}
+<node pkg="joy" type="joy_node" name="joy_node">
+  <param name="dev" type="string" value="/dev/input/js0" />
+</node>
+	\end{minted}
+	\unskip
+	\caption{Konfiguration des \textit{joy\_node}.}
+	\label{lst:joy_node}
+\end{listing}
+
+
 
 \end{appendices}

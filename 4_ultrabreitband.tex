@@ -14,6 +14,7 @@ Basisband (engl. Baseband)
 https://en.wikipedia.org/wiki/Ultra-wideband
 \end{comment}
 \chapter{\glsentrylong{uwb}}
+\label{ch:uwb}
 
 Bei der normalen Funkübertragung werden die zu übermittelnden \Gls{basisband}signale auf eine sinusförmige Trägerfrequenz auf moduliert. Bei der \Gls{uwb}--Übertragung ist das nicht der Fall, die Signale werden im \Gls{basisband} übertragen. Hierfür werden im Nanosekundenbereich kurze Impulse erzeugt. \Gls{uwb}--Signale verwenden eine Bandbreite von bis zu \SI{500}{\MHz} und können im Frequenzbereich von \SIrange{3.6}{10.1}{\GHz} eingesetzt werden. Um zu verhindern das bestehende Dienste wie \Gls{gps} oder \Gls{wlan} gestört werden, wurde durch die \Gls{fcc} die maximale Abgabeleistung von \Gls{uwb}--Sendern stark begrenzt (unter \SI[per-mode=symbol]{-41.3}{\dBm\per\MHz}). Dadurch ist eine Koexistenz mit den bereits bestehenden Diensten möglich, ohne dass diese sich gegenseitig stören. \cite{win1998impulse, yang2004uwbcom, fontana2004recent, aiello2006ultra, yavari2014ultra}
 
@@ -697,7 +698,7 @@ Der vollständige Quellcode mit Kommentaren und Fehlerbehandlung kann in dem Git
 
 
 \begin{comment}
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 - Kalibierung nach DecaWave
 	- FlowCharts erklären
 	- Ergebnisse auswerten
@@ -709,6 +710,24 @@ Der vollständige Quellcode mit Kommentaren und Fehlerbehandlung kann in dem Git
 - Kann über die Kalibrierung der Antennenverzögerung eine genauere Entfernungsmessung erreicht werden?
 - Das Verfahren zur Kalibrierung der Antennenverzögerung kann ebenfalls der Hersteller--Dokumentation entnommen werden, siehe \cite{decawave2014calibration}. Hierfür muss ein Versuchsaufbau erstellt werden. Zusätzlich wird eine Anpassung der Steuer--/Auswerte-Software notwendig, um die Verzögerung zu berechnen.
 - Die Genauigkeitsbestimmung der Entfernungsmessung mit LOS und NLOS wird über einen Versuchsaufbau realisiert. Hierfür werden mehrere Messreihen in verschiedenen Abständen aufgenommen und mit der tatsächlichen Entfernung verglichen.
+
+- Beschreiben des Problems
+	- Antennenverzögerung
+	- Gleichungen
 \end{comment}
 \subsection{Kalibrierung [todo, optional]}
+
+
+\begin{comment}
+--------------------------------------------------------------------------------
+- Verfahrensbeschreibung des DecaWave Algorihtmus
+\end{comment}
+\subsubsection{DecaWave [todo]}
+
+
+\begin{comment}
+--------------------------------------------------------------------------------
+- Verfahrensbeschreibung des LGS
+\end{comment}
+\subsubsection{Lineares Gleichungssystem [todo]}
 
