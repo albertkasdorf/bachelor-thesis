@@ -158,7 +158,7 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 \end{comment}
 \section{A pure probabilistic approach to range-only SLAM}\label{sec:blanco2008pure}
 
-Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}--Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure} \cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}--Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein reines probabilistische Verfahren genutzt.
+Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}--Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure} \cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}--Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein rein probabilistisches Verfahren genutzt.
 
 Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades von der Karte mit den Landmarken entkoppelt \cite{murphy2001rao, montemerlo2002fastslam}. Jeder Partikel des \Gls{rbpf} beschreibt dabei pro \textit{Beacon} die Verteilung die am besten zu seiner Positionsschätzung passt. Die Verteilung wird dabei zuerst von einem Hilfspartikelfilter (engl. Auxiliary Particle Filter) modelliert. Seine Partikel besitzen dabei eine ringförmige Verteilung mit dem Abstand des \textit{Beacon}, siehe \figurename~\ref{fig:blanco2008pure_fig3e}. Partikel mit einer geringen Wahrscheinlichkeit werden über eine Gewichtung aussortiert, siehe \figurename~\ref{fig:blanco2008pure_fig3f}. Sobald der Hilfspartikelfilter gegen eine bestimmte \textit{Beacon}--Position konvergiert ist, wird dieser in einen Normalverteilung umgewandelt und über einen \Gls{ekf} modelliert, siehe \figurename~\ref{fig:blanco2008pure_fig3g}.
 
@@ -191,7 +191,7 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 - \cite{blanco2008efficient}
 	- Efficient probabilistic range-only SLAM (71)
 \end{comment}
-\section{Efficient probabilistic range-only SLAM}
+\section{Efficient probabilistic range-only SLAM}\label{sec:blanco2008efficient}
 
 Aufbauend auf der vorherigen Arbeit im Abschnitt~\ref{sec:blanco2008pure} wird in \citetitle{blanco2008efficient} \cite{blanco2008efficient} nicht mehr ein Hilfspartikelfilter verwendet, der ab einer gewissen Sicherheit in einen \Gls{ekf} umgewandelt wird. Stattdessen wird die ringförmiger Verteilung über radial angeordnete Normalverteilungen angenähert deren Nachbarschaftsabstand über den Parameter \textit{K} bestimmt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig17a}~--~\ref{fig:blanco2008efficient_fig17b}. Die Gesamtverteilung ergibt sich dabei über eine gewichtete Summe der Normalverteilungen (engl. Sum of Gaussians). Über die Gewichte lässt sich dabei steuern, ob eine der Normalverteilungen in dem Ring für die \textit{Beacon}--Position noch relevant ist oder entfernt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig10a}~--~\ref{fig:blanco2008efficient_fig10b}.
 

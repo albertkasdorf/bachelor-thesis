@@ -284,7 +284,7 @@ Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssys
 
 Jedes \Gls{ros}--System muss über einen \Gls{ros}--Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von \textit{Nodes}, \textit{Topics} und \textit{Services} zur Verfügung.
 
-Jeder Verarbeitungseinheit in \Gls{ros} wird durch einen \textit{Node} repräsentiert. Ziel ist es möglichst kleine wiederverwendbare und miteinander kombinierbare Einheiten zu bilden. Die Programmierung eines \textit{Nodes} erfolgt dabei in den Programmiersprachen C++, Python oder Lisp.
+Jeder Verarbeitungseinheit in \Gls{ros} wird durch einen \textit{Node} repräsentiert. Ziel ist es möglichst kleine, wiederverwendbare und miteinander kombinierbare Einheiten zu bilden. Die Programmierung eines \textit{Nodes} erfolgt dabei in den Programmiersprachen C++, Python oder Lisp.
 
 Die Kommunikation zwischen den \textit{Nodes} erfolgt dabei über ein \Gls{p2p}--Kanal auf der Basis von \textit{Messages}. Bei einer \textit{Message} handelt es sich um eine Datenstruktur die primitive Datentypen, andere \textit{Messages} und Felder enthalten kann. Eine \textit{Message} wird dabei über das \textit{Publish--Subscribe} Muster in einem \textit{Topic} veröffentlicht und kann von jedem \textit{Node} empfangen werden der dieses \textit{Topic} abonniert hat. Der typische Anwendungsfall für dieses Verfahren ist die Bereitstellung von Sensordaten und Rückmeldungen über Statusänderungen.
 

@@ -39,3 +39,18 @@ Aufgaben:
 			- http://yardbot.ca/2014/10/writing-custom-joystick-teleop-node-ros/
 	- URDF-Modell anpassen
 		- [todo] Position des Beacons anpassen
+
+
+Versuch "Mean und Covariance pro Beacon aus dem MRPT-Framework bestimmen":
+- CMultiMetricMap
+	- m_beaconMap : CBeaconMap
+		- getBeaconByID(...)
+			- CBeacon
+				- getCovarianceAndMean(...)
+	- geometry_msgs/PoseWithCovariance
+	- http://www.visiondummy.com/2014/04/draw-error-ellipse-representing-covariance-matrix/
+	- https://gist.github.com/Piyush3dB/bf2c83a8eb7344798644
+
+Versuch "???":
+- Entfernen aller Odom Transformationen
+- beacon + laser als quelle einstellen

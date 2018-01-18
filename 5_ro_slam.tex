@@ -38,7 +38,7 @@ Die Fahrbefehle werden dem Robotino über einen Xbox Wireless Controller übermi
 \end{comment}
 \section{Softwarearchitektur}
 
-Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{roslam} werden in den \Gls{ros}--Hauptmodulen besprochen. In den Abschnitt \Gls{ros}--Nebenmodulen werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
+Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{roslam} werden in dem Abschnitt \Gls{ros}--Hauptmodule besprochen. In dem Abschnitt \Gls{ros}--Nebenmodule werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
 
 
 \begin{comment}
@@ -161,46 +161,29 @@ Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quelle f�
 
 \begin{comment}
 --------------------------------------------------------------------------------
-- ros
-	- <node pkg="mrpt_rbpf_slam" type="mrpt_rbpf_slam" name="mrpt_rbpf_slam" output="screen" />
-- mrpt
-	- rbpf_slam.ini
-- https://www.mrpt.org/list-of-mrpt-apps/application-rbpf-slam/
+- \url{https://www.mrpt.org}
+- \url{http://wiki.ros.org/mrpt_slam}
+- \url{http://wiki.ros.org/mrpt_navigation}
+- \url{https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/}
+	- Bayesian range-only SLAM (RO-SLAM) with SOGs
+- \url{http://mrpt.ual.es/reference/devel/classmrpt_1_1slam_1_1_c_metric_map_builder_r_b_p_f.html}
+	-mrpt::slam::CMetricMapBuilderRBPF Class Reference
 	- It is actually a front-end to the class mrpt::slam::CMetricMapBuilderRBPF. All the parameters to the algorithm are passed through a configuration file in the command line. The filter processes actions and observations from a rawlog file and optionally generates a number of files describing the evolution of the filter and the maps.
-	- The mathematical background of RBPF-based SLAM and to see an updated list of the implemented RBPF-SLAM solutions can be found in this tutorial page.
-	- http://mrpt.ual.es/reference/devel/classmrpt_1_1slam_1_1_c_metric_map_builder_r_b_p_f.html
-	- MC / SOG
-	- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
-	
-	
-pub_map_ = n_.advertise<nav_msgs::OccupancyGrid>("map", 1, true);
-// robot pose
-pub_Particles_ = n_.advertise<geometry_msgs::PoseArray>("particlecloud", 1, true);
- / ro particles poses
-pub_Particles_Beacons_ = n_.advertise<geometry_msgs::PoseArray>("particlecloud_beacons", 1, true);
-	
-if (lstSources[i].find("scan") != std::string::npos)
-    {
-      sensorSub_[i] = n_.subscribe(lstSources[i], 1, &PFslamWrapper::laserCallback, this);
-    }
-    else
-    {
-      sensorSub_[i] = n_.subscribe(lstSources[i], 1, &PFslamWrapper::callbackBeacon, this);
-    }
-    
-    
-void PFslamWrapper::odometryForCallback(CObservationOdometry::Ptr& _odometry, const std_msgs::Header& _msg_header)
-{
-  mrpt::poses::CPose3D poseOdom;
-  if (this->waitForTransform(poseOdom, odom_frame_id, base_frame_id, _msg_header.stamp, ros::Duration(1)))
-	
 \end{comment}
-\subsection{MRPT Modul [todo]}
+\subsection{MRPT}
 
+Bei dem \Gls{mrpt}--Framework handelt es sich um eine Bibliothek die Datenstrukturen und Algorithmen aus dem aktiven Forschungsbereich der Robotik bereitstellt. Dadurch ist eine schnelle Umsetzung neuer Algorithmen, sowie der Vergleich mit bereits bestehenden möglich. Zu den verfügbaren Datenstrukturen zählen die Basisdatentypen der linearen Algebra bis hin zu den komplexeren Datentypen der Robotik wie z.B. die Belegungskarten. Zur direkten Verwendung existieren viele Algorithmen aus den Bereichen der \Gls{slam}--Algorithmen, des Maschinellen Sehen (engl. Computer Vision) und der Pfad-- und Bewegungsplanung (engl. Path/Motion Planning).
 
+Aus dem Bereich der \Gls{roslam}--Algorithmen sind die Verfahren aus den Veröffentlichungen \citetitle{blanco2008pure} und \citetitle{blanco2008efficient} implementiert, siehe \autoref{sec:blanco2008pure} und \ref{sec:blanco2008efficient}.
 
+Um die \Gls{roslam}--Algorithmen aus dem \Gls{mrpt}--Framework zu nutzen, wird das \Gls{rosm} \textit{mrpt\_rbpf\_slam} aus dem Paket \textit{mrpt\_rbpf\_slam} benötigt. Mit dem Parameter \textit{ini\_filename} wird der Dateipfad zu der Konfigurationdatei für die \Gls{roslam}--Algorithmen angegeben und über den \textit{sensor\_source} Parameter werden die Datenquellen für den \Gls{roslam} definiert. Hierbei ist es möglich sowohl die Entfernungsmessungen der \Gls{uwbm} als auch die der 2D--Laser--Entfernungsmesser anzugeben. Von der letzten Datenquelle wird kein gebraucht gemacht, da dadurch Transformationen zwischen Koordinatensystemen veröffentlicht werden die mit den bereits bestehenden kollidieren. Über die Topics \textit{particlecloud} und \textit{particlecloud\_beacons} werden die Positionsschätzungen für den Roboter und die \Glspl{uwbm} veröffentlicht, siehe \autoref{fig:rviz_robot_and_beacon_estimate}.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{rviz_robot_and_beacon_estimate}
+	\caption{Positionsschätzung für den Roboter mit roten Pfeilen und für die \Glspl{uwbm} mit grünen Pfeilen.}
+	\label{fig:rviz_robot_and_beacon_estimate}
+\end{figure}
 
-
-
+Nach der Konfiguration der \Gls{ros} Seite müssen noch Einstellungen für den \Gls{roslam} festgelegt werden. Hier muss die Konfigurationsdatei, die in dem \Gls{ros}--Parameter \textit{ini\_filename} hinterlegt ist, bearbeitet werden. Das \Gls{mrpt}--Framework verfügt über einen eigenen Abspielmechanismus für aufgezeichnete Messungen. Dieser wird nicht verwendet, da \Gls{ros} über einen  eigenen Mechanismus verfügt. Daher wird der Parameter \textit{rawlog\_file=} auf einen leeren Wert gesetzt werden. Auch verfügt \Gls{ros} über eine eigene Visualisierungslösung, daher wird die grafische Anzeige des \Gls{mrpt}--Frameworks über den Parameter \textit{SHOW\_PROGRESS\_IN\_WINDOW=0} deaktiviert. Um zwischen den beiden \Gls{roslam}--Verfahren zu wechseln, wird der Parameter \textit{insertAsMonteCarlo} angepasst werden.
 
