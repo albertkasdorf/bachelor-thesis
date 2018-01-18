@@ -264,28 +264,11 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 \begin{comment}
 ------------------------------------------------------------------------------------------
 - \url{https://www.heise.de/developer/artikel/Einfuehrung-in-das-Robot-Operating-System-3273655.html?seite=all}
-
-- Launch Files
-	- Tool to manage a robotic system
-	- starting of multiple nodes
-	- setting of parameter values
-	- setting of arguments
-	- including other launch files
-- Parameter Server
-	- Global key-value store for sharing configuration informationen
-- Transformation
-	- static
-	- dynamic
-	- TFs are implemented with a forward description from parent to child (from → to )
-	- Each child frame has a maximum of one parent frame, but a parent frame can be linked to many child frames (tree structured)
-	- Listener / Broadcaster
-	
-- todo: Grundlagen ROS:
-URDF--Files,
-Lauch--Files,
-TF--Tree (odom, base_link, map?),
-Wofür braucht man Koordinatensystemtransformationen?
-	
+- Node = Knoten
+- Topic = Datenbus
+- Service = Dienst
+- Message = Nachricht
+- Launch-Files = Startdateien
 \end{comment}
 \section{Robot Operating System}
 
@@ -302,4 +285,8 @@ Das zuvor vorgestellte \textit{Publish--Subscribe} Muster stellt eine asynchrone
 Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der \textit{Bag}--Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
 
 Um die Wiederverwendbarkeit von Knoten, Nachrichten und Diensten zu fördern, wurde das Konzept der Pakete (engl. Packages) eingeführt. Ein Paket stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode--, Konfigurationsdateien, Drittanbieter Bibliothek, Abhängigkeitslisten usw.
+
+Eine Roboterplattform besteht aus vielen Sensoren und Aktuatoren die abgefragt und gesteuert werden müssen. Dementsprechend viele Knoten müssen gestartet werden. Diese Aufgabe erfüllen die Startdateien (engl. Launch-Files). Neben der Definition der Knoten die gestartet werden sollen, können Einzelne oder eine Gruppe von Knoten parametrisiert werden. Mittels der Verschachtelung von Startdateien ist eine Wiederverwendung von knotenspezifischen Startdateien möglich.
+
+Zu den häufigsten Operationen der Verarbeitungseinheit einer Roboterplattform ist das Transformieren der Sensordaten aus dem Sensorkoordinatensystem in das Koordinatensystem des Robotermittelpunktes. In \Gls{ros} wird hier für ein Transformationsbaum (engl. TF--Tree) verwendet, der aus statischen und dynamischen Transformationen besteht. Statische Transformationen werden dort eingesetzt, wo sich die Pose zweier Koordinatensysteme zur Laufzeit nicht ändert, z.B. zwischen dem Robotermittelpunkt und einem fest montierten Sensor. Dynamische hingegen bei Koordinatensystemen die sich zur Laufzeit ändern, z.B. zwischen dem Robotermittelpunkt und den Inkrementalgebern der Antriebseinheit. Statische Transformationen können mittels einer URDF--Datei modelliert und allen Knoten bereitgestellt werden.
 
