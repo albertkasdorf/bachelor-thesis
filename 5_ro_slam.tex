@@ -43,8 +43,6 @@ Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen
 
 \begin{comment}
 --------------------------------------------------------------------------------
-- Begrifflichkeiten wie Topic, Sessage, Service usw. wurden bereits im Grundlagenkapitel geklärt.
-- todo: Grundlagen ROS: URDF--Files, Lauch--Files, TF--Tree (odom, base_link, map?), Wofür braucht man Koordinatensystemtransformationen?
 - todo: Übersicht über alle Module und deren Verbindung zu einander?
 \end{comment}
 \subsection{ROS--Hauptmodule}
@@ -57,9 +55,9 @@ Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen
 \end{comment}
 \subsubsection{Robotino--Steuerung}
 
-Zur Steuerung der Roboterplattform muss die Verarbeitungseinheit Befehle zur Steuereinheit des Robotinos schicken. Diese Aufgabe erfüllt das \Gls{rosm} \textit{robotino\_node} aus dem Paket \textit{robotino\_node}. Über das Topic \textit{cmd\_vel} können die Geschwindigkeiten in X--/Y--Richtung und um die Z--Achse festgelegt werden. Um den Robotino zu stoppen, müssen alle drei Parameter auf den Wert Null gesetzt werden.
+Zur Steuerung der Roboterplattform muss die Verarbeitungseinheit Befehle zur Steuereinheit des Robotinos schicken. Diese Aufgabe erfüllt das \Gls{rosm} \textit{robotino\_node} aus dem Paket \textit{robotino\_node}. Über den Datenbus \textit{cmd\_vel} können die Geschwindigkeiten in X--/Y--Richtung und um die Z--Achse festgelegt werden. Um den Robotino zu stoppen, müssen alle drei Parameter auf den Wert Null gesetzt werden.
 
-Um an die Informationen der Inkrementalgeber zu kommen muss das \Gls{rosm} \textit{robotino\_odometry\_node} aus dem Paket \textit{robotino\_node} gestartet werden. Nach dem Start steht das Topic \textit{odom} mit den aktuellen Werte der Inkrementalgeber zur Verfügung. Zusätzlich sorgt dieses Modul auch für die dynamische Transformation zwischen dem \textit{odom} und \textit{base\_link} Koordinatensystem.
+Um an die Informationen der Inkrementalgeber zu kommen muss das \Gls{rosm} \textit{robotino\_odometry\_node} aus dem Paket \textit{robotino\_node} gestartet werden. Nach dem Start steht der Datenbus \textit{odom} mit den aktuellen Werte der Inkrementalgeber zur Verfügung. Zusätzlich sorgt dieses Modul auch für die dynamische Transformation zwischen dem \textit{odom} und \textit{base\_link} Koordinatensystem.
 
 
 \begin{comment}
@@ -86,9 +84,9 @@ Neben den dynamischen Transformationen besteht der Robotino auch aus vielen stat
 \end{comment}
 \subsubsection{Teleoperation}
 
-Um die Roboterplattform zu steuern wird ein Eingabegerät benötigt. Ein \textit{Xbox Wireless Controller} wird dabei als Eingabegerät verwendet. Zustandsänderungen am Eingabegerät werden über das \Gls{rosm} \textit{joy\_node} aus dem Paket \textit{joy} registriert und über das Topic \textit{joy} bereitgestellt. Das überwachte Eingabegerät wird über den Parameter \textit{dev} festgelegt, siehe \autoref{lst:joy_node}.
+Um die Roboterplattform zu steuern wird ein Eingabegerät benötigt. Ein \textit{Xbox Wireless Controller} wird dabei als Eingabegerät verwendet. Zustandsänderungen am Eingabegerät werden über das \Gls{rosm} \textit{joy\_node} aus dem Paket \textit{joy} registriert und über den Datenbus \textit{joy} bereitgestellt. Das überwachte Eingabegerät wird über den Parameter \textit{dev} festgelegt, siehe \autoref{lst:joy_node}.
 
-Mit den generischen Daten des Eingabegerätes kann die Roboterplattform jedoch nichts anfangen, diese benötigt eine Message vom Typ \textit{geometry\_msgs/Twist}. Die Transformation zwischen der Message \textit{sensor\_msgs/Joy} und \textit{geometry\_msgs/Twist} erfolgt durch das \Gls{rosm} \textit{xbox\_teleop.py} aus dem Paket \textit{ro\_slam\_with\_uwb}.
+Mit den generischen Daten des Eingabegerätes kann die Roboterplattform jedoch nichts anfangen, diese benötigt eine Nachricht vom Typ \textit{geometry\_msgs/Twist}. Die Transformation zwischen der Nachricht \textit{sensor\_msgs/Joy} und \textit{geometry\_msgs/Twist} erfolgt durch das \Gls{rosm} \textit{xbox\_teleop.py} aus dem Paket \textit{ro\_slam\_with\_uwb}.
 
 
 \begin{comment}
@@ -96,7 +94,7 @@ Mit den generischen Daten des Eingabegerätes kann die Roboterplattform jedoch n
 \end{comment}
 \subsubsection{UWB--Abstandsmessungen}
 
-Die Abstandsmessungen zwischen dem \Gls{tag} und den vorhandenen \Glspl{anchor} werden durch das \Gls{uwbm} über die \Gls{usb}--Schnittstelle bereitgestellt. Die Daten werden dann von dem \Gls{rosm} \textit{beacon\_publisher.py} aus dem Paket \textit{ro\_slam\_with\_uwb} aufgefangen und auf den Topics \textit{beacon} und \textit{beacon\_raw} veröffentlicht. Das erste Topic ist vom Typ \textit{mrpt\_msgs/ObservationRangeBeacon} und wird von dem \Gls{mrpt}--Modul für den \Gls{roslam} benötigt. Das zweite Topic wird die Auswertung der Abstandmessungen im \autoref{ch:eval} benötigt und ist vom Typ \textit{ro\_slam\_with\_uwb/Beacon}.
+Die Abstandsmessungen zwischen dem \Gls{tag} und den vorhandenen \Glspl{anchor} werden durch das \Gls{uwbm} über die \Gls{usb}--Schnittstelle bereitgestellt. Die Daten werden dann von dem \Gls{rosm} \textit{beacon\_publisher.py} aus dem Paket \textit{ro\_slam\_with\_uwb} aufgefangen und auf den Datenbussen \textit{beacon} und \textit{beacon\_raw} veröffentlicht. Der erste Datenbus ist vom Typ \textit{mrpt\_msgs/ObservationRangeBeacon} und wird von dem \Gls{mrpt}--Modul für den \Gls{roslam} benötigt. Der zweite Datenbus wird für die Auswertung der Abstandmessungen im \autoref{ch:eval} benötigt und ist vom Typ \textit{ro\_slam\_with\_uwb/Beacon}.
 
 
 \begin{comment}
@@ -111,7 +109,7 @@ Die Abstandsmessungen zwischen dem \Gls{tag} und den vorhandenen \Glspl{anchor} 
 \end{comment}
 \subsubsection{2D--Laser--Entfernungsmesser}
 
-Der 2D--Laser--Entfernungsmesser gehört zu einem der am häufigsten verwendeten Sensoren für die präzise visuelle Erfassen der Umwelt. Für mehrere der nachfolgenden \Gls{rosm} ist eine 2D--Laser--Entfernungsmessung eine zwingende Voraussetzung. Um die Daten dem \Gls{ros}--System bereitzustellen wird das \Gls{rosm} \textit{sick\_tim551\_2050001} aus dem Paket \textit{sick\_tim} verwendet. Dieses Modul stellt über dem Topic \textit{scan} mit einer Rate von \SI{15}{\hertz} Messages vom Typ \textit{sensor\_msgs/LaserScan} bereit.
+Der 2D--Laser--Entfernungsmesser gehört zu einem der am häufigsten verwendeten Sensoren für die präzise visuelle Erfassen der Umwelt. Für mehrere der nachfolgenden \Gls{rosm} ist eine 2D--Laser--Entfernungsmessung eine zwingende Voraussetzung. Um die Daten dem \Gls{ros}--System bereitzustellen wird das \Gls{rosm} \textit{sick\_tim551\_2050001} aus dem Paket \textit{sick\_tim} verwendet. Dieses Modul stellt über den Datenbus \textit{scan}, mit einer Rate von \SI{15}{\hertz}, Nachrichten vom Typ \textit{sensor\_msgs/LaserScan} bereit.
 
 
 \begin{comment}
@@ -120,7 +118,7 @@ Der 2D--Laser--Entfernungsmesser gehört zu einem der am häufigsten verwendeten
 \end{comment}
 \subsubsection{Belegungskarten}
 
-Das erste \Gls{rosm}, das von der 2D--Laser--Entfernungsmessung Gebrauch macht, ist das \textit{hector\_mapping} aus dem Paket \textit{hector\_mapping}. Mit diesem Modul können präzise Belegungskarten (engl. Occupancy Grid Map) erstellt werden, die für jede Koordinate der Karte festlegen ob diese durch ein Hindernis belegt (schwarz) oder frei (weiß) ist. Bereiche die von Hindernissen verdeckt sind oder außerhalb der Sensorreichweite liegen, werden als unbestimmt (grau) markiert, siehe \autoref{fig:rviz_occupancy_grid_map}. In \Gls{ros} werden Belegungskarten mit dem Message Typ \textit{nav\_msgs/OccupancyGrid} repräsentiert.
+Das erste \Gls{rosm}, das von der 2D--Laser--Entfernungsmessung Gebrauch macht, ist das \textit{hector\_mapping} aus dem Paket \textit{hector\_mapping}. Mit diesem Modul können präzise Belegungskarten (engl. Occupancy Grid Map) erstellt werden, die für jede Koordinate der Karte festlegen ob diese durch ein Hindernis belegt (schwarz) oder frei (weiß) ist. Bereiche die von Hindernissen verdeckt sind oder außerhalb der Sensorreichweite liegen, werden als unbestimmt (grau) markiert, siehe \autoref{fig:rviz_occupancy_grid_map}. In \Gls{ros} werden Belegungskarten mit dem Nachrichtentyp \textit{nav\_msgs/OccupancyGrid} repräsentiert.
 
 Zu den wichtigsten Parametern zählt die minimale und maximale Sensorreichweite (\textit{laser\_min\_dist} bzw. \textit{laser\_max\_dist}) die für die Kartenerstellung berücksichtigt wird und die Auflösung (\textit{map\_resolution}) einer Zelle in der Karte.
 
@@ -139,7 +137,7 @@ Zu den wichtigsten Parametern zählt die minimale und maximale Sensorreichweite 
 \end{comment}
 \subsubsection{Trajektorie}
 
-Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Odometrie aus. Als Quelle für die Odometrie dienen dabei die Inkrementalgeber des Robotino. Im nächsten Abschnitt werden weitere Quellen für die Odometrie vorgestellt. Um nun die Güte der Odometrie--Quellen zu vergleichen, wird die verfahrene Trajektorie jeder Quelle benötigt. Diese Informationen werden von dem \Gls{rosm} \textit{hector\_trajectory\_server} aus dem Paket {hector\_trajectory\_server} bereitgestellt. Die Daten liegen dabei als Message vom Typ \textit{nav\_msgs/Path} bereit und können in die Belegungskarte integriert werden, siehe \autoref{fig:rviz_trajektorie}.
+Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Odometrie aus. Als Quelle für die Odometrie dienen dabei die Inkrementalgeber des Robotino. Im nächsten Abschnitt werden weitere Quellen für die Odometrie vorgestellt. Um die Güte der Odometrie--Quellen zu vergleichen, wird die verfahrene Trajektorie jeder Quelle benötigt. Diese Informationen werden von dem \Gls{rosm} \textit{hector\_trajectory\_server} aus dem Paket {hector\_trajectory\_server} bereitgestellt. Die Daten liegen dabei als Nachricht vom Typ \textit{nav\_msgs/Path} bereit und können in die Belegungskarte integriert werden, siehe \autoref{fig:rviz_trajektorie}.
 
 \begin{figure}[h]
 	\centering
@@ -176,14 +174,14 @@ Bei dem \Gls{mrpt}--Framework handelt es sich um eine Bibliothek die Datenstrukt
 
 Aus dem Bereich der \Gls{roslam}--Algorithmen sind die Verfahren aus den Veröffentlichungen \citetitle{blanco2008pure} und \citetitle{blanco2008efficient} implementiert, siehe \autoref{sec:blanco2008pure} und \ref{sec:blanco2008efficient}.
 
-Um die \Gls{roslam}--Algorithmen aus dem \Gls{mrpt}--Framework zu nutzen, wird das \Gls{rosm} \textit{mrpt\_rbpf\_slam} aus dem Paket \textit{mrpt\_rbpf\_slam} benötigt. Mit dem Parameter \textit{ini\_filename} wird der Dateipfad zu der Konfigurationdatei für die \Gls{roslam}--Algorithmen angegeben und über den \textit{sensor\_source} Parameter werden die Datenquellen für den \Gls{roslam} definiert. Hierbei ist es möglich sowohl die Entfernungsmessungen der \Gls{uwbm} als auch die der 2D--Laser--Entfernungsmesser anzugeben. Von der letzten Datenquelle wird kein gebraucht gemacht, da dadurch Transformationen zwischen Koordinatensystemen veröffentlicht werden die mit den bereits bestehenden kollidieren. Über die Topics \textit{particlecloud} und \textit{particlecloud\_beacons} werden die Positionsschätzungen für den Roboter und die \Glspl{uwbm} veröffentlicht, siehe \autoref{fig:rviz_robot_and_beacon_estimate}.
+Um die \Gls{roslam}--Algorithmen aus dem \Gls{mrpt}--Framework zu nutzen, wird das \Gls{rosm} \textit{mrpt\_rbpf\_slam} aus dem Paket \textit{mrpt\_rbpf\_slam} benötigt. Mit dem Parameter \textit{ini\_filename} wird der Dateipfad zu der Konfigurationdatei für die \Gls{roslam}--Algorithmen angegeben und über den \textit{sensor\_source} Parameter werden die Datenquellen für den \Gls{roslam} definiert. Hierbei ist es möglich sowohl die Entfernungsmessungen der \Gls{uwbm} als auch die der 2D--Laser--Entfernungsmesser anzugeben. Von der letzten Datenquelle wird kein gebraucht gemacht, da dadurch Transformationen zwischen Koordinatensystemen veröffentlicht werden die mit den bereits bestehenden kollidieren. Über die Datenbusse \textit{particlecloud} und \textit{particlecloud\_beacons} werden die Positionsschätzungen für den Roboter und die \Glspl{uwbm} veröffentlicht, siehe \autoref{fig:rviz_robot_and_beacon_estimate}.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{rviz_robot_and_beacon_estimate}
 	\caption{Positionsschätzung für den Roboter mit roten Pfeilen und für die \Glspl{uwbm} mit grünen Pfeilen.}
 	\label{fig:rviz_robot_and_beacon_estimate}
 \end{figure}
 
-Nach der Konfiguration der \Gls{ros} Seite müssen noch Einstellungen für den \Gls{roslam} festgelegt werden. Hier muss die Konfigurationsdatei, die in dem \Gls{ros}--Parameter \textit{ini\_filename} hinterlegt ist, bearbeitet werden. Das \Gls{mrpt}--Framework verfügt über einen eigenen Abspielmechanismus für aufgezeichnete Messungen. Dieser wird nicht verwendet, da \Gls{ros} über einen  eigenen Mechanismus verfügt. Daher wird der Parameter \textit{rawlog\_file=} auf einen leeren Wert gesetzt werden. Auch verfügt \Gls{ros} über eine eigene Visualisierungslösung, daher wird die grafische Anzeige des \Gls{mrpt}--Frameworks über den Parameter \textit{SHOW\_PROGRESS\_IN\_WINDOW=0} deaktiviert. Um zwischen den beiden \Gls{roslam}--Verfahren zu wechseln, wird der Parameter \textit{insertAsMonteCarlo} angepasst werden.
+Nach der Konfiguration der \Gls{ros} Seite müssen noch Einstellungen für den \Gls{roslam} festgelegt werden. Hier muss die Konfigurationsdatei, die in dem \Gls{ros}--Parameter \textit{ini\_filename} hinterlegt ist, bearbeitet werden. Das \Gls{mrpt}--Framework verfügt über einen eigenen Abspielmechanismus für aufgezeichnete Messungen. Dieser wird nicht verwendet, da \Gls{ros} über einen eigenen Mechanismus verfügt. Folglich wird der Parameter \textit{rawlog\_file=} auf einen leeren Wert gesetzt werden. Auch verfügt \Gls{ros} über eine eigene Visualisierungslösung, daher wird die grafische Anzeige des \Gls{mrpt}--Frameworks über den Parameter \textit{SHOW\_PROGRESS\_IN\_WINDOW=0} deaktiviert. Um zwischen den beiden \Gls{roslam}--Verfahren zu wechseln, wird der Parameter \textit{insertAsMonteCarlo} angepasst werden.
 

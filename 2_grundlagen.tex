@@ -263,6 +263,8 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
+- \url{https://www.heise.de/developer/artikel/Einfuehrung-in-das-Robot-Operating-System-3273655.html?seite=all}
+
 - Launch Files
 	- Tool to manage a robotic system
 	- starting of multiple nodes
@@ -277,20 +279,27 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 	- TFs are implemented with a forward description from parent to child (from → to )
 	- Each child frame has a maximum of one parent frame, but a parent frame can be linked to many child frames (tree structured)
 	- Listener / Broadcaster
+	
+- todo: Grundlagen ROS:
+URDF--Files,
+Lauch--Files,
+TF--Tree (odom, base_link, map?),
+Wofür braucht man Koordinatensystemtransformationen?
+	
 \end{comment}
 \section{Robot Operating System}
 
 Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssystem, sondern vielmehr um ein Framework das die Kommunikation zwischen verschiedenen Verarbeitungseinheiten regelt. Im Jahre 2007 begann die Entwicklung von \Gls{ros} an der Stanford University. Ab 2009 wurde dieses dann hauptsächlich an dem Robotik Institut Willow Garage weiterentwickelt. Durch die BSD Lizenz steht \Gls{ros} als Open--Source--Projekt sowohl der nicht--kommerziellen auch der kommerziellen Weiterentwicklung zur Verfügung. \cite{quigley2009ros}
 
-Jedes \Gls{ros}--System muss über einen \Gls{ros}--Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von \textit{Nodes}, \textit{Topics} und \textit{Services} zur Verfügung.
+Jedes \Gls{ros}--System muss über einen \Gls{ros}--Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von Knoten (engl. Nodes), Datenbusse (engl Topics) und Dienste (engl. Services) zur Verfügung.
 
-Jeder Verarbeitungseinheit in \Gls{ros} wird durch einen \textit{Node} repräsentiert. Ziel ist es möglichst kleine, wiederverwendbare und miteinander kombinierbare Einheiten zu bilden. Die Programmierung eines \textit{Nodes} erfolgt dabei in den Programmiersprachen C++, Python oder Lisp.
+Jeder Verarbeitungseinheit in \Gls{ros} wird durch einen Knoten repräsentiert. Ziel ist es möglichst kleine, wiederverwendbare und miteinander kombinierbare Einheiten zu bilden. Die Programmierung eines Knoten erfolgt dabei in den Programmiersprachen C++, Python oder Lisp.
 
-Die Kommunikation zwischen den \textit{Nodes} erfolgt dabei über ein \Gls{p2p}--Kanal auf der Basis von \textit{Messages}. Bei einer \textit{Message} handelt es sich um eine Datenstruktur die primitive Datentypen, andere \textit{Messages} und Felder enthalten kann. Eine \textit{Message} wird dabei über das \textit{Publish--Subscribe} Muster in einem \textit{Topic} veröffentlicht und kann von jedem \textit{Node} empfangen werden der dieses \textit{Topic} abonniert hat. Der typische Anwendungsfall für dieses Verfahren ist die Bereitstellung von Sensordaten und Rückmeldungen über Statusänderungen.
+Die Kommunikation zwischen den Knoten erfolgt dabei über ein \Gls{p2p}--Kanal auf der Basis von Nachrichten (engl. Messages). Bei einer Nachricht handelt es sich um eine Datenstruktur die primitive Datentypen, die Datentypstruktur anderer Nachrichten und Felder enthalten kann. Eine Nachricht wird dabei über das \textit{Publish--Subscribe} Muster in einem Datenbus veröffentlicht und kann von jedem Knoten empfangen werden der Nachrichten von diesem Datenbus abonniert hat. Der typische Anwendungsfall für dieses Verfahren ist die Bereitstellung von Sensordaten und Rückmeldungen über Statusänderungen.
 
-Das zuvor vorgestellte \textit{Publish--Subscribe} Muster stellt eine asynchrone Kommunikation bereit. Mit Hilfe von \textit{Services} ist auch ein synchroner \textit{Message} Austausch möglich. Hierfür wird eine Anfrage von dem \textit{Client} an den \textit{Server} gestellt, der seinerseits mit einem Ergebnis antwortet. Dieses Verfahren entspricht dem \textit{Request--Response} Muster. Die Erstellung einer inversen Transformation ist ein typischer Anwendungsfall hierfür.
+Das zuvor vorgestellte \textit{Publish--Subscribe} Muster stellt eine asynchrone Kommunikation bereit. Mit Hilfe von Diensten ist auch ein synchroner Nachrichtenaustausch möglich. Hierfür wird eine Anfrage von dem \textit{Client} an den \textit{Server} gestellt, der seinerseits mit einem Ergebnis antwortet. Dieses Verfahren entspricht dem \textit{Request--Response} Muster. Die Erstellung einer inversen Transformation ist ein typischer Anwendungsfall hierfür.
 
 Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der \textit{Bag}--Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
 
-Um die Wiederverwendbarkeit von \textit{Nodes}, \textit{Messages} und \textit{Services} zu fördern, wurde das Konzept der \textit{Packages} eingeführt. Ein \textit{Package} stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode--, Konfigurationsdateien, Drittanbieter Bibliothek, Abhängigkeitslisten usw.
+Um die Wiederverwendbarkeit von Knoten, Nachrichten und Diensten zu fördern, wurde das Konzept der Pakete (engl. Packages) eingeführt. Ein Paket stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode--, Konfigurationsdateien, Drittanbieter Bibliothek, Abhängigkeitslisten usw.
 
