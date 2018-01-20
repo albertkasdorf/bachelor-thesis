@@ -229,7 +229,7 @@
   number    = {12},
   pages     = {1181--1203},
   abstract  = {Solving the SLAM (simultaneous localization and mapping) problem is one way to enable a robot to explore, map, and navigate in a previously unknown environment. Smoothing approaches have been investigated as a viable alternative to extended Kalman filter (EKF)-based solutions to the problem. In particular, approaches have been looked at that factorize either the associated information matrix or the measurement Jacobian into square root form. Such techniques have several significant advantages over the EKF: they are faster yet exact; they can be used in either batch or incremental mode; are better equipped to deal with non-linear process and measurement models; and yield the entire robot trajectory, at lower cost for a large class of SLAM problems. In addition, in an indirect but dramatic way, column ordering heuristics automatically exploit the locality inherent in the geographic nature of the SLAM problem. This paper presents the theory underlying these methods, along with an interpretation of factorization in terms of the graphical model associated with the SLAM problem. Both simulation results and actual SLAM experiments in large-scale environments are presented that underscore the potential of these methods as an alternative to EKF-based approaches.},
-  file      = {:Simultaneous Localization and Mapping via Square Root Information Smoothing.pdf:PDF},
+  file      = {:Square Root SAM Simultaneous Location and Mapping via Square Root Information Smoothing.pdf:PDF},
   groups    = {SLAM},
   publisher = {Sage Publications Sage CA: Thousand Oaks, CA},
 }
@@ -1229,7 +1229,7 @@ The developed techniques offer a unified global framework for geolocation with r
   file         = {:Efficient Robot-Sensor Network Distributed SEIF Range-Only SLAM.pdf:PDF},
 }
 
-@InProceedings{ahmad2011newstatevector
+@InProceedings{ahmad2011newstatevector,
   author    = {A. Ahmad and S. Huang and J. J. Wang and G. Dissanayake},
   title     = {A new state vector for range-only SLAM},
   booktitle = {2011 Chinese Control and Decision Conference (CCDC)},
@@ -1426,9 +1426,47 @@ The developed techniques offer a unified global framework for geolocation with r
   file = {:Efficient probabilistic range-only SLAM.ppt:PowerPoint},
 }
 
+@InProceedings{caballero2010general,
+  author       = {Caballero, Fernando and Merino, Luis and Ollero, An{\'\i}bal},
+  title        = {A general gaussian-mixture approach for range-only mapping using multiple hypotheses},
+  booktitle    = {Robotics and Automation (ICRA), 2010 IEEE International Conference on},
+  year         = {2010},
+  organization = {IEEE},
+  pages        = {4404--4409},
+  file         = {:A general gaussian-mixture approach for range-only mapping using multiple hypotheses.pdf:PDF},
+}
+
+@InProceedings{merino2010active,
+  author       = {Merino, Luis and Caballero, Fernando and Ollero, An{\'\i}bal},
+  title        = {Active sensing for range-only mapping using multiple hypothesis},
+  booktitle    = {Intelligent Robots and Systems (IROS), 2010 IEEE/RSJ International Conference on},
+  year         = {2010},
+  organization = {IEEE},
+  pages        = {37--42},
+  file         = {:Active sensing for range-only mapping using multiple hypothesis.pdf:PDF},
+}
+
+@InProceedings{zhou2009efficient,
+  author       = {Zhou, Yu},
+  title        = {An efficient least-squares trilateration algorithm for mobile robot localization},
+  booktitle    = {Intelligent Robots and Systems, 2009. IROS 2009. IEEE/RSJ International Conference on},
+  year         = {2009},
+  organization = {IEEE},
+  pages        = {3474--3479},
+  file         = {:An efficient least-squares trilateration algorithm for mobile robot localization.pdf:PDF},
+}
+
+@TechReport{dellaert2005square,
+  author      = {Dellaert, Frank},
+  title       = {Square root SAM: Simultaneous localization and mapping via square root information smoothing},
+  institution = {Georgia Institute of Technology},
+  year        = {2005},
+  file        = {:Square root SAM - Simultaneous localization and mapping via square root information smoothing.pdf:PDF},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
 
-@Comment{jabref-meta: fileDirectory:C:\\Users\\Albert\\Documents\\Studium\\Bachelor WS17\\scientific publication;}
+@Comment{jabref-meta: fileDirectory:/home/albert/Documents/2018-01-11 Bachelor WS17/scientific publication;}
 
 @Comment{jabref-meta: grouping:
 0 AllEntriesGroup:;
