@@ -11,7 +11,7 @@ cid_a = 5;
 cid_r = 6;
 
 % Ground Truth der kurzen und langen Seiten des Pentagramms
-gt_a = 5.01;
+gt_a = 4.5;
 gt_d = (gt_a * (1 + sqrt(5))) / 2;
 gt = [
     176, 177, gt_a; 176, 178, gt_d; 176, 179, gt_d; 176, 180, gt_a;
