@@ -725,12 +725,31 @@ Um die Antennenverzögerung zu bestimmen, wird diese initial auf null eingestell
 
 \begin{comment}
 --------------------------------------------------------------------------------
-- Verfahrensbeschreibung des DecaWave Algorihtmus
-\cite{decawave2014calibration}
-\cite{decawave2016dw1kusermanual}
-
 \end{comment}
-\subsubsection{DecaWave [todo]}
+\subsubsection{DecaWave}
+
+Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, wird von \textit{DecaWave} ein genetischer Algorithmus vorgeschlagen. \cite{decawave2014calibration}
+
+Im ersten Schritt wird eine initiale Kandidatenliste mit eintausend Kandidaten für den Wert der Antennenverzögerung erstellt. Die Werte sind dabei gleichmäßig um den Wert \SI{513}{\ns} mit einer Streuung von \SI{6}{\ns} verteilt.
+
+Im nächsten Schritt wird für jeden Kandidaten seine spezifische \Gls{tof} berechnet, siehe \autoref{eq:dacawave_ad1}.
+
+\begin{equation}
+tof_{candidate}=\frac12 Del_{chip1} + \frac12 Del_{chip2} + tof_{measured}\label{eq:dacawave_ad1}
+\end{equation}
+
+% todo: Aussehen von Del_{chip1}/Del_{chip2}?
+Bei $tof_{measured}$ handelt es sich um eine $n \times n$ Matrix mit den gemessenen \Gls{tof}--Zeiten zwischen den \Glsuseri{uwbm}.
+
+Die Bewertung eines Kandidaten findet dabei über die Berechnung der Norm aus der Differenz zwischen der tatsächlichen \Gls{tof}--Zeit und \Gls{tof}--Zeit des Kandidaten statt, siehe \autoref{eq:dacawave_ad2}.
+
+\begin{equation}
+rank_{candidate}=\lVert (tof_{actual} - tof_{candidate}) \lVert\label{eq:dacawave_ad2}
+\end{equation}
+
+Nach dem alle Kandidaten bewertet worden sind, werden die besten \SI{25}{\percent} weiterverwendet und die Restlichen verworfen. Um die Kandidatenliste nicht mit jeder Iteration kleiner werden zu lassen, werden aus den verbliebenden Kandidaten drei neue Gruppen mit einer alle zwanzig Iterationen abnehmenden Streuung erstellt.
+
+Der Vorgang der Erstellung und Bewertung einer Kandidatenliste wird hundert Mal durchgeführt und sollte sich zum Ende hin der tatsächlichen Antennenverzögerung annähern.
 
 
 \begin{comment}
