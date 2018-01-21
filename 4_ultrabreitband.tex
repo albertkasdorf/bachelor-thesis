@@ -730,21 +730,30 @@ Um die Antennenverzögerung zu bestimmen, wird diese initial auf null eingestell
 
 Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, wird von \textit{DecaWave} ein genetischer Algorithmus vorgeschlagen. \cite{decawave2014calibration}
 
-Im ersten Schritt wird eine initiale Kandidatenliste mit eintausend Kandidaten für den Wert der Antennenverzögerung erstellt. Die Werte sind dabei gleichmäßig um den Wert \SI{513}{\ns} mit einer Streuung von \SI{6}{\ns} verteilt.
+Im ersten Schritt wird eine initiale Kandidatenliste mit eintausend Kandidaten erstellt. Jeder Kandidat beinhaltet für jedes \Gls{uwbm} eine Antennenverzögerungen. Die Werte sind dabei gleichmäßig um den Wert \SI{513}{\ns} mit einer Streuung von \SI{6}{\ns} verteilt.
 
-Im nächsten Schritt wird für jeden Kandidaten seine spezifische \Gls{tof} berechnet, siehe \autoref{eq:dacawave_ad1}.
+Im nächsten Schritt wird für jeden Kandidaten seine spezifische \Gls{tof}--Zeit berechnet, siehe \autoref{eq:decawave_ad1}.
 
 \begin{equation}
-tof_{candidate}=\frac12 Del_{chip1} + \frac12 Del_{chip2} + tof_{measured}\label{eq:dacawave_ad1}
+tof_{candidate}=\frac12 Del_{chip1} + \frac12 Del_{chip2} + tof_{measured}\label{eq:decawave_ad1}
 \end{equation}
 
-% todo: Aussehen von Del_{chip1}/Del_{chip2}?
-Bei $tof_{measured}$ handelt es sich um eine $n \times n$ Matrix mit den gemessenen \Gls{tof}--Zeiten zwischen den \Glsuseri{uwbm}.
-
-Die Bewertung eines Kandidaten findet dabei über die Berechnung der Norm aus der Differenz zwischen der tatsächlichen \Gls{tof}--Zeit und \Gls{tof}--Zeit des Kandidaten statt, siehe \autoref{eq:dacawave_ad2}.
+Bei $tof_{measured}$ handelt es sich um eine $n \times n$ Matrix mit den gemessenen \Gls{tof}--Zeiten zwischen den \Glsuseri{uwbm}, siehe \autoref{eq:decawave_tof_measured}.
 
 \begin{equation}
-rank_{candidate}=\lVert (tof_{actual} - tof_{candidate}) \lVert\label{eq:dacawave_ad2}
+tof_{measured} = \begin{pmatrix}0 & tof_{m21} & tof_{m31} \\ tof_{m12} & 0 & tof_{m32} \\ tof_{m13} & tof_{m23} & 0 \end{pmatrix} \label{eq:decawave_tof_measured}
+\end{equation}
+
+Die Matrix $Del_{chip1}$ enthält pro Spalte die Antennenverzögerung eines \Glsuserii{uwbm} und die diagonalen Element sind alle null. Bei der Matrix $Del_{chip2}$ handelt es sich um die transponierte Matrix von $Del_{chip1}$, siehe \autoref{eq:decawave_del_chip}.
+
+\begin{equation}
+Del_{chip1} = \begin{pmatrix}0 & ad_2 & ad_3 \\ ad_1 & 0 & ad_3 \\ ad_1 & ad_2 & 0 \end{pmatrix}; \qquad Del_{chip2} = \begin{pmatrix}0 & ad_1 & ad_1 \\ ad_2 & 0 & ad_2 \\ ad_3 & ad_3 & 0 \end{pmatrix} \label{eq:decawave_del_chip}
+\end{equation}
+
+Die Bewertung eines Kandidaten findet dabei über die Berechnung der Norm aus der Differenz zwischen der tatsächlichen \Gls{tof}--Zeit und \Gls{tof}--Zeit des Kandidaten statt, siehe \autoref{eq:decawave_ad2}. Je kleiner die Norm desto besser die Bewertung des Kandidaten.
+
+\begin{equation}
+rank_{candidate}=\lVert (tof_{actual} - tof_{candidate}) \lVert\label{eq:decawave_ad2}
 \end{equation}
 
 Nach dem alle Kandidaten bewertet worden sind, werden die besten \SI{25}{\percent} weiterverwendet und die Restlichen verworfen. Um die Kandidatenliste nicht mit jeder Iteration kleiner werden zu lassen, werden aus den verbliebenden Kandidaten drei neue Gruppen mit einer alle zwanzig Iterationen abnehmenden Streuung erstellt.
