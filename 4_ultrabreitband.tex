@@ -699,35 +699,56 @@ Der vollständige Quellcode mit Kommentaren und Fehlerbehandlung kann in dem Git
 
 \begin{comment}
 --------------------------------------------------------------------------------
-- Kalibierung nach DecaWave
-	- FlowCharts erklären
-	- Ergebnisse auswerten
-- Wo liegen die Probleme
-- Script im Anhang
-- Kalibierungsalgorithmus nach decaWave
-	- Hab ich den Überhaupt richtig implementiert?
-- Kalibierung über die Anpassung der einer Antennen Delay für alle.
-- Kann über die Kalibrierung der Antennenverzögerung eine genauere Entfernungsmessung erreicht werden?
-- Das Verfahren zur Kalibrierung der Antennenverzögerung kann ebenfalls der Hersteller--Dokumentation entnommen werden, siehe \cite{decawave2014calibration}. Hierfür muss ein Versuchsaufbau erstellt werden. Zusätzlich wird eine Anpassung der Steuer--/Auswerte-Software notwendig, um die Verzögerung zu berechnen.
-- Die Genauigkeitsbestimmung der Entfernungsmessung mit LOS und NLOS wird über einen Versuchsaufbau realisiert. Hierfür werden mehrere Messreihen in verschiedenen Abständen aufgenommen und mit der tatsächlichen Entfernung verglichen.
-
-- Beschreiben des Problems
-	- Antennenverzögerung
-	- Gleichungen
 \end{comment}
-\subsection{Kalibrierung [todo, optional]}
+\subsection{Kalibrierung}
+
+Je genauer sich die Zeitstempel für den Empfang bzw. für das Versenden einer Nachricht bestimmen lassen, desto genauer ist auch die gemessene Entfernung. Idealerweise entsprich die Differenz zwischen zwei Zeitstempeln der \Gls{tof}. In der Realität ist die Differenz jedoch deutlich größer. Als eine der Ursachen kann die herstellungsbedinge Ungenauigkeiten in den verwendeten Komponenten in Betracht gezogen werden, genauer gesagt geht es um die Antennenverzögerung. Unter der Antennenverzögerung versteht man die Zeitspanne die die Antenne benötigt um mit der Übertragung der Nachricht zu starten bzw. um eine Nachricht zu empfangen, siehe  \autoref{fig:decawave2014calibration_fig1}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{decawave2014calibration_fig1}
+	\caption{Antennenverzögerung zwischen zwei \Glsuseri{uwbm}.}
+	\label{fig:decawave2014calibration_fig1}
+	\source{\cite{decawave2014calibration}}
+\end{figure}
+
+Die gemessene Zeitspanne ergibt sich dabei aus der Gleichung: 
+
+\begin{equation}
+t_{Measured}=t_{ADTX}+ToF+t_{ADRX}\label{eq:antenna_delay_1}
+\end{equation}
+
+wobei der Term $t_{ADTX}$ die Antennenverzögerung für das Versenden und $t_{ADRX}$ für das Empfangen auf den gegenüberliegenden \Glsuseri{uwbm} beschreibt. Es wird davon ausgegangen, dass die Antennenverzögerung für das Senden und Empfangen auf einem \Gls{uwbm} gleich lang ist. \cite{decawave2016dw1kusermanual}
+
+Um die Antennenverzögerung zu bestimmen, wird diese initial auf null eingestellt, die \Gls{uwbm} in einem bekannten Abstand positioniert und dann von jedem \Gls{uwbm} eine Reihe von Messungen aufgezeichnet. In den nachfolgenden Abschnitten werden zwei Verfahren vorgestellt, mit der sich die Antennenverzögerungen aus den aufgezeichneten Messungen bestimmen lässt.
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
 - Verfahrensbeschreibung des DecaWave Algorihtmus
+\cite{decawave2014calibration}
+\cite{decawave2016dw1kusermanual}
+
 \end{comment}
 \subsubsection{DecaWave [todo]}
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-- Verfahrensbeschreibung des LGS
 \end{comment}
-\subsubsection{Lineares Gleichungssystem [todo]}
+\subsubsection{Lineares Gleichungssystem}
+
+Bei zwei \Glsuseri{uwbm} kann die \autoref{eq:antenna_delay_1} zwei Mal aufgestellt werden, für jede Richtung einmal. Bei drei \Glsuseri{uwbm} bereits sechs Mal. Allgemein gilt für die Anzahl der Gleichung die Formel $n(n-1)$. Damit lässt sich ein lineares Gleichungssystem aufstellen und somit die Antennenverzögerung pro \Gls{uwbm} berechnen.
+
+Hierfür werden alle unbekannten Terme auf die linke Seite gebracht und alle bekannten auf die rechte Seite, siehe \autoref{eq:antenna_delay_2}.
+
+\begin{equation}
+t_{AD1}+t_{AD2}=t_{Measured}-ToF\label{eq:antenna_delay_2}
+\end{equation}
+
+Danach werden alle Gleichung in die Matrixform $A\cdot x=b$ gebracht und mit einem beliebigen Lösungsverfahren gelöst, siehe \autoref{eq:antenna_delay_3} für drei \Glspl{uwbm}. Die Koeffizientenmatrix enthält hierbei pro Zeile immer nur zwei Einsen, da für jede Entfernungsmessung nur zwei Antennenverzögerungen berücksichtigt werden.
+
+\begin{equation}
+\begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix} \cdot \begin{pmatrix}t_{AD1}\\t_{AD2}\\t_{AD3}\end{pmatrix} = \begin{pmatrix}t_{Measured1}-ToF_{1}\\t_{Measured2}-ToF_{2}\\t_{Measured3}-ToF_{3}\end{pmatrix} \label{eq:antenna_delay_3}
+\end{equation}
 
