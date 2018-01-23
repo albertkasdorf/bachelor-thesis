@@ -715,7 +715,7 @@ Je genauer sich die Zeitstempel für den Empfang bzw. für das Versenden einer N
 Die gemessene Zeitspanne ergibt sich dabei aus der Gleichung: 
 
 \begin{equation}
-t_{Measured}=t_{ADTX}+ToF+t_{ADRX}\label{eq:antenna_delay_1}
+tof_{measured}=t_{ADTX}+tof_{actual}+t_{ADRX}\label{eq:antenna_delay_1}
 \end{equation}
 
 wobei der Term $t_{ADTX}$ die Antennenverzögerung für das Versenden und $t_{ADRX}$ für das Empfangen auf den gegenüberliegenden \Glsuseri{uwbm} beschreibt. Es wird davon ausgegangen, dass die Antennenverzögerung für das Senden und Empfangen auf einem \Gls{uwbm} gleich lang ist. \cite{decawave2016dw1kusermanual}
@@ -735,19 +735,19 @@ Im ersten Schritt wird eine initiale Kandidatenliste mit eintausend Kandidaten e
 Im nächsten Schritt wird für jeden Kandidaten seine spezifische \Gls{tof}--Zeit berechnet, siehe \autoref{eq:decawave_ad1}.
 
 \begin{equation}
-tof_{candidate}=\frac12 Del_{chip1} + \frac12 Del_{chip2} + tof_{measured}\label{eq:decawave_ad1}
+tof_{candidate}=\frac12 del_{chip1} + \frac12 del_{chip2} + tof_{measured}\label{eq:decawave_ad1}
 \end{equation}
 
 Bei $tof_{measured}$ handelt es sich um eine $n \times n$ Matrix mit den gemessenen \Gls{tof}--Zeiten zwischen den \Glsuseri{uwbm}, siehe \autoref{eq:decawave_tof_measured}.
 
 \begin{equation}
-tof_{measured} = \begin{pmatrix}0 & tof_{m21} & tof_{m31} \\ tof_{m12} & 0 & tof_{m32} \\ tof_{m13} & tof_{m23} & 0 \end{pmatrix} \label{eq:decawave_tof_measured}
+tof_{measured} = \begin{pmatrix}0 & tof_{m12} & tof_{m13} \\ tof_{m21} & 0 & tof_{m23} \\ tof_{m31} & tof_{m32} & 0 \end{pmatrix} \label{eq:decawave_tof_measured}
 \end{equation}
 
-Die Matrix $Del_{chip1}$ enthält pro Spalte die Antennenverzögerung eines \Glsuserii{uwbm} und die diagonalen Element sind alle null. Bei der Matrix $Del_{chip2}$ handelt es sich um die transponierte Matrix von $Del_{chip1}$, siehe \autoref{eq:decawave_del_chip}.
+Die Matrix $del_{chip1}$ enthält pro Spalte die Antennenverzögerung eines \Glsuserii{uwbm} und die diagonalen Element sind alle null. Bei der Matrix $del_{chip2}$ handelt es sich um die transponierte Matrix von $del_{chip1}$, siehe \autoref{eq:decawave_del_chip}.
 
 \begin{equation}
-Del_{chip1} = \begin{pmatrix}0 & ad_2 & ad_3 \\ ad_1 & 0 & ad_3 \\ ad_1 & ad_2 & 0 \end{pmatrix}; \qquad Del_{chip2} = \begin{pmatrix}0 & ad_1 & ad_1 \\ ad_2 & 0 & ad_2 \\ ad_3 & ad_3 & 0 \end{pmatrix} \label{eq:decawave_del_chip}
+Del_{chip1} = \begin{pmatrix}0 & t_{ad2} & t_{ad3} \\ t_{ad1} & 0 & t_{ad3} \\ t_{ad1} & t_{ad2} & 0 \end{pmatrix}; \qquad Del_{chip2} = \begin{pmatrix}0 & t_{ad1} & t_{ad1} \\ t_{ad2} & 0 & t_{ad2} \\ t_{ad3} & t_{ad3} & 0 \end{pmatrix} \label{eq:decawave_del_chip}
 \end{equation}
 
 Die Bewertung eines Kandidaten findet dabei über die Berechnung der Norm aus der Differenz zwischen der tatsächlichen \Gls{tof}--Zeit und \Gls{tof}--Zeit des Kandidaten statt, siehe \autoref{eq:decawave_ad2}. Je kleiner die Norm desto besser die Bewertung des Kandidaten.
@@ -771,12 +771,12 @@ Bei zwei \Glsuseri{uwbm} kann die \autoref{eq:antenna_delay_1} zwei Mal aufgeste
 Hierfür werden alle unbekannten Terme auf die linke Seite gebracht und alle bekannten auf die rechte Seite, siehe \autoref{eq:antenna_delay_2}.
 
 \begin{equation}
-t_{AD1}+t_{AD2}=t_{Measured}-ToF\label{eq:antenna_delay_2}
+t_{ad1} + t_{ad2} = tof_{measured} - tof_{actual} \label{eq:antenna_delay_2}
 \end{equation}
 
 Danach werden alle Gleichung in die Matrixform $A\cdot x=b$ gebracht und mit einem beliebigen Lösungsverfahren gelöst, siehe \autoref{eq:antenna_delay_3} für drei \Glspl{uwbm}. Die Koeffizientenmatrix enthält hierbei pro Zeile immer nur zwei Einsen, da für jede Entfernungsmessung nur zwei Antennenverzögerungen berücksichtigt werden.
 
 \begin{equation}
-\begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix} \cdot \begin{pmatrix}t_{AD1}\\t_{AD2}\\t_{AD3}\end{pmatrix} = \begin{pmatrix}t_{Measured1}-ToF_{1}\\t_{Measured2}-ToF_{2}\\t_{Measured3}-ToF_{3}\end{pmatrix} \label{eq:antenna_delay_3}
+\begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix} \cdot \begin{pmatrix} t_{ad1} \\ t_{ad2} \\ t_{ad3} \end{pmatrix} = \begin{pmatrix} tof_{measured1} - tof_{actual1} \\ tof_{measured2} - tof_{actual2} \\ tof_{measured3} - tof_{actual3} \end{pmatrix} \label{eq:antenna_delay_3}
 \end{equation}
 

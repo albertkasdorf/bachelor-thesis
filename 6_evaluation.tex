@@ -6,13 +6,6 @@
 
 \begin{comment}
 --------------------------------------------------------------------------------
-\section{Versuchsaufbau [todo]}
-\section{Ergebnisse und Auswertung [todo]}
-\end{comment}
-
-
-\begin{comment}
---------------------------------------------------------------------------------
 - TODO: Stimmen die 10Hz?
 - Start 13:50-23:50, 12:50-20:00 => 10+7 => 17 Stunden
 \end{comment}
@@ -26,7 +19,7 @@ Der \Gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig 
 \begin{comment}
 --------------------------------------------------------------------------------
 - Versuchsaufbau für die Kalibierung
-	- Dreieck
+	- Dreieck {Radius, Winkelschablone, Maurerschnur}
 	- Antennenverzögerung initial auf 0
 	- Von jedem Tag 1000 Aufnahmen pro Anchor => 3*2*1000 = 6000
 	- Kalibierung durchführen mit LGS und mit DecaWave
@@ -35,26 +28,152 @@ Der \Gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig 
 		- Von jedem Tag 1000 Aufnahmen pro Anchor => 3*2*1000 = 6000
 		- Von jedem Tag 1000 Aufnahmen pro Anchor => 3*2*1000 = 6000
 	- Ergebnisse vergleichen
-- Hilfreiche Diagramme
-	- Keine
+
+- Versuchsaufbau mit dem Pentagramm
+	-
+
+- Tabelle 1
+	- Beacon
+	- Antennenverzögerung {DecaWave, LGS}
+	
 - Tabelle 1
 	- Kalibierungsart {Keine, DecaWave, LGS}
 	- Von, Nach
 	- Ground Truth [m]
 	- Aritmetischer Mittelwert [m]
 	- Standardabweichung [m]
-- Tabelle 2
-	- Beacon
-	- Antennenverzögerung {DecaWave, LGS}
+
+- Diagramm 1
+	- 6 Histogramme mit den LGS Kalibierten Entfernungen
+	- Normalverteilung hinzufügen
 	
 - 3-sigma
 	- https://www.easycalculation.com/statistics/learn-three-sigma.php
 	- https://bizfluent.com/how-5214886-calculate-sigma.html
 	- https://stackoverflow.com/questions/28699342/calculate-the-3rd-standard-deviation-for-an-array
-
-	
 \end{comment}
-\section{Kalibierung [todo]}
+\section{Kalibierung}
+
+Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervorgänge durchgeführt. Der erste Kalibriervorgang orientiert sich an den Herstellervorgaben aus \cite{decawave2014calibration}. Dazu werden drei \Glspl{uwbm} an die Spitzen eines gleichseitigen Dreieckes positioniert. Um das Dreieck zu konstruieren, wird in der Mitte des Dreiecks eine ausgemessene Maurerschnur befestigt, darüber wird eine Winkelschablone gelegt und dann reihum die Spitzen es Dreiecks auf dem Boden eingezeichnet, siehe \autoref{fig:calibration_triangle2}. Die Seitenlänge $a \approx \SI{1.73}{\meter}$ wird dabei aus dem Umkreisradius $r_u = \SI{1}{\meter}$ mit der \autoref{eq:dreieck_seitenlaenge_aus_umkreis} berechnet.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{calibration_triangle2}
+	\caption{Versuchsaufbau für die Kalibierung von drei \Glsuseri{uwbm}.}
+	\label{fig:calibration_triangle2}
+\end{figure}
+
+\begin{equation}
+r_u = \frac{a}{3} \sqrt{3} \label{eq:dreieck_seitenlaenge_aus_umkreis}
+\end{equation}
+
+Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt und danach reihum von jedem \Gls{uwbm} eintausend Entfernungsmessung zu den beiden benachbarten \Glsuseri{uwbm} durchgeführt. Insgesamt entstehen dabei sechstausend Datensätze, die mittels dem \textit{LGS}-- bzw. des \textit{DecaWave}--Kalibrierungsverfahren ausgewertet werden, siehe \autoref{tab:calibration_antenna_delay_results}
+
+Das \textit{LGS}--Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzierbare Ergebnisse. Da jedes \Gls{uwbm} herstellungsbedingte Unterschiede aufweist, ist es Plausibel das alle Antennenverzögerungen in einem ähnlichen Wertebereich liegen. Anders sieht es bei dem \textit{DecaWave}--Kalibrierungsverfahren aus. Hier ergeben sich für jeden Durchlauf andere Wertekombinationen, bedingt durch die Zufallskomponente bei der Erstellung der Kandidatenliste. Diese Verhalten von Genetischen--Algorithmen ist bekannt und muss daher bei der Auswahl der Wertekombinationen berücksichtigt werden. Am Beispiel der Spalte \textit{DecaWave 1} wird es sehr deutlich. Hier beträgt der Unterschied zwischen dem größten und kleinsten Wert \approx\SI{23}{\ns} und entspricht damit einer Abweichung von \approx\SI{6}{\meter} zwischen diesen beiden \Glsuseri{uwbm}.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c||c||c|c|c|c|}
+\hline
+\Gls{uwbm} & LGS [\si{\second}] & DecaWave [\si{\second}] & DecaWave 1 [\si{\second}] & DecaWave 2 [\si{\second}] \\
+\hline\hline
+176 & \num{257.45e9} & \num{242.48e9} & \num{232.21e9} & \num{254.50e9} \\
+177 & \num{257.49e9} & \num{238.47e9} & \num{249.38e9} & \num{254.73e9} \\
+178 & \num{257.11e9} & \num{257.17e9} & \num{255.36e9} & \num{215.07e9} \\
+
+% Alte Darstellung
+%176 & 16451 & 15494 & 14838 & 15912 & 16262 \\
+%177 & 16453 & 15238 & 15935 & 15805 & 16277 \\
+%178 & 16429 & 16433 & 16317 & 15131 & 13743 \\
+\hline
+	\end{tabular}
+	\caption{Berechnete Werte für die Antennenverzögerung pro \Gls{uwbm}.}
+	\label{tab:calibration_antenna_delay_results}
+\end{table}
+
+Die Wertekombinationen aus den Spalten \textit{LGS} und \textit{DecaWave} werden abwechselnd als Antennenverzögerungen in die \Glspl{uwbm} eingetragen und für jede Spalte jeweils eine weitere Messreihe, wie oben beschrieben, aufgezeichnet. Die Ergebnisse sind in der \autoref{tab:calibration_range_results} aufgeführt.
+
+Mit einer initalen Antennenverzögerung von null beträgt der gemessene Abstand zwischen zwei \Glsuseri{uwbm} \approx \SI{156}{\meter} bei einem tatsächenlichen Abstand von \approx \SI{1.73}{\meter}. Eine Standardabweichung von \approx \SI{2}{\centi\meter} \footnote{Bei der Standardabweichung von über einem Meter handelt es sich um einen einzelnen Messfehler in der Messreihe.} entspricht dabei den Produkteigenschaften mit denen \textit{DecaWave} wirbt.
+
+Werden die Antennenverzögerung aus der \textit{LGS}--Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt der gemessene Abstand dem tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}--Kalibrierungsverfahren.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{||c||c|c||ccccc||}
+\hline
+Kalibrierung & Tag & Anker & Entfernung & $\overline{x}_{arithm}$ & $\sigma$ & Min & Max \\\hline
+Keine & 176 & 177 & \num{1.732} & \num{156.108} & \num{0.018} & \num{156.050} & \num{156.170} \\
+Keine & 176 & 178 & \num{1.732} & \num{155.929} & \num{0.021} & \num{155.870} & \num{156.000} \\
+Keine & 177 & 176 & \num{1.732} & \num{156.106} & \num{1.025} & \num{156.020} & \num{188.470} \\
+Keine & 177 & 178 & \num{1.732} & \num{156.016} & \num{0.023} & \num{155.930} & \num{156.090} \\
+Keine & 178 & 176 & \num{1.732} & \num{156.067} & \num{0.022} & \num{156.010} & \num{156.130} \\
+Keine & 178 & 177 & \num{1.732} & \num{155.997} & \num{0.019} & \num{155.930} & \num{156.060} \\
+\hline
+LGS & 176 & 177 & \num{1.732} & \num{1.695} & \num{0.019} & \num{1.640} & \num{1.750} \\
+LGS & 176 & 178 & \num{1.732} & \num{1.795} & \num{0.022} & \num{1.740} & \num{1.880} \\
+LGS & 177 & 176 & \num{1.732} & \num{1.656} & \num{0.017} & \num{1.590} & \num{1.700} \\
+LGS & 177 & 178 & \num{1.732} & \num{1.751} & \num{0.023} & \num{1.670} & \num{1.810} \\
+LGS & 178 & 176 & \num{1.732} & \num{1.773} & \num{0.026} & \num{1.700} & \num{1.850} \\
+LGS & 178 & 177 & \num{1.732} & \num{1.712} & \num{0.020} & \num{1.660} & \num{1.780} \\
+\hline
+DecaWave & 176 & 177 & \num{1.732} & \num{11.883} & \num{0.020} & \num{11.820} & \num{11.950} \\
+DecaWave & 176 & 178 & \num{1.732} & \num{6.261} & \num{0.021} & \num{6.200} & \num{6.340} \\
+DecaWave & 177 & 176 & \num{1.732} & \num{11.857} & \num{0.015} & \num{11.810} & \num{11.900} \\
+DecaWave & 177 & 178 & \num{1.732} & \num{7.406} & \num{0.023} & \num{7.340} & \num{7.480} \\
+DecaWave & 178 & 176 & \num{1.732} & \num{6.182} & \num{0.025} & \num{6.100} & \num{6.270} \\
+DecaWave & 178 & 177 & \num{1.732} & \num{7.458} & \num{0.019} & \num{7.390} & \num{7.520} \\
+\hline
+	\end{tabular}
+	\caption{Stochastische Eigenschaften der \Glspl{uwbm} ohne und mit Antennenkalibrierung bei einem Abstand von \SI{1.73}{\meter}.}
+	\label{tab:calibration_range_results}
+\end{table}
+
+
+
+Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt reicht ein Dreieck nicht mehr aus, statt dessen wird ein Pentagramm verwendet, siehe \autoref{fig:calibration_pentagram2}. Dieses lässt sich mathematisch ähnlich gut beschreiben wie das Dreieck. Aus der Seitenlänge $a = \SI{4.5}{\meter}$, zwischen zwei benachbarten Spitzen, wird über die \autoref{eq:pentagramm_diagonale} der Abstand $d$, zwischen den diagonalen Spitzen, berechnet. Der Umkreisradius $r_u$ ergibt sich aus der \autoref{eq:pentagramm_umkreisradius}.
+
+\begin{equation}
+d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:pentagramm_diagonale}
+\end{equation}
+
+\begin{equation}
+r_u = \frac{a}{10} \sqrt{50 + 10 \sqrt{5}} \label{eq:pentagramm_umkreisradius}
+\end{equation}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{calibration_pentagram2}
+	\caption{Versuchsaufbau für die Kalibierung von fünf \Glsuseri{uwbm}.}
+	\label{fig:calibration_pentagram2}
+\end{figure}
+
+Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verwendet, die Antennenverzögerungen pro \Gls{uwbm} sind dabei in der \autoref{tab:calibration_pentagramm_antenna_delay_results} aufgeführt.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c||c|}
+\hline
+\Gls{uwbm} & LGS [\si{\second}] \\
+\hline\hline
+176 & \num{257.30e9} \\
+177 & \num{256.67e9} \\
+178 & \num{256.67e9} \\
+179 & \num{256.41e9} \\
+180 & \num{257.20e9} \\
+
+% Alte Darstellung
+%176 & 16441 \\
+%177 & 16401 \\
+%178 & 16401 \\
+%179 & 16384 \\
+%180 & 16435 \\
+\hline
+	\end{tabular}
+	\caption{Berechnete Werte für die Antennenverzögerung pro \Gls{uwbm} für das Pentagramm.}
+	\label{tab:calibration_pentagramm_antenna_delay_results}
+\end{table}
+
+
 
 
 \begin{comment}

@@ -1,0 +1,14 @@
+Inital:
+tag_id = 176 with antenna_delay = 0
+tag_id = 177 with antenna_delay = 0
+tag_id = 178 with antenna_delay = 0
+
+LGS:
+tag_id = 176 with antenna_delay = 16450.736348	=> 16451
+tag_id = 177 with antenna_delay = 16452.660013	=> 16453
+tag_id = 178 with antenna_delay = 16429.320019	=> 16429
+
+DecaWave:
+tag_id = 176 with antenna_delay = 15494.058023	=> 15494
+tag_id = 177 with antenna_delay = 15237.787343	=> 15238
+tag_id = 178 with antenna_delay = 16433.600663	=> 16433
