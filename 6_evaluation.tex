@@ -67,7 +67,7 @@ Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervo
 r_u = \frac{a}{3} \sqrt{3} \label{eq:dreieck_seitenlaenge_aus_umkreis}
 \end{equation}
 
-Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt und danach reihum von jedem \Gls{uwbm} eintausend Entfernungsmessung zu den beiden benachbarten \Glsuseri{uwbm} durchgeführt. Insgesamt entstehen dabei sechstausend Datensätze, die mittels dem \textit{LGS}-- bzw. des \textit{DecaWave}--Kalibrierungsverfahren ausgewertet werden, siehe \autoref{tab:calibration_antenna_delay_results}
+Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt und danach reihum von jedem \Gls{uwbm} eintausend Entfernungsmessungen zu den beiden benachbarten \Glsuseri{uwbm} durchgeführt. Insgesamt entstehen dabei sechstausend Datensätze, die mittels dem \textit{LGS}-- bzw. des \textit{DecaWave}--Kalibrierungsverfahren ausgewertet werden, siehe \autoref{tab:calibration_antenna_delay_results}
 
 Das \textit{LGS}--Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzierbare Ergebnisse. Da jedes \Gls{uwbm} herstellungsbedingte Unterschiede aufweist, ist es Plausibel das alle Antennenverzögerungen in einem ähnlichen Wertebereich liegen. Anders sieht es bei dem \textit{DecaWave}--Kalibrierungsverfahren aus. Hier ergeben sich für jeden Durchlauf andere Wertekombinationen, bedingt durch die Zufallskomponente bei der Erstellung der Kandidatenliste. Diese Verhalten von Genetischen--Algorithmen ist bekannt und muss daher bei der Auswahl der Wertekombinationen berücksichtigt werden. Am Beispiel der Spalte \textit{DecaWave 1} wird es sehr deutlich. Hier beträgt der Unterschied zwischen dem größten und kleinsten Wert \approx\SI{23}{\ns} und entspricht damit einer Abweichung von \approx\SI{6}{\meter} zwischen diesen beiden \Glsuseri{uwbm}.
 
@@ -76,7 +76,8 @@ Das \textit{LGS}--Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzi
 	\begin{tabular}{|c||c||c|c|c|c|}
 \hline
 \Gls{uwbm} & LGS [\si{\second}] & DecaWave [\si{\second}] & DecaWave 1 [\si{\second}] & DecaWave 2 [\si{\second}] \\
-\hline\hline
+\hline
+\hline
 176 & \num{257.45e9} & \num{242.48e9} & \num{232.21e9} & \num{254.50e9} \\
 177 & \num{257.49e9} & \num{238.47e9} & \num{249.38e9} & \num{254.73e9} \\
 178 & \num{257.11e9} & \num{257.17e9} & \num{255.36e9} & \num{215.07e9} \\
@@ -93,15 +94,17 @@ Das \textit{LGS}--Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzi
 
 Die Wertekombinationen aus den Spalten \textit{LGS} und \textit{DecaWave} werden abwechselnd als Antennenverzögerungen in die \Glspl{uwbm} eingetragen und für jede Spalte jeweils eine weitere Messreihe, wie oben beschrieben, aufgezeichnet. Die Ergebnisse sind in der \autoref{tab:calibration_range_results} aufgeführt.
 
-Mit einer initalen Antennenverzögerung von null beträgt der gemessene Abstand zwischen zwei \Glsuseri{uwbm} \approx \SI{156}{\meter} bei einem tatsächenlichen Abstand von \approx \SI{1.73}{\meter}. Eine Standardabweichung von \approx \SI{2}{\centi\meter} \footnote{Bei der Standardabweichung von über einem Meter handelt es sich um einen einzelnen Messfehler in der Messreihe.} entspricht dabei den Produkteigenschaften mit denen \textit{DecaWave} wirbt.
+Mit einer initalen Antennenverzögerung von null beträgt die gemessene Entfernung zwischen zwei \Glsuseri{uwbm} \approx \SI{156}{\meter} bei einer tatsächenlichen Entfernung von \approx \SI{1.73}{\meter}. Eine Standardabweichung von \approx \SI{2}{\centi\meter} \footnote{Bei der Standardabweichung von über einem Meter handelt es sich um einen einzelnen Messfehler in der Messreihe.} entspricht dabei den Produkteigenschaften mit denen \textit{DecaWave} wirbt.
 
-Werden die Antennenverzögerung aus der \textit{LGS}--Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt der gemessene Abstand dem tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}--Kalibrierungsverfahren.
+Werden die Antennenverzögerung aus der \textit{LGS}--Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen dem tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}--Ka\-li\-brie\-rungs\-ver\-fa\-hren.
 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{||c||c|c||ccccc||}
 \hline
-Kalibrierung & Tag & Anker & Entfernung & $\overline{x}_{arithm}$ & $\sigma$ & Min & Max \\\hline
+Kalibrierung & Tag & Anker & Entfernung & $\overline{x}_{arithm}$ & $\sigma$ & Min & Max \\
+\hline
+\hline
 Keine & 176 & 177 & \num{1.732} & \num{156.108} & \num{0.018} & \num{156.050} & \num{156.170} \\
 Keine & 176 & 178 & \num{1.732} & \num{155.929} & \num{0.021} & \num{155.870} & \num{156.000} \\
 Keine & 177 & 176 & \num{1.732} & \num{156.106} & \num{1.025} & \num{156.020} & \num{188.470} \\
@@ -128,7 +131,43 @@ DecaWave & 178 & 177 & \num{1.732} & \num{7.458} & \num{0.019} & \num{7.390} & \
 	\label{tab:calibration_range_results}
 \end{table}
 
+In der \autoref{fig:calibration_histograms} wurden die gemessenen Entfernungen als Histogramm dargestellt. Gut zu erkennen ist die Normalverteilung der Messwerte um den Mittelwert.
 
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{calibration_histogram_176_177}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{calibration_histogram_176_178}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{calibration_histogram_177_176}
+	\end{subfigure}
+	\par
+	\bigskip
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{calibration_histogram_177_178}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{calibration_histogram_178_176}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{calibration_histogram_178_177}
+	\end{subfigure}
+	\caption{Histogramm und Wahrscheinlichkeitsdichtefunktion der kalibrierten Entfernungsmessungen.}
+	\label{fig:calibration_histograms}
+\end{figure}
 
 Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt reicht ein Dreieck nicht mehr aus, statt dessen wird ein Pentagramm verwendet, siehe \autoref{fig:calibration_pentagram2}. Dieses lässt sich mathematisch ähnlich gut beschreiben wie das Dreieck. Aus der Seitenlänge $a = \SI{4.5}{\meter}$, zwischen zwei benachbarten Spitzen, wird über die \autoref{eq:pentagramm_diagonale} der Abstand $d$, zwischen den diagonalen Spitzen, berechnet. Der Umkreisradius $r_u$ ergibt sich aus der \autoref{eq:pentagramm_umkreisradius}.
 
