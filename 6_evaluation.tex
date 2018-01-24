@@ -18,41 +18,12 @@ Der \Gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig 
 
 \begin{comment}
 --------------------------------------------------------------------------------
-- Versuchsaufbau für die Kalibierung
-	- Dreieck {Radius, Winkelschablone, Maurerschnur}
-	- Antennenverzögerung initial auf 0
-	- Von jedem Tag 1000 Aufnahmen pro Anchor => 3*2*1000 = 6000
-	- Kalibierung durchführen mit LGS und mit DecaWave
-	- Ergebnisse vergleichen
-	- Antennenverzögerung aus LGS/DecaWave einstellung
-		- Von jedem Tag 1000 Aufnahmen pro Anchor => 3*2*1000 = 6000
-		- Von jedem Tag 1000 Aufnahmen pro Anchor => 3*2*1000 = 6000
-	- Ergebnisse vergleichen
-
-- Versuchsaufbau mit dem Pentagramm
-	-
-
-- Tabelle 1
-	- Beacon
-	- Antennenverzögerung {DecaWave, LGS}
-	
-- Tabelle 1
-	- Kalibierungsart {Keine, DecaWave, LGS}
-	- Von, Nach
-	- Ground Truth [m]
-	- Aritmetischer Mittelwert [m]
-	- Standardabweichung [m]
-
-- Diagramm 1
-	- 6 Histogramme mit den LGS Kalibierten Entfernungen
-	- Normalverteilung hinzufügen
-	
 - 3-sigma
 	- https://www.easycalculation.com/statistics/learn-three-sigma.php
 	- https://bizfluent.com/how-5214886-calculate-sigma.html
 	- https://stackoverflow.com/questions/28699342/calculate-the-3rd-standard-deviation-for-an-array
 \end{comment}
-\section{Kalibierung}
+\section{Kalibierung [new]}
 
 Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervorgänge durchgeführt. Der erste Kalibriervorgang orientiert sich an den Herstellervorgaben aus \cite{decawave2014calibration}. Dazu werden drei \Glspl{uwbm} an die Spitzen eines gleichseitigen Dreieckes positioniert. Um das Dreieck zu konstruieren, wird in der Mitte des Dreiecks eine ausgemessene Maurerschnur befestigt, darüber wird eine Winkelschablone gelegt und dann reihum die Spitzen es Dreiecks auf dem Boden eingezeichnet, siehe \autoref{fig:calibration_triangle2}. Die Seitenlänge $a \approx \SI{1.73}{\meter}$ wird dabei aus dem Umkreisradius $r_u = \SI{1}{\meter}$ mit der \autoref{eq:dreieck_seitenlaenge_aus_umkreis} berechnet.
 
@@ -96,7 +67,7 @@ Die Wertekombinationen aus den Spalten \textit{LGS} und \textit{DecaWave} werden
 
 Mit einer initalen Antennenverzögerung von null beträgt die gemessene Entfernung zwischen zwei \Glsuseri{uwbm} \approx \SI{156}{\meter} bei einer tatsächenlichen Entfernung von \approx \SI{1.73}{\meter}. Eine Standardabweichung von \approx \SI{2}{\centi\meter} \footnote{Bei der Standardabweichung von über einem Meter handelt es sich um einen einzelnen Messfehler in der Messreihe.} entspricht dabei den Produkteigenschaften mit denen \textit{DecaWave} wirbt.
 
-Werden die Antennenverzögerung aus der \textit{LGS}--Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen dem tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}--Ka\-li\-brie\-rungs\-ver\-fa\-hren.
+Werden die Antennenverzögerung aus der \textit{LGS}--Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen der tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}--Ka\-li\-brie\-rungs\-ver\-fa\-hren.
 
 \begin{table}[h]
 	\centering
