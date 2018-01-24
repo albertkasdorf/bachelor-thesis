@@ -44,20 +44,19 @@ Das \textit{LGS}--Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzi
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{|c||c||c|c|c|c|}
+	\begin{tabular}{||c||c||ccc||}
 \hline
-\Gls{uwbm} & LGS [\si{\second}] & DecaWave [\si{\second}] & DecaWave 1 [\si{\second}] & DecaWave 2 [\si{\second}] \\
+\Gls{uwbm} & LGS [\si{\second}] & DecaWave & DecaWave 1 & DecaWave 2 \\
 \hline
 \hline
 176 & \num{257.45e9} & \num{242.48e9} & \num{232.21e9} & \num{254.50e9} \\
 177 & \num{257.49e9} & \num{238.47e9} & \num{249.38e9} & \num{254.73e9} \\
 178 & \num{257.11e9} & \num{257.17e9} & \num{255.36e9} & \num{215.07e9} \\
-
+\hline
 % Alte Darstellung
 %176 & 16451 & 15494 & 14838 & 15912 & 16262 \\
 %177 & 16453 & 15238 & 15935 & 15805 & 16277 \\
 %178 & 16429 & 16433 & 16317 & 15131 & 13743 \\
-\hline
 	\end{tabular}
 	\caption{Berechnete Werte für die Antennenverzögerung pro \Gls{uwbm}.}
 	\label{tab:calibration_antenna_delay_results}
@@ -71,9 +70,9 @@ Werden die Antennenverzögerung aus der \textit{LGS}--Kalibrierungsverfahren ben
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{||c||c|c||ccccc||}
+	\begin{tabular}{||c||cc||ccc|cc||}
 \hline
-Kalibrierung & Tag & Anker & Entfernung & $\overline{x}_{arithm}$ & $\sigma$ & Min & Max \\
+Kalibrierung & Tag & Anker & Entfernung [\si{\meter}] & $\overline{x}$ & $\sigma$ & Min & Max \\
 \hline
 \hline
 Keine & 176 & 177 & \num{1.732} & \num{156.108} & \num{0.018} & \num{156.050} & \num{156.170} \\
@@ -161,7 +160,7 @@ Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verw
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{|c||c|}
+	\begin{tabular}{||c||c||}
 \hline
 \Gls{uwbm} & LGS [\si{\second}] \\
 \hline\hline
@@ -184,102 +183,91 @@ Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verw
 \end{table}
 
 
-
-
 \begin{comment}
 --------------------------------------------------------------------------------
-- Mit welchen Einstellungen kommt man auf die Entfernungsmessung?
-- Streuung?
-- LOS/NLOS {Holz, Bücher, Menschlicher Körper}
-	- Welcher Fehler ergibt zwischen LOS/NLOS?
 - Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line--of--sight (LOS)) und indirekten Sichtverbindung (engl. Non--line--of--sight (NLOS))?
-- isaacs2009optimal - Optimal sensor placement for time difference of arrival localization
-- Diagramme
-	- \cite{kurth2003experimental}
-		- Fig. 2: Sample PDFs showing the true ranges associated with 20, 30, and 50 ft measured ranges. (X: true range, Y:count)
-		- Fig. 3: The mean true distances to RF tags vs. measured distances (X:measured range, Y: true range)
-		- Fig. 4: The variance in true distances to RF tags vs. measured distances (X:measured range (ft), Y: variance (ft^2))
-	
-- https://matheguru.com/stochastik/standardfehler.html
-- https://de.wikipedia.org/wiki/Standardfehler
-
-- Lichtgeschwindigkeit
-	- https://de.wikipedia.org/wiki/Lichtgeschwindigkeit
-	- In bodennaher Luft ist die Lichtgeschwindigkeit etwa 0,28 ‰ geringer als im Vakuum (also ca. 299.710 km/s), in Wasser beträgt sie etwa 225.000 km/s (−25 %) und in Gläsern mit hohem Brechungsindex bis hinab zu 160.000 km/s (−47 %).
-	
 \end{comment}
-\section{Entfernungsmessung}
+\section{Entfernungsmessung [new]}
 
-Um die Charakteristik der Entfernungsmessung zu bestimmen, wurde der Versuchsaufbau aus der \figurename~\ref{fig:entfernungsmessung_versuchsaufbau} verwendet. Dabei wird der \Gls{tag} an einem fixen Ort befestigt und die Entfernung zu dem \Gls{anchor} gemessen. Es wurden dabei acht Entfernungen mit einem Abstand von einem Meter gemessen. Zu jeder Entfernung wurden \num{249} Messungen aufgezeichnet. Die tatsächliche Entfernung wird mit einem Laser Entfernungsmesser, der eine Genauigkeit von $\pm$~\SI{2}{\milli\meter} besitzt, bestimmt.
+Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}-- und drei \Gls{nlos}--Messreihen aufgezeichnet. Jede Messreihe beginnt bei einer Entfernung von einem Meter zwischen \Gls{tag} und \Gls{anchor}. Pro Entfernung werden jeweils fünfhundert Messwerte aufgezeichnet. Danach wird die Entfernung um einen halben Meter erhöht, indem der \Gls{anchor} verschoben wird. Dies erfolgt solange bis eine Entfernung von neun Meter erreicht ist. Somit enthält jede Messreihe siebzehn Entfernungen mit achttausendfünfhundert Entfernungsmessungen.
 
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.5\linewidth]{entfernungsmessung_versuchsaufbau}
-	\caption{Versuchsaufbau der Entfernungsmessung.}
-	\label{fig:entfernungsmessung_versuchsaufbau}
+Bei der ersten \Gls{nlos}--Messreihe wird ein \SI{19x12x10}{\centi\meter} großer, mit Wasser gefüllter Kunststoffbehälter in einem Abstand von \SI{2}{\centi\meter} vor der \Gls{uwb}--Antenne platziert, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_133013}. Bei den letzten zwei \Gls{nlos}--Messreihen wird ein \SI{44x25}{\centi\meter} großes Aluminiumblech mit einer Dicke von \SI{0.5}{\milli\meter} vor die \Gls{uwb}--Antenne platziert, jeweils in einem Abstand von \SI{5}{\centi\meter} und \SI{50}{\centi\meter}, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434} und \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_140118}.
+
+\begin{figure}[ht]
+	\begin{minipage}{0.49\linewidth}
+		\begin{subfigure}{\linewidth}
+			\includegraphics[width=\linewidth]{entfernungsmessung_versuchsaufbau_20180120_122434_2}
+			\caption{ }
+			\label{fig:entfernungsmessung_versuchsaufbau_20180120_122434}
+		\end{subfigure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.49\linewidth}
+			\begin{minipage}{\linewidth}
+				\begin{subfigure}{\linewidth}
+					\includegraphics[width=\linewidth]{entfernungsmessung_versuchsaufbau_20180120_133013_2}
+					\caption{ }
+					\label{fig:entfernungsmessung_versuchsaufbau_20180120_133013}
+				\end{subfigure}
+			\end{minipage}
+			\par
+			\bigskip
+			\begin{minipage}{\linewidth}
+				\begin{subfigure}{\linewidth}
+					\includegraphics[width=\linewidth]{entfernungsmessung_versuchsaufbau_20180120_140118_2}
+					\caption{ }
+					\label{fig:entfernungsmessung_versuchsaufbau_20180120_140118}
+				\end{subfigure}	
+			\end{minipage}
+	\end{minipage}
+	\caption{Versuchsaufbau für die \Gls{nlos}--Entfernungsmessung.}
+	\label{fig:entfernungsmessung_versuchsaufbau_20180120}
 \end{figure}
 
-Die Ergebnisse der Entfernungsmessung können der \tablename~\ref{tab:entfernungsmessung_stochastik} entnommen werden. Auffällig sind die zum Teil großen Abweichung der Mittelwerte von der tatsächlichen Entfernungen, siehe Entfernung \SI{3}{\meter} und \SI{7}{\meter}. Mit \SI{10}{\centi\meter} sind die größten Ausreißer vom Mittelwert bei \SI{7}{\meter} zu verzeichnen. Die restlichen liegen im Bereich von \SIrange{4}{8}{\centi\meter}. Die Standardabweichung liegt mit \SI{3}{\centi\meter} in einem sehr guten Bereich, siehe auch \figurename~\ref{fig:entfernungsmessung_punktwolke}.
 
-\begin{table}[h!]
+Das auffälligste Merkmal der \Gls{los}-- als auch der \Gls{nlos}--Entfernungsmessungen ist die systematische Verschiebung aller Messwerte um ca. \SI{20}{\centi\meter} deren Ursache ungeklärt bleibt, siehe \autoref{fig:entfernungsmessung_2018_01_20}.
+
+Bei der \Gls{los}--Messreihe beträgt die Standardabweichung, wie bereits bei der Kalibrierung, ca. \SI{2}{\centi\meter}. Mit steigender Entfernung steigt auch die Standardabweichung von ca. \SI{1.8}{\centi\meter} bei einem Meter auf ca. \SI{2.3}{\centi\meter} bei neun Meter an. Größere Ausreißer sind bei den Messwerten nicht vorhanden, siehe \autoref{fig:entfernungsmessung_2018_01_20_los} und \autoref{tab:entfernungsmessung_2018_01_20_los}.
+
+In der \autoref{fig:entfernungsmessung_2018_01_20_nlos_water} ist deutlich zu erkennen, das Wasser einen sehr störenden Einfluss auf die Entfernungsmessung ausübt. Die Messwerte streuen über einen sehr großen Bereich, das spiegelt sich auch in der Standardabweichung, die im besten Fall ca. \SI{5}{\centi\meter} und im schlimmsten Fall ca. \SI{34}{\centi\meter} beträgt, siehe \autoref{tab:entfernungsmessung_2018_01_20_nlos_water}.
+
+Ähnlich verhält es sich bei der \Gls{nlos}--Messreihe mit einem Aluminiumblech, das sehr nah vor der \Gls{uwb}--Antenne platziert wurde, siehe \autoref{fig:entfernungsmessung_2018_01_20_nlos_metal2} und \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal2}. Einzig im Bereich von zwei bis fünf Meter beträgt die Standardabweichung ca. \SI{2}{\centi\meter}.
+
+Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer Entfernung von \SI{50}{\centi\meter} befindet. Die Werte der Standardabweichung ähneln der \Gls{los}--Messreihe. Nur im Bereich zwischen achteinhalb und neun Meter steigt die Standardabweichung auf einen Wert von ca. \SI{30}{\centi\meter} an. Dies könnte darauf zurückzuführen sein, das im hinteren Bereich des Raums Metallstühle auf den Tischen standen, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
+
+
+\begin{figure}[ht]
 	\centering
-	\begin{tabular}{||c||c|c|c|c|c|c||}
-		\hline
-		Entfernung [\si{\meter}] & $\overline{x}_{arithm}$ & $\sigma$ & $\sigma^2$ & $SE_{\overline{x}}$ & Min & Max\\\hline
-		\hline
-		\num{1.00} & \num{1.0401} & \num{0.0298} & \num{0.0009} & \num{0.0019} & \num{0.96} & \num{1.12}\\\hline
-		\num{2.00} & \num{2.0766} & \num{0.0164} & \num{0.0003} & \num{0.0010} & \num{2.03} & \num{2.12}\\\hline
-		\num{3.00} & \num{3.1288} & \num{0.0218} & \num{0.0005} & \num{0.0014} & \num{3.07} & \num{3.18}\\\hline
-		\num{4.00} & \num{3.9104} & \num{0.0221} & \num{0.0005} & \num{0.0014} & \num{3.86} & \num{3.97}\\\hline
-		\num{5.00} & \num{5.0746} & \num{0.0383} & \num{0.0015} & \num{0.0024} & \num{5.00} & \num{5.19}\\\hline
-		\num{6.00} & \num{6.0965} & \num{0.0177} & \num{0.0003} & \num{0.0011} & \num{6.05} & \num{6.16}\\\hline
-		\num{7.00} & \num{7.1509} & \num{0.0324} & \num{0.0010} & \num{0.0021} & \num{7.08} & \num{7.25}\\\hline
-		\num{8.00} & \num{7.9356} & \num{0.0191} & \num{0.0004} & \num{0.0012} & \num{7.89} & \num{7.98}\\\hline
-	\end{tabular}
-	\caption{Stochastische Eigenschaften der Entfernungsmessungen.}
-	\label{tab:entfernungsmessung_stochastik}
-\end{table}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.5\linewidth]{entfernungsmessung_punktwolke}
-	\caption{Verteilung der Messpunkte der ungeraden Entfernungsmessungen.}
-	\label{fig:entfernungsmessung_punktwolke}
-\end{figure}
-
-In der \figurename~\ref{fig:entfernungsmessung_los_16440} wurden die ungeraden Entfernungsmessungen als Histogramm dargestellt. Gut zu erkennen ist die Normalverteilung der Messwerte um den Mittelwert.
-
-\begin{figure}[h!]
-	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[t]{0.49\linewidth}
 		\centering
-		\includegraphics[width=\textwidth]{entfernungsmessung_los_1_16440}
-		\caption{1 Meter}
-		\label{fig:entfernungsmessung_los_1_16440}
+		\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_los}
+		\caption{\Gls{los}}
+		\label{fig:entfernungsmessung_2018_01_20_los}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.49\linewidth}
 		\centering
-		\includegraphics[width=\textwidth]{entfernungsmessung_los_3_16440}
-		\caption{3 Meter}
-		\label{fig:entfernungsmessung_los_3_16440}
+		\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_water}
+		\caption{\Gls{nlos} mit einem wassergefüllten Kunststoffbehälter.}
+		\label{fig:entfernungsmessung_2018_01_20_nlos_water}
 	\end{subfigure}
+	\par
 	\bigskip
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.49\linewidth}
 		\centering
-		\includegraphics[width=\textwidth]{entfernungsmessung_los_5_16440}
-		\caption{5 Meter}
-		\label{fig:entfernungsmessung_los_5_16440}
+		\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_metal}
+		\caption{\Gls{nlos} mit einem Aluminiumblech in einer Entfernung von \SI{50}{\centi\meter}.}
+		\label{fig:entfernungsmessung_2018_01_20_nlos_metal}
 	\end{subfigure}
-	\hfil
-	\begin{subfigure}[b]{0.45\textwidth}
+	\hfill
+	\begin{subfigure}[b]{0.49\linewidth}
 		\centering
-		\includegraphics[width=\textwidth]{entfernungsmessung_los_7_16440}
-		\caption{7 Meter}
-		\label{fig:entfernungsmessung_los_7_16440}
+		\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_metal2}
+		\caption{\Gls{nlos} mit einem Aluminiumblech in einer Entfernung von \SI{5}{\centi\meter}.}
+		\label{fig:entfernungsmessung_2018_01_20_nlos_metal2}
 	\end{subfigure}
-	\caption{Histogramm und Wahrscheinlichkeitsdichtefunktion der ungeraden Entfernungsmessungen.}
-	\label{fig:entfernungsmessung_los_16440}
+	\caption{Tatsächliche und gemessene \Gls{los}--und \Gls{nlos}--Entfernungen.}
+	\label{fig:entfernungsmessung_2018_01_20}
 \end{figure}
 
 
