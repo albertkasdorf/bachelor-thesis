@@ -42,16 +42,18 @@ Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt
 
 Das \textit{LGS}--Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzierbare Ergebnisse. Da jedes \Gls{uwbm} herstellungsbedingte Unterschiede aufweist, ist es Plausibel das alle Antennenverzögerungen in einem ähnlichen Wertebereich liegen. Anders sieht es bei dem \textit{DecaWave}--Kalibrierungsverfahren aus. Hier ergeben sich für jeden Durchlauf andere Wertekombinationen, bedingt durch die Zufallskomponente bei der Erstellung der Kandidatenliste. Diese Verhalten von Genetischen--Algorithmen ist bekannt und muss daher bei der Auswahl der Wertekombinationen berücksichtigt werden. Am Beispiel der Spalte \textit{DecaWave 1} wird es sehr deutlich. Hier beträgt der Unterschied zwischen dem größten und kleinsten Wert \approx\SI{23}{\ns} und entspricht damit einer Abweichung von \approx\SI{6}{\meter} zwischen diesen beiden \Glsuseri{uwbm}.
 
+% todo: Im Text ist von Nanosekunden die Rede, in der Tabelle aber von Sekunden.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{||c||c||ccc||}
 \hline
-\Gls{uwbm} & LGS [\si{\second}] & DecaWave & DecaWave 1 & DecaWave 2 \\
+\Gls{uwbm} & LGS & DecaWave & DecaWave 1 & DecaWave 2 \\
+& [\si{\nano\second}] & [\si{\nano\second}] & [\si{\nano\second}] & [\si{\nano\second}] \\
 \hline
 \hline
-176 & \num{257.45e9} & \num{242.48e9} & \num{232.21e9} & \num{254.50e9} \\
-177 & \num{257.49e9} & \num{238.47e9} & \num{249.38e9} & \num{254.73e9} \\
-178 & \num{257.11e9} & \num{257.17e9} & \num{255.36e9} & \num{215.07e9} \\
+176 & \num{257.45} & \num{242.48} & \num{232.21} & \num{254.50} \\
+177 & \num{257.49} & \num{238.47} & \num{249.38} & \num{254.73} \\
+178 & \num{257.11} & \num{257.17} & \num{255.36} & \num{215.07} \\
 \hline
 % Alte Darstellung
 %176 & 16451 & 15494 & 14838 & 15912 & 16262 \\
@@ -72,7 +74,8 @@ Werden die Antennenverzögerung aus der \textit{LGS}--Kalibrierungsverfahren ben
 	\centering
 	\begin{tabular}{||c||cc||ccc|cc||}
 \hline
-Kalibrierung & Tag & Anker & Entfernung [\si{\meter}] & $\overline{x}$ & $\sigma$ & Min & Max \\
+Kalibrierung & Tag & Anker & Entfernung & $\overline{x}$ & $\sigma$ & Min & Max \\
+ & & & [\si{\meter}] & [\si{\meter}] & [\si{\meter}] & [\si{\meter}] & [\si{\meter}] \\
 \hline
 \hline
 Keine & 176 & 177 & \num{1.732} & \num{156.108} & \num{0.018} & \num{156.050} & \num{156.170} \\
@@ -162,13 +165,14 @@ Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verw
 	\centering
 	\begin{tabular}{||c||c||}
 \hline
-\Gls{uwbm} & LGS [\si{\second}] \\
+\Gls{uwbm} & LGS \\
+ & [\si{\nano\second}] \\
 \hline\hline
-176 & \num{257.30e9} \\
-177 & \num{256.67e9} \\
-178 & \num{256.67e9} \\
-179 & \num{256.41e9} \\
-180 & \num{257.20e9} \\
+176 & \num{257.30} \\
+177 & \num{256.67} \\
+178 & \num{256.67} \\
+179 & \num{256.41} \\
+180 & \num{257.20} \\
 
 % Alte Darstellung
 %176 & 16441 \\
@@ -195,7 +199,8 @@ Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verw
 
 Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}-- und drei \Gls{nlos}--Messreihen aufgezeichnet. Jede Messreihe beginnt bei einer Entfernung von einem Meter zwischen \Gls{tag} und \Gls{anchor}. Pro Entfernung werden jeweils fünfhundert Messwerte aufgezeichnet. Danach wird die Entfernung um einen halben Meter erhöht, indem der \Gls{anchor} verschoben wird. Dies erfolgt solange bis eine Entfernung von neun Meter erreicht ist. Somit enthält jede Messreihe siebzehn Entfernungen mit achttausendfünfhundert Entfernungsmessungen.
 
-Bei der ersten \Gls{nlos}--Messreihe wird ein \SI{19x12x10}{\centi\meter} großer, mit Wasser gefüllter Kunststoffbehälter in einem Abstand von \SI{2}{\centi\meter} vor der \Gls{uwb}--Antenne platziert, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_133013}. Bei den letzten zwei \Gls{nlos}--Messreihen wird ein \SI{44x25}{\centi\meter} großes Aluminiumblech mit einer Dicke von \SI{0.5}{\milli\meter} vor die \Gls{uwb}--Antenne platziert, jeweils in einem Abstand von \SI{5}{\centi\meter} und \SI{50}{\centi\meter}, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434} und \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_140118}.
+Bei der ersten \Gls{nlos}--Messreihe wird ein \SI{19x12x10}{\centi\meter} großer, mit Wasser gefüllter Kunststoffbehälter in einem Abstand von \SI{2}{\centi\meter} vor der \Gls{uwb}--Antenne platziert, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_133013}. Bei den letzten zwei \Gls{nlos}--Messreihen wird ein \SI{44x25}{\centi\meter} großes Aluminiumblech mit einer Dicke von \SI{0.5}{\milli\meter} vor die \Gls{uwb}--Antenne platziert, jeweils in einem Abstand von \SI{5}{\centi\meter} und \SI{50}{\centi\meter}, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_140118} und \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
+
 
 \begin{figure}[ht]
 	\begin{minipage}{0.49\linewidth}
@@ -237,7 +242,7 @@ In der \autoref{fig:entfernungsmessung_2018_01_20_nlos_water} ist deutlich zu er
 
 Ähnlich verhält es sich bei der \Gls{nlos}--Messreihe mit einem Aluminiumblech, das sehr nah vor der \Gls{uwb}--Antenne platziert wurde, siehe \autoref{fig:entfernungsmessung_2018_01_20_nlos_metal2} und \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal2}. Einzig im Bereich von zwei bis fünf Meter beträgt die Standardabweichung ca. \SI{2}{\centi\meter}.
 
-Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer Entfernung von \SI{50}{\centi\meter} befindet. Die Werte der Standardabweichung ähneln der \Gls{los}--Messreihe. Nur im Bereich zwischen achteinhalb und neun Meter steigt die Standardabweichung auf einen Wert von ca. \SI{30}{\centi\meter} an. Dies könnte darauf zurückzuführen sein, das im hinteren Bereich des Raums Metallstühle auf den Tischen standen, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
+Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer Entfernung von \SI{50}{\centi\meter} befindet, siehe \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal}. Die Werte der Standardabweichung ähneln der \Gls{los}--Messreihe. Nur im Bereich zwischen achteinhalb und neun Meter steigt die Standardabweichung auf einen Wert von ca. \SI{30}{\centi\meter} an. Dies könnte darauf zurückzuführen sein, das im hinteren Bereich des Raums Metallstühle auf den Tischen standen, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
 
 
 \begin{figure}[ht]
