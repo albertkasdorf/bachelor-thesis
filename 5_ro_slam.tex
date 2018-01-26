@@ -1,7 +1,7 @@
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\chapter{RO-SLAM [new]}\label{ch:ro_slam}
+\chapter{RO-SLAM}\label{ch:ro_slam}
 
 Nachdem im vorherigen Kapitel die \Glspl{uwbm} für die Entfernungsmessung erstellt worden sind, wird jetzt nur noch eine Roboterplattform benötigt die mit einem Tag ausgestattet werden kann. Welche Hardwareplattform eingesetzt wird und von welchen Softwaremodulen diese gesteuert wird, folgt in den nächsten Abschnitten.
 
@@ -10,7 +10,7 @@ Nachdem im vorherigen Kapitel die \Glspl{uwbm} für die Entfernungsmessung erste
 - Einsatz mobiler Roboter in der Logistik am Beispiel des Robotino
 	- http://www.r-moehrle.de/wissenschaftlicheArbeiten/robotino1.pdf
 \end{comment}
-\section{Roboterplattform [new]}
+\section{Roboterplattform}
 
 Um die Messungen für den \Gls{roslam} aufzuzeichnen wird eine Roboterplattform benötigt auf der das \Gls{uwbm} montiert werden kann. Zusätzlich wird noch eine Reihe weiterer Sensoren benötigt, die im Folgenden vorgestellt werden.
 
@@ -36,7 +36,7 @@ Die Fahrbefehle werden dem Robotino über einen Xbox Wireless Controller übermi
 - Welche Funktion erfüllt dieses Modul
 - Welche ROS-Messages/-Topics/-Services bietet dieses Modul
 \end{comment}
-\section{Softwarearchitektur [new]}
+\section{Softwarearchitektur}
 
 Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen Module für den \Gls{roslam} werden in dem Abschnitt \Gls{ros}--Hauptmodule besprochen. In dem Abschnitt \Gls{ros}--Nebenmodule werden die Module besprochen, die im Nachgang für die Auswertung der Ergebnisse benötigt werden. Und im letzten Abschnitt wird das \Gls{mrpt}--Framework vorgestellt, das den \Gls{roslam}--Algorithmus bereitstellt.
 
@@ -45,7 +45,7 @@ Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen
 --------------------------------------------------------------------------------
 - todo: Übersicht über alle Module und deren Verbindung zu einander?
 \end{comment}
-\subsection{ROS--Hauptmodule [new]}
+\subsection{ROS--Hauptmodule}
 
 
 \begin{comment}
@@ -53,7 +53,7 @@ Die Softwarearchitektur ist unterteilt in drei Bereiche. Die absolut notwendigen
 - \url{http://wiki.ros.org/robotino_node}
 - todo: Service reset_odometry
 \end{comment}
-\subsubsection{Robotino--Steuerung [new]}
+\subsubsection{Robotino--Steuerung}
 
 Zur Steuerung der Roboterplattform muss die Verarbeitungseinheit Befehle zur Steuereinheit des Robotinos schicken. Diese Aufgabe erfüllt das \Gls{rosm} \textit{robotino\_node} aus dem Paket \textit{robotino\_node}. Über den Datenbus \textit{cmd\_vel} können die Geschwindigkeiten in X--/Y--Richtung und um die Z--Achse festgelegt werden. Um den Robotino zu stoppen, müssen alle drei Parameter auf den Wert Null gesetzt werden.
 
@@ -65,7 +65,7 @@ Um an die Informationen der Inkrementalgeber zu kommen muss das \Gls{rosm} \text
 - \url{http://wiki.ros.org/robot_state_publisher}
 - \url{http://wiki.ros.org/urdf}
 \end{comment}
-\subsubsection{Koordinatentransformation [new]}
+\subsubsection{Koordinatentransformation}
 
 Neben den dynamischen Transformationen besteht der Robotino auch aus vielen statischen Transformationen. Hierzu gehört z.B. die Transformation vom Robotino--Mittelpunkt zum 2D--Laser--Entfernungsmesser oder \Gls{uwbm}. Diese statischen Transformationen werden in einer \Gls{urdf}--Datei einmalig gespeichert und dann über das \Gls{rosm} \textit{state\_publisher} aus dem Paket \textit{robot\_state\_publisher} zur Laufzeit bereitgestellt, siehe \autoref{fig:rviz_robotino_tf2}.
 
@@ -82,7 +82,7 @@ Neben den dynamischen Transformationen besteht der Robotino auch aus vielen stat
 - \url{http://wiki.ros.org/joy}
 - todo: Referenz auf das lst:joy_node stehen lassen?
 \end{comment}
-\subsubsection{Teleoperation [new]}
+\subsubsection{Teleoperation}
 
 Um die Roboterplattform zu steuern wird ein Eingabegerät benötigt. Ein \textit{Xbox Wireless Controller} wird dabei als Eingabegerät verwendet. Zustandsänderungen am Eingabegerät werden über das \Gls{rosm} \textit{joy\_node} aus dem Paket \textit{joy} registriert und über den Datenbus \textit{joy} bereitgestellt. Das überwachte Eingabegerät wird über den Parameter \textit{dev} festgelegt, siehe \autoref{lst:joy_node}.
 
@@ -91,8 +91,9 @@ Mit den generischen Daten des Eingabegerätes kann die Roboterplattform jedoch n
 
 \begin{comment}
 --------------------------------------------------------------------------------
+todo: Nicht Abstandsmessung sondern Entfernungsmessung
 \end{comment}
-\subsubsection{UWB--Abstandsmessungen [new]}
+\subsubsection{UWB--Abstandsmessungen}
 
 Die Abstandsmessungen zwischen dem \Gls{tag} und den vorhandenen \Glspl{anchor} werden durch das \Gls{uwbm} über die \Gls{usb}--Schnittstelle bereitgestellt. Die Daten werden dann von dem \Gls{rosm} \textit{beacon\_publisher.py} aus dem Paket \textit{ro\_slam\_with\_uwb} aufgefangen und auf den Datenbussen \textit{beacon} und \textit{beacon\_raw} veröffentlicht. Der erste Datenbus ist vom Typ \textit{mrpt\_msgs/ObservationRangeBeacon} und wird von dem \Gls{mrpt}--Modul für den \Gls{roslam} benötigt. Der zweite Datenbus wird für die Auswertung der Abstandmessungen im \autoref{ch:eval} benötigt und ist vom Typ \textit{ro\_slam\_with\_uwb/Beacon}.
 
@@ -100,14 +101,14 @@ Die Abstandsmessungen zwischen dem \Gls{tag} und den vorhandenen \Glspl{anchor} 
 \begin{comment}
 --------------------------------------------------------------------------------
 \end{comment}
-\subsection{ROS--Hilfsmodule [new]}
+\subsection{ROS--Hilfsmodule}
 
 
 \begin{comment}
 --------------------------------------------------------------------------------
 - \url{http://wiki.ros.org/sick_tim}
 \end{comment}
-\subsubsection{2D--Laser--Entfernungsmesser [new]}
+\subsubsection{2D--Laser--Entfernungsmesser}
 
 Der 2D--Laser--Entfernungsmesser gehört zu einem der am häufigsten verwendeten Sensoren für die präzise visuelle Erfassen der Umwelt. Für mehrere der nachfolgenden \Gls{rosm} ist eine 2D--Laser--Entfernungsmessung eine zwingende Voraussetzung. Um die Daten dem \Gls{ros}--System bereitzustellen wird das \Gls{rosm} \textit{sick\_tim551\_2050001} aus dem Paket \textit{sick\_tim} verwendet. Dieses Modul stellt über den Datenbus \textit{scan}, mit einer Rate von \SI{15}{\hertz}, Nachrichten vom Typ \textit{sensor\_msgs/LaserScan} bereit.
 
@@ -116,7 +117,7 @@ Der 2D--Laser--Entfernungsmesser gehört zu einem der am häufigsten verwendeten
 --------------------------------------------------------------------------------
 - \url{http://wiki.ros.org/hector_mapping}
 \end{comment}
-\subsubsection{Belegungskarten [new]}
+\subsubsection{Belegungskarten}
 
 Das erste \Gls{rosm}, das von der 2D--Laser--Entfernungsmessung Gebrauch macht, ist das \textit{hector\_mapping} aus dem Paket \textit{hector\_mapping}. Mit diesem Modul können präzise Belegungskarten (engl. Occupancy Grid Map) erstellt werden, die für jede Koordinate der Karte festlegen ob diese durch ein Hindernis belegt (schwarz) oder frei (weiß) ist. Bereiche die von Hindernissen verdeckt sind oder außerhalb der Sensorreichweite liegen, werden als unbestimmt (grau) markiert, siehe \autoref{fig:rviz_occupancy_grid_map}. In \Gls{ros} werden Belegungskarten mit dem Nachrichtentyp \textit{nav\_msgs/OccupancyGrid} repräsentiert.
 
@@ -135,7 +136,7 @@ Zu den wichtigsten Parametern zählt die minimale und maximale Sensorreichweite 
 - \url{http://wiki.ros.org/hector_trajectory_server}
 - \url{http://docs.ros.org/api/nav_msgs/html/msg/Path.html}
 \end{comment}
-\subsubsection{Trajektorie [new]}
+\subsubsection{Trajektorie}
 
 Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Odometrie aus. Als Quelle für die Odometrie dienen dabei die Inkrementalgeber des Robotino. Im nächsten Abschnitt werden weitere Quellen für die Odometrie vorgestellt. Um die Güte der Odometrie--Quellen zu vergleichen, wird die verfahrene Trajektorie jeder Quelle benötigt. Diese Informationen werden von dem \Gls{rosm} \textit{hector\_trajectory\_server} aus dem Paket {hector\_trajectory\_server} bereitgestellt. Die Daten liegen dabei als Nachricht vom Typ \textit{nav\_msgs/Path} bereit und können in die Belegungskarte integriert werden, siehe \autoref{fig:rviz_trajektorie}.
 
@@ -152,7 +153,7 @@ Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Od
 - \url{http://wiki.ros.org/rf2o}
 - \url{http://wiki.ros.org/laser_scan_matcher}
 \end{comment}
-\subsubsection{Laser--Odometrie [new]}
+\subsubsection{Laser--Odometrie}
 
 Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quelle für die Odometrie vorgestellt. Beide \Glspl{rosm} nutzen nur die Daten der 2D--Laser--Ent\-fern\-ungs\-mes\-sung um eine Schätzung für die aktuelle Pose zu erstellen. Bei dem ersten handelt es sich um den \textit{laser\_scan\_matcher\_node} aus dem Paket \textit{laser\_scan\_matcher} und bei dem zweiten um den \textit{rf2o\_laser\_odometry\_node} aus dem Paket \textit{rf2o\_laser\_odometry}.
 
@@ -168,7 +169,7 @@ Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quelle f�
 	-mrpt::slam::CMetricMapBuilderRBPF Class Reference
 	- It is actually a front-end to the class mrpt::slam::CMetricMapBuilderRBPF. All the parameters to the algorithm are passed through a configuration file in the command line. The filter processes actions and observations from a rawlog file and optionally generates a number of files describing the evolution of the filter and the maps.
 \end{comment}
-\subsection{MRPT [new]}
+\subsection{MRPT}
 
 Bei dem \Gls{mrpt}--Framework handelt es sich um eine Bibliothek die Datenstrukturen und Algorithmen aus dem aktiven Forschungsbereich der Robotik bereitstellt. Dadurch ist eine schnelle Umsetzung neuer Algorithmen, sowie der Vergleich mit bereits bestehenden möglich. Zu den verfügbaren Datenstrukturen zählen die Basisdatentypen der linearen Algebra bis hin zu den komplexeren Datentypen der Robotik wie z.B. die Belegungskarten. Zur direkten Verwendung existieren viele Algorithmen aus den Bereichen der \Gls{slam}--Algorithmen, des Maschinellen Sehen (engl. Computer Vision) und der Pfad-- und Bewegungsplanung (engl. Path/Motion Planning).
 

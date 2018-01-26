@@ -32,11 +32,24 @@
 % 	- https://tobiw.de/en/teotm/layout-1
 % Diplomarbeit Koma 3 scrbook und layout Koma oder Geometry? Hilfe
 %	- https://komascript.de/node/1047
+% LaTeX: individuelle Kopf- und Fußzeilen
+% 	- https://esc-now.de/_/latex-individuelle-kopf--und-fusszeilen
 %
 %\usepackage{showframe}
-%\usepackage[a4paper, showframe, top=25mm, bottom=25mm]{geometry}
-\usepackage[a4paper]{geometry}
-\usepackage[onehalfspacing]{setspace}
+\usepackage[
+	a4paper,
+	top=25mm,
+	bottom=25mm,
+%	showframe,
+]{geometry}
+%
+%
+%
+\usepackage[
+%	singlespacing
+	onehalfspacing
+% doublespacing
+]{setspace}
 %
 % fix widows (Hurenkinder) and orphans (Schusterjungen)
 % http://mirror.hmc.edu/ctan/macros/latex/contrib/nowidow/nowidow.pdf
@@ -139,6 +152,7 @@
 	\chead{\headmark}
 	%\cfoot*{\pagemark}
 	\ohead{\pagemark}
+%	\ofoot{\pagemark}
 	\setkomafont{pageheadfoot}{\sffamily}
 	\setkomafont{pagination}{}
 	\setkomafont{chapter}{\Huge\bfseries}

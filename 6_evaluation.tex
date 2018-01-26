@@ -23,7 +23,7 @@ Der \Gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig 
 	- https://bizfluent.com/how-5214886-calculate-sigma.html
 	- https://stackoverflow.com/questions/28699342/calculate-the-3rd-standard-deviation-for-an-array
 \end{comment}
-\section{Kalibierung [new]}
+\section{Kalibierung}
 
 Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervorgänge durchgeführt. Der erste Kalibriervorgang orientiert sich an den Herstellervorgaben aus \cite{decawave2014calibration}. Dazu werden drei \Glspl{uwbm} an die Spitzen eines gleichseitigen Dreieckes positioniert. Um das Dreieck zu konstruieren, wird in der Mitte des Dreiecks eine ausgemessene Maurerschnur befestigt, darüber wird eine Winkelschablone gelegt und dann reihum die Spitzen es Dreiecks auf dem Boden eingezeichnet, siehe \autoref{fig:calibration_triangle2}. Die Seitenlänge $a \approx \SI{1.73}{\meter}$ wird dabei aus dem Umkreisradius $r_u = \SI{1}{\meter}$ mit der \autoref{eq:dreieck_seitenlaenge_aus_umkreis} berechnet.
 
@@ -186,8 +186,12 @@ Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verw
 \begin{comment}
 --------------------------------------------------------------------------------
 - Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line--of--sight (LOS)) und indirekten Sichtverbindung (engl. Non--line--of--sight (NLOS))?
+- Stochastik
+	- https://matheguru.com/stochastik/mittel-durchschnitt-und-lageparameter.html
+	- https://matheguru.com/stochastik/standardabweichung.html
+	- https://matheguru.com/stochastik/standardfehler.html
 \end{comment}
-\section{Entfernungsmessung [new]}
+\section{Entfernungsmessung}
 
 Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}-- und drei \Gls{nlos}--Messreihen aufgezeichnet. Jede Messreihe beginnt bei einer Entfernung von einem Meter zwischen \Gls{tag} und \Gls{anchor}. Pro Entfernung werden jeweils fünfhundert Messwerte aufgezeichnet. Danach wird die Entfernung um einen halben Meter erhöht, indem der \Gls{anchor} verschoben wird. Dies erfolgt solange bis eine Entfernung von neun Meter erreicht ist. Somit enthält jede Messreihe siebzehn Entfernungen mit achttausendfünfhundert Entfernungsmessungen.
 
