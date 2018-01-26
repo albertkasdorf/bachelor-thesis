@@ -34,10 +34,6 @@ Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervo
 	\label{fig:calibration_triangle2}
 \end{figure}
 
-\begin{equation}
-r_u = \frac{a}{3} \sqrt{3} \label{eq:dreieck_seitenlaenge_aus_umkreis}
-\end{equation}
-
 Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt und danach reihum von jedem \Gls{uwbm} eintausend Entfernungsmessungen zu den beiden benachbarten \Glsuseri{uwbm} durchgeführt. Insgesamt entstehen dabei sechstausend Datensätze, die mittels dem \textit{LGS}-- bzw. des \textit{DecaWave}--Kalibrierungsverfahren ausgewertet werden, siehe \autoref{tab:calibration_antenna_delay_results}
 
 Das \textit{LGS}--Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzierbare Ergebnisse. Da jedes \Gls{uwbm} herstellungsbedingte Unterschiede aufweist, ist es Plausibel das alle Antennenverzögerungen in einem ähnlichen Wertebereich liegen. Anders sieht es bei dem \textit{DecaWave}--Kalibrierungsverfahren aus. Hier ergeben sich für jeden Durchlauf andere Wertekombinationen, bedingt durch die Zufallskomponente bei der Erstellung der Kandidatenliste. Diese Verhalten von Genetischen--Algorithmen ist bekannt und muss daher bei der Auswahl der Wertekombinationen berücksichtigt werden. Am Beispiel der Spalte \textit{DecaWave 1} wird es sehr deutlich. Hier beträgt der Unterschied zwischen dem größten und kleinsten Wert \approx\SI{23}{\ns} und entspricht damit einer Abweichung von \approx\SI{6}{\meter} zwischen diesen beiden \Glsuseri{uwbm}.
@@ -142,15 +138,7 @@ In der \autoref{fig:calibration_histograms} wurden die gemessenen Entfernungen a
 	\label{fig:calibration_histograms}
 \end{figure}
 
-Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt reicht ein Dreieck nicht mehr aus, statt dessen wird ein Pentagramm verwendet, siehe \autoref{fig:calibration_pentagram2}. Dieses lässt sich mathematisch ähnlich gut beschreiben wie das Dreieck. Aus der Seitenlänge $a = \SI{4.5}{\meter}$, zwischen zwei benachbarten Spitzen, wird über die \autoref{eq:pentagramm_diagonale} der Abstand $d$, zwischen den diagonalen Spitzen, berechnet. Der Umkreisradius $r_u$ ergibt sich aus der \autoref{eq:pentagramm_umkreisradius}.
-
-\begin{equation}
-d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:pentagramm_diagonale}
-\end{equation}
-
-\begin{equation}
-r_u = \frac{a}{10} \sqrt{50 + 10 \sqrt{5}} \label{eq:pentagramm_umkreisradius}
-\end{equation}
+Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt reicht ein Dreieck nicht mehr aus, statt dessen wird ein regelmäßiges Fünfeck/Pentagramm verwendet, siehe \autoref{fig:calibration_pentagram2}. Dieses lässt sich mathematisch ähnlich gut beschreiben wie das Dreieck. Aus der Seitenlänge $a = \SI{4.5}{\meter}$, zwischen zwei benachbarten Spitzen, wird über die \autoref{eq:fuenfeck_diagonale} die Entfernung $d$, zwischen den diagonalen Spitzen, berechnet. Der Umkreisradius $r_u$ ergibt sich aus der \autoref{eq:fuenfeck_umkreisradius}.
 
 \begin{figure}[h]
 	\centering
@@ -159,7 +147,7 @@ r_u = \frac{a}{10} \sqrt{50 + 10 \sqrt{5}} \label{eq:pentagramm_umkreisradius}
 	\label{fig:calibration_pentagram2}
 \end{figure}
 
-Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verwendet, die Antennenverzögerungen pro \Gls{uwbm} sind dabei in der \autoref{tab:calibration_pentagramm_antenna_delay_results} aufgeführt.
+Für das regelmäßige Fünfeck/Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verwendet, die Antennenverzögerungen pro \Gls{uwbm} sind dabei in der \autoref{tab:calibration_pentagramm_antenna_delay_results} aufgeführt.
 
 \begin{table}[h]
 	\centering
@@ -182,7 +170,7 @@ Für das Pentagramm wurde nur noch das \textit{LGS}--Kalibrierungsverfahren verw
 %180 & 16435 \\
 \hline
 	\end{tabular}
-	\caption{Berechnete Werte für die Antennenverzögerung pro \Gls{uwbm} für das Pentagramm.}
+	\caption{Berechnete Werte für die Antennenverzögerung pro \Gls{uwbm} für das regelmäßige Fünfeck/Pentagramm.}
 	\label{tab:calibration_pentagramm_antenna_delay_results}
 \end{table}
 

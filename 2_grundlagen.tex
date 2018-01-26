@@ -112,9 +112,35 @@ In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurd
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\section{Geometrie [todo]}
-\subsection{Dreieck [todo]}
-\subsection{Pentagramm [todo]}
+\section{Geometrie}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsection{Gleichseitiges Dreieck}
+
+Ein gleichseitiges Dreieck zeichnet sich dadurch aus, dass alle drei Seiten gleich lang sind und jeder Innenwinkel einen Wert von \SI{60}{\degree} besitzt, siehe \autoref{fig:wikipedia_gleichseitiges_dreieck}. Ist der Umkreisradius $r_u$ eines gleichseitigen Dreiecks bekannt, so kann mit der \autoref{eq:dreieck_seitenlaenge_aus_umkreis} auch die Seitenlänge $a$ berechnet werden.
+
+\begin{equation}
+a = \frac{3}{\sqrt{3}} r_u \label{eq:dreieck_seitenlaenge_aus_umkreis}
+\end{equation}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\subsection{Regelmäßiges Fünfeck}
+
+Das regelmäßige Fünfeck zeichnet sich dadurch aus, das alle fünf äußeren Seiten gleich lang sind und jeder Innenwinkel einen von Wert von \SI{108}{\degree} besitzt, siehe \autoref{fig:wikipedia_regelmaessiges_fuenfeck}. Aus der Länge einer äußeren Seite $a$ lässt sich zum einen der Umkreisradius $r_u$, siehe \autoref{eq:fuenfeck_umkreisradius}, und die Diagonale $d$ zwischen zwei Spitzen, siehe \autoref{eq:fuenfeck_diagonale}, berechnen.
+
+\begin{equation}
+r_u = \frac{a}{10} \sqrt{50 + 10 \sqrt{5}} \label{eq:fuenfeck_umkreisradius}
+\end{equation}
+
+\begin{equation}
+d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:fuenfeck_diagonale}
+\end{equation}
 
 
 \begin{comment}

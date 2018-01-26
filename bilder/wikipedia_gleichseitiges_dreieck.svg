@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="12.379172914080709cm"
+   height="13.357363689307796cm"
+   viewBox="0 0 366 395"
+   id="svg513"
+   sodipodi:docname="wikipedia_gleichseitiges_dreieck.svg"
+   inkscape:version="0.92.2 (unknown)">
+  <metadata
+     id="metadata519">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs517" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1373"
+     id="namedview515"
+     showgrid="false"
+     inkscape:zoom="1.86988"
+     inkscape:cx="170.78468"
+     inkscape:cy="236.76107"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer0" />
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     id="misc" />
+  <g
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     id="layer0">
+    <clipPath
+       id="clip9e506384-0040-451a-b115-c9c2ac4e8941">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g16"
+       clip-path="url(#clip1)">
+      <g
+         style="fill:none;stroke:#009900;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g14">
+        <path
+           inkscape:connector-curvature="0"
+           id="path8"
+           d="m 349,211.03 c 0,92.41 -74.33,167.33 -166.02,167.33 -91.691,0 -166.021,-74.92 -166.021,-167.33 0,-92.42 74.33,-167.339 166.021,-167.339 91.69,0 166.02,74.919 166.02,167.339 z" />
+        <title
+           id="title10">Kreis c</title>
+        <desc
+           id="desc12">Kreis c: Kreis durch A_1 mit Mittelpunkt M</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip1 -->
+    <clipPath
+       id="clipda065bb5-2d26-4b27-b2b0-10b14ab05864">
+      <path
+         inkscape:connector-curvature="0"
+         id="path18"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g29"
+       clip-path="url(#clip2)">
+      <g
+         style="fill:none;stroke:#ff0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g27">
+        <path
+           inkscape:connector-curvature="0"
+           id="path21"
+           d="m 265.99,211.03 c 0,46.2 -37.16,83.66 -83.01,83.66 -45.85,0 -83.011,-37.46 -83.011,-83.66 0,-46.21 37.161,-83.67 83.011,-83.67 45.85,0 83.01,37.46 83.01,83.67 z" />
+        <title
+           id="title23">Kreis e</title>
+        <desc
+           id="desc25">Kreis e: Kreis durch D mit Mittelpunkt M</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip2 -->
+    <clipPath
+       id="clip93c5e6ac-b314-49b5-aca5-6430161addd8">
+      <path
+         inkscape:connector-curvature="0"
+         id="path31"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g42"
+       clip-path="url(#clip3)">
+      <g
+         style="fill:#000000;fill-opacity:0.09803898;fill-rule:nonzero;stroke:none"
+         id="g40">
+        <path
+           inkscape:connector-curvature="0"
+           id="path34"
+           d="m 202.98,294.69 c 0,-11.13 -8.95,-20.15 -20,-20.15 v 20.15 z" />
+        <title
+           id="title36">Winkel Î±_1</title>
+        <desc
+           id="desc38">Winkel Î±_1: Winkel zwischen B, E, C</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip3 -->
+    <clipPath
+       id="clip00c5447c-9f13-47f5-935b-ecb85c924c28">
+      <path
+         inkscape:connector-curvature="0"
+         id="path44"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g55"
+       clip-path="url(#clip4)">
+      <g
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g53">
+        <path
+           inkscape:connector-curvature="0"
+           id="path47"
+           d="m 202.98,294.69 c 0,-11.13 -8.95,-20.15 -20,-20.15 v 20.15 z" />
+        <title
+           id="title49">Winkel Î±_1</title>
+        <desc
+           id="desc51">Winkel Î±_1: Winkel zwischen B, E, C</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip4 -->
+    <clipPath
+       id="clipebbbd420-123f-4bea-a040-136923cf75af">
+      <path
+         inkscape:connector-curvature="0"
+         id="path57"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g68"
+       clip-path="url(#clip5)">
+      <g
+         style="fill:#000000;fill-opacity:0.69803999;fill-rule:nonzero;stroke:none"
+         id="g66">
+        <path
+           inkscape:connector-curvature="0"
+           id="path60"
+           d="m 193.3,286.31 c 0,1.1 -0.9,2 -2,2 -1.11,0 -2,-0.9 -2,-2 0,-1.11 0.89,-2 2,-2 1.1,0 2,0.89 2,2 z" />
+        <title
+           id="title62">Winkel Î±_1</title>
+        <desc
+           id="desc64">Winkel Î±_1: Winkel zwischen B, E, C</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip5 -->
+    <clipPath
+       id="clip897e693f-0427-41d4-bb9a-e7cf40e3aa1f">
+      <path
+         inkscape:connector-curvature="0"
+         id="path70"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g81"
+       clip-path="url(#clip6)">
+      <g
+         style="fill:#0000ff;fill-opacity:0.14902003;fill-rule:nonzero;stroke:none"
+         id="g79">
+        <path
+           inkscape:connector-curvature="0"
+           id="path73"
+           d="m 89.201,294.69 c 0,-18 -9.529,-34.64 -25,-43.64 l -25,43.64 z" />
+        <title
+           id="title75">Winkel Î±</title>
+        <desc
+           id="desc77">Winkel Î±: Winkel zwischen B, A, C</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip6 -->
+    <clipPath
+       id="clipc0d2b2d9-53d7-48b3-b334-9b40e7ab6140">
+      <path
+         inkscape:connector-curvature="0"
+         id="path83"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g94"
+       clip-path="url(#clip7)">
+      <g
+         style="fill:none;stroke:#0000ff;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g92">
+        <path
+           inkscape:connector-curvature="0"
+           id="path86"
+           d="m 89.201,294.69 c 0,-18 -9.529,-34.64 -25,-43.64 l -25,43.64 z" />
+        <title
+           id="title88">Winkel Î±</title>
+        <desc
+           id="desc90">Winkel Î±: Winkel zwischen B, A, C</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip7 -->
+    <clipPath
+       id="clip0195516d-c9a5-4c2c-b40b-55eb51788bd1">
+      <path
+         inkscape:connector-curvature="0"
+         id="path96"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g107"
+       clip-path="url(#clip8)">
+      <g
+         style="fill:#0000ff;fill-opacity:0.14902003;fill-rule:nonzero;stroke:none"
+         id="g105">
+        <path
+           inkscape:connector-curvature="0"
+           id="path99"
+           d="m 157.98,87.335 c 15.47,9.002 34.53,9.002 50,0 l -25,-43.644 z" />
+        <title
+           id="title101">Winkel Î³</title>
+        <desc
+           id="desc103">Winkel Î³: Winkel zwischen A, C, B</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip8 -->
+    <clipPath
+       id="clipf3c6e90d-7236-484c-89a9-8696ce1feb88">
+      <path
+         inkscape:connector-curvature="0"
+         id="path109"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g120"
+       clip-path="url(#clip9)">
+      <g
+         style="fill:none;stroke:#0000ff;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g118">
+        <path
+           inkscape:connector-curvature="0"
+           id="path112"
+           d="m 157.98,87.335 c 15.47,9.002 34.53,9.002 50,0 l -25,-43.644 z" />
+        <title
+           id="title114">Winkel Î³</title>
+        <desc
+           id="desc116">Winkel Î³: Winkel zwischen A, C, B</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip9 -->
+    <clipPath
+       id="clipd715317c-459d-472f-9346-56556d3c0d48">
+      <path
+         inkscape:connector-curvature="0"
+         id="path122"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g133"
+       clip-path="url(#clip10)">
+      <g
+         style="fill:#0000ff;fill-opacity:0.14902003;fill-rule:nonzero;stroke:none"
+         id="g131">
+        <path
+           inkscape:connector-curvature="0"
+           id="path125"
+           d="m 301.76,251.05 c -15.47,9 -25,25.64 -25,43.64 h 50 z" />
+        <title
+           id="title127">Winkel Î²</title>
+        <desc
+           id="desc129">Winkel Î²: Winkel zwischen C, B, A</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip10 -->
+    <clipPath
+       id="clip14e10e13-4616-4b1e-a6dd-1173561da8bc">
+      <path
+         inkscape:connector-curvature="0"
+         id="path135"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g146"
+       clip-path="url(#clip11)">
+      <g
+         style="fill:none;stroke:#0000ff;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g144">
+        <path
+           inkscape:connector-curvature="0"
+           id="path138"
+           d="m 301.76,251.05 c -15.47,9 -25,25.64 -25,43.64 h 50 z" />
+        <title
+           id="title140">Winkel Î²</title>
+        <desc
+           id="desc142">Winkel Î²: Winkel zwischen C, B, A</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip11 -->
+    <clipPath
+       id="clip9feada99-b9e4-4f32-986b-ebe0f0cba6a5">
+      <path
+         inkscape:connector-curvature="0"
+         id="path148"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g159"
+       clip-path="url(#clip12)">
+      <g
+         style="fill:none;stroke:#0000ff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+         id="g157">
+        <path
+           inkscape:connector-curvature="0"
+           id="path151"
+           d="M 182.98,43.691 39.201,294.69" />
+        <title
+           id="title153">Strecke f</title>
+        <desc
+           id="desc155">Strecke f: Strecke C, A</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip12 -->
+    <clipPath
+       id="clip9bf53670-fd43-49b1-a05f-528e6d86502e">
+      <path
+         inkscape:connector-curvature="0"
+         id="path161"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g172"
+       clip-path="url(#clip13)">
+      <g
+         style="fill:none;stroke:#0000ff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+         id="g170">
+        <path
+           inkscape:connector-curvature="0"
+           id="path164"
+           d="M 182.98,43.691 326.76,294.69" />
+        <title
+           id="title166">Strecke g</title>
+        <desc
+           id="desc168">Strecke g: Strecke C, B</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip13 -->
+    <clipPath
+       id="clip4998523d-f37a-4fdb-93fa-5a1959e46866">
+      <path
+         inkscape:connector-curvature="0"
+         id="path174"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g185"
+       clip-path="url(#clip14)">
+      <g
+         style="fill:none;stroke:#0000ff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+         id="g183">
+        <path
+           inkscape:connector-curvature="0"
+           id="path177"
+           d="M 39.201,294.69 H 326.76" />
+        <title
+           id="title179">Strecke h</title>
+        <desc
+           id="desc181">Strecke h: Strecke A, B</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip14 -->
+    <clipPath
+       id="clipc2c4e79e-db18-4991-8fb6-0c1326eb0fd4">
+      <path
+         inkscape:connector-curvature="0"
+         id="path187"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g198"
+       clip-path="url(#clip15)">
+      <g
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g196">
+        <path
+           inkscape:connector-curvature="0"
+           id="path190"
+           d="M 182.98,43.691 V 63" />
+        <title
+           id="title192">Strecke m</title>
+        <desc
+           id="desc194">Strecke m: Strecke C, I</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip15 -->
+    <clipPath
+       id="clip0baddd5a-66d3-46f2-8d2d-7604cee53e6b">
+      <path
+         inkscape:connector-curvature="0"
+         id="path200"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g211"
+       clip-path="url(#clip16)">
+      <g
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g209">
+        <path
+           inkscape:connector-curvature="0"
+           id="path203"
+           d="M 182.98,89 V 294.69" />
+        <title
+           id="title205">Strecke n</title>
+        <desc
+           id="desc207">Strecke n: Strecke J, E</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip16 -->
+    <clipPath
+       id="clip76c9cd7d-b807-4b8e-823a-5320a99a6557">
+      <path
+         inkscape:connector-curvature="0"
+         id="path213"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g224"
+       clip-path="url(#clip17)">
+      <g
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g222">
+        <path
+           inkscape:connector-curvature="0"
+           id="path216"
+           d="M 182.98,211.03 314.51,134.14" />
+        <title
+           id="title218">Vektor u</title>
+        <desc
+           id="desc220">Vektor u: Vektor(M, G)</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip17 -->
+    <clipPath
+       id="clip48a194de-2afa-4f5b-aa0b-6be1769bb6ff">
+      <path
+         inkscape:connector-curvature="0"
+         id="path226"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g237"
+       clip-path="url(#clip18)">
+      <g
+         style="fill:#000000;fill-opacity:0.69803999;fill-rule:evenodd;stroke:none"
+         id="g235">
+        <path
+           inkscape:connector-curvature="0"
+           id="path229"
+           d="m 326.59,127.07 -10.32,10.09 -3.53,-6.05 z" />
+        <title
+           id="title231">Vektor u</title>
+        <desc
+           id="desc233">Vektor u: Vektor(M, G)</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip18 -->
+    <clipPath
+       id="clip5db75abb-173a-4f86-9ee6-eb1be4d70f31">
+      <path
+         inkscape:connector-curvature="0"
+         id="path239"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g250"
+       clip-path="url(#clip19)">
+      <g
+         style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.69803999"
+         id="g248">
+        <path
+           inkscape:connector-curvature="0"
+           id="path242"
+           d="M 182.98,211.03 150.87,149.36" />
+        <title
+           id="title244">Vektor v</title>
+        <desc
+           id="desc246">Vektor v: Vektor(M, H)</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip19 -->
+    <clipPath
+       id="clip3fb60b38-3e55-471e-9619-6276f7b1cb44">
+      <path
+         inkscape:connector-curvature="0"
+         id="path252"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g263"
+       clip-path="url(#clip20)">
+      <g
+         style="fill:#000000;fill-opacity:0.69803999;fill-rule:evenodd;stroke:none"
+         id="g261">
+        <path
+           inkscape:connector-curvature="0"
+           id="path255"
+           d="m 144.41,136.94 9.57,10.8 -6.21,3.23 z" />
+        <title
+           id="title257">Vektor v</title>
+        <desc
+           id="desc259">Vektor v: Vektor(M, H)</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip20 -->
+    <clipPath
+       id="clip1f8ddce4-e772-4364-b352-9f25c8c0591c">
+      <path
+         inkscape:connector-curvature="0"
+         id="path265"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g276"
+       clip-path="url(#clip21)">
+      <g
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+         id="g274">
+        <path
+           inkscape:connector-curvature="0"
+           id="path268"
+           d="m 183.98,211.03 c 0,0.55 -0.45,1 -1,1 -0.55,0 -1,-0.45 -1,-1 0,-0.56 0.45,-1 1,-1 0.55,0 1,0.44 1,1 z" />
+        <title
+           id="title270">Punkt M</title>
+        <desc
+           id="desc272">Punkt M: Schnittpfad von xAchse, yAchse</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip21 -->
+    <clipPath
+       id="clip33b65851-1cfd-4bb0-bb8c-bfed3f2fd3ae">
+      <path
+         inkscape:connector-curvature="0"
+         id="path278"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g289"
+       clip-path="url(#clip22)">
+      <g
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+         id="g287">
+        <path
+           inkscape:connector-curvature="0"
+           id="path281"
+           d="m 183.98,43.691 c 0,0.552 -0.45,1 -1,1 -0.55,0 -1,-0.448 -1,-1 0,-0.552 0.45,-1 1,-1 0.55,0 1,0.448 1,1 z" />
+        <title
+           id="title283">Punkt C</title>
+        <desc
+           id="desc285">Punkt C: Schnittpfad von c, yAchse</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip22 -->
+    <clipPath
+       id="clip423ee3d1-90a2-4d95-b075-1eb824f7e716">
+      <path
+         inkscape:connector-curvature="0"
+         id="path291"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g302"
+       clip-path="url(#clip23)">
+      <g
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+         id="g300">
+        <path
+           inkscape:connector-curvature="0"
+           id="path294"
+           d="m 40.201,294.69 c 0,0.56 -0.447,1 -1,1 -0.552,0 -1,-0.44 -1,-1 0,-0.55 0.448,-1 1,-1 0.553,0 1,0.45 1,1 z" />
+        <title
+           id="title296">Punkt A</title>
+        <desc
+           id="desc298">Punkt A: Schnittpfad von c, d</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip23 -->
+    <clipPath
+       id="clip97af60ff-842f-4aff-a53a-3205674b5489">
+      <path
+         inkscape:connector-curvature="0"
+         id="path304"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g315"
+       clip-path="url(#clip24)">
+      <g
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-opacity:1"
+         id="g313">
+        <path
+           inkscape:connector-curvature="0"
+           id="path307"
+           d="m 327.76,294.69 c 0,0.56 -0.45,1 -1,1 -0.55,0 -1,-0.44 -1,-1 0,-0.55 0.45,-1 1,-1 0.55,0 1,0.45 1,1 z" />
+        <title
+           id="title309">Punkt B</title>
+        <desc
+           id="desc311">Punkt B: Schnittpfad von c, d</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip24 -->
+    <clipPath
+       id="clip70aefbd0-e7e9-47f7-a7fa-f615853fab35">
+      <path
+         inkscape:connector-curvature="0"
+         id="path317"
+         d="M 0,0 V 396 H 367 V 0 Z" />
+    </clipPath>
+    <g
+       id="g328"
+       clip-path="url(#clip25)">
+      <g
+         style="fill:none;stroke:#444444;stroke-width:0.5;stroke-opacity:1"
+         id="g326">
+        <path
+           inkscape:connector-curvature="0"
+           id="path320"
+           d="m 183.98,294.69 c 0,0.56 -0.45,1 -1,1 -0.55,0 -1,-0.44 -1,-1 0,-0.55 0.45,-1 1,-1 0.55,0 1,0.45 1,1 z" />
+        <title
+           id="title322">Punkt E</title>
+        <desc
+           id="desc324">Punkt E: Schnittpfad von e, k</desc>
+      </g>
+      <!-- drawing style -->
+    </g>
+    <!-- clip25 -->
+    <g
+       id="g343"
+       transform="matrix(24,0,0,24,13,308.4)">
+      <clipPath
+         id="clip6823cab3-8c61-4e93-b5fe-cce3e4762505">
+        <path
+           inkscape:connector-curvature="0"
+           id="path330"
+           d="M -0.54167,-12.85 V 3.65 H 14.75 v -16.5 z" />
+      </clipPath>
+      <g
+         id="g341"
+         clip-path="url(#clip26)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g339">
+          <path
+             inkscape:connector-curvature="0"
+             id="path333"
+             d="m 0.17188,-0.10938 0.35937,-0.59374 q 0,-0.01563 0.01563,-0.01563 0.01562,0 0.01562,0.01563 0.01562,0 0.01562,0.01562 l 0.0625,0.625 q 0,0.015625 0,0.03125 v 0 0 0 0 0 q 0.01563,0 0.0625,0 0.01563,0 0.01563,0.015625 Q 0.71875,0 0.70312,0 H 0.59375 v 0 h -0.125 v 0 q -0.01563,0 -0.01563,-0.015625 0,-0.015625 0.01563,-0.015625 0.07813,0 0.07813,-0.03125 0,0 -0.01563,-0.17188 h -0.25 l -0.07813,0.125 Q 0.1875,-0.078125 0.1875,-0.0625 q 0,0.03125 0.04688,0.03125 0.01562,0 0.01562,0.015625 Q 0.25,0 0.23438,0 H 0.14062 V 0 H 0.046875 V 0 Q 0.03125,0 0.03125,-0.015625 q 0,-0.015625 0.015625,-0.015625 v 0 H 0.0625 q 0.0625,0 0.09375,-0.046875 0.01563,-0.015625 0.01563,-0.031255 z m 0.125,-0.15624 H 0.53125 L 0.5,-0.59375 Z" />
+          <title
+             id="title335">A</title>
+          <desc
+             id="desc337">Text1 = âAâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip26 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g358"
+       transform="matrix(24,0,0,24,330,308.4)">
+      <clipPath
+         id="clip0db4f9cf-4df9-47d2-bf5e-9deebdc46db9">
+        <path
+           inkscape:connector-curvature="0"
+           id="path345"
+           d="M -13.75,-12.85 V 3.65 H 1.5417 v -16.5 z" />
+      </clipPath>
+      <g
+         id="g356"
+         clip-path="url(#clip27)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g354">
+          <path
+             inkscape:connector-curvature="0"
+             id="path348"
+             d="M 0.15625,-0.078125 0.29688,-0.60938 q 0,-0.01562 0,-0.03124 0,0 -0.01563,-0.01563 v 0 0 q 0,0 -0.01563,0 -0.01562,0 -0.03124,0 -0.03126,0 -0.03126,0 0,-0.03125 0.01563,-0.03125 v 0 0 H 0.23438 0.5625 q 0.125,0 0.17188,0.07812 0.01562,0.03126 0.01562,0.0625 0,0.07813 -0.07812,0.14063 0,0 -0.01563,0 -0.04687,0.03125 -0.10937,0.04687 0.10937,0.01563 0.14062,0.07813 0.01562,0.03125 0.01562,0.0625 0,0.07813 -0.07812,0.140625 v 0 Q 0.54688,0 0.42188,0 H 0.0625 q -0.015625,0 -0.015625,-0.015625 0,-0.015625 0.015625,-0.015625 v 0 q 0.07812,0 0.07812,-0.015625 0.01563,0 0.01563,-0.03125 0,0 0,0 z M 0.3125,-0.35938 h 0.14062 q 0.10938,0 0.17188,-0.07812 0.04688,-0.04688 0.04688,-0.10938 0,-0.07812 -0.0625,-0.09374 Q 0.57812,-0.65625 0.5625,-0.65625 H 0.42188 q -0.03126,0 -0.03126,0.01563 v 0 0 H 0.375 v 0 q 0,0 0,0.03124 z m -0.04688,0.32813 h 0.14063 q 0.09375,0 0.15625,-0.07813 0.04688,-0.04687 0.04688,-0.125 0,-0.0625 -0.04688,-0.09374 Q 0.53125,-0.34375 0.5,-0.34375 H 0.3125 L 0.23438,-0.0625 q 0,0.015625 0,0.015625 0,0.015625 0,0.015625 v 0 0 H 0.25 q 0,0 0.01562,0 z" />
+          <title
+             id="title350">B</title>
+          <desc
+             id="desc352">Text2 = âBâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip27 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g373"
+       transform="matrix(24,0,0,24,174,32.4)">
+      <clipPath
+         id="clip5cef5147-3bb3-4f29-ad24-47db8b79438e">
+        <path
+           inkscape:connector-curvature="0"
+           id="path360"
+           d="m -7.25,-1.35 v 16.5 H 8.0417 v -16.5 z" />
+      </clipPath>
+      <g
+         id="g371"
+         clip-path="url(#clip28)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g369">
+          <path
+             inkscape:connector-curvature="0"
+             id="path363"
+             d="m 0.76562,-0.6875 -0.0625,0.25 Q 0.6875,-0.42188 0.6875,-0.42188 v 0 H 0.67188 q -0.01563,0 -0.01563,-0.01562 l 0.01563,-0.04688 v 0 q 0,-0.125 -0.07813,-0.17187 v 0 Q 0.54688,-0.67188 0.5,-0.67188 q -0.09375,0 -0.1875,0.07813 -0.03125,0.01563 -0.04688,0.04687 -0.09374,0.10938 -0.125,0.28126 0,0.03124 0,0.04687 0,0.140625 0.10938,0.1875 0.03125,0.015625 0.09375,0.015625 0.09375,0 0.17187,-0.0625 Q 0.59375,-0.14062 0.625,-0.23438 0.625,-0.25 0.64062,-0.25 q 0,0 0,0.01562 0,0.01563 -0.01562,0.0625 Q 0.59375,-0.10938 0.53125,-0.0625 0.4375,0.015625 0.32812,0.015625 0.1875,0.015625 0.10938,-0.0625 0.046875,-0.14062 0.046875,-0.25 q 0,-0.15625 0.109375,-0.28125 0.10937,-0.125 0.23437,-0.15625 0.0625,-0.01562 0.10938,-0.01562 0.10938,0 0.15625,0.09374 L 0.73438,-0.6875 Q 0.75,-0.70312 0.75,-0.70312 q 0.01562,0 0.01562,0.01562 z" />
+          <title
+             id="title365">C</title>
+          <desc
+             id="desc367">Text3 = âCâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip28 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g388"
+       transform="matrix(24,0,0,24,58,283.33)">
+      <clipPath
+         id="clip1fc2cf59-071d-49f5-8330-0f82d3a3ca6b">
+        <path
+           inkscape:connector-curvature="0"
+           id="path375"
+           d="M -2.4167,-11.806 V 4.6944 H 12.875 V -11.806 Z" />
+      </clipPath>
+      <g
+         id="g386"
+         clip-path="url(#clip29)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g384">
+          <path
+             inkscape:connector-curvature="0"
+             id="path378"
+             d="m 0.48438,-0.23438 v 0 0.0625 Q 0.54688,-0.25 0.57812,-0.375 q 0,-0.01562 0.01563,-0.01562 0.01563,0 0.01563,0 0,0.03124 -0.03126,0.07812 -0.03124,0.09375 -0.09374,0.17188 0,0.01562 0,0.03124 0,0.093755 0.02343,0.093755 0.02344,0 0.05469,-0.03125 0,0 0,-0.015625 0,0 0.01562,0 0.01563,0 0.01563,0 0,0.015625 -0.03125,0.046875 -0.03125,0.03125 -0.0625,0.03125 -0.0625,0 -0.07812,-0.078125 0,0 -0.01563,-0.015625 -0.09375,0.09375 -0.20313,0.09375 -0.09374,0 -0.14062,-0.078125 -0.015625,-0.04688 -0.015625,-0.09375 0,-0.10937 0.078125,-0.1875 0.07812,-0.09375 0.17188,-0.09375 0,0 0.01562,0 0.07812,0 0.125,0.0625 0,0 0,0 0.04688,0.04688 0.04688,0.14062 z m -0.07813,0.14063 v 0 q 0,-0.01563 0,-0.125 0,-0.10937 -0.03125,-0.15625 0,-0.03125 -0.01562,-0.03125 H 0.34375 v 0 0 Q 0.32812,-0.42188 0.3125,-0.42188 q -0.07812,0 -0.125,0.07813 L 0.17188,-0.32812 Q 0.14062,-0.26562 0.125,-0.17188 0.10938,-0.14062 0.10938,-0.125 q 0,0.09375 0.0625,0.109375 0.01562,0 0.03124,0 0.10938,0 0.20313,-0.078125 z" />
+          <title
+             id="title380">Î±</title>
+          <desc
+             id="desc382">Text4 = âÎ±â</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip29 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g403"
+       transform="matrix(24,0,0,24,289,284.67)">
+      <clipPath
+         id="clip71c27de4-614e-41d2-917b-59af929395e9">
+        <path
+           inkscape:connector-curvature="0"
+           id="path390"
+           d="M -12.042,-11.861 V 4.6389 H 3.25 V -11.861 Z" />
+      </clipPath>
+      <g
+         id="g401"
+         clip-path="url(#clip30)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g399">
+          <path
+             inkscape:connector-curvature="0"
+             id="path393"
+             d="M 0.03125,0.17188 0.1875,-0.4375 Q 0.20312,-0.54688 0.29688,-0.625 0.375,-0.70312 0.45312,-0.70312 q 0.07813,0 0.125,0.0625 0.01563,0.03124 0.01563,0.0625 0,0.07812 -0.0625,0.14062 -0.03125,0.01562 -0.04687,0.03125 0.0625,0.04687 0.0625,0.14063 0,0.10937 -0.07813,0.187495 Q 0.39062,0 0.29688,0.015625 H 0.28125 Q 0.1875,0.015625 0.14062,-0.0625 0.125,-0.078125 0.125,-0.10938 L 0.046875,0.1875 v 0 q 0,0 -0.015625,0 0,0 0,0 0,0 0,-0.01562 z m 0.29687,-0.57813 q 0.01563,0.01563 0.04688,0.01563 0.03125,0 0.04688,-0.01563 -0.01563,0 -0.04688,0 -0.03125,0 -0.04688,0 z m 0.125,-0.01563 q 0.0625,-0.04687 0.07813,-0.15624 v 0 0 q 0,-0.01563 0,-0.03126 0,-0.0625 -0.0625,-0.07812 0,0 -0.01563,0 -0.07812,0 -0.15624,0.07812 -0.0625,0.07813 -0.09376,0.1875 l -0.04687,0.1875 q -0.01563,0.0625 -0.01563,0.07813 0,0.078125 0.0625,0.125 0.03126,0.015625 0.07813,0.015625 0.07813,0 0.14063,-0.078125 0,-0.01563 0,-0.01563 0.04687,-0.0625 0.04687,-0.17187 0,-0.01563 0,-0.01563 0,-0.0625 -0.01563,-0.09374 Q 0.40625,-0.375 0.375,-0.375 q -0.07812,0 -0.07812,-0.03125 0,-0.03125 0.07812,-0.03125 0.04688,0 0.07812,0.01562 z" />
+          <title
+             id="title395">Î²</title>
+          <desc
+             id="desc397">Text5 = âÎ²â</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip30 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g418"
+       transform="matrix(24,0,0,24,175,79.333)">
+      <clipPath
+         id="clip0a322a62-1e64-4f0a-8f8d-1128fb39200b">
+        <path
+           inkscape:connector-curvature="0"
+           id="path405"
+           d="M -7.2917,-3.3056 V 13.194 H 8 V -3.3056 Z" />
+      </clipPath>
+      <g
+         id="g416"
+         clip-path="url(#clip31)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g414">
+          <path
+             inkscape:connector-curvature="0"
+             id="path408"
+             d="m 0.046875,-0.25 v 0 H 0.03125 q -0.015625,0 -0.015625,-0.01562 0,-0.01563 0.03125,-0.07813 Q 0.125,-0.4375 0.21875,-0.4375 q 0.07813,0 0.125,0.10938 0.04687,0.09374 0.04687,0.20312 0.07813,-0.20312 0.125,-0.29688 0,-0.01562 0.01563,-0.01562 0.01563,0 0.01563,0.01562 0,0 -0.01563,0.03126 -0.07813,0.15624 -0.14063,0.312495 0,0.015625 0,0.015625 0,0.015625 -0.01562,0.046875 0,0.0625 -0.03125,0.171875 -0.01563,0.0625 -0.03125,0.0625 -0.01562,0 -0.01562,-0.01563 0,-0.04687 0.04687,-0.218745 0,0 0,0 0.01563,-0.03125 0.01563,-0.093755 0,-0.23437 -0.14063,-0.26562 0,0 -0.01563,0 -0.07812,0 -0.124995,0.04688 v 0.01562 q -0.03125,0.01562 -0.03125,0.0625 z" />
+          <title
+             id="title410">Î³</title>
+          <desc
+             id="desc412">Text6 = âÎ³â</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip31 -->
+    </g>
+    <!-- transform -->
+    <!-- transform -->
+    <g
+       id="g448"
+       transform="matrix(24,0,0,24,146,185.33)">
+      <clipPath
+         id="clip61fe12d8-66ab-417e-b748-e55d6e6820cc">
+        <path
+           inkscape:connector-curvature="0"
+           id="path435"
+           d="m -6.0833,-7.7222 v 16.5 H 9.2083 v -16.5 z" />
+      </clipPath>
+      <g
+         id="g446"
+         clip-path="url(#clip33)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g444">
+          <path
+             inkscape:connector-curvature="0"
+             id="path438"
+             d="m 0.09375,-0.0625 v 0 l 0.04687,-0.23438 q 0.01563,-0.0625 0.01563,-0.07812 0,-0.04688 -0.03125,-0.04688 -0.03125,0 -0.0625,0.09376 0,0.01562 0,0.03124 -0.015625,0.01563 -0.015625,0.01563 -0.015625,0 -0.015625,0 0,-0.01563 0.015625,-0.07813 0,-0.01562 0.015625,-0.03124 0.015625,-0.04688 0.0625,-0.04688 0,0 0.01562,0 0.04688,0 0.07813,0.04688 0,0 0,0.01562 0,0 0,0.01562 0.0625,-0.07812 0.14063,-0.07812 0.04687,0 0.0625,0.03125 0.01562,0.01563 0.01562,0.03125 0,0.03125 -0.03125,0.04688 -0.01563,0.01562 -0.03125,0.01562 -0.03125,0 -0.03125,-0.03125 0,0 0,-0.01563 0,-0.03124 0.03125,-0.04687 v 0 q 0.01562,0 0.01562,0 L 0.375,-0.42188 q -0.01562,0 -0.01562,0 -0.04688,0 -0.09376,0.03126 -0.03124,0.03124 -0.04687,0.07812 0,0 0,0 L 0.1875,-0.17188 0.14062,-0.015625 q 0,0.03125 -0.03124,0.03125 Q 0.078125,0 0.078125,-0.015625 q 0,0 0.015625,-0.046875 z" />
+          <title
+             id="title440">r</title>
+          <desc
+             id="desc442">Text8 = ârâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip33 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g463"
+       transform="matrix(24,0,0,24,273,187.33)">
+      <clipPath
+         id="clip433f7d27-a62a-4cb4-9aa3-aa82635557ca">
+        <path
+           inkscape:connector-curvature="0"
+           id="path450"
+           d="m -11.375,-7.8056 v 16.5 H 3.9167 v -16.5 z" />
+      </clipPath>
+      <g
+         id="g461"
+         clip-path="url(#clip34)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g459">
+          <path
+             inkscape:connector-curvature="0"
+             id="path453"
+             d="m 0.375,-0.375 q 0,-0.03125 0.03125,-0.04688 0,0 0.01563,0 0.01562,0 0.01562,0.03126 0,0 0,0.03124 L 0.40625,-0.21875 Q 0.39062,-0.15625 0.375,-0.125 q -0.01562,0.046875 -0.01562,0.0625 0,0.046875 0.03124,0.046875 0.04688,0 0.0625,-0.078125 0.01563,-0.01563 0.01563,-0.04687 0.01563,-0.01563 0.01563,-0.01563 0.01562,0 0.01562,0.01563 0,0.01562 -0.01562,0.062495 -0.01563,0.015625 -0.01563,0.03125 -0.03125,0.0625 -0.07813,0.0625 -0.04687,0 -0.07812,-0.046875 0,-0.015625 -0.01562,-0.03125 -0.0625,0.078125 -0.125,0.078125 -0.07813,0 -0.10938,-0.078125 -0.015625,-0.03125 -0.015625,-0.09375 0,-0.09375 0.062505,-0.1875 0.07812,-0.09375 0.15624,-0.09375 0.01563,0 0.01563,0 0.0625,0 0.09375,0.0625 z m -0.0625,0.25 v 0 l 0.04688,-0.1875 q 0,-0.01562 0,-0.01562 0,-0.03126 -0.01563,-0.0625 -0.01563,-0.03126 -0.0625,-0.03126 -0.04687,0 -0.09375,0.0625 -0.01562,0.01563 -0.01562,0.03126 -0.03126,0.0625 -0.0625,0.17187 0,0.03125 0,0.04687 0,0.07813 0.04687,0.093755 0,0 0.01563,0 0.0625,0 0.10937,-0.0625 Q 0.29688,-0.09375 0.3125,-0.10938 v 0 q 0,-0.01562 0,-0.01562 z" />
+          <title
+             id="title455">a</title>
+          <desc
+             id="desc457">Text9 = âaâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip34 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g478"
+       transform="matrix(24,0,0,24,82,187.67)">
+      <clipPath
+         id="clip183be029-1ed3-4f79-a95c-3f3090da7a6e">
+        <path
+           inkscape:connector-curvature="0"
+           id="path465"
+           d="m -3.4167,-7.8194 v 16.5 H 11.875 v -16.5 z" />
+      </clipPath>
+      <g
+         id="g476"
+         clip-path="url(#clip35)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g474">
+          <path
+             inkscape:connector-curvature="0"
+             id="path468"
+             d="m 0.23438,-0.6875 -0.0625,0.3125 q 0.04687,-0.0625 0.10937,-0.0625 0.07813,0 0.10937,0.0625 0.03126,0.04688 0.03126,0.09375 0,0.10937 -0.07813,0.203125 Q 0.26562,0 0.1875,0.015625 q 0,0 -0.01562,0 -0.0625,0 -0.10938,-0.078125 -0.015625,-0.03125 -0.015625,-0.07812 0,-0.04688 0.015625,-0.10938 l 0.07812,-0.32812 q 0.01563,-0.04688 0.01563,-0.0625 0,0 -0.01563,-0.01563 v 0 q 0,0 -0.03124,0 -0.01563,0 -0.031255,0 0,-0.03125 0.031255,-0.03125 h 0.10937 q 0.01563,0 0.01563,0 z M 0.14062,-0.3125 0.125,-0.21875 q -0.01562,0.0625 -0.01562,0.10937 0,0.07813 0.04687,0.093755 0.01563,0 0.01563,0 0.0625,0 0.09374,-0.0625 0.01563,-0.015625 0.03126,-0.031255 0.01562,-0.0625 0.04687,-0.15624 0,-0.03126 0,-0.0625 0,-0.07813 -0.04687,-0.09376 v 0 q -0.01563,0 -0.01563,0 -0.0625,0 -0.125,0.07813 0,0.01563 -0.01563,0.03125 z" />
+          <title
+             id="title470">b</title>
+          <desc
+             id="desc472">Text10 = âbâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip35 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g493"
+       transform="matrix(24,0,0,24,177,313.33)">
+      <clipPath
+         id="clip5993d795-527b-4c43-a9e8-041a17d0cfdc">
+        <path
+           inkscape:connector-curvature="0"
+           id="path480"
+           d="M -7.375,-13.056 V 3.4444 H 7.9167 V -13.056 Z" />
+      </clipPath>
+      <g
+         id="g491"
+         clip-path="url(#clip36)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g489">
+          <path
+             inkscape:connector-curvature="0"
+             id="path483"
+             d="m 0.39062,-0.375 v 0 Q 0.375,-0.42188 0.3125,-0.42188 q -0.0625,0 -0.125,0.0625 -0.01562,0.01563 -0.01562,0.04688 -0.04688,0.0625 -0.0625,0.17188 0,0.01562 0,0.01562 0,0.09375 0.0625,0.109375 0.01562,0 0.03124,0 0.09376,0 0.15626,-0.0625 0.03124,-0.015625 0.04687,-0.031255 0,-0.01562 0.01563,-0.01562 0,0 0.01562,0.01562 0,0.01563 -0.04688,0.04688 -0.07812,0.078125 -0.1875,0.078125 -0.09374,0 -0.14062,-0.078125 -0.015625,-0.04688 -0.015625,-0.09375 0,-0.10937 0.078125,-0.1875 0.07812,-0.09375 0.17188,-0.09375 0,0 0.01562,0 0.07812,0 0.10938,0.04688 0,0.01562 0,0.03124 0,0.04688 -0.03126,0.0625 -0.01562,0 -0.01562,0 -0.03125,0 -0.04688,-0.01562 0,-0.01562 0,-0.01562 0,-0.01563 0.03126,-0.03126 0,-0.01562 0.03124,-0.01562 z" />
+          <title
+             id="title485">c</title>
+          <desc
+             id="desc487">Text11 = âcâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip36 -->
+    </g>
+    <!-- transform -->
+    <g
+       id="g508"
+       transform="matrix(24,0,0,24,188,243.67)">
+      <clipPath
+         id="clip73a1ab74-943c-491e-b554-54ddef2a1ba9">
+        <path
+           inkscape:connector-curvature="0"
+           id="path495"
+           d="M -7.8333,-10.153 V 6.3472 H 7.4583 V -10.153 Z" />
+      </clipPath>
+      <g
+         id="g506"
+         clip-path="url(#clip37)">
+        <g
+           style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="g504">
+          <path
+             inkscape:connector-curvature="0"
+             id="path498"
+             d="m 0.28125,-0.6875 -0.07813,0.32812 q 0.0625,-0.07812 0.15626,-0.07812 0.09374,0 0.10937,0.0625 v 0 q 0,0.01562 0,0.04688 0,0.04687 -0.0625,0.21874 -0.01563,0.031255 -0.01563,0.062505 0,0.03125 0.03126,0.03125 0.0625,0 0.09374,-0.109375 v -0.01562 q 0.01563,-0.01563 0.01563,-0.01563 v 0 0 q 0.01563,0 0.01563,0.01563 0,0.01562 -0.01563,0.062495 -0.04687,0.09375 -0.10937,0.09375 -0.0625,0 -0.07813,-0.046875 -0.01563,-0.015625 -0.01563,-0.046875 0,-0.015625 0.01563,-0.046875 0.0625,-0.15625 0.0625,-0.21875 0,-0.07813 -0.04687,-0.07813 -0.04688,0 -0.09376,0.03126 -0.04687,0.03124 -0.07812,0.09374 v 0 q 0,0.03126 -0.01562,0.04688 0,0.03125 -0.01563,0.0625 L 0.14062,-0.09375 0.125,-0.015625 Q 0.10938,0 0.09375,0.015625 q 0,0 -0.015625,0 -0.015625,0 -0.015625,-0.03125 0,0 0,0 0,-0.015625 0,-0.015625 l 0.14062,-0.57813 v -0.03124 q 0,0 -0.01562,-0.01563 v 0 q 0,0 -0.03125,0 -0.01563,0 -0.01563,0 0,-0.03125 0.01563,-0.03125 h 0.125 q 0,0 0,0 z" />
+          <title
+             id="title500">h</title>
+          <desc
+             id="desc502">Text12 = âhâ</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip37 -->
+    </g>
+    <!-- transform -->
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:31.2967205px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.78241801"
+       x="268.02725"
+       y="137.58768"
+       id="text1346"><tspan
+         sodipodi:role="line"
+         id="tspan1344"
+         x="268.02725"
+         y="137.58768"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.12382317px;line-height:2;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, Italic';stroke-width:0.78241801">r<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.12382317px;line-height:2;font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math Italic';baseline-shift:sub;"
+   id="tspan1348">u</tspan></tspan></text>
+  </g>
+  <!-- default stroke -->
+</svg>
+<!-- bounding box -->
+
