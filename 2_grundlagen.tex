@@ -160,12 +160,100 @@ d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:fuenfeck_diagonale}
 		- Multimodal Distribution for position estimation
 		- Important Sampling
 - http://www.mathepedia.de/Stochastik.html
-- https://www.youtube.com/watch?v=DoHTsDrzAQk
-- http://ais.informatik.uni-freiburg.de/teaching/ss13/robotics/
+- Zufallsvariable, Massenfunktion, Dichtefunktion und Verteilungsfunktion
+	- https://www.youtube.com/watch?v=DoHTsDrzAQk
+- Introduction to Mobile Robotics - SS 2017
+	- http://ais.informatik.uni-freiburg.de/teaching/ss17/robotics/
 - https://en.wikipedia.org/wiki/Conditional_dependence
 - https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
+
+
+- A modern introduction to probability and statistics.pdf
+- Introduction_to_Kalman_Filtering.pdf
+
+- Bayesian statistics
+	- https://en.wikipedia.org/wiki/Bayesian_statistics
+	- Law of total probability
+		- https://en.wikipedia.org/wiki/Law_of_total_probability
+- Rule of Total Probability and Bayes' Rule
+	- https://www.youtube.com/watch?v=VvThd5zRQC4
+	- https://www.youtube.com/watch?v=8SCmdX68pIk
+	
+- Robot Mapping - WS 2016/17 - Uni-Freiburg
+	- http://ais.informatik.uni-freiburg.de/teaching/ws16/mapping/
+	- https://www.youtube.com/playlist?list=PLgnQpQtFTOGQrZ4O5QzbIHgl3b1JHimN_&feature=g-list
+	
+- Probabilistic Robotics
+	- http://robots.stanford.edu/probabilistic-robotics/
+
+
 \end{comment}
-\section{Wahrscheinlichkeitstheorie [todo]}
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+State = Zustand
+Environment = Umwelt
+Percept = Wahrnehmnung
+Control Action = Steuerbefehle
+\end{comment}
+\section{Zustände}
+
+Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren. Das Ergebnis der Modellierung bezeichnet man als Zustand. Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen. Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann. Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung. Beschrieben wird er Zustand mit dem Symbol $x$.
+
+% todo: What is a complete state?
+
+Die meisten Roboter verfügen über Sensoren um Änderungen an Ihrer Umwelt wahrzunehmen. Diese Wahrnehmungen werden dabei mit dem Symbol $z$ beschrieben. Zusätzlich kann der Roboter aktiv Änderungen an seiner Umwelt vornehmen, in dem er Steuerbefehle and die Aktorik sendet und sich somit durch seine Umwelt bewegt. Steuerbefehle werden mit dem Symbol $u$ beschrieben.
+
+Um Auszudrücken, dass die Information des Zustandes, der Wahrnehmung und der Steuerbefehle, zu einem bestimmen Zeitpunkt gehören wird der Index $x_t$ verwendet. Eine Zeitspanne wird über den Index $x_{1:t}$ ausgedrückt. Im mathematischen Sinne werden alle drei Größe als Spaltenvektoren beschrieben, die nicht über die gleiche Dimension verfügen müssen. Zum Beispiel könnte der Zustand aus den X-/Y-Position und der Orientierung $\theta$ zusammengesetzt sein, während die Wahrnehmung aus vielen hunderten Entfernungsmessungen bestehen.
+
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+\end{comment}
+\section{Wahrscheinlichkeitstheorie}
+
+In der Theorie kann der Zustand eindeutig bestimmt werden, in der Praxis ist dieser nicht mehr so eindeutig. Um diese Unsicherheit abzubilden, wird in der Robotik die Wahrscheinlichkeitstheorie angewendet. Dabei wird der Zustand als eine kontinuierliche Zufallsvariable angesehen. Ob sich nun ein System in einem bestimmten Zustand befindet, wird über eine \Gls{wdf} beschrieben. In der Regel wird eine gaußsche Normalverteilung eingesetzt, die sich über den Mittelwert $\mu$ und Varianz $\sigma^2$ beschreiben lässt, siehe \autoref{eq:normal_distribution}. Häufig wird die Normalverteilung auch über $\operatorname{\mathcal{N}}{(x; \mu, \sigma^2)}$ abgekürzt.
+
+\begin{equation}
+p(x) = \left( 2 \pi \sigma^2 \right)^{-\frac12}  \exp{ \left\{ -\frac12 \frac{(x - \mu)^2}{\sigma^2} \right\} } \label{eq:normal_distribution}
+\end{equation}
+
+Da es sich bei dem Zustand nicht um einen skalaren Wert handelt, muss eine mehrdimensionale Normalverteilung eingesetzt werden, siehe \autoref{eq:multivariate_normal_distribution}. Diese wird über einen Vektor der Mittelwert $\mu$ und eine symmetische Kovarianzmatrix $\Sigma$ beschrieben.
+
+\begin{equation}
+p(x) = \operatorname{det}{\left( 2 \pi \Sigma \right)}^{-\frac12}  \exp{ \left\{ -\frac12 (x - \mu)^T \Sigma^{-1} (x - \mu) \right\} } \label{eq:multivariate_normal_distribution}
+\end{equation}
+
+Die Multivariate Verteilung zweier Zufallsvariablen beschreibt die Wahrscheinlichkeit, mit welcher das Ereignis $x$ sowie das Ereignis $y$ auftritt. Sollen beide Zufallsvariablen unabhängig von einander sein, so lassen sich ihre Wahrscheinlichkeiten multiplizieren, siehe \autoref{eq:independent_joint_distribution}.
+
+\begin{equation}
+p(x, y) = p(x) \, p(y) \label{eq:independent_joint_distribution}
+\end{equation}
+
+Von der bedingten Wahrscheinlichkeit spricht man dann, wenn eine Zufallsvariable, Wissen über eine anderen Zufallsvariable besitzt, siehe \autoref{eq:conditional_probability}.
+
+\begin{equation}
+p(x \mid y) = \frac{p(x, y)}{p(y)} \label{eq:conditional_probability}
+\end{equation}
+
+Die bedingte Wahrscheinlichkeit von zwei Zufallsvariablen die unabhängig von einander sind, reduzieren sich zu der Wahrscheinlichkeit einer Zufallsvariable, siehe \autoref{eq:independent_joint_distribution} und \autoref{eq:independent_conditional_probability}.
+
+\begin{equation}
+p(x \mid y) = \frac{p(x) \, p(y)}{p(y)} = p(x) \label{eq:independent_conditional_probability}
+\end{equation}
+
+Der Satz von Bayes sagt aus, das ein Verhältnis zwischen der bedingten Wahrscheinlichkeit $p(x \mid y)$ und der umgekehrten Form $p(y \mid x)$ besteht, siehe \autoref{eq:bayes_rule}.
+
+\begin{equation}
+p(x \mid y) = \frac{p(y \mid x) \, p(x)}{p(y)} \label{eq:bayes_rule}
+\end{equation}
+
+Der Nenner $p(y)$ hängt nicht von $x$ ab, ist daher für jedes Ereignis konstant und wird als Konstante $\eta$ vor die Gleichung gesetzt, siehe \autoref{eq:bayes_rule_with_normalizer}.
+
+\begin{equation}
+p(x \mid y) = \eta \, p(y \mid x) \, p(x) \label{eq:bayes_rule_with_normalizer}
+\end{equation}
 
 
 \begin{comment}
@@ -191,7 +279,17 @@ d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:fuenfeck_diagonale}
 - Bayes Filter
 	- https://www.tu-chemnitz.de/informatik/KI/edu/robotik/ws2012/robotik_6_2.pdf
 \end{comment}
-\section{Bayes Filter [todo]}
+\section{Bayes Filter}
+
+
+\begin{equation}
+\operatorname{bel}{x_t} = p(x_t \mid z_{1:t}, u_{1:t}) \label{eq:bayes_filter_prediction}
+\end{equation}
+
+\begin{equation}
+\overline{\operatorname{bel}{p(x_t \mid z_{1:t-1}, u_{1:t})}} \label{eq:bayes_filter_correction}
+\end{equation}
+
 
 
 \begin{comment}
