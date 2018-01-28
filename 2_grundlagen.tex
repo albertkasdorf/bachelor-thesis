@@ -196,16 +196,11 @@ State = Zustand
 Environment = Umwelt
 Percept = Wahrnehmnung
 Control Action = Steuerbefehle
-\end{comment}
 \section{Zustände}
+\end{comment}
 
-Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren. Das Ergebnis der Modellierung bezeichnet man als Zustand. Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen. Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann. Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung. Beschrieben wird er Zustand mit dem Symbol $x$.
 
-% todo: What is a complete state?
 
-Die meisten Roboter verfügen über Sensoren um Änderungen an Ihrer Umwelt wahrzunehmen. Diese Wahrnehmungen werden dabei mit dem Symbol $z$ beschrieben. Zusätzlich kann der Roboter aktiv Änderungen an seiner Umwelt vornehmen, in dem er Steuerbefehle and die Aktorik sendet und sich somit durch seine Umwelt bewegt. Steuerbefehle werden mit dem Symbol $u$ beschrieben.
-
-Um Auszudrücken, dass die Information des Zustandes, der Wahrnehmung und der Steuerbefehle, zu einem bestimmen Zeitpunkt gehören wird der Index $x_t$ verwendet. Eine Zeitspanne wird über den Index $x_{1:t}$ ausgedrückt. Im mathematischen Sinne werden alle drei Größe als Spaltenvektoren beschrieben, die nicht über die gleiche Dimension verfügen müssen. Zum Beispiel könnte der Zustand aus den X-/Y-Position und der Orientierung $\theta$ zusammengesetzt sein, während die Wahrnehmung aus vielen hunderten Entfernungsmessungen bestehen.
 
 
 \begin{comment}
@@ -279,7 +274,21 @@ p(x \mid y) = \eta \, p(y \mid x) \, p(x) \label{eq:bayes_rule_with_normalizer}
 - Bayes Filter
 	- https://www.tu-chemnitz.de/informatik/KI/edu/robotik/ws2012/robotik_6_2.pdf
 \end{comment}
-\section{Bayes Filter}
+\section{Zustandsschätzer}
+
+Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren. Das Ergebnis der Modellierung bezeichnet man als Zustand. Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen. Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann. Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung. Beschrieben wird er Zustand mit dem Symbol $x$.
+
+Die meisten Roboter verfügen über Sensoren um Änderungen an Ihrer Umwelt wahrzunehmen. Diese Wahrnehmungen werden dabei mit dem Symbol $z$ beschrieben. Zusätzlich kann der Roboter aktiv Änderungen an seiner Umwelt vornehmen, in dem er Steuerbefehle and die Aktorik sendet und sich somit durch seine Umwelt bewegt. Steuerbefehle werden mit dem Symbol $u$ beschrieben.
+
+Um Auszudrücken, dass die Information des Zustandes, der Wahrnehmung und der Steuerbefehle, zu einem bestimmen Zeitpunkt gehören wird der Index $x_t$ verwendet. Eine Zeitspanne wird über den Index $x_{1:t}$ ausgedrückt. Im mathematischen Sinne werden alle drei Größe als Spaltenvektoren beschrieben, die nicht über die gleiche Dimension verfügen müssen. Zum Beispiel könnte der Zustand aus den X-/Y-Position und der Orientierung $\theta$ zusammengesetzt sein, während die Wahrnehmung aus vielen hunderten Entfernungsmessungen bestehen.
+
+Das interne Wissen eines Roboters über den Zustand seiner Umwelt wird als Belief bezeichnet. 
+
+
+\subsection{Bayes Filter}
+
+Bei dem Bayes Filter handelt es sich um einen rekursiven Zustandsschätzer. Dieser
+
 
 
 \begin{equation}
@@ -290,6 +299,12 @@ p(x \mid y) = \eta \, p(y \mid x) \, p(x) \label{eq:bayes_rule_with_normalizer}
 \overline{\operatorname{bel}{p(x_t \mid z_{1:t-1}, u_{1:t})}} \label{eq:bayes_filter_correction}
 \end{equation}
 
+
+posterior probabilities = A-posteriori-Wahrscheinlichkeit
+Sie beschreibt den Wissensstand über einen unbekannten Umweltzustand {\displaystyle \theta } \theta  a posteriori, das heißt nach der Beobachtung einer mit {\displaystyle \theta } \theta in statistischer Abhängigkeit stehenden Zufallsgröße {\displaystyle X} X.
+
+Prior probability = A-priori-Wahrscheinlichkeit
+Wahrscheinlichkeitswert, der aufgrund von Vorwissen gewonnen wird.
 
 
 \begin{comment}
