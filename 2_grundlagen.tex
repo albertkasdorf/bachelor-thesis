@@ -231,27 +231,13 @@ p(x \mid y) = \eta \, p(y \mid x) \, p(x) \label{eq:bayes_rule_with_normalizer}
 %%%%%%%%%%
 \section{Zustandsschätzer}
 
-Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren.
-Das Ergebnis der Modellierung bezeichnet man als Zustand.
-Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können.
-Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen.
-Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann.
-Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung.
-Beschrieben wird er Zustand mit dem Symbol $x$.
+Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren. Das Ergebnis der Modellierung bezeichnet man als Zustand. Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen. Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann. Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung. Beschrieben wird er Zustand mit dem Symbol $x$.
 
-Die meisten Roboter verfügen über Sensoren um Änderungen an Ihrer Umwelt wahrzunehmen.
-Diese Wahrnehmungen werden dabei mit dem Symbol $z$ beschrieben. Zusätzlich kann der Roboter aktiv Änderungen an seiner Umwelt vornehmen, in dem er Steuerbefehle and die Aktorik sendet und sich somit durch seine Umwelt bewegt.
-Steuerbefehle werden mit dem Symbol $u$ beschrieben.
+Die meisten Roboter verfügen über Sensoren um Änderungen an Ihrer Umwelt wahrzunehmen. Diese Wahrnehmungen werden dabei mit dem Symbol $z$ beschrieben. Zusätzlich kann der Roboter aktiv Änderungen an seiner Umwelt vornehmen, in dem er Steuerbefehle and die Aktorik sendet und sich somit durch seine Umwelt bewegt. Steuerbefehle werden mit dem Symbol $u$ beschrieben.
 
-Um Auszudrücken, dass die Information des Zustandes, der Wahrnehmung und der Steuerbefehle, zu einem bestimmen Zeitpunkt gehören wird der Index $x_t$ verwendet.
-Eine Zeitspanne wird über den Index $x_{1:t}$ ausgedrückt.
-Im mathematischen Sinne werden alle drei Größe als Spaltenvektoren beschrieben, die nicht über die gleiche Dimension verfügen müssen.
-Zum Beispiel könnte der Zustand aus den X-/Y-Position und der Orientierung $\theta$ zusammengesetzt sein, während die Wahrnehmung aus vielen hunderten Entfernungsmessungen bestehen.
+Um Auszudrücken, dass die Information des Zustandes, der Wahrnehmung und der Steuerbefehle, zu einem bestimmen Zeitpunkt gehören wird der Index $x_t$ verwendet. Eine Zeitspanne wird über den Index $x_{1:t}$ ausgedrückt. Im mathematischen Sinne werden alle drei Größe als Spaltenvektoren beschrieben, die nicht über die gleiche Dimension verfügen müssen. Zum Beispiel könnte der Zustand aus den X-/Y-Position und der Orientierung $\theta$ zusammengesetzt sein, während die Wahrnehmung aus vielen hunderten Entfernungsmessungen bestehen.
 
-Der Zustand der Umwelt kann nicht direkt gemessen werden, stattdessen muss dieser aus den Daten der Wahrnehmung und der Steuerbefehle geschlussfolgert werden.
-Das interne Wissen des Roboters über den Zustand seiner Umwelt wird dabei als Belief $bel(x_t)$ bezeichnet.
-Der Belief wird dabei durch eine bedingte Wahrscheinlichkeitsverteilung repräsentiert.
-Jeder Zustandshypothese ordnet der Belief dabei eine Wahrscheinlichkeit für ihre Gültigkeit zu.
+Der Zustand der Umwelt kann nicht direkt gemessen werden, stattdessen muss dieser aus den Daten der Wahrnehmung und der Steuerbefehle geschlussfolgert werden. Das interne Wissen des Roboters über den Zustand seiner Umwelt wird dabei als Belief $bel(x_t)$ bezeichnet. Der Belief wird dabei durch eine bedingte Wahrscheinlichkeitsverteilung repräsentiert. Jeder Zustandshypothese ordnet der Belief dabei eine Wahrscheinlichkeit für ihre Gültigkeit zu.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -268,7 +254,7 @@ Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschre
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{algorithm_bayes_filter}
+	\includegraphics[width=0.7\linewidth]{algorithm_bayes_filter}
 	\caption{Bayes Filter Algorithmus \cite{thrun2005probabilistic}}
 	\label{fig:algorithm_bayes_filter}
 \end{figure}
@@ -285,7 +271,18 @@ Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Pro
 %		- \url{https://matheguru.com/stochastik/normalverteilung.html}
 %
 %%%%%%%%%%
-\subsection{Kalman Filter [todo]}
+\subsection{Kalman Filter}
+
+Die Familie der Gauß Filter, zu denen auch der Kalman Filter gehört, ist eine der frühsten konkreten Implementierungen des Bayes Filters. Die Idee hinter jedem Gauß Filter liegt dabei, das der Belief durch eine mehrdimensionale Normalverteilung repräsentiert wird, die eindeutig durch die ersten beiden Momente Mittelwert $\mu$ und Kovarianz $\Sigma$ beschrieben wird. Der große Vorteil einer normalverteilten Zufallsvariable ist, dass das Ergebnis einer Lineartransformation mit einer anderen normalverteilten Zufallsvariable wieder zu einer normalverteilten Zufallsvariable führt. Zu den Nachteilen zählt, dass die Gauß Filter nur im kontinuierlichen Zustandsraum angewendet werden kann und durch ihre unimodale Verteilung nur für die Positionsverfolgung (engl. Position Tracking Problem) in Frage kommt.
+
+Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, siehe \autoref{fig:algorithm_kalman_filter}. Im ersten Schritt wird aus dem vorherigen Zustand $\mu_{t-1}$ und $\Sigma_{t-1}$ und den aktuellen Steuerbefehlen $u_t$ die Prognose für den neuen Zustand berechnet, siehe Zeile 2--3. Über die Matrix $A_t$ wird festgelegt, wie sich der Zustand von $t-1$ nach $t$ entwickelt, ohne die Einwirkungen der Steuerbefehle oder von Rauschen. Die Matrix $B_t$ beschreibt wie die Steuerbefehle die Zustandsänderung von $t-1$ nach $t$ beeinflussen. Im zweiten Schritt wird zuerst der Kalman Gain $K_t$ berechnet, siehe Zeile 4. Bei dem Kalman Gain handelt es sich um ein Gewicht, das entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert wird, siehe Zeile 5--6. Bei der Matrix $C_t$ wird definiert wir die Wahrnehmungen auf den Zustand abgebildet werden. Die beiden Matrizen $R_t$ und $Q_t$ bilden dabei das unabhängige und zufällig normalverteilte Rauschen ab.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{algorithm_kalman_filter}
+	\caption{Kalman Filter Algorithmus \cite{thrun2005probabilistic}}
+	\label{fig:algorithm_kalman_filter}
+\end{figure}
 
 
 \begin{comment}
@@ -445,6 +442,14 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 \section{SLAM [todo]}
 
 % Zuerst wird die Position geschätzt und danach die Positionen der Landmarken.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
+\subsection{EKF-SLAM [todo]}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
