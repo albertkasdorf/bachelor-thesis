@@ -1,13 +1,16 @@
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \chapter{Grundlagen}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- https://de.wikipedia.org/wiki/Fading_(Elektrotechnik)
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% https://de.wikipedia.org/wiki/Fading_(Elektrotechnik)
+%
+%%%%%%%%%%
 \section{Verfahren für die Entfernungsbestimmung}
 
 Bei der \textit{Triangulation} werden die Winkel zwischen mehreren Referenzpunkten bestimmt und dann die dazu gehörige Entfernung mittels trigonometrischer Funktionen berechnet. Dieses Verfahren ist auch unter den Namen \Gls{aoa} bzw. \Gls{doa} bekannt. Um eine genau Ortsbestimmung durchzuführen müssen die Winkel sehr genau bestimmt werden. Um das zu bewerkstelligen werden im Empfänger mehrere Antennen zu einem Feld (engl. Antenna Array) zusammengefasst. Jedoch ist diese Konstruktion sehr teuer und empfindlich für Mehrwegeempfang (engl. Multipath) bzw. Signalabschattungen. \cite{gezici2005localization, liu2007survey, decawave2014rtls}
@@ -21,25 +24,24 @@ Neben der \textit{Triangulation} und \textit{Trilateration} besteht auch die Mö
 In den nächsten zwei Abschnitten werden die \textit{DecaWave} Entfernungsmessverfahren vorgestellt. Diese haben den Vorteil, dass keine Synchronisierung der Zeit zwischen Sender und Empfänger notwendig ist. Weiterhin besitzen die \textit{DecaWave} \Gls{uwbt} zwei Eigenschaften die die Entfernungsmessung ideal ergänzt. Zum einen wird jede erhaltene Nachricht mit einem lokalen Zeitstempel versehen, der über eine minimale Auflösung von ungefähr \SI{15.65}{\pico\second} verfügt. Hiermit wäre eine theoretische Ortsauflösung von ungefähr \SI{5}{\milli\metre} möglich. Des Weiteren ist es möglich, den Sendezeitpunkt einer Nachricht in die Zukunft zu legen. Damit lässt sich die Zeitspanne zwischen dem Empfang und der Antwort auf eine Nachricht im Voraus berechnen. Die Zeitspanne kann dann der Antwortnachricht als Nutzlast mitgegeben werden, um beim Empfänger die Umlaufzeit zu berechnen.
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Wie lange dauert es bis eine Nachricht ausgetauscht worden ist?
-	- Beispiel mit einer konkreten Entfernung?
-	
-- Wie schnell drifted ein Quarz in einem µc?
-	- What is the ppm in the crystal oscillator?
-	- https://electronics.stackexchange.com/questions/15851/what-is-the-ppm-in-the-crystal-oscillator
-	- In the 1930s, such precise time measurements simply weren't possible; a clock of the required accuracy was difficult enough to build in fixed form, let alone portable. A crystal oscillator, for instance, drifts about 1 to 2 seconds in a month, or 1.4x10−3 seconds an hour.[1] This may sound small, but as light travels 3x108 m/s, this represents a drift of 400 m per hour. Only a few hours of flight time would render such a system unusable, a situation that remained in force until the introduction of commercial atomic clocks in the 1960s.
-	- Clock accuracy in ppm
-	- http://www.best-microcontroller-projects.com/ppm.html
-	
-
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 	- Wie lange dauert es bis eine Nachricht ausgetauscht worden ist?
+%		- Beispiel mit einer konkreten Entfernung?
+%	- Wie schnell drifted ein Quarz in einem µc?
+%		- What is the ppm in the crystal oscillator?
+%		- https://electronics.stackexchange.com/questions/15851/what-is-the-ppm-in-the-crystal-oscillator
+%		- In the 1930s, such precise time measurements simply weren't possible; a clock of the required accuracy was difficult enough to build in fixed form, let alone portable. A crystal oscillator, for instance, drifts about 1 to 2 seconds in a month, or 1.4x10−3 seconds an hour.[1] This may sound small, but as light travels 3x108 m/s, this represents a drift of 400 m per hour. Only a few hours of flight time would render such a system unusable, a situation that remained in force until the introduction of commercial atomic clocks in the 1960s.
+%	- Clock accuracy in ppm
+%	- http://www.best-microcontroller-projects.com/ppm.html
+%
+%%%%%%%%%%
 \subsection{Single-sided Two-way Ranging}
 
-Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr}-Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \figurename~\ref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
+Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr}-Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \autoref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
-\begin{figure}[ht]
+%\begin{figure}[ht]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{single_sided_two_way_ranging}
 	\caption{Ablauf des \acrlong{sstwr}.}
@@ -49,30 +51,37 @@ Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, is
 
 Die ungefähre \Gls{tof}-Zeitspanne ergibt sich aus der folgenden Gleichung:
 
-\[T_{prop}=\frac{1}{2}\left(T_{round}-T_{reply}\right)\]
+\begin{equation}
+T_{prop}=\frac{1}{2}\left(T_{round}-T_{reply}\right)
+\end{equation}
 
 Damit der \Gls{tag} die \Gls{tof}-Zeitspanne berechnen kann, benötigt er die $T_{reply}$-Zeitspanne. Zu diesem Problem gibt es mehrere Lösungen. Die einfachste Lösung ist eine feste Antwortzeit die jedem Modul bekannt ist. Alternativ kann der \Gls{anchor} in der Antwortnachricht seine individuelle Antwortzeit übermitteln. Oder der \Gls{tag} übermittelt dem \Gls{anchor} mit der initialen Nachricht wie lange der \Gls{anchor} warten muss bis er die Antwortnachricht verschickt. Hierbei muss die Zeitspanne groß genug gewählt sein, um den \Gls{anchor} die Möglichkeit zur Antwort zu lassen. Je nach Anforderung wird eine der vorherigen Methoden verwendet.
 
 Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit abhängt. Bei Module verwenden zur Berechnung von $T_{round}$ und $T_{reply}$ ihre lokalen Zeitgeber. Beide Zeitgeber haben einen Offsetfehler $e_{A}$ und $e_{B}$ der von der Nennfrequenz abweicht. Die daraus abgeleitete \Gls{tof}-Zeitschätzung hat damit einen Fehler der mit der Antwortzeit wächst:
 
-\[error\approx\frac{1}{2}\left(e_B-e_A\right)\times T_{reply}\]
+\begin{equation}
+error\approx\frac{1}{2}\left(e_B-e_A\right)\times T_{reply}
+\end{equation}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{decawave2016dw1kusermanual}
-	- Where the clock in device A runs at ka times the desired frequency and the clock in device B runs at kb times the desired frequency and both ka & kb are close to 1.
-	- To give some idea of the size of this error, if devices A and B have clocks where each are 20 ppm away (the worst case specification) from the nominal clock in directions which make their combined error additive and equal to 40 ppm, then ka and kb might both be 0.99998 or 1.00002.
-	- Even with a relatively large UWB operating range of say 100 m, the TOF is just 333 ns, so the error is 20 × 10-6 × 333 × 10-9 seconds, which is 6.7 × 10-12 seconds or 6.7 picoseconds which is approximately 2.2 mm.
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \cite{decawave2016dw1kusermanual}
+%	- Where the clock in device A runs at ka times the desired frequency and the clock in device B runs at kb times the desired frequency and both ka & kb are close to 1.
+%	- To give some idea of the size of this error, if devices A and B have clocks where each are 20 ppm away (the worst case specification) from the nominal clock in directions which make their combined error additive and equal to 40 ppm, then ka and kb might both be 0.99998 or 1.00002.
+%	- Even with a relatively large UWB operating range of say 100 m, the TOF is just 333 ns, so the error is 20 × 10-6 × 333 × 10-9 seconds, which is 6.7 × 10-12 seconds or 6.7 picoseconds which is approximately 2.2 mm.
+%
+%%%%%%%%%%
 \subsection{Double-sided Two-way Ranging}
 \label{subsec:double_sided_two_way_ranging}
 
-Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \figurename~\ref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
+Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \autoref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
-\begin{figure}[ht]
+%\begin{figure}[ht]
+\begin{figure}
 	\centering
-	\includegraphics[width=0.70\linewidth]{double_sided_two_way_ranging}
+%	\includegraphics[width=0.7\linewidth]{double_sided_two_way_ranging}
+	\includegraphics[width=0.8\linewidth]{double_sided_two_way_ranging}
 	\caption{Ablauf des \acrlong{dstwr}.}
 	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
 	\label{fig:double_sided_two_way_ranging}
@@ -80,44 +89,55 @@ Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Ve
 
 Die ungefähre \Gls{tof}-Zeitspanne ergibt sich aus der folgenden Gleichung:
 
-\[T_{prop}=\frac{\left(T_{round1}\times T_{round2}-T_{reply1}\times T_{reply2}\right)}{\left(T_{round1}+T_{round2}+T_{reply1}+T_{reply2}\right)}\]
+\begin{equation}
+T_{prop} = \frac{\left(T_{round1}\times T_{round2}-T_{reply1}\times T_{reply2}\right)}{\left(T_{round1}+T_{round2}+T_{reply1}+T_{reply2}\right)}
+\end{equation}
 
 Der Fehler bei diesem Verfahren ergibt sich aus der folgenden Gleichung:
 
-\[error=T_{prop}\times\left(1-\frac{k_a+k_b}{2}\right)\] 
+\begin{equation}
+error=T_{prop}\times\left(1-\frac{k_a+k_b}{2}\right)
+\end{equation}
 
 Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber von der Nennfrequenz und liegen beide sehr nahe bei eins.
 
-Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}-Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
+Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \autoref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}-Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
 
-\begin{figure}[ht]
+%\begin{figure}[ht]
+\begin{figure}
 	\centering
-	\includegraphics[width=0.8\linewidth]{double_sided_two_way_ranging_with_three_anchor}
+	\includegraphics[width=\linewidth]{double_sided_two_way_ranging_with_three_anchor}
 	\caption{Ablauf des \acrlong{dstwr} mit einem \Gls{tag} und drei \Gls{anchor}.}
 	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
 	\label{fig:double_sided_two_way_ranging_with_three_anchor}
 \end{figure}
 
-In der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der\Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \figurename~\ref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
+In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der\Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
 
-\begin{figure}[ht]
+%\begin{figure}[ht]
+\begin{figure}
 	\centering
-	\includegraphics[width=0.40\linewidth]{discovery_and_ranging_phase}
+%	\includegraphics[width=0.4\linewidth]{discovery_and_ranging_phase2}
+	\includegraphics[width=0.3\linewidth]{discovery_and_ranging_phase2}
 	\caption{Ablauf der \textit{Discovery} und \textit{Range Phase} zwischen einem \Gls{tag} und mehreren \Gls{anchor}n.}
 	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
 	\label{fig:discovery_and_ranging_phase}
 \end{figure}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \section{Geometrie}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \subsection{Gleichseitiges Dreieck}
 
 Ein gleichseitiges Dreieck zeichnet sich dadurch aus, dass alle drei Seiten gleich lang sind und jeder Innenwinkel einen Wert von \SI{60}{\degree} besitzt, siehe \autoref{fig:wikipedia_gleichseitiges_dreieck}. Ist der Umkreisradius $r_u$ eines gleichseitigen Dreiecks bekannt, so kann mit der \autoref{eq:dreieck_seitenlaenge_aus_umkreis} auch die Seitenlänge $a$ berechnet werden.
@@ -127,9 +147,11 @@ a = \frac{3}{\sqrt{3}} r_u \label{eq:dreieck_seitenlaenge_aus_umkreis}
 \end{equation}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \subsection{Regelmäßiges Fünfeck}
 
 Das regelmäßige Fünfeck zeichnet sich dadurch aus, das alle fünf äußeren Seiten gleich lang sind und jeder Innenwinkel einen von Wert von \SI{108}{\degree} besitzt, siehe \autoref{fig:wikipedia_regelmaessiges_fuenfeck}. Aus der Länge einer äußeren Seite $a$ lässt sich zum einen der Umkreisradius $r_u$, siehe \autoref{eq:fuenfeck_umkreisradius}, und die Diagonale $d$ zwischen zwei Spitzen, siehe \autoref{eq:fuenfeck_diagonale}, berechnen.
@@ -143,69 +165,20 @@ d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:fuenfeck_diagonale}
 \end{equation}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Theorie: Wahrscheinlichkeitsverfahren
-	- Positionsschätzer in Form einer Wahrscheinlichkeitsverteilung über den Zustandraum.
-	- Kalman fitering
-		- Multivariate Gaussian distribution (Mehrdimensionale Normalverteilung)
-		- \url{https://de.wikipedia.org/wiki/Mehrdimensionale_Normalverteilung}
-		- Kompakte Beschreibung der Normalverteilung über den Erwartungswert $\mu$ und die Kovarianzmatrix $\Sigma$ ($\mu$ und $\sigma^2$)
-		- \url{https://matheguru.com/stochastik/normalverteilung.html}
-	- Markov methods
-		- Probability Grid
-		- Robot-Position ist diskretisiert
-		- Nutzen von Bayes Rule um Grids zu kombinieren/neuerzeugen
-	- Monte Carlo Lokalisierung
-		- Multimodal Distribution for position estimation
-		- Important Sampling
-- http://www.mathepedia.de/Stochastik.html
-- Zufallsvariable, Massenfunktion, Dichtefunktion und Verteilungsfunktion
-	- https://www.youtube.com/watch?v=DoHTsDrzAQk
-- Introduction to Mobile Robotics - SS 2017
-	- http://ais.informatik.uni-freiburg.de/teaching/ss17/robotics/
-- https://en.wikipedia.org/wiki/Conditional_dependence
-- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
-
-
-- A modern introduction to probability and statistics.pdf
-- Introduction_to_Kalman_Filtering.pdf
-
-- Bayesian statistics
-	- https://en.wikipedia.org/wiki/Bayesian_statistics
-	- Law of total probability
-		- https://en.wikipedia.org/wiki/Law_of_total_probability
-- Rule of Total Probability and Bayes' Rule
-	- https://www.youtube.com/watch?v=VvThd5zRQC4
-	- https://www.youtube.com/watch?v=8SCmdX68pIk
-	
-- Robot Mapping - WS 2016/17 - Uni-Freiburg
-	- http://ais.informatik.uni-freiburg.de/teaching/ws16/mapping/
-	- https://www.youtube.com/playlist?list=PLgnQpQtFTOGQrZ4O5QzbIHgl3b1JHimN_&feature=g-list
-	
-- Probabilistic Robotics
-	- http://robots.stanford.edu/probabilistic-robotics/
-
-
-\end{comment}
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-State = Zustand
-Environment = Umwelt
-Percept = Wahrnehmnung
-Control Action = Steuerbefehle
-\section{Zustände}
-\end{comment}
-
-
-
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Bayesian statistics
+%		- https://en.wikipedia.org/wiki/Bayesian_statistics
+%	- Law of total probability
+%		- https://en.wikipedia.org/wiki/Law_of_total_probability
+%	- Rule of Total Probability and Bayes' Rule
+%		- https://www.youtube.com/watch?v=VvThd5zRQC4
+%		- https://www.youtube.com/watch?v=8SCmdX68pIk
+%	- Zufallsvariable, Massenfunktion, Dichtefunktion und Verteilungsfunktion
+%		- https://www.youtube.com/watch?v=DoHTsDrzAQk
+%	- A modern introduction to probability and statistics.pdf
+%
+%%%%%%%%%%
 \section{Wahrscheinlichkeitstheorie}
 
 In der Theorie kann der Zustand eindeutig bestimmt werden, in der Praxis ist dieser nicht mehr so eindeutig. Um diese Unsicherheit abzubilden, wird in der Robotik die Wahrscheinlichkeitstheorie angewendet. Dabei wird der Zustand als eine kontinuierliche Zufallsvariable angesehen. Ob sich nun ein System in einem bestimmten Zustand befindet, wird über eine \Gls{wdf} beschrieben. In der Regel wird eine gaußsche Normalverteilung eingesetzt, die sich über den Mittelwert $\mu$ und Varianz $\sigma^2$ beschreiben lässt, siehe \autoref{eq:normal_distribution}. Häufig wird die Normalverteilung auch über $\operatorname{\mathcal{N}}{(x; \mu, \sigma^2)}$ abgekürzt.
@@ -251,32 +224,11 @@ p(x \mid y) = \eta \, p(y \mid x) \, p(x) \label{eq:bayes_rule_with_normalizer}
 \end{equation}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- https://matheguru.com/stochastik/standardfehler.html
-- https://de.wikipedia.org/wiki/Standardfehler
-- Theorie: Lokalisierungsprobleme
-	- Statische Lokalisierung
-		- Akkurate Schätzung seiner globalen Position anhand der Sensordaten
-		- Annahme: Umgebungskarte der Landmarken ist vorhanden
-	- Position Tracking/Positionsverfolgung
-		- Initiale Position ist gegeben
-		- Verfogenden der Roboterposition
-		- Annahme: Umgebungskarte der Landmarken ist vorhanden
-	- SLAM
-		- Verwenden der Sensordaten um sich zu Lokalisierung...
-		- und eine Karte der Landmarken zu erzeugen.
-		- Bisher Winkel und Entferung zu einer Landmarke gegeben
-			- Computer Vision, Structure from Motion
-		- Hier nur die Entfernung
-- A Short Introduction to the Bayes Filter and Related Models
-	- http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam02-bayes-filter-short.pdf
-- Bayes Filter
-	- https://www.tu-chemnitz.de/informatik/KI/edu/robotik/ws2012/robotik_6_2.pdf
-\end{comment}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%
+%
+%%%%%%%%%%
 \section{Zustandsschätzer}
 
 Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren.
@@ -304,6 +256,12 @@ Jeder Zustandshypothese ordnet der Belief dabei eine Wahrscheinlichkeit für ihr
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%	- A Short Introduction to the Bayes Filter and Related Models
+%		- http://ais.informatik.uni-freiburg.de/teaching/ws12/mapping/pdf/slam02-bayes-filter-short.pdf
+%	- Bayes Filter
+%		- https://www.tu-chemnitz.de/informatik/KI/edu/robotik/ws2012/robotik_6_2.pdf
+%
+%%%%%%%%%%
 \subsection{Bayes Filter}
 
 Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschreibung eines rekursiven Zustandsschätzer, siehe \autoref{fig:algorithm_bayes_filter}. Das heißt, aufbauend  auf der aktuellen Zustandsschätzung wird mit dem eintreffen neuer Wahrnehmungs- oder Steuerbefehl-Daten eine neue Zustandschätzung generiert. Abhängig vom Vorwissen des initialen Zustandes $bel(x_0)$ liefert diese entweder eine punktförmige Verteilung durch den initialen Zustand zurück oder eine stetige Gleichverteilung über den kompletten Zustandsraum. 
@@ -320,6 +278,13 @@ Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Pro
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%	- Kalman fitering
+%		- Multivariate Gaussian distribution (Mehrdimensionale Normalverteilung)
+%		- \url{https://de.wikipedia.org/wiki/Mehrdimensionale_Normalverteilung}
+%		- Kompakte Beschreibung der Normalverteilung über den Erwartungswert $\mu$ und die Kovarianzmatrix $\Sigma$ ($\mu$ und $\sigma^2$)
+%		- \url{https://matheguru.com/stochastik/normalverteilung.html}
+%
+%%%%%%%%%%
 \subsection{Kalman Filter [todo]}
 
 
@@ -332,28 +297,76 @@ Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Pro
 	- We obtain the PDFs as follows: for every reported measurement, we and the true range to the robot when that distance was reported. We do this by comparing the known location of the reporting tag to the times-tamped true location of the robot when the report was received.
 	- the covariance matrix, which describes the uncertainty and correlation of the terms in the state estimate.
 	- However, when the same initial noisy tag locations are used with Test 2, our SLAM technique fails to converge. Since the Kalman Filter uses a linearization of the nonlinear range measurements, if the linearized estimate is too far away from the truth, the Filter may be unable to recover and will diverge.
+- \cite{kurth2003experimental}
+	- Recent extensions of Kalman Filtering allow for non-Gaussian, multimodal probability distributions through multiple hypothesis tracking. The result is a more versatile estimation technique that still preserves many of the computational advantages of the Kalman filter.
+	
 
 - https://www.youtube.com/watch?v=CaCcOwJPytQ
 	- Special Topics - The Kalman Filter (1 of 55) What is a Kalman Filter?
 
+
+- Theorie: Lokalisierungsprobleme
+	- Statische Lokalisierung
+		- Akkurate Schätzung seiner globalen Position anhand der Sensordaten
+		- Annahme: Umgebungskarte der Landmarken ist vorhanden
+	- Position Tracking/Positionsverfolgung
+		- Initiale Position ist gegeben
+		- Verfogenden der Roboterposition
+		- Annahme: Umgebungskarte der Landmarken ist vorhanden
+	- SLAM
+		- Verwenden der Sensordaten um sich zu Lokalisierung...
+		- und eine Karte der Landmarken zu erzeugen.
+		- Bisher Winkel und Entferung zu einer Landmarke gegeben
+			- Computer Vision, Structure from Motion
+		- Hier nur die Entfernung
+- Theorie: Wahrscheinlichkeitsverfahren
+
+	- Markov methods
+		- Probability Grid
+		- Robot-Position ist diskretisiert
+		- Nutzen von Bayes Rule um Grids zu kombinieren/neuerzeugen
+	- Monte Carlo Lokalisierung
+		- Multimodal Distribution for position estimation
+		- Important Sampling
+- http://www.mathepedia.de/Stochastik.html
+
+- Introduction to Mobile Robotics - SS 2017
+	- http://ais.informatik.uni-freiburg.de/teaching/ss17/robotics/
+
+- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
+
+
+
+- Introduction_to_Kalman_Filtering.pdf
+	
+- Robot Mapping - WS 2016/17 - Uni-Freiburg
+	- http://ais.informatik.uni-freiburg.de/teaching/ws16/mapping/
+	- https://www.youtube.com/playlist?list=PLgnQpQtFTOGQrZ4O5QzbIHgl3b1JHimN_&feature=g-list
+	
+- Probabilistic Robotics
+	- http://robots.stanford.edu/probabilistic-robotics/
 \end{comment}
 
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{kurth2003experimental}
-	- Recent extensions of Kalman Filtering allow for non-Gaussian, multimodal probability distributions through multiple hypothesis tracking. The result is a more versatile estimation technique that still preserves many of the computational advantages of the Kalman filter.
-\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \subsection{Extended Kalman Filter [todo]}
 
 % Linearisierung, 
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \section{Partikel Filter [todo]}
+
 
 \begin{comment}
 ------------------------------------------------------------------------------------------
@@ -361,6 +374,11 @@ Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Pro
 	- Monte Carlo localization, or particle filtering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
 - \cite{fox1999monte}
 \end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \subsection{Monte Carlo [todo]}
 
 
@@ -372,6 +390,11 @@ https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 - \cite{murphy2001rao}
 	- Rao-Blackwellised particle filtering for dynamic Bayesian networks
 \end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \subsection{Rao-Blackwellized [todo]}
 
 
@@ -414,25 +437,34 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 	
 - The purpose of a probabilistic approach to RO-SLAM is to obtain the joint probability distribution of the robot pose (or path) and the map, given all the available data at some instant of time. This distribution represents our knowledge about the robot path, the map, and all their correlations.
 \end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \section{SLAM [todo]}
 
 % Zuerst wird die Position geschätzt und danach die Positionen der Landmarken.
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \subsection{RO-SLAM [todo]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \url{https://www.heise.de/developer/artikel/Einfuehrung-in-das-Robot-Operating-System-3273655.html?seite=all}
-- Node = Knoten
-- Topic = Datenbus
-- Service = Dienst
-- Message = Nachricht
-- Launch-Files = Startdateien
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \url{https://www.heise.de/developer/artikel/Einfuehrung-in-das-Robot-Operating-System-3273655.html?seite=all}
+%	- Node = Knoten
+%	- Topic = Datenbus
+%	- Service = Dienst
+%	- Message = Nachricht
+%	- Launch-Files = Startdateien
+%
+%%%%%%%%%%
 \section{Robot Operating System}
 
 Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssystem, sondern vielmehr um ein Framework das die Kommunikation zwischen verschiedenen Verarbeitungseinheiten regelt. Im Jahre 2007 begann die Entwicklung von \Gls{ros} an der Stanford University. Ab 2009 wurde dieses dann hauptsächlich an dem Robotik Institut Willow Garage weiterentwickelt. Durch die BSD Lizenz steht \Gls{ros} als Open-Source-Projekt sowohl der nicht-kommerziellen auch der kommerziellen Weiterentwicklung zur Verfügung. \cite{quigley2009ros}
