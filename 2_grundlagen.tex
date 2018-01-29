@@ -13,8 +13,8 @@
 Bei der \textit{Triangulation} werden die Winkel zwischen mehreren Referenzpunkten bestimmt und dann die dazu gehörige Entfernung mittels trigonometrischer Funktionen berechnet. Dieses Verfahren ist auch unter den Namen \Gls{aoa} bzw. \Gls{doa} bekannt. Um eine genau Ortsbestimmung durchzuführen müssen die Winkel sehr genau bestimmt werden. Um das zu bewerkstelligen werden im Empfänger mehrere Antennen zu einem Feld (engl. Antenna Array) zusammengefasst. Jedoch ist diese Konstruktion sehr teuer und empfindlich für Mehrwegeempfang (engl. Multipath) bzw. Signalabschattungen. \cite{gezici2005localization, liu2007survey, decawave2014rtls}
 
 Im Gegensatz dazu werden bei der \textit{Trilateration} die Entfernungen zwischen mehreren Referenzpunkten betrachtet. Es werden dabei die Verfahren \Gls{toa} und \Gls{tdoa} unterschieden.
-Bei dem \Gls{toa}--Verfahren wird zuerst die Zeitdifferenz zwischen dem Senden und Empfangen eines Funksignals berechnet. Mittels der Signallaufzeit (engl. \acrfull{tof}) und der Ausbreitungsgeschwindigkeit des Funksignals kann die Entfernung berechnet werden. Die Ortsbestimmung erfolgt dann über die Schnittpunkte von drei Kreisen (2D) bzw. vier Kugeln (3D) miteinander. Um dieses Verfahren anwenden zu können, ist es erforderlich das das Funksignal mit einem Zeitstempel des Startzeitpunktes versehen ist. Daraus folgt aber auch, das die Zeit zwischen Sender und Empfänger sehr genau synchronisiert werden müssen um den Fehler möglich klein zu halten.
-Bei dem \Gls{tdoa}--Verfahren werden die Zeitdifferenz zwischen dem Empfang des Funksignals an mehreren Empfängern ausgewertet. Dies hat den großen Vorteil das nur noch die Zeit zwischen den Empfängern synchronisiert werden muss. \cite{zekavat2011handbook, decawave2014rtls}
+Bei dem \Gls{toa}-Verfahren wird zuerst die Zeitdifferenz zwischen dem Senden und Empfangen eines Funksignals berechnet. Mittels der Signallaufzeit (engl. \acrfull{tof}) und der Ausbreitungsgeschwindigkeit des Funksignals kann die Entfernung berechnet werden. Die Ortsbestimmung erfolgt dann über die Schnittpunkte von drei Kreisen (2D) bzw. vier Kugeln (3D) miteinander. Um dieses Verfahren anwenden zu können, ist es erforderlich das das Funksignal mit einem Zeitstempel des Startzeitpunktes versehen ist. Daraus folgt aber auch, das die Zeit zwischen Sender und Empfänger sehr genau synchronisiert werden müssen um den Fehler möglich klein zu halten.
+Bei dem \Gls{tdoa}-Verfahren werden die Zeitdifferenz zwischen dem Empfang des Funksignals an mehreren Empfängern ausgewertet. Dies hat den großen Vorteil das nur noch die Zeit zwischen den Empfängern synchronisiert werden muss. \cite{zekavat2011handbook, decawave2014rtls}
 
 Neben der \textit{Triangulation} und \textit{Trilateration} besteht auch die Möglichkeit auf Grund der empfangenen Signalstärke (engl. \acrfull{ss_radio}, \acrfull{rss} oder auch \acrfull{rssi}) Rückschlüsse über die Entfernung zu ziehen. Dazu muss die ursprüngliche Signalstärke und die Ausbreitungscharakteristik der elektromagnetischen Welle in der spezifischen Umgebung bekannt sein. \cite{gezici2005localization, decawave2014rtls}
 
@@ -37,7 +37,7 @@ In den nächsten zwei Abschnitten werden die \textit{DecaWave} Entfernungsmessve
 \end{comment}
 \subsection{Single-sided Two-way Ranging}
 
-Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr}--Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort-- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \figurename~\ref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
+Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr}-Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \figurename~\ref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
 \begin{figure}[ht]
 	\centering
@@ -47,13 +47,13 @@ Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, is
 	\label{fig:single_sided_two_way_ranging}
 \end{figure}
 
-Die ungefähre \Gls{tof}--Zeitspanne ergibt sich aus der folgenden Gleichung:
+Die ungefähre \Gls{tof}-Zeitspanne ergibt sich aus der folgenden Gleichung:
 
 \[T_{prop}=\frac{1}{2}\left(T_{round}-T_{reply}\right)\]
 
-Damit der \Gls{tag} die \Gls{tof}--Zeitspanne berechnen kann, benötigt er die $T_{reply}$--Zeitspanne. Zu diesem Problem gibt es mehrere Lösungen. Die einfachste Lösung ist eine feste Antwortzeit die jedem Modul bekannt ist. Alternativ kann der \Gls{anchor} in der Antwortnachricht seine individuelle Antwortzeit übermitteln. Oder der \Gls{tag} übermittelt dem \Gls{anchor} mit der initialen Nachricht wie lange der \Gls{anchor} warten muss bis er die Antwortnachricht verschickt. Hierbei muss die Zeitspanne groß genug gewählt sein, um den \Gls{anchor} die Möglichkeit zur Antwort zu lassen. Je nach Anforderung wird eine der vorherigen Methoden verwendet.
+Damit der \Gls{tag} die \Gls{tof}-Zeitspanne berechnen kann, benötigt er die $T_{reply}$-Zeitspanne. Zu diesem Problem gibt es mehrere Lösungen. Die einfachste Lösung ist eine feste Antwortzeit die jedem Modul bekannt ist. Alternativ kann der \Gls{anchor} in der Antwortnachricht seine individuelle Antwortzeit übermitteln. Oder der \Gls{tag} übermittelt dem \Gls{anchor} mit der initialen Nachricht wie lange der \Gls{anchor} warten muss bis er die Antwortnachricht verschickt. Hierbei muss die Zeitspanne groß genug gewählt sein, um den \Gls{anchor} die Möglichkeit zur Antwort zu lassen. Je nach Anforderung wird eine der vorherigen Methoden verwendet.
 
-Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit abhängt. Bei Module verwenden zur Berechnung von $T_{round}$ und $T_{reply}$ ihre lokalen Zeitgeber. Beide Zeitgeber haben einen Offsetfehler $e_{A}$ und $e_{B}$ der von der Nennfrequenz abweicht. Die daraus abgeleitete \Gls{tof}--Zeitschätzung hat damit einen Fehler der mit der Antwortzeit wächst:
+Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit abhängt. Bei Module verwenden zur Berechnung von $T_{round}$ und $T_{reply}$ ihre lokalen Zeitgeber. Beide Zeitgeber haben einen Offsetfehler $e_{A}$ und $e_{B}$ der von der Nennfrequenz abweicht. Die daraus abgeleitete \Gls{tof}-Zeitschätzung hat damit einen Fehler der mit der Antwortzeit wächst:
 
 \[error\approx\frac{1}{2}\left(e_B-e_A\right)\times T_{reply}\]
 
@@ -68,7 +68,7 @@ Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit 
 \subsection{Double-sided Two-way Ranging}
 \label{subsec:double_sided_two_way_ranging}
 
-Das \Gls{dstwr}--Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}--Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \figurename~\ref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
+Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \figurename~\ref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
 \begin{figure}[ht]
 	\centering
@@ -78,7 +78,7 @@ Das \Gls{dstwr}--Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}--
 	\label{fig:double_sided_two_way_ranging}
 \end{figure}
 
-Die ungefähre \Gls{tof}--Zeitspanne ergibt sich aus der folgenden Gleichung:
+Die ungefähre \Gls{tof}-Zeitspanne ergibt sich aus der folgenden Gleichung:
 
 \[T_{prop}=\frac{\left(T_{round1}\times T_{round2}-T_{reply1}\times T_{reply2}\right)}{\left(T_{round1}+T_{round2}+T_{reply1}+T_{reply2}\right)}\]
 
@@ -88,7 +88,7 @@ Der Fehler bei diesem Verfahren ergibt sich aus der folgenden Gleichung:
 
 Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber von der Nennfrequenz und liegen beide sehr nahe bei eins.
 
-Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf-- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}--Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
+Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}-Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \figurename~\ref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
 
 \begin{figure}[ht]
 	\centering
@@ -154,7 +154,7 @@ d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:fuenfeck_diagonale}
 		- \url{https://matheguru.com/stochastik/normalverteilung.html}
 	- Markov methods
 		- Probability Grid
-		- Robot--Position ist diskretisiert
+		- Robot-Position ist diskretisiert
 		- Nutzen von Bayes Rule um Grids zu kombinieren/neuerzeugen
 	- Monte Carlo Lokalisierung
 		- Multimodal Distribution for position estimation
@@ -405,7 +405,7 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 \begin{comment}
 ------------------------------------------------------------------------------------------
 \end{comment}
-\subsection{RO--SLAM [todo]}
+\subsection{RO-SLAM [todo]}
 
 
 \begin{comment}
@@ -419,21 +419,21 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 \end{comment}
 \section{Robot Operating System}
 
-Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssystem, sondern vielmehr um ein Framework das die Kommunikation zwischen verschiedenen Verarbeitungseinheiten regelt. Im Jahre 2007 begann die Entwicklung von \Gls{ros} an der Stanford University. Ab 2009 wurde dieses dann hauptsächlich an dem Robotik Institut Willow Garage weiterentwickelt. Durch die BSD Lizenz steht \Gls{ros} als Open--Source--Projekt sowohl der nicht--kommerziellen auch der kommerziellen Weiterentwicklung zur Verfügung. \cite{quigley2009ros}
+Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssystem, sondern vielmehr um ein Framework das die Kommunikation zwischen verschiedenen Verarbeitungseinheiten regelt. Im Jahre 2007 begann die Entwicklung von \Gls{ros} an der Stanford University. Ab 2009 wurde dieses dann hauptsächlich an dem Robotik Institut Willow Garage weiterentwickelt. Durch die BSD Lizenz steht \Gls{ros} als Open-Source-Projekt sowohl der nicht-kommerziellen auch der kommerziellen Weiterentwicklung zur Verfügung. \cite{quigley2009ros}
 
-Jedes \Gls{ros}--System muss über einen \Gls{ros}--Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von Knoten (engl. Nodes), Datenbusse (engl Topics) und Dienste (engl. Services) zur Verfügung.
+Jedes \Gls{ros}-System muss über einen \Gls{ros}-Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von Knoten (engl. Nodes), Datenbusse (engl Topics) und Dienste (engl. Services) zur Verfügung.
 
 Jeder Verarbeitungseinheit in \Gls{ros} wird durch einen Knoten repräsentiert. Ziel ist es möglichst kleine, wiederverwendbare und miteinander kombinierbare Einheiten zu bilden. Die Programmierung eines Knoten erfolgt dabei in den Programmiersprachen C++, Python oder Lisp.
 
-Die Kommunikation zwischen den Knoten erfolgt dabei über ein \Gls{p2p}--Kanal auf der Basis von Nachrichten (engl. Messages). Bei einer Nachricht handelt es sich um eine Datenstruktur die primitive Datentypen, die Datentypstruktur anderer Nachrichten und Felder enthalten kann. Eine Nachricht wird dabei über das \textit{Publish--Subscribe} Muster in einem Datenbus veröffentlicht und kann von jedem Knoten empfangen werden der Nachrichten von diesem Datenbus abonniert hat. Der typische Anwendungsfall für dieses Verfahren ist die Bereitstellung von Sensordaten und Rückmeldungen über Statusänderungen.
+Die Kommunikation zwischen den Knoten erfolgt dabei über ein \Gls{p2p}-Kanal auf der Basis von Nachrichten (engl. Messages). Bei einer Nachricht handelt es sich um eine Datenstruktur die primitive Datentypen, die Datentypstruktur anderer Nachrichten und Felder enthalten kann. Eine Nachricht wird dabei über das \textit{Publish-Subscribe} Muster in einem Datenbus veröffentlicht und kann von jedem Knoten empfangen werden der Nachrichten von diesem Datenbus abonniert hat. Der typische Anwendungsfall für dieses Verfahren ist die Bereitstellung von Sensordaten und Rückmeldungen über Statusänderungen.
 
-Das zuvor vorgestellte \textit{Publish--Subscribe} Muster stellt eine asynchrone Kommunikation bereit. Mit Hilfe von Diensten ist auch ein synchroner Nachrichtenaustausch möglich. Hierfür wird eine Anfrage von dem \textit{Client} an den \textit{Server} gestellt, der seinerseits mit einem Ergebnis antwortet. Dieses Verfahren entspricht dem \textit{Request--Response} Muster. Die Erstellung einer inversen Transformation ist ein typischer Anwendungsfall hierfür.
+Das zuvor vorgestellte \textit{Publish-Subscribe} Muster stellt eine asynchrone Kommunikation bereit. Mit Hilfe von Diensten ist auch ein synchroner Nachrichtenaustausch möglich. Hierfür wird eine Anfrage von dem \textit{Client} an den \textit{Server} gestellt, der seinerseits mit einem Ergebnis antwortet. Dieses Verfahren entspricht dem \textit{Request-Response} Muster. Die Erstellung einer inversen Transformation ist ein typischer Anwendungsfall hierfür.
 
-Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der \textit{Bag}--Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
+Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der \textit{Bag}-Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
 
-Um die Wiederverwendbarkeit von Knoten, Nachrichten und Diensten zu fördern, wurde das Konzept der Pakete (engl. Packages) eingeführt. Ein Paket stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode--, Konfigurationsdateien, Drittanbieter Bibliothek, Abhängigkeitslisten usw.
+Um die Wiederverwendbarkeit von Knoten, Nachrichten und Diensten zu fördern, wurde das Konzept der Pakete (engl. Packages) eingeführt. Ein Paket stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode-, Konfigurationsdateien, Drittanbieter Bibliothek, Abhängigkeitslisten usw.
 
 Eine Roboterplattform besteht aus vielen Sensoren und Aktuatoren die abgefragt und gesteuert werden müssen. Dementsprechend viele Knoten müssen gestartet werden. Diese Aufgabe erfüllen die Startdateien (engl. Launch-Files). Neben der Definition der Knoten die gestartet werden sollen, können Einzelne oder eine Gruppe von Knoten parametrisiert werden. Mittels der Verschachtelung von Startdateien ist eine Wiederverwendung von knotenspezifischen Startdateien möglich.
 
-Zu den häufigsten Operationen der Verarbeitungseinheit einer Roboterplattform ist das Transformieren der Sensordaten aus dem Sensorkoordinatensystem in das Koordinatensystem des Robotermittelpunktes. In \Gls{ros} wird hier für ein Transformationsbaum (engl. TF--Tree) verwendet, der aus statischen und dynamischen Transformationen besteht. Statische Transformationen werden dort eingesetzt, wo sich die Pose zweier Koordinatensysteme zur Laufzeit nicht ändert, z.B. zwischen dem Robotermittelpunkt und einem fest montierten Sensor. Dynamische hingegen bei Koordinatensystemen die sich zur Laufzeit ändern, z.B. zwischen dem Robotermittelpunkt und den Inkrementalgebern der Antriebseinheit. Statische Transformationen können mittels einer URDF--Datei modelliert und allen Knoten bereitgestellt werden.
+Zu den häufigsten Operationen der Verarbeitungseinheit einer Roboterplattform ist das Transformieren der Sensordaten aus dem Sensorkoordinatensystem in das Koordinatensystem des Robotermittelpunktes. In \Gls{ros} wird hier für ein Transformationsbaum (engl. TF-Tree) verwendet, der aus statischen und dynamischen Transformationen besteht. Statische Transformationen werden dort eingesetzt, wo sich die Pose zweier Koordinatensysteme zur Laufzeit nicht ändert, z.B. zwischen dem Robotermittelpunkt und einem fest montierten Sensor. Dynamische hingegen bei Koordinatensystemen die sich zur Laufzeit ändern, z.B. zwischen dem Robotermittelpunkt und den Inkrementalgebern der Antriebseinheit. Statische Transformationen können mittels einer \Gls{urdf}-Datei modelliert und allen Knoten bereitgestellt werden.
 
