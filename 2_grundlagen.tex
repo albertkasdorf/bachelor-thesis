@@ -44,8 +44,7 @@ Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, is
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{single_sided_two_way_ranging}
-	\caption{Ablauf des \acrlong{sstwr}.}
-	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf des \acrlong{sstwr}.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:single_sided_two_way_ranging}
 \end{figure}
 
@@ -82,8 +81,7 @@ Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Ve
 	\centering
 %	\includegraphics[width=0.7\linewidth]{double_sided_two_way_ranging}
 	\includegraphics[width=0.8\linewidth]{double_sided_two_way_ranging}
-	\caption{Ablauf des \acrlong{dstwr}.}
-	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf des \acrlong{dstwr}.}{\cite{decawave2016dw1kusermanual}} 
 	\label{fig:double_sided_two_way_ranging}
 \end{figure}
 
@@ -107,8 +105,7 @@ Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{double_sided_two_way_ranging_with_three_anchor}
-	\caption{Ablauf des \acrlong{dstwr} mit einem \Gls{tag} und drei \Gls{anchor}.}
-	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf des \acrlong{dstwr} mit einem \Gls{tag} und drei \Gls{anchor}.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:double_sided_two_way_ranging_with_three_anchor}
 \end{figure}
 
@@ -119,8 +116,7 @@ In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der
 	\centering
 %	\includegraphics[width=0.4\linewidth]{discovery_and_ranging_phase2}
 	\includegraphics[width=0.3\linewidth]{discovery_and_ranging_phase2}
-	\caption{Ablauf der \textit{Discovery} und \textit{Range Phase} zwischen einem \Gls{tag} und mehreren \Gls{anchor}n.}
-	\source{\citetitle{decawave2016dw1kusermanual} \cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf der \textit{Discovery} und \textit{Range Phase} zwischen einem \Gls{tag} und mehreren \Gls{anchor}n.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:discovery_and_ranging_phase}
 \end{figure}
 
@@ -181,19 +177,19 @@ d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:fuenfeck_diagonale}
 %%%%%%%%%%
 \section{Wahrscheinlichkeitstheorie}
 
-In der Theorie kann der Zustand eindeutig bestimmt werden, in der Praxis ist dieser nicht mehr so eindeutig. Um diese Unsicherheit abzubilden, wird in der Robotik die Wahrscheinlichkeitstheorie angewendet. Dabei wird der Zustand als eine kontinuierliche Zufallsvariable angesehen. Ob sich nun ein System in einem bestimmten Zustand befindet, wird über eine \Gls{wdf} beschrieben. In der Regel wird eine gaußsche Normalverteilung eingesetzt, die sich über den Mittelwert $\mu$ und Varianz $\sigma^2$ beschreiben lässt, siehe \autoref{eq:normal_distribution}. Häufig wird die Normalverteilung auch über $\operatorname{\mathcal{N}}{(x; \mu, \sigma^2)}$ abgekürzt.
+Ob sich ein Roboter an einer ganz bestimmten Position befindet, lässt sich in der Praxis nicht genau bestimmen. Auch durch das genauere Vermessen der Position bleibt eine gewisse Unsicherheit. Um diese Unsicherheit abzubilden, wird in der Robotik die Wahrscheinlichkeitstheorie angewendet. Zum Einsatz kommen hierbei kontinuierliche Zufallsvariablen und die mit ihnen verbundene \Gls{wdf}. In der Regel wird eine Gaußsche Normalverteilung eingesetzt, die sich über den Mittelwert $\mu$ und Varianz $\sigma^2$ beschreiben lässt, siehe \autoref{eq:normal_distribution}. Häufig wird die Normalverteilung auch über $\operatorname{\mathcal{N}}{(x; \mu, \sigma^2)}$ abgekürzt.
 
 \begin{equation}
 p(x) = \left( 2 \pi \sigma^2 \right)^{-\frac12}  \exp{ \left\{ -\frac12 \frac{(x - \mu)^2}{\sigma^2} \right\} } \label{eq:normal_distribution}
 \end{equation}
 
-Da es sich bei dem Zustand nicht um einen skalaren Wert handelt, muss eine mehrdimensionale Normalverteilung eingesetzt werden, siehe \autoref{eq:multivariate_normal_distribution}. Diese wird über einen Vektor der Mittelwert $\mu$ und eine symmetische Kovarianzmatrix $\Sigma$ beschrieben.
+Da es sich bei der Position nicht um einen skalaren Wert handelt, muss eine mehrdimensionale Normalverteilung eingesetzt werden, siehe \autoref{eq:multivariate_normal_distribution}. Diese wird über einen Vektor der Mittelwerte $\mu$ und eine symmetische Kovarianzmatrix $\Sigma$ beschrieben.
 
 \begin{equation}
 p(x) = \operatorname{det}{\left( 2 \pi \Sigma \right)}^{-\frac12}  \exp{ \left\{ -\frac12 (x - \mu)^T \Sigma^{-1} (x - \mu) \right\} } \label{eq:multivariate_normal_distribution}
 \end{equation}
 
-Die Multivariate Verteilung zweier Zufallsvariablen beschreibt die Wahrscheinlichkeit, mit welcher das Ereignis $x$ sowie das Ereignis $y$ auftritt. Sollen beide Zufallsvariablen unabhängig von einander sein, so lassen sich ihre Wahrscheinlichkeiten multiplizieren, siehe \autoref{eq:independent_joint_distribution}.
+Die Multivariate Verteilung zweier Zufallsvariablen beschreibt die Wahrscheinlichkeit, mit welcher das Ereignis $x$ sowie das Ereignis $y$ auftritt. Sollten beide Zufallsvariablen unabhängig von einander sein, so lassen sich ihre Wahrscheinlichkeiten multiplizieren, siehe \autoref{eq:independent_joint_distribution}.
 
 \begin{equation}
 p(x, y) = p(x) \, p(y) \label{eq:independent_joint_distribution}
@@ -255,7 +251,7 @@ Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschre
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{algorithm_bayes_filter}
-	\caption{Bayes Filter Algorithmus \cite{thrun2005probabilistic}}
+	\captionwithcite{Bayes Filter Algorithmus}{\cite{thrun2005probabilistic}}
 	\label{fig:algorithm_bayes_filter}
 \end{figure}
 
@@ -269,82 +265,23 @@ Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Pro
 %		- \url{https://de.wikipedia.org/wiki/Mehrdimensionale_Normalverteilung}
 %		- Kompakte Beschreibung der Normalverteilung über den Erwartungswert $\mu$ und die Kovarianzmatrix $\Sigma$ ($\mu$ und $\sigma^2$)
 %		- \url{https://matheguru.com/stochastik/normalverteilung.html}
+%	- Special Topics - The Kalman Filter (1 of 55) What is a Kalman Filter?
+%		- https://www.youtube.com/watch?v=CaCcOwJPytQ
+%	- Introduction_to_Kalman_Filtering.pdf
 %
 %%%%%%%%%%
 \subsection{Kalman Filter}
 
-Die Familie der Gauß Filter, zu denen auch der Kalman Filter gehört, ist eine der frühsten konkreten Implementierungen des Bayes Filters. Die Idee hinter jedem Gauß Filter liegt dabei, das der Belief durch eine mehrdimensionale Normalverteilung repräsentiert wird, die eindeutig durch die ersten beiden Momente Mittelwert $\mu$ und Kovarianz $\Sigma$ beschrieben wird. Der große Vorteil einer normalverteilten Zufallsvariable ist, dass das Ergebnis einer Lineartransformation mit einer anderen normalverteilten Zufallsvariable wieder zu einer normalverteilten Zufallsvariable führt. Zu den Nachteilen zählt, dass die Gauß Filter nur im kontinuierlichen Zustandsraum angewendet werden kann und durch ihre unimodale Verteilung nur für die Positionsverfolgung (engl. Position Tracking Problem) in Frage kommt.
+Die Familie der Gauß Filter, zu denen auch der Kalman Filter gehört, ist eine der frühsten konkreten Implementierungen des Bayes Filters. Die Idee hinter jedem Gauß Filter liegt dabei, das der Belief durch eine mehrdimensionale Normalverteilung repräsentiert wird, die eindeutig durch die ersten beiden Momente Mittelwert $\mu$ und Kovarianz $\Sigma$ beschrieben wird. Der große Vorteil einer normalverteilten Zufallsvariable ist, dass das Ergebnis einer Lineartransformation mit einer anderen normalverteilten Zufallsvariable wieder zu einer normalverteilten Zufallsvariable führt. Zu den Nachteilen zählt, dass der Gauß Filter nur im kontinuierlichen Zustandsraum angewendet werden kann und durch die unimodale Verteilung nur für die Positionsverfolgung (engl. Position Tracking Problem) in Frage kommt.
 
 Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, siehe \autoref{fig:algorithm_kalman_filter}. Im ersten Schritt wird aus dem vorherigen Zustand $\mu_{t-1}$ und $\Sigma_{t-1}$ und den aktuellen Steuerbefehlen $u_t$ die Prognose für den neuen Zustand berechnet, siehe Zeile 2--3. Über die Matrix $A_t$ wird festgelegt, wie sich der Zustand von $t-1$ nach $t$ entwickelt, ohne die Einwirkungen der Steuerbefehle oder von Rauschen. Die Matrix $B_t$ beschreibt wie die Steuerbefehle die Zustandsänderung von $t-1$ nach $t$ beeinflussen. Im zweiten Schritt wird zuerst der Kalman Gain $K_t$ berechnet, siehe Zeile 4. Bei dem Kalman Gain handelt es sich um ein Gewicht, das entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert wird, siehe Zeile 5--6. Bei der Matrix $C_t$ wird definiert wir die Wahrnehmungen auf den Zustand abgebildet werden. Die beiden Matrizen $R_t$ und $Q_t$ bilden dabei das unabhängige und zufällig normalverteilte Rauschen ab.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{algorithm_kalman_filter}
-	\caption{Kalman Filter Algorithmus \cite{thrun2005probabilistic}}
+	\captionwithcite{Kalman Filter Algorithmus}{\cite{thrun2005probabilistic}}
 	\label{fig:algorithm_kalman_filter}
 \end{figure}
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{kalman1960new}
-- \cite{kurth2003experimental}
-	- Originally introduced in 1960, the Kalman Filter assumes a multivariate Gaussian distribution [6]. The Kalman Filter has the advantage that the representation of the distribution is compact; a Gaussian distribution can be represented by a mean and a covariance matrix. The robot's pose estimation is maintained as a Gaussian distribution and sensor data from dead reckoning and landmark observations is fused to obtain a new position distribution.
-	- Our results with Kalman Filtering require an under-standing of the characteristics of the noise present in ranges reported by the radio tags. We gain this by look-ing at the probability distribution functions for each tag measurement.
-	- We obtain the PDFs as follows: for every reported measurement, we and the true range to the robot when that distance was reported. We do this by comparing the known location of the reporting tag to the times-tamped true location of the robot when the report was received.
-	- the covariance matrix, which describes the uncertainty and correlation of the terms in the state estimate.
-	- However, when the same initial noisy tag locations are used with Test 2, our SLAM technique fails to converge. Since the Kalman Filter uses a linearization of the nonlinear range measurements, if the linearized estimate is too far away from the truth, the Filter may be unable to recover and will diverge.
-- \cite{kurth2003experimental}
-	- Recent extensions of Kalman Filtering allow for non-Gaussian, multimodal probability distributions through multiple hypothesis tracking. The result is a more versatile estimation technique that still preserves many of the computational advantages of the Kalman filter.
-	
-
-- https://www.youtube.com/watch?v=CaCcOwJPytQ
-	- Special Topics - The Kalman Filter (1 of 55) What is a Kalman Filter?
-
-
-- Theorie: Lokalisierungsprobleme
-	- Statische Lokalisierung
-		- Akkurate Schätzung seiner globalen Position anhand der Sensordaten
-		- Annahme: Umgebungskarte der Landmarken ist vorhanden
-	- Position Tracking/Positionsverfolgung
-		- Initiale Position ist gegeben
-		- Verfogenden der Roboterposition
-		- Annahme: Umgebungskarte der Landmarken ist vorhanden
-	- SLAM
-		- Verwenden der Sensordaten um sich zu Lokalisierung...
-		- und eine Karte der Landmarken zu erzeugen.
-		- Bisher Winkel und Entferung zu einer Landmarke gegeben
-			- Computer Vision, Structure from Motion
-		- Hier nur die Entfernung
-- Theorie: Wahrscheinlichkeitsverfahren
-
-	- Markov methods
-		- Probability Grid
-		- Robot-Position ist diskretisiert
-		- Nutzen von Bayes Rule um Grids zu kombinieren/neuerzeugen
-	- Monte Carlo Lokalisierung
-		- Multimodal Distribution for position estimation
-		- Important Sampling
-- http://www.mathepedia.de/Stochastik.html
-
-- Introduction to Mobile Robotics - SS 2017
-	- http://ais.informatik.uni-freiburg.de/teaching/ss17/robotics/
-
-- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
-
-
-
-- Introduction_to_Kalman_Filtering.pdf
-	
-- Robot Mapping - WS 2016/17 - Uni-Freiburg
-	- http://ais.informatik.uni-freiburg.de/teaching/ws16/mapping/
-	- https://www.youtube.com/playlist?list=PLgnQpQtFTOGQrZ4O5QzbIHgl3b1JHimN_&feature=g-list
-	
-- Probabilistic Robotics
-	- http://robots.stanford.edu/probabilistic-robotics/
-\end{comment}
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,9 +289,40 @@ Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, 
 %
 %
 %%%%%%%%%%
-\subsection{Extended Kalman Filter [todo]}
+\subsection{Extended Kalman Filter}
 
-% Linearisierung, 
+Der Kalman Filter geht von der Annahme aus, dass die Zustandsänderung und die Wahrnehmungen durch eine lineare Funktion beschrieben werden können. Diese Annahme ist entscheidend für das ordnungsgemäße Funktionieren des Kalman Filters. In der \autoref{fig:random_variable_linear_transformation} ist im rechten unteren Bereich die Zufallsvariable $x$ mit ihrer Normalverteilung dargestellt. Wird diese über eine lineare Funktion $y=ax+b$ auf die Zufallsvariable $y$ abgebildet. Es ist klar zu erkennen, dass die Normalverteilung für die Zufallsvariable $y$ erhalten bleibt.
+
+Das Hauptproblem bei der linearen Annahme ist, dass viele Zustandsänderung und Wahrnehmungen nicht mit einer linearen Funktion beschrieben werden können, z.B. rotatorische Zustandsänderungen. Die \autoref{fig:random_variable_non_linear_transformation} verdeutlich, was mit der Normalverteilung einer Zufallsvariable $x$ passiert, wenn diese durch eine nicht lineare Funktion $g(x)$ abgebildet wird. Von der Normalverteilung der Zufallsvariable $y$ bleibt nicht mehr viel übrig.
+
+Der \Gls{ekf} löst das Problem in dem eine Linearisierung der nicht linearen Funktion vorgenommen wird, siehe \autoref{fig:random_variable_taylor_linearization}. Hierzu wird eine Taylorreihe des ersten Grades gebildet. Der Funktionswert der Mittelwertes $g(\mu)$ dient dabei als Entwicklungsstelle. Durch die Linearisierung wird die Normalverteilung der Zufallsvariable $x$ wieder ordnungsgemäß auf die Zufallsvariable $y$ abgebildet. Da es sich bei der Linearisierung nicht um die Originalfunktion handelt entsteht ein Linearisierungsfehler der am Unterschied zwischen der durchgezogen und gestrichelten Kurve zu erkennen ist.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{random_variable_linear_transformation}
+		\caption{}
+		\label{fig:random_variable_linear_transformation}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{random_variable_non_linear_transformation}
+		\caption{}
+		\label{fig:random_variable_non_linear_transformation}
+	\end{subfigure}
+	\par
+	\bigskip
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{random_variable_taylor_linearization}
+		\caption{}
+		\label{fig:random_variable_taylor_linearization}
+	\end{subfigure}
+	\captionwithcite{Lineare und nicht lineare Transformation einer normalverteilten Zufallsvariable.}{\cite{thrun2005probabilistic}}
+	\label{fig:random_variable_transformation}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -365,54 +333,47 @@ Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, 
 \section{Partikel Filter [todo]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{kurth2003experimental}
-	- Monte Carlo localization, or particle filtering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
-- \cite{fox1999monte}
-\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+%	- \cite{kurth2003experimental}
+%		- Monte Carlo localization, or particle filtering, provides a method of representing multimodal distri-butions for position estimation [4, 12], with the ad-vantage that the computational requirements can be scaled. The main advantage of these methods is their ability to recover robustly from a poor initial condition.
+%	- \cite{fox1999monte}
 %
 %%%%%%%%%%
 \subsection{Monte Carlo [todo]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-Rao-Blackwellized Particle Filtering
-https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
-
-- \cite{murphy2001rao}
-	- Rao-Blackwellised particle filtering for dynamic Bayesian networks
-\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+%	- Rao-Blackwellized Particle Filtering
+%		- https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
+%	- \cite{murphy2001rao}
+%		- Rao-Blackwellised particle filtering for dynamic Bayesian networks
 %
 %%%%%%%%%%
 \subsection{Rao-Blackwellized [todo]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{kurth2003experimental}
-	- We are currently developing a batch localization method, which considers all the data collected by the robot and finds the best path estimate given all the data. Although time consuming computationally, this will produce the theoretically optimal result obtainable from the collected data; we can then evaluate the results of our online localization method by comparing to this optimal solution.
-- \cite{}
-	- Comparison of Batch and Kalman Filtering for Radar Tracking
-	- http://www.dtic.mil/dtic/tr/fulltext/u2/p011192.pdf
-	- The EKF propagates the filter state between measurements, and incorporates measurements sequentially, with the error dynamics and observation models respectively. It is an implementation of the often referenced linear-minimum-variance (Kalman) formulas, adapted by first-variation approximations of the nonlinear models, centered at the current state estimate, and described in Reference [4] (Jazwinski). 	
-	- The Batch algorithm, in comparison, processes those same measurements simultaneously via iterative least-squares estimation. An overview of the comparison of measurement processing among the two algorithms is shown in Figure-1. Batch algorithm estimations were made in parallel with those of the EKF for comparison of estimation error time histories.
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 	- \cite{kurth2003experimental}
+%		- We are currently developing a batch localization method, which considers all the data collected by the robot and finds the best path estimate given all the data. Although time consuming computationally, this will produce the theoretically optimal result obtainable from the collected data; we can then evaluate the results of our online localization method by comparing to this optimal solution.
+%	- \cite{}
+%		- Comparison of Batch and Kalman Filtering for Radar Tracking
+%		- http://www.dtic.mil/dtic/tr/fulltext/u2/p011192.pdf
+%		- The EKF propagates the filter state between measurements, and incorporates measurements sequentially, with the error dynamics and observation models respectively. It is an implementation of the often referenced linear-minimum-variance (Kalman) formulas, adapted by first-variation approximations of the nonlinear models, centered at the current state estimate, and described in Reference [4] (Jazwinski). 	
+%		- The Batch algorithm, in comparison, processes those same measurements simultaneously via iterative least-squares estimation. An overview of the comparison of measurement processing among the two algorithms is shown in Figure-1. Batch algorithm estimations were made in parallel with those of the EKF for comparison of estimation error time histories.
+%
+%%%%%%%%%%
 %\section{Batch optimization [todo,optional]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{kurth2003experimental}
-	- Additionally, we will extend the batch method to produce a variable dimension filter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{kurth2003experimental}
+%		- Additionally, we will extend the batch method to produce a variable dimension filter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
+%
+%%%%%%%%%%
 %\section{Variable Dimension Filter [todo,optional]}
 
 
@@ -433,6 +394,44 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 	- The Kalman Filter approach described in Section 5 can be reformulated for the SLAM problem. To perform SLAM, we include position estimates for each tag in the state, producing a state vector of the form: q(k) = [xk; yk; k; xb1; yb1 ; :::; xbn; ybn]T , where n is the number of beacons.
 	
 - The purpose of a probabilistic approach to RO-SLAM is to obtain the joint probability distribution of the robot pose (or path) and the map, given all the available data at some instant of time. This distribution represents our knowledge about the robot path, the map, and all their correlations.
+\end{comment}
+
+\begin{comment}
+------------------------------------------------------------------------------------------
+- Theorie: Lokalisierungsprobleme
+	- Statische Lokalisierung
+		- Akkurate Schätzung seiner globalen Position anhand der Sensordaten
+		- Annahme: Umgebungskarte der Landmarken ist vorhanden
+	- Position Tracking/Positionsverfolgung
+		- Initiale Position ist gegeben
+		- Verfogenden der Roboterposition
+		- Annahme: Umgebungskarte der Landmarken ist vorhanden
+	- SLAM
+		- Verwenden der Sensordaten um sich zu Lokalisierung...
+		- und eine Karte der Landmarken zu erzeugen.
+		- Bisher Winkel und Entferung zu einer Landmarke gegeben
+			- Computer Vision, Structure from Motion
+
+		- Hier nur die Entfernung
+- Theorie: Wahrscheinlichkeitsverfahren
+	- Markov methods
+		- Probability Grid
+		- Robot-Position ist diskretisiert
+		- Nutzen von Bayes Rule um Grids zu kombinieren/neuerzeugen
+	- Monte Carlo Lokalisierung
+		- Multimodal Distribution for position estimation
+		- Important Sampling
+
+- Introduction to Mobile Robotics - SS 2017
+	- http://ais.informatik.uni-freiburg.de/teaching/ss17/robotics/
+- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
+
+- Robot Mapping - WS 2016/17 - Uni-Freiburg
+	- http://ais.informatik.uni-freiburg.de/teaching/ws16/mapping/
+	- https://www.youtube.com/playlist?list=PLgnQpQtFTOGQrZ4O5QzbIHgl3b1JHimN_&feature=g-list
+	
+- Probabilistic Robotics
+	- http://robots.stanford.edu/probabilistic-robotics/
 \end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %

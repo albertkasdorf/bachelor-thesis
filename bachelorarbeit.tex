@@ -256,6 +256,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%
+%
+\usepackage{xparse}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 % Some packages from other authors may have problems with KOMA-Script.
 % Package scrhack contains all those improvement proposals for
 % other packages. This means, scrhack redefines macros of packages
@@ -264,6 +270,17 @@
 % redefining macros of individual packages.
 %
 \usepackage{scrhack}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Befehlserweiterungen
+%	- https://www.texdev.net/2010/05/23/from-newcommand-to-newdocumentcommand/
+%	- https://tex.stackexchange.com/questions/67745/remove-citation-from-list-of-figures
+%
+\NewDocumentCommand\captionwithcite{mm}{\caption[#1]{#1 #2}}
+
 
 
 %
