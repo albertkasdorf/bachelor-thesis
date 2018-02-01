@@ -1,3 +1,10 @@
+Fragen:
+- Wie bekomme ich die ganzen Daten synchronisiert?
+- Wie sehr kann man den Odometrie-Daten glauben?
+- Wie sehr kann man den Laser-Odometrie-Daten glauben?
+- Wie groß ist der Fehler zwischen der Messung, dem GT und der Schätzung. (Beacon/Pose)
+- Nach welcher Zeitspanne konvergieren die Beacons zu ihrer richtigen Position?
+
 Aufgaben:
 - Teleop-Node
 	- http://wiki.ros.org/teleop_twist_joy
@@ -51,6 +58,23 @@ Versuch "Mean und Covariance pro Beacon aus dem MRPT-Framework bestimmen":
 	- http://www.visiondummy.com/2014/04/draw-error-ellipse-representing-covariance-matrix/
 	- https://gist.github.com/Piyush3dB/bf2c83a8eb7344798644
 
+- CBeaconMap
+	- begin()/end()/iterator
+	- saveToMATLABScript3D(const std::string&, const char*, float)
+
+- CBeacon
+	- m_ID
+	- getMean(mrpt::poses::CPoint3D&)
+	- getCovarianceAndMean(mrpt::math::CMatrixDouble33&, mrpt::poses::CPoint3D&)
+	- getAsMatlabDrawCommands(utils::CStringList&)
+
+- CStringList
+	- std::string getText()
+
+
 Versuch "???":
 - Entfernen aller Odom Transformationen
 - beacon + laser als quelle einstellen
+
+Versuch NLOS-RO-SLAM:
+	- Ganz viele Stühle quer stellen und die Beacons dahinter stellen und dann um diese Hinternisse navigieren.

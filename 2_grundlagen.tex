@@ -327,10 +327,41 @@ Der \Gls{ekf} löst das Problem in dem eine Linearisierung der nicht linearen Fu
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+% Belief: A belief reflects the robot’s internal knowledge about the state of the environment.
+% Posterior:
+%	- is the conditional probability that is assigned after the relevant evidence or background is taken into account.
+% sample: Stichprobe, Abtasten
+% a posteriori:
+% a priori:
+% non-parametric: parameterfreie, nichtparametrische, verteilungsfreie
+% nonlinear transformations of random variables:
 %
 %%%%%%%%%%
-\section{Partikel Filter [todo]}
+\section{\glsentrylong{pf}}
+
+Bisherige Filter haben eine parametrisierte Form genutzt, um die Verteilung zu modellieren. Der \Gls{pf} geht einen anderen Weg und verwendet stattdessen eine Menge von Stichproben (engl. Samples) aus der gewünschten Verteilung. Dadurch ist es möglich multimodale Verteilungen abzubilden, die jedoch nur einer Annäherung entsprechen. Weiterhin ist es möglich Zufallsvariablen durch eine nicht lineare Funktion abzubilden, siehe \autoref {fig:particle_filter_with_non_linear_function}. Im unteren rechten Bild wird eine Menge von Stichproben aus einer Normalverteilung dargestellt. Diese werden dann durch die nicht lineare Funktion $g(x)$ auf eine multimodale Verteilung abgebildet. Je dichter die Stichproben an einander liegen desto höher ist an dieser Stelle auch die Wahrscheinlichkeit.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{particle_filter_with_non_linear_function}
+	\captionwithcite{Darstellung einer Zufallsvariable vor und nach der Abbildung, durch eine nicht lineare Funktion, mittels einem \glsentrylong{pf}.}{\cite{thrun2005probabilistic}}
+	\label{fig:particle_filter_with_non_linear_function}
+\end{figure}
+
+Die Stichproben aus der a posteriori Verteilung werden als Partikel (engl. Particle) bezeichnen. Jeder Partikel~$x_t$ entspricht dabei einer Hypothese des Weltzustandes zum Zeitpunkt~$t$. Über ein Gewicht~$w_t$ wird die Relevanz (engl. Importance Weight) eines Partikels ausgedrückt. Die Idee ist es dabei, durch ein Set von Partikeln den Belief~$bel(x_t)$ möglichst gut Anzunähern, siehe \autoref{eq:particle_filter_particle_set}. Der Parameter $M$ entspricht dabei der Anzahl der Partikel und wird sehr großzügig gewählt, z.B. $M=1000$.
+
+\begin{equation}
+\mathcal{X}_t := x^{\lbrack 1 \rbrack}_t, x^{\lbrack 2 \rbrack}_t, \ldots, x^{\lbrack M \rbrack}_t \label{eq:particle_filter_particle_set}
+\end{equation}
+
+Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen rekursiven Algorithmus, dem das vorherige Partikel-Set $\mathcal{X}_{t-1}$, die aktuellen Steuerbefehle $u_t$ und Wahrnehmungen $z_t$ übergeben werden, siehe \autoref{fig:algorithm_particle_filter}. Dabei wird im ersten Schritt auf jedem Partikel, aus dem vorherigen Set, die aktuellen Steuerbefehle angewendet und somit eine neue Prognose für den aktuellen Zustand gebildet, siehe Zeile 4. Weiterhin wird mit der neuen Zustandsprognose und den aktuellen Wahrnehmungen das Gewicht des Partikels bestimmt, siehe Zeile 5. Die aktuelle Zustandsprognose sowie das Gewicht werden danach in dem temporären Set $\overline{\mathcal{X}}_t$ gesammelt, siehe Zeile 6. Im zweiten Schritt findet das sogenannte \textit{Resampling} oder \textit{Importance Sampling} statt, siehe Zeile 9. Hierbei werden die Partikel mit einem hohen Gewicht beibehalten und die mit einem geringen durch neue ersetzt, die im Bereich der Partikel mit den hohen Gewichten liegen. Dadurch ist gewährleistet, dass sich die Partikel nicht in Bereichen mit einer geringen a posteriori Wahrscheinlichkeit aufhalten. Das Ergebnis aus letzten Schritt wird in dem Partikel-Set $\mathcal{X}_t$ gespeichert und dem Aufrufer zurückgegeben.
+
+\begin{figure}
+	\centering
+	\fbox{	\includegraphics[width=0.5\linewidth]{algorithm_particle_filter}}
+	\captionwithcite{\Glsentrylong{pf} Algorithmus}{\cite{thrun2005probabilistic}}
+	\label{fig:algorithm_particle_filter}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
