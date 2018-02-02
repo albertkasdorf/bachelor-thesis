@@ -354,12 +354,12 @@ Die Stichproben aus der a posteriori Verteilung werden als Partikel (engl. Parti
 \mathcal{X}_t := x^{\lbrack 1 \rbrack}_t, x^{\lbrack 2 \rbrack}_t, \ldots, x^{\lbrack M \rbrack}_t \label{eq:particle_filter_particle_set}
 \end{equation}
 
-Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen rekursiven Algorithmus, dem das vorherige Partikel-Set $\mathcal{X}_{t-1}$, die aktuellen Steuerbefehle $u_t$ und Wahrnehmungen $z_t$ übergeben werden, siehe \autoref{fig:algorithm_particle_filter}. Dabei wird im ersten Schritt auf jedem Partikel, aus dem vorherigen Set, die aktuellen Steuerbefehle angewendet und somit eine neue Prognose für den aktuellen Zustand gebildet, siehe Zeile 4. Weiterhin wird mit der neuen Zustandsprognose und den aktuellen Wahrnehmungen das Gewicht des Partikels bestimmt, siehe Zeile 5. Die aktuelle Zustandsprognose sowie das Gewicht werden danach in dem temporären Set $\overline{\mathcal{X}}_t$ gesammelt, siehe Zeile 6. Im zweiten Schritt findet das sogenannte \textit{Resampling} oder \textit{Importance Sampling} statt, siehe Zeile 9. Hierbei werden die Partikel mit einem hohen Gewicht beibehalten und die mit einem geringen durch neue ersetzt, die im Bereich der Partikel mit den hohen Gewichten liegen. Dadurch ist gewährleistet, dass sich die Partikel nicht in Bereichen mit einer geringen a posteriori Wahrscheinlichkeit aufhalten. Das Ergebnis aus letzten Schritt wird in dem Partikel-Set $\mathcal{X}_t$ gespeichert und dem Aufrufer zurückgegeben.
+Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen rekursiven Algorithmus, dem das vorherige Partikel-Set $\mathcal{X}_{t-1}$, die aktuellen Steuerbefehle $u_t$ und Wahrnehmungen $z_t$ übergeben werden, siehe \autoref{fig:algorithm_particle_filter}. Dabei wird im ersten Schritt auf jedem Partikel, aus dem vorherigen Set, die aktuellen Steuerbefehle angewendet und somit eine neue Prognose für den aktuellen Zustand gebildet, siehe Zeile 4. Weiterhin wird mit der neuen Zustandsprognose und den aktuellen Wahrnehmungen das Gewicht des Partikels bestimmt, siehe Zeile 5. Die aktuelle Zustandsprognose sowie das Gewicht werden danach in dem temporären Set $\overline{\mathcal{X}}_t$ gesammelt, siehe Zeile 6. Im zweiten Schritt findet das sogenannte \textit{Resampling} oder \textit{Importance Sampling} statt, siehe Zeile 9. Hierbei werden die Partikel mit einem hohen Gewicht beibehalten und die mit einem geringen durch neue ersetzt, die im Bereich der Partikel mit den hohen Gewichten liegen. Dadurch ist gewährleistet, dass sich die Partikel nicht in Bereichen mit einer geringen a posteriori Wahrscheinlichkeit aufhalten. Das Ergebnis aus dem letzten Schritt wird in dem Partikel-Set $\mathcal{X}_t$ gespeichert und dem Aufrufer zurückgegeben.
 
 \begin{figure}
 	\centering
 	\fbox{	\includegraphics[width=0.5\linewidth]{algorithm_particle_filter}}
-	\captionwithcite{\Glsentrylong{pf} Algorithmus}{\cite{thrun2005probabilistic}}
+	\captionwithcite{\glsentrylong{pf} Algorithmus}{\cite{thrun2005probabilistic}}
 	\label{fig:algorithm_particle_filter}
 \end{figure}
 
@@ -371,18 +371,67 @@ Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen r
 %	- \cite{fox1999monte}
 %
 %%%%%%%%%%
-\subsection{Monte Carlo [todo]}
+\subsection{\glsentrylong{mcl}}
 
+Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegeln und damit ideal durch einen Partikel Filter abgebildet werden können. Bei der \Gls{mcl} handelt es sich um genau so einen Partikel Filter, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein einer sehr genauen Karte der Umwelt. Die Kartendaten $m$ werden bei der Berechnung der Gewichte für die Zustandsprognosen eingesetzt. Somit unterscheidet sich der Monte Carlo Algorithmus nur in der fünften Zeile von dem generische Partikel Filter Algorithmus, siehe \autoref{eq:monte_carlo_measurement_model}. 
+
+\begin{equation}
+w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte_carlo_measurement_model}
+\end{equation}
+
+% TODO: Erklären wie die MCL abläuft?
 %
-%	- Rao-Blackwellized Particle Filtering
-%		- https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
-%	- \cite{murphy2001rao}
-%		- Rao-Blackwellised particle filtering for dynamic Bayesian networks
-%
-%%%%%%%%%%
-\subsection{Rao-Blackwellized [todo]}
+%- 8. Monte Carlo Localization
+%	- Figure 8.11 - Monte Carlo Localization, a particle filter applied to mobile robot localization.
+%	- The initial global uncertainty is achieved through a set of pose particles drawn at random and uniformly over the entire pose space, as shown in Figure 8.11a.
+%	- As the robot senses the door, MCL assigns importance factors to each particle. The resulting particle set is shown in Figure 8.11b.
+%	- The height of each particle in this figure shows its importance weight.
+%	- It is important to notice that this set of particles is identical to the one in Figure 8.11a—the only thing modified by the measurement update are the importance weights.
+%	- Figure 8.11c shows the particle set after resampling and after incorporating the robot motion. This leads to a new particle set with uniform importance weights, but with an increased number of particles near the three likely places.
+%	- The new measurement assigns non-uniform importance weights to the particle set, as shown in Figure 8.11d.
+%	- At this point, most of the cumulative probability mass is centered on the second door, which is also the most likely location.
+
+%\begin{figure}
+%	\centering
+%	\begin{subfigure}{0.8\linewidth}
+%		\centering
+%		\includegraphics[width=\linewidth]{thrun2005probabilistic_fig811a}
+%		\caption{}
+%		\label{fig:thrun2005probabilistic_fig811a}
+%	\end{subfigure}
+%	\par\bigskip
+%	\begin{subfigure}{0.8\linewidth}
+%		\centering
+%		\includegraphics[width=\linewidth]{thrun2005probabilistic_fig811b}
+%		\caption{}
+%		\label{fig:thrun2005probabilistic_fig811b}
+%	\end{subfigure}
+%	\par\bigskip
+%	\begin{subfigure}{0.8\linewidth}
+%		\centering
+%		\includegraphics[width=\linewidth]{thrun2005probabilistic_fig811c}
+%		\caption{}
+%		\label{fig:thrun2005probabilistic_fig811c}
+%	\end{subfigure}
+%	\par\bigskip
+%	\begin{subfigure}{0.8\linewidth}
+%		\centering
+%		\includegraphics[width=\linewidth]{thrun2005probabilistic_fig811d}
+%		\caption{}
+%		\label{fig:thrun2005probabilistic_fig811d}
+%	\end{subfigure}
+%	\par\bigskip
+%	\begin{subfigure}{0.8\linewidth}
+%		\centering
+%		\includegraphics[width=\linewidth]{thrun2005probabilistic_fig811e}
+%		\caption{}
+%		\label{fig:thrun2005probabilistic_fig811e}
+%	\end{subfigure}
+%	\captionwithcite{Beispiel für die Positionsbestimmung eines Roboter mittels der \glsentrylong{mcl}.}{\cite{thrun2005probabilistic}}
+%	\label{fig:thrun2005probabilistic_fig811}
+%\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -488,6 +537,17 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 %
 %%%%%%%%%%
 \subsection{RO-SLAM [todo]}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Rao-Blackwellized Particle Filtering
+%		- https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
+%	- \cite{murphy2001rao}
+%		- Rao-Blackwellised particle filtering for dynamic Bayesian networks
+%
+%%%%%%%%%%
+\subsection{Rao-Blackwellized [todo]}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

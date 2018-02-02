@@ -117,6 +117,8 @@ Der 2D-Laser-Entfernungsmesser gehört zu einem der am häufigsten verwendeten S
 --------------------------------------------------------------------------------
 - \url{http://wiki.ros.org/hector_mapping}
 \end{comment}
+% TODO: Belegtheitskarten
+% TODO: Occupancy Grid Map bereits im Grundlagen Kapitel erklärt, hier nur noch die Darstellung erklären.
 \subsubsection{Belegungskarten}
 
 Das erste \Gls{rosm}, das von der 2D-Laser-Entfernungsmessung Gebrauch macht, ist das \textit{hector\_mapping} aus dem Paket \textit{hector\_mapping}. Mit diesem Modul können präzise Belegungskarten (engl. Occupancy Grid Map) erstellt werden, die für jede Koordinate der Karte festlegen ob diese durch ein Hindernis belegt (schwarz) oder frei (weiß) ist. Bereiche die von Hindernissen verdeckt sind oder außerhalb der Sensorreichweite liegen, werden als unbestimmt (grau) markiert, siehe \autoref{fig:rviz_occupancy_grid_map}. In \Gls{ros} werden Belegungskarten mit dem Nachrichtentyp \textit{nav\_msgs/OccupancyGrid} repräsentiert.
