@@ -529,38 +529,37 @@ p(x_{1:t}, m \mid z_{1:t}, u_{1:t}) \label{eq:full_slam_problem}
 %
 %
 %%%%%%%%%%
-\subsection{EKF-SLAM [todo]}
+\subsection{EKF-SLAM}
 
-% Prediction aktulisierung nur die Robot Pose
-% Corection werden auch die Landmarken aktualisiert
+% Warum gerade SLAM mit EKF?
+Eine der ersten Implementierung des Online-\gls{slam} Algorithmus wurde auf der Basis des \gls{ekf} durchgeführt. Neben der Pose des Roboters, werden auch alle Position der wahrgenommenen Landmarken geschätzt. Somit besteht die Karte der Umwelt aus allen Positionen der Landmarken und wird daher auch als merkmalsbasierte Karte (engl. Feature-Based Map) bezeichnet.
 
-% Welche Annahmen werden getroffen? {2D plane, known data association, known number of landmarks}
 % Wie sieht der Zustandsvektor aus?
-% Wie sieht die Modellierung mit mean und covarianz aus?
+Bisher bestand der Zustandsvektor aus den drei Komponenten X-/Y-Position und der Orientierung $\theta$ um die Pose des Roboters zu beschreiben. Für den EKF-SLAM wird der Zustandsvektor um die X-/Y-Position der vorhandenen Landmarken erweitert, siehe \autoref{eq:ekf_slam_state_vector}. Diese Kombination aus Pose des Roboters und Positionen der Landmarken wird als kombinierter Zustandsvektor (engl. Combined State Vector) bezeichnet.
 
-%
-%
-%- SLAM with Extended Kalman Filters
-%	- In a nutshell, the EKF SLAM algorithm applies the EKF to online SLAM using maximum likelihood data association. In doing so, EKF SLAM is subject to a number of approximations and limiting assumptions:
-%		- FEATURE - BASED MAPS
-%		- Maps, in EKF SLAM, are feature-based.
-%		- They are composed of point landmarks.
-%		- For computational reasons, the number of point landmarks is usually small (e.g., smaller than 1,000).
-%		- Further, the EKF approach tends to work well the less ambiguous the landmarks are.
-%		- For this reason, EKF SLAM re quires significant engineering of feature detectors, sometimes using artificial beacons as features.
-%		- GAUSSIAN NOISE ASSUMPTION
-%		- As any EKF algorithm, EKF SLAM makes a Gaussian noise assumption for robot motion and perception.
-%		- The amount of uncertainty in the posterior must be relatively small, since otherwise the linearization in EKFs tend to introduce intolerable errors.
-%		- POSITIVE INFORMATION
-%		- can only process positive sightings of landmarks. It cannot process negative information that arises from the absence of landmarks in sensor measurements.
-%	- combined state vector
-%		- In addition to estimating the robot pose x t , the EKF SLAM algorithm also estimates the coordinates of all landmarks encountered along the way. This makes it necessary to include the landmark coordinates into the state vector.
-%		- For convenience, let us call the state vector comprising robot pose and the map the combined state vector, and denote this vector y t .
-%		- Here x, y, and θ denote the robot’s coordinates at time t (not to be confused with the state variables x t and y t ), m i,x , m i,y are the coordinates of the i-th landmark, for i = 1, . . . , N , and s i is its signature.
-%		- EKF SLAM calculates the online posterior p(y t | z 1:t , u 1:t ).
-%
-%
+\begin{equation}
+x_t = \left( x, y, \theta, m_{1,x}, m_{1,y}, \ldots, m_{n,x}, m_{n,y} \right)^T \label{eq:ekf_slam_state_vector}
+\end{equation}
 
+% Wie sieht die Modellierung für den Belief mit mean und covarianz aus?
+Um den \gls{ekf} einsetzten zu können, muss der Belief mittels der beiden Momente $\mu$ und $\Sigma$ beschrieben werden. $\mu$ entspricht dabei dem kombinierte Zustandsvektor $x_t$ und $\Sigma$ beschreibt die Unsicherheiten der Roboter Pose, der Landmarken Positionen und die Unsicherheit zwischen der Roboter Pose und den Landmarken Positionen, siehe \autoref{eq:ekf_slam_mu_sigma}.
+
+\begin{equation}
+\mu = \begin{pmatrix} x_R \\ m_1 \\ \vdots \\ m_n \end{pmatrix}
+\qquad
+\Sigma = \begin{pmatrix}
+	\Sigma_{x_R x_R} & \Sigma_{x_R m_1} & \cdots & \Sigma_{x_R m_n} \\
+	\Sigma_{m_1 x_R} & \Sigma_{m_1 m_1} & \cdots & \Sigma_{m_1 m_n} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\Sigma_{m_n x_R} & \Sigma_{m_n m_1} & \cdots & \Sigma_{m_n m_n}
+\end{pmatrix}
+\label{eq:ekf_slam_mu_sigma}
+\end{equation}
+
+% Welche Einschränkungen ergeben sich für den EKF-SLAM?
+Bei der Verwendung des EKF-SLAM ist zu berücksichtigen, dass die Wahrnehmungsdaten möglichst eindeutig den Landmarken zugeordnet werden können. Die Zuordnung kann dabei explizit gegeben sein oder durch einen zusätzlichen Algorithmus möglich gut geschätzt werden. Mehrdeutige Zuordnungen führen zu einem deutlich schlechteren Ergebnis.
+
+Eine weitere Einschränkt betrifft die maximale Anzahl der Landmarken, da die Laufzeit und die Größe der Karte quadratisch mit der Anzahl der Landmarken wäschst.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
