@@ -1,6 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%	- Introduction to Mobile Robotics - SS 2017
+%		- http://ais.informatik.uni-freiburg.de/teaching/ss17/robotics/
 %
+%	- Robot Mapping - WS 2016/17 - Uni-Freiburg
+%		- http://ais.informatik.uni-freiburg.de/teaching/ws16/mapping/
+%		- https://www.youtube.com/playlist?list=PLgnQpQtFTOGQrZ4O5QzbIHgl3b1JHimN_&feature=g-list
+%	
+% 	- Probabilistic Robotics
+%		- http://robots.stanford.edu/probabilistic-robotics/
 %
 %%%%%%%%%%
 \chapter{Grundlagen}
@@ -373,7 +381,7 @@ Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen r
 %%%%%%%%%%
 \subsection{\glsentrylong{mcl}}
 
-Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegeln und damit ideal durch einen Partikel Filter abgebildet werden können. Bei der \Gls{mcl} handelt es sich um genau so einen Partikel Filter, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
+Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegeln und damit ideal durch einen \Gls{pf} abgebildet werden kann. Bei der \Gls{mcl} handelt es sich um genau so einen \Gls{pf}, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
 
 Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein einer sehr genauen Karte der Umwelt. Die Kartendaten $m$ werden bei der Berechnung der Gewichte für die Zustandsprognosen eingesetzt. Somit unterscheidet sich der Monte Carlo Algorithmus nur in der fünften Zeile von dem generische Partikel Filter Algorithmus, siehe \autoref{eq:monte_carlo_measurement_model}. 
 
@@ -457,70 +465,63 @@ w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte
 %\section{Variable Dimension Filter [todo,optional]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-Embodied Localisation and Mapping
-http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
-
-"C:\Users\Albert\Documents\Studium\Bachelor WS17\scientific publication\Efficient probabilistic range-only SLAM.ppt"
-
-
-- \citez{montemerlo2002fastslam}
-	- FastSLAM: A factored solution to the simultaneous localization and mapping problem
-
-- \cite{sarkka2013bayesian}
-	- Bayesian filtering and smoothing
-- \cite{kurth2003experimental}
-	- The Kalman Filter approach described in Section 5 can be reformulated for the SLAM problem. To perform SLAM, we include position estimates for each tag in the state, producing a state vector of the form: q(k) = [xk; yk; k; xb1; yb1 ; :::; xbn; ybn]T , where n is the number of beacons.
-	
-- The purpose of a probabilistic approach to RO-SLAM is to obtain the joint probability distribution of the robot pose (or path) and the map, given all the available data at some instant of time. This distribution represents our knowledge about the robot path, the map, and all their correlations.
-\end{comment}
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Theorie: Lokalisierungsprobleme
-	- Statische Lokalisierung
-		- Akkurate Schätzung seiner globalen Position anhand der Sensordaten
-		- Annahme: Umgebungskarte der Landmarken ist vorhanden
-	- Position Tracking/Positionsverfolgung
-		- Initiale Position ist gegeben
-		- Verfogenden der Roboterposition
-		- Annahme: Umgebungskarte der Landmarken ist vorhanden
-	- SLAM
-		- Verwenden der Sensordaten um sich zu Lokalisierung...
-		- und eine Karte der Landmarken zu erzeugen.
-		- Bisher Winkel und Entferung zu einer Landmarke gegeben
-			- Computer Vision, Structure from Motion
-
-		- Hier nur die Entfernung
-- Theorie: Wahrscheinlichkeitsverfahren
-	- Markov methods
-		- Probability Grid
-		- Robot-Position ist diskretisiert
-		- Nutzen von Bayes Rule um Grids zu kombinieren/neuerzeugen
-	- Monte Carlo Lokalisierung
-		- Multimodal Distribution for position estimation
-		- Important Sampling
-
-- Introduction to Mobile Robotics - SS 2017
-	- http://ais.informatik.uni-freiburg.de/teaching/ss17/robotics/
-- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
-
-- Robot Mapping - WS 2016/17 - Uni-Freiburg
-	- http://ais.informatik.uni-freiburg.de/teaching/ws16/mapping/
-	- https://www.youtube.com/playlist?list=PLgnQpQtFTOGQrZ4O5QzbIHgl3b1JHimN_&feature=g-list
-	
-- Probabilistic Robotics
-	- http://robots.stanford.edu/probabilistic-robotics/
-\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+%	- SLAM
+%		- Verwenden der Sensordaten um sich zu Lokalisierung...
+%		- und eine Karte der Landmarken zu erzeugen.
+%		- Bisher Winkel und Entferung zu einer Landmarke gegeben
+%			- Computer Vision, Structure from Motion
+%	- Embodied Localisation and Mapping
+%		- http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 %
 %%%%%%%%%%
-\section{SLAM [todo]}
+\section{\glsentrylong{slam}}
 
-% Zuerst wird die Position geschätzt und danach die Positionen der Landmarken.
+
+% Was versteht man unter Mapping?
+%- a priori map
+%- And even if blueprints were accurate, they would not contain furniture and other items that, from a robot’s perspective, determine the shape of the environment just as much as walls and doors. Being able to learn a map from scratch can greatly reduce the efforts involved in installing a mobile robot, and enable robots to adapt to changes without human supervision
+%- In this chapter, we first study the mapping problem under the restrictive assumption that the robot poses are known.
+%	- is also known as mapping with known poses.
+%	- Occupancy grid mapping addresses the problem of generating consistent maps from noisy and uncertain measurement data, under the assumption that the robot pose is known.
+%	- The basic idea of the occupancy grids is to represent the map as a field of random variables, arranged in an evenly spaced grid. Each random variable is binary and corresponds to the occupancy of the location it covers. Occupancy grid mapping algorithms implement approximate posterior estimation for those random variables.
+
+
+% Was versteht man unter SLAM?
+Wenn der Roboter weder seine eigne Pose kennt noch eine Karte seiner Umwelt besitzt, beides jedoch aus den Steuerbefehlen $u_{1:t}$ und den Wahrnehmungen $z_{1:t}$ bestimmen soll, wird das als \Gls{slam}\footnotemark{} Problem bezeichnet. 
+
+\footnotetext{Alternativ zu \acrfull{slam} wird auch \acrfull{cml} verwendet.}
+
+% Unterschied zwischen Online/Full SLAM? {Graph-Modell, Eqaution}
+Es gilt dabei zu unterscheiden zwischen dem Online- und Full-\gls{slam}. Beim Online-\gls{slam} wird die aktuelle Pose $x_t$ innerhalb der Karte geschätzt, siehe \autoref{eq:online_slam_problem}, während beim Full-\gls{slam} die komplette Trajektorie $x_{1:t}$ innerhalb der Karte geschätzt wird, siehe \autoref{eq:full_slam_problem}.
+
+\begin{equation}
+p(x_t, m \mid z_{1:t}, u_{1:t}) \label{eq:online_slam_problem}
+\end{equation}
+
+\begin{equation}
+p(x_{1:t}, m \mid z_{1:t}, u_{1:t}) \label{eq:full_slam_problem}
+\end{equation}
+
+%\begin{figure}
+%	\centering
+%	\begin{subfigure}{0.4\linewidth}
+%		\centering
+%		\includegraphics[width=\linewidth]{thrun2005probabilistic_fig10_1}
+%		\caption{}
+%		\label{fig:thrun2005probabilistic_fig10_1}
+%	\end{subfigure}
+%	\hfill
+%	\begin{subfigure}{0.4\linewidth}
+%		\centering
+%		\includegraphics[width=\linewidth]{thrun2005probabilistic_fig10_2}
+%		\caption{}
+%		\label{fig:thrun2005probabilistic_fig10_2}
+%	\end{subfigure}
+%	\captionwithcite{Die graphischen Modelle für den Online- bzw. Full-\gls{slam}.}{\cite{thrun2005probabilistic}}
+%	\label{fig:thrun2005probabilistic_fig10_1_2}
+%\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -530,10 +531,41 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 %%%%%%%%%%
 \subsection{EKF-SLAM [todo]}
 
+% Prediction aktulisierung nur die Robot Pose
+% Corection werden auch die Landmarken aktualisiert
+
+% Welche Annahmen werden getroffen? {2D plane, known data association, known number of landmarks}
+% Wie sieht der Zustandsvektor aus?
+% Wie sieht die Modellierung mit mean und covarianz aus?
+
+%
+%
+%- SLAM with Extended Kalman Filters
+%	- In a nutshell, the EKF SLAM algorithm applies the EKF to online SLAM using maximum likelihood data association. In doing so, EKF SLAM is subject to a number of approximations and limiting assumptions:
+%		- FEATURE - BASED MAPS
+%		- Maps, in EKF SLAM, are feature-based.
+%		- They are composed of point landmarks.
+%		- For computational reasons, the number of point landmarks is usually small (e.g., smaller than 1,000).
+%		- Further, the EKF approach tends to work well the less ambiguous the landmarks are.
+%		- For this reason, EKF SLAM re quires significant engineering of feature detectors, sometimes using artificial beacons as features.
+%		- GAUSSIAN NOISE ASSUMPTION
+%		- As any EKF algorithm, EKF SLAM makes a Gaussian noise assumption for robot motion and perception.
+%		- The amount of uncertainty in the posterior must be relatively small, since otherwise the linearization in EKFs tend to introduce intolerable errors.
+%		- POSITIVE INFORMATION
+%		- can only process positive sightings of landmarks. It cannot process negative information that arises from the absence of landmarks in sensor measurements.
+%	- combined state vector
+%		- In addition to estimating the robot pose x t , the EKF SLAM algorithm also estimates the coordinates of all landmarks encountered along the way. This makes it necessary to include the landmark coordinates into the state vector.
+%		- For convenience, let us call the state vector comprising robot pose and the map the combined state vector, and denote this vector y t .
+%		- Here x, y, and θ denote the robot’s coordinates at time t (not to be confused with the state variables x t and y t ), m i,x , m i,y are the coordinates of the i-th landmark, for i = 1, . . . , N , and s i is its signature.
+%		- EKF SLAM calculates the online posterior p(y t | z 1:t , u 1:t ).
+%
+%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+% - https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
 %
 %%%%%%%%%%
 \subsection{RO-SLAM [todo]}
@@ -548,6 +580,16 @@ http://elib.suub.uni-bremen.de/edocs/00103537-1.pdf
 %
 %%%%%%%%%%
 \subsection{Rao-Blackwellized [todo]}
+
+% Model the robot's path by sampling and compute the landmarks given the pose
+% each particle represents a possible trajectory of the robot
+% each particle maintains its own map (2d ekf)
+% each particle updates it upon <mapping with known poses>
+
+% SLAM mit Partikelfiltern
+%		FastSLAM
+%		Grid-basierte Verfahren mit Rao-Blackwellisierten Partikelfiltern
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
