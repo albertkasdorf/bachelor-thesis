@@ -564,31 +564,87 @@ Eine weitere Einschränkt betrifft die maximale Anzahl der Landmarken, da die La
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% - https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
-%
-%%%%%%%%%%
-\subsection{RO-SLAM [todo]}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
 %	- Rao-Blackwellized Particle Filtering
 %		- https://people.eecs.berkeley.edu/~pabbeel/cs287-fa12/slides/RBPF.pdf
 %	- \cite{murphy2001rao}
 %		- Rao-Blackwellised particle filtering for dynamic Bayesian networks
+% 	- Model the robot's path by sampling and compute the landmarks given the pose
+% 		- each particle represents a possible trajectory of the robot
+% 		- each particle maintains its own map (2d ekf)
+% 		- each particle updates it upon <mapping with known poses>
+%	- If we use the particle set only to model the robot’s path, each sample is a path hypothesis.
+%		- For each sample, we can compute an individual map of landmarks.
+%		- Apply mapping with known poses
+%	- Rao-Blackwellized particle filters use particles to represent the posterior over some variables, along with Gaussians (or some other parametric PDF) to represent all other variables.
+%		- if an oracle told us the true robot path, we could estimate the location of all features independently of each other.
+%		- Dependencies in these estimates arise only through robot pose uncertainty.
+%		- This structural observation will make it possible to apply a version of particle filters to SLAM known as Rao-Blackwellized particle filters.
 %
 %%%%%%%%%%
-\subsection{Rao-Blackwellized [todo]}
+\subsection{FastSLAM}
 
-% Model the robot's path by sampling and compute the landmarks given the pose
-% each particle represents a possible trajectory of the robot
-% each particle maintains its own map (2d ekf)
-% each particle updates it upon <mapping with known poses>
+% Wie könnte das SLAM Problem mit einem PF gelöst werden? Wie sieht die Partikel repräsentation aus?
+Bei dem \textit{FastSLAM} Verfahren handelt es sich um eine Lösung für das \gls{slam} Problem mithilfe eines \gls{pf}. Bei einem \gls{pf} repräsentiert jedes Partikel eine eigene Hypothese  des jeweiligen Zustandes des Roboters. Um das \gls{slam} Problem zu lösen muss der Zustandsvektor, wie beim EKF-SLAM, um die Landmarken erweitert werden, siehe \autoref{eq:ekf_slam_state_vector}.
 
-% SLAM mit Partikelfiltern
-%		FastSLAM
-%		Grid-basierte Verfahren mit Rao-Blackwellisierten Partikelfiltern
+% Was ist das Problem eines Partikel Filter mit dem SLAM Problem?
+\gls{pf} haben jedoch die Eigenschaft, nur mit einem kleinen Zustandsraum gut zu funktionieren. Bei einem großen Zustandsraum werden deutlich mehr Stichproben benötigt, um diesen möglichst gut abzudecken. Der Aufwand skaliert dabei exponentiell mit der Anzahl der Dimensionen des Zustandsraumes, sodass eine praktikable Anwendung eines \gls{pf} nicht mehr gegeben ist.
 
+% Was ist die Schlüsselidee?
+Die Lösung des Problems besteht darin, mit dem \gls{pf} nur den Pfad des Roboters zu modellieren und dann für jede Pfadhypothese eine separate Karte der Umwelt mit ihren Landmarken zu berechnen.
+
+% Was ist der RBPF?
+Um die Berechnung der Karte von dem Pfad des Roboters zu trennen, wird der Umstand ausgenutzt, das beide Zufallsvariablen ein Wissen über einander besitzt. Dazu wird die \autoref{eq:conditional_probability}, für die bedingte Wahrscheinlichkeit, nach der multivariaten Verteilung umgestellt, siehe \autoref{eq:pf_slam_conditional_probability}. Anstatt nun die Verteilung sowohl für den Pfad des Roboters als auch den der Karte $p(x, y)$ zu bestimmen, wird die Verteilung nur für den Pfad des Roboters $p(x)$ bestimmt und dann für jede Pfadhypothese die sich daraus ergebende Karte $p(y \mid x)$ berechnet. Dieses Verfahren wird auch als \textit{Rao-Blackwellisierung} bezeichnet.
+
+\begin{equation}
+p(x, y) = p(y \mid x) \, p(x) \label{eq:pf_slam_conditional_probability}
+\end{equation}
+
+Das vorherige Verfahren wird nun auf die a posteriori Verteilung des \gls{slam} Problems übertragen, siehe \autoref{eq:pf_slam_posterior}. $x_{0:t}$ entspricht dabei den Pfad des Roboters, $m_{1:M}$ der Karte, $z_{1:t}$ den Wahrnehmungen und $u_{1:t}$ den Steuerbefehlen. Die ausfaktorisierten Terme $p(x_{0:t} \mid z_{1:t}, u_{1:t})$ und $p(m_{1:M} \mid x_{0t:t}, z_{1:t})$ bilden dabei die a posteriori Verteilung für den Pfad des Roboters und für die Karte der Umwelt.
+
+\begin{equation}
+p(x_{0:t}, m_{1:M} \mid z_{1:t}, u_{1:t}) = p(x_{0:t} \mid z_{1:t}, u_{1:t}) \, p(m_{1:M} \mid x_{0:t}, z_{1:t}) \label{eq:pf_slam_posterior}
+\end{equation}
+
+Der Term für die a posteriori Verteilung der Karte aus der \autoref{eq:pf_slam_posterior} kann noch optimiert werden. Dadurch das der Pfad des Roboters bekannt ist, gibt es keine Landmarke die über eine unbekannte Zufallsvariable mit einer anderen Landmarke verbunden ist, siehe \autoref{fig:fast_slam_conditionally_independent}. Das bedeutet, dass die Landmarken untereinander als unabhängige Zufallsvariable dargestellt werden können. Somit kann die a posteriori Verteilung der Karte als Produkt ihrer einzelnen Landmarken ausgedrückt werden, siehe \autoref{eq:pf_slam_optimized_posterior}. Dadurch kann jede Landmarke durch einen $2 \times 2$ großen \gls{ekf} modelliert und dadurch sehr effizient berechnet werden. Die Repräsentation des endgültigen Partikel kann der \autoref{fig:fast_slam_particle_representation} entnommen werden.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{fast_slam_conditionally_independent}
+	\captionwithcite{Darstellung des \gls{slam} Problems als bayessches Netz.}{\cite{thrun2005probabilistic}}
+	\label{fig:fast_slam_conditionally_independent}
+\end{figure}
+
+\begin{equation}
+p(x_{0:t}, m_{1:M} \mid z_{1:t}, u_{1:t}) = p(x_{0:t} \mid z_{1:t}, u_{1:t}) \, \prod_{i=1}^{M} p(m_i \mid x_{0:t}, z_{1:t}) \label{eq:pf_slam_optimized_posterior}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{fast_slam_particle_representation}
+	\captionwithcite{Representation der Partikel in FastSLAM.}{\cite{thrun2005probabilistic}}
+	\label{fig:fast_slam_particle_representation}
+\end{figure}
+
+Die Gewichte eines Partikels spielen eine große Rolle im \textit{Resampling} Prozess. Beim \textit{FastSLAM} entsteht die Gewichtung dabei aus der Erkenntnis, wie gut die Landmarken einer Pfadhypothese mit den Wahrnehmungen übereinstimmen.
+
+Für den EKF-SLAM ist es entscheiden, die Zuordnung zwischen den Landmarken und den Wahrnehmungen zu kennen. Das ist beim \textit{FastSLAM} nicht mehr notwendig, da jede Pfadhypothese über eine eigene Zuordnung verfügt, siehe \autoref{fig:fast_slam_data_association_problemn}. In Kombination mit den Gewichten pro Partikel, werden die Partikel mit der \textit{richtigen} Zuordnung eher im \textit{Resampling} Prozess ausgewählt als die mit einer \textit{falschen} Zuordnung.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{fast_slam_data_association_problem}
+	\captionwithcite{Zuordnung der Landmarken zu den Wahrnehmungen pro Pfadhypothese.}{\cite{thrun2005probabilistic}}
+	\label{fig:fast_slam_data_association_problemn}
+\end{figure}
+
+Der \textit{FastSLAM} Algorithmus bildet die Grundlage für die beiden \gls{roslam} Verfahren die zum einen in den Abschnitten \autoref{sec:blanco2008pure} und \autoref{sec:blanco2008efficient} vorgestellt werden und zum anderen im der Evaluation ausgewertet.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% - https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
+%
+%%%%%%%%%%
+%\subsection{RO-SLAM [todo]}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
