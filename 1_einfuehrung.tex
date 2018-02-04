@@ -1,97 +1,99 @@
-\begin{comment}
-- \cite{kurth2003experimental}
-	- Application
-		- high level of precision in localization
-		- a robot delivering mail in an office building
-		- moving plants in a greenhouse
-		- mapping an under-ground mine
-	- Originally intend
-		- track assets and people in an environment equipped with special RF transponders [13]
-	- invert the paradigm
-	- fixing the tags in the environment and moving a transponder with a robot
-	- periodically sends out a query, and any tags within range respond by sending a reply
-	- useful in many environmental conditions that fail optical methods
-	- each tag transmits a unique ID number, so the data association problem is solved
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{kurth2003experimental}
+%		- Application
+%			- high level of precision in localization
+%			- a robot delivering mail in an office building
+%			- moving plants in a greenhouse
+%			- mapping an under-ground mine
+%		- Originally intend
+%			- track assets and people in an environment equipped with special RF transponders [13]
+%		- invert the paradigm
+%		- fixing the tags in the environment and moving a transponder with a robot
+%		- periodically sends out a query, and any tags within range respond by sending a reply
+%		- useful in many environmental conditions that fail optical methods
+%		- each tag transmits a unique ID number, so the data association problem is solved
+%	
+%	- \cite{djugash2010geolocation}
+%		- Geolocation with range - Robustness, efficiency and scalability.pdf
+%		
+%	- \cite{liu2007survey}
+%		- Survey of wireless indoor positioning techniques and systems (3151)
+%		- Application
+%			- location detection of products stored in a warehouse
+%			- location detection of medical personnel or equipment in a hospital
+%			- location detection of firemen in a building on fire
+%			- detecting the location of police dogs trained to find explosives in a building
+%			- finding tagged maintenance tools and equipment scattered all over a plant.
+%		
+%	- \cite{decawave2014rtls}
+%		- Real time location systems - An Introduction
+%		- Real Time Location Systems (RTLS)
+%			- Provide information in Real-Time about the Location of anything you care to imagine
+%		- The most pervasive example of an RTLS is GPS.
+%		- GPS doesn’t work indoors
+%		- Application
+%			- Healthcare, Agriculture and Logistics
+%		- RTLS USE CASES
+%			- Proximity
+%				- requirement reduces to the need to determine the distance between two items
+%				- “find my stuff” applicaiton
+%				- of a key fob to its associated automobile
+%				- patient or infant to an unlocked door through which they are not authorized to pass
+%			- Absolute Location using Fixed Infrastructure
+%				- Using a number of fixed anchors in known locations
+%				- location of tagged objects
+%				- Anchors can be separate units or can be incorporated into Wireless Access Points
+%				- Tracking and location of assets and patients in healthcare providing:
+%					- Significantly improved patient care,
+%					- Increases in efficiency and
+%					- Reductions in operating costs
+%				- Tracking and location of pallets, packages and items in warehousing and logistics:
+%					- Reductions in wait time
+%					- Improved customer service
+%					- Reduction in operating costs
+%				- Tracking and monitoring of farm animals leading to:
+%					- Improvements in animal health and yield
+%					- Reduction in operating costs
+%					- Tracking of Inventory
+%					- Tracking Work in Progress and Finished Goods in manufacturing environments
+%					- The tracking of which components have been assembled to other components
+%					- The monitoring of tool movements to ensure manufacturing sequences are carried out in the correct order
+%			- Relative Location Among a Group of Nodes
+%				- No fixed infrastructure
+%				- Nodes must establish their location relative to other nodes in the network
+%				- First-responder situations, need to track the progress of their personnel as they enter the building.
+%				- In order for this information to be available to the command centre, one or more of the first responders will need to be linked wirelessly to the command vehicle outside the building.
+%				- If absolute location is required then at least two nodes that are in known locations relative to the building are required. These would need to be “dropped” by the first responders or their support crew on arrival at the building and their locations noted
+%				
+%	- Begriffserklärungen:
+%		- Was ist ein Anchor(Fixed reference point)/Anker/Tag(Searched object)
+%		- RTLS Real Time Location Services
+%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-- \cite{djugash2010geolocation}
-	- Geolocation with range - Robustness, efficiency and scalability.pdf
-	
-- \cite{liu2007survey}
-	- Survey of wireless indoor positioning techniques and systems (3151)
-	- Application
-		- location detection of products stored in a warehouse
-		- location detection of medical personnel or equipment in a hospital
-		- location detection of firemen in a building on fire
-		- detecting the location of police dogs trained to find explosives in a building
-		- finding tagged maintenance tools and equipment scattered all over a plant.
-	
-- \cite{decawave2014rtls}
-	- Real time location systems - An Introduction
-	- Real Time Location Systems (RTLS)
-		- Provide information in Real-Time about the Location of anything you care to imagine
-	- The most pervasive example of an RTLS is GPS.
-	- GPS doesn’t work indoors
-	- Application
-		- Healthcare, Agriculture and Logistics
-	- RTLS USE CASES
-		- Proximity
-			- requirement reduces to the need to determine the distance between two items
-			- “find my stuff” applicaiton
-			- of a key fob to its associated automobile
-			- patient or infant to an unlocked door through which they are not authorized to pass
-		- Absolute Location using Fixed Infrastructure
-			- Using a number of fixed anchors in known locations
-			- location of tagged objects
-			- Anchors can be separate units or can be incorporated into Wireless Access Points
-			- Tracking and location of assets and patients in healthcare providing:
-				- Significantly improved patient care,
-				- Increases in efficiency and
-				- Reductions in operating costs
-			- Tracking and location of pallets, packages and items in warehousing and logistics:
-				- Reductions in wait time
-				- Improved customer service
-				- Reduction in operating costs
-			- Tracking and monitoring of farm animals leading to:
-				- Improvements in animal health and yield
-				- Reduction in operating costs
-				- Tracking of Inventory
-				- Tracking Work in Progress and Finished Goods in manufacturing environments
-				- The tracking of which components have been assembled to other components
-				- The monitoring of tool movements to ensure manufacturing sequences are carried out in the correct order
-		- Relative Location Among a Group of Nodes
-			- No fixed infrastructure
-			- Nodes must establish their location relative to other nodes in the network
-			- First-responder situations, need to track the progress of their personnel as they enter the building.
-			- In order for this information to be available to the command centre, one or more of the first responders will need to be linked wirelessly to the command vehicle outside the building.
-			- If absolute location is required then at least two nodes that are in known locations relative to the building are required. These would need to be “dropped” by the first responders or their support crew on arrival at the building and their locations noted
-			
-Begriffserklärungen:
-- Was ist ein Anchor(Fixed reference point)/Anker/Tag(Searched object)
-- RTLS Real Time Location Services
-	
-\end{comment}
 
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Lesen abholen und langsam an die Thematik heranführen.
-- Sie soll gekonnt zum Thema hinführen und beim Leser ein Grundinteresse wecken.
-- Es muss genau klar werden, welcher Erkenntnisgewinn von der Arbeit erwartet werden kann.
-- Genauso müssen kurz die Ziele beschrieben werden, die man mit der Arbeit erreichen möchte, und welche Methoden dazu verwendet werden.
-- Kann jemand nicht auf kleinem Raum deutlich machen, worüber er schreibt, aus welchem Grund und welche Ziele angestrebt werden, dann ist es nicht verwunderlich, dass sich das auch auf den Rest der Arbeit (negativ) auswirkt.
-- Relevanz des Themas betonen
-- Forschungsfrage vorstellen
-- Erläutern der Vorgehensweise beim Beantworten der Forschungsfrage
-- Erläuterung der Eingrenzung der Forschungsfrage
-- Übersicht über Aufbau der Arbeit
-- Unbedingt vermieden werden müssen persönliche Geständnisse und subjektive Meinungen: Dies gehört nie in eine Einleitung als Begründung für Themen- oder Methodikwahl und hat generell in wissenschaftlichen Arbeiten nichts zu suchen.
-- Ferrein
-	- Einleitung
-	- allgemeine Einleitung in das Thema der Arbeit
-	- Kurze Übersicht der Motivation und Problemstellung der Arbeit
-	- Kurze Erläuterung des Lösungsansatzes
-	- Überblick über die einzelnen Kapitel der Arbeit
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Lesen abholen und langsam an die Thematik heranführen.
+%	- Sie soll gekonnt zum Thema hinführen und beim Leser ein Grundinteresse wecken.
+%	- Es muss genau klar werden, welcher Erkenntnisgewinn von der Arbeit erwartet werden kann.
+%	- Genauso müssen kurz die Ziele beschrieben werden, die man mit der Arbeit erreichen möchte, und welche Methoden dazu verwendet werden.
+%	- Kann jemand nicht auf kleinem Raum deutlich machen, worüber er schreibt, aus welchem Grund und welche Ziele angestrebt werden, dann ist es nicht verwunderlich, dass sich das auch auf den Rest der Arbeit (negativ) auswirkt.
+%	- Relevanz des Themas betonen
+%	- Forschungsfrage vorstellen
+%	- Erläutern der Vorgehensweise beim Beantworten der Forschungsfrage
+%	- Erläuterung der Eingrenzung der Forschungsfrage
+%	- Übersicht über Aufbau der Arbeit
+%	- Unbedingt vermieden werden müssen persönliche Geständnisse und subjektive Meinungen: Dies gehört nie in eine Einleitung als Begründung für Themen- oder Methodikwahl und hat generell in wissenschaftlichen Arbeiten nichts zu suchen.
+%	- Ferrein
+%		- Einleitung
+%		- allgemeine Einleitung in das Thema der Arbeit
+%		- Kurze Übersicht der Motivation und Problemstellung der Arbeit
+%		- Kurze Erläuterung des Lösungsansatzes
+%		- Überblick über die einzelnen Kapitel der Arbeit
+%
+%%%%%%%%%%
 \chapter{Einführung}
 
 In der Zeit vor den Navigationsgeräten wurden auf deutschen Straßen noch regelmäßig faltbare Straßenkarten von den Beifahrern verwendet um den Fahrer den Weg zu weisen. Bevor eine Straßenkarte verwendet werden kann, muss diese erstellt werden. Dieser Prozess ist unter dem Begriff Kartenerstellung (engl. Mapping) bekannt. Der Detailgrad hängt dabei stark vom Verwendungszweck ab. Der erste Schritt nach dem entfalten der Straßenkarten bestand in der Lokalisierung (engl. Localization), also der Bestimmung der ungefähren Fahrzeugposition und dem Ziel der Reise auf der Straßenkarte. Darauf aufbauend wurde vom Beifahrer dann eine Route zwischen der aktuellen Fahrzeugposition und dem Ziel geplant und während der Fahrt weiterverfolgt, was auch als Pfad-Planung (engl. Path-Planning) bekannt ist.
@@ -109,33 +111,37 @@ Die \Glspl{uwbm} die stationär befestigt sind, ihre Position also nicht ändern
 % TODO: Beacon als Verallgemeinerung.
 
 
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 %\section{Aufgabenstellung}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 %\section{Motivation}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Beschreiben Sie das Ziel Ihres Forschungsvorhabens.
-- Was wollen Sie am Ende herausgefunden haben und weshalb?
-- Welche Ziele sollen erreicht werden?
-	- Aufbau von UWB Hardware
-	- Testen der Out-Of-Box UWB Hardware mit einem RO-SLAM Algorithmus
-- Ziele:
-	- UWB Hardware aufbauen
-	- Charakteristik bestimmen {Streubreite, Varianz, LOS/NLOS, Kalibierung?}
-	- Roboterplattform mit UWB Hardware ausrüsten;
-	- MRPT-Software konfigurieren;
-	- Lokalisierung vergleichen mit {Odometry; LaserOdometry; Ground TRuth; RO-SLAM}
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Beschreiben Sie das Ziel Ihres Forschungsvorhabens.
+%	- Was wollen Sie am Ende herausgefunden haben und weshalb?
+%	- Welche Ziele sollen erreicht werden?
+%		- Aufbau von UWB Hardware
+%		- Testen der Out-Of-Box UWB Hardware mit einem RO-SLAM Algorithmus
+%	- Ziele:
+%		- UWB Hardware aufbauen
+%		- Charakteristik bestimmen {Streubreite, Varianz, LOS/NLOS, Kalibierung?}
+%		- Roboterplattform mit UWB Hardware ausrüsten;
+%		- MRPT-Software konfigurieren;
+%		- Lokalisierung vergleichen mit {Odometry; LaserOdometry; Ground TRuth; RO-SLAM}
+%
+%%%%%%%%%%
 \section{Zielsetzung}
 
 Diese Arbeit spaltet sich in zwei Bereiche auf. Im ersten Teil geht es um die Erstellung der \Glspl{uwbm}. Hierfür müssen die passenden elektrischen Komponenten ausgesucht, Prototypen entworfen und erprobt werden, ein Platinen-Layout erstellt und im Anschluss die \Glspl{uwbm} zusammengebaut werden. Mit der fertigen Hardware werden dann im folgenden empirische Versuche durchgeführt um die Sensorcharakteristiken wie Streubreite, Varianz und \Gls{los}/\Gls{nlos}-Verhalten zu bestimmen.
@@ -144,37 +150,40 @@ In dem darauf aufbauenden zweiten Teil wird eine Roboterplattform mit einem \Gls
 Im Nachgang wird dann der \Gls{roslam}-Algorithmus aus dem \Gls{mrpt}-Framework mit den Aufzeichnungen erprobt. Untersucht werden dabei die Genauigkeit der Roboter Lokalisierung und das Erstellen einer Karte von den zuvor unbekannten \Gls{anchor}-Positionen.
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Ein weiterer interessanter Punkt sind die Abgrenzungen. Betrachtest du nur einen kleinen Problemfall aus einem großen Themenbereich kannst du in der Einleitung bereits darlegen, welche Aspekte du leider nicht berücksichtigen kannst.
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Ein weiterer interessanter Punkt sind die Abgrenzungen. Betrachtest du nur einen kleinen Problemfall aus einem großen Themenbereich kannst du in der Einleitung bereits darlegen, welche Aspekte du leider nicht berücksichtigen kannst.
+%
+%%%%%%%%%%
 %\section{Eingrenzung}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Die Vorgehensweise und die Wahl der Methode sollte begründet und dargelegt werden.
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Die Vorgehensweise und die Wahl der Methode sollte begründet und dargelegt werden.
+%
+%%%%%%%%%%
 %\section{Methodik / Methode}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Wie ist die Bachelorarbeit aufgebaut?
-- Was erwartet einen in den folgenden Kapitel/Abschnitten?
-- Pro Kapitel einen Absatz.
-- auf keinen Fall nur eine Wiederholung des Inhaltsverzeichnisses sein
-- Wie bauen die Kapitel aufeinander auf? Dies muss erläutert und nicht nacherzählt werden.
-- Überblick über den Aufbau der Bachelorarbeit: Wie bauen die einzelnen Kapitel aufeinander auf, welcher Argumentationslinie wird gefolgt; dieser sollte aber nie eine Nacherzählung der Inhaltsverzeichnisses sein!
-- Schlussendlich gibst du dem Leser einen Gesamtüberblick über deine Bachelorarbeit, in dem du den Aufbau erläuterst, den roten Faden erkennen lässt und darstellst, wie die Forschungsfragen beantwortet werden.
-\end{comment}
-\section{Gliederung [rework]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Wie ist die Bachelorarbeit aufgebaut?
+%	- Was erwartet einen in den folgenden Kapitel/Abschnitten?
+%	- Pro Kapitel einen Absatz.
+%	- auf keinen Fall nur eine Wiederholung des Inhaltsverzeichnisses sein
+%	- Wie bauen die Kapitel aufeinander auf? Dies muss erläutert und nicht nacherzählt werden.
+%	- Überblick über den Aufbau der Bachelorarbeit: Wie bauen die einzelnen Kapitel aufeinander auf, welcher Argumentationslinie wird gefolgt; dieser sollte aber nie eine Nacherzählung der Inhaltsverzeichnisses sein!
+%	- Schlussendlich gibst du dem Leser einen Gesamtüberblick über deine Bachelorarbeit, in dem du den Aufbau erläuterst, den roten Faden erkennen lässt und darstellst, wie die Forschungsfragen beantwortet werden.
+%
+%%%%%%%%%%
+\section{Gliederung}
 
-Im Kapitel zwei wird das grundlegende Wissensfundament für den \Gls{roslam} gelegt. Angefangen bei der Fragestellung wie eine Entfernungsmessung mit den \Glsuseri{uwbm} durchgeführt wird und welche unterschiedlichen Verfahren es für den Nachrichtenaustausch existieren. Weiter zu den Grundlagen der Wahrscheinlichkeitstheorie und den darauf aufbauenden Bayes-/Kalman- und Partikel-Filter. Den Abschluss des Kapitels bilden dann der \Gls{roslam} und ein kurzer Einblick in das \Gls{ros} mit seinen wichtigsten Bestandteilen.
+Im Kapitel zwei wird das grundlegende Wissensfundament für den \Gls{roslam} gelegt. Angefangen bei der Fragestellung wie eine Entfernungsmessung mit den \Glsuseri{uwbm} durchgeführt wird und welche unterschiedlichen Verfahren es für den Nachrichtenaustausch existieren. Weiter zu den Grundlagen der Wahrscheinlichkeitstheorie und den darauf aufbauenden Bayes-/Kalman- und Partikel Filter. Den Abschluss des Kapitels bilden dann ein kurzer Einblick in das \Gls{ros} mit seinen wichtigsten Bestandteilen.
 
-Das dritte Kapitel beschäftigt sich mit dem aktuellen Stand der Forschung und Technik. Angefangen bei den ersten Versuchen einen \Gls{roslam} mit einem Kalman-Filter und einer guten initialen Positionsschätzung der \Gls{anchor}, hin zu der Modellierung der radialen Verteilungsfunktion, für den Kalman-Filter, in Polarkoordinaten. Es werden auch Erfahrungen aus eher unbekannten Bereichen wie der Tiefuntersuchen miteinbezogen.
+Das dritte Kapitel beschäftigt sich mit dem aktuellen Stand der Forschung und Technik. Angefangen bei den ersten Versuchen einen \Gls{roslam} mit einem Kalman Filter und einer guten initialen Positionsschätzung der \Gls{anchor}, hin zu der Modellierung der radialen Verteilungsfunktion, für den Kalman Filter, in Polarkoordinaten. Es werden auch Erfahrungen aus eher unbekannten Bereichen wie der Tiefseeuntersuchung miteinbezogen.
 
-Mit dem vierten Kapitel erfolgt eine Einführung in die \Gls{uwb}-Technik und ein kurzer Abriss über die Entstehungsgeschichte. Danach konzentriert sich der Abschnitt auf die verschiedenen Stufen der Entwicklung eines einsatzfähigen \Gls{uwbm}s. Angefangen bei der Anforderungserhebung, dem Schaltungsaufbau, dem Platinen-Layout und der Steuersoftware.
+Mit dem vierten Kapitel erfolgt eine Einführung in die \Gls{uwb}-Technik und ein kurzer Abriss über die Entstehungsgeschichte. Danach konzentriert sich der Abschnitt auf die verschiedenen Stufen der Entwicklung eines einsatzfähigen \Glsuserii{uwbm}. Angefangen bei der Anforderungserhebung, dem Schaltungsaufbau, dem Platinen-Layout und der Steuersoftware.
 
 Im darauffolgenden Kapitel fünf wird zuerst die Roboterplattform mit ihren spezifischen Eigenschaften vorgestellt. Eingeschlossen sind hierbei die verbauten Sensoren und deren Konfiguration in \Gls{ros}. Zu den Sensoren zählt die Odometrie, der 2D-Laser-Entfernungsmesser und das \Gls{uwbm}. Weiterhin werden die verwendeten Softwaremodule aus \Gls{ros} und dem \Gls{mrpt}-Framework diskutiert.
 

@@ -52,7 +52,7 @@ Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, is
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{single_sided_two_way_ranging}
-	\captionwithcite{Ablauf des \acrlong{sstwr}.}{\cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf des \glsentrylong{sstwr}.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:single_sided_two_way_ranging}
 \end{figure}
 
@@ -89,7 +89,7 @@ Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Ve
 	\centering
 %	\includegraphics[width=0.7\linewidth]{double_sided_two_way_ranging}
 	\includegraphics[width=0.8\linewidth]{double_sided_two_way_ranging}
-	\captionwithcite{Ablauf des \acrlong{dstwr}.}{\cite{decawave2016dw1kusermanual}} 
+	\captionwithcite{Ablauf des \glsentrylong{dstwr}.}{\cite{decawave2016dw1kusermanual}} 
 	\label{fig:double_sided_two_way_ranging}
 \end{figure}
 
@@ -113,11 +113,11 @@ Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{double_sided_two_way_ranging_with_three_anchor}
-	\captionwithcite{Ablauf des \acrlong{dstwr} mit einem \Gls{tag} und drei \Gls{anchor}.}{\cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf des \glsentrylong{dstwr} mit einem \glsentryshort{tag} und drei \glsentryshort{anchor}.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:double_sided_two_way_ranging_with_three_anchor}
 \end{figure}
 
-In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der\Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
+In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der \Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
 
 %\begin{figure}[ht]
 \begin{figure}
@@ -197,13 +197,17 @@ Da es sich bei der Position nicht um einen skalaren Wert handelt, muss eine mehr
 p(x) = \operatorname{det}{\left( 2 \pi \Sigma \right)}^{-\frac12}  \exp{ \left\{ -\frac12 (x - \mu)^T \Sigma^{-1} (x - \mu) \right\} } \label{eq:multivariate_normal_distribution}
 \end{equation}
 
-Die Multivariate Verteilung zweier Zufallsvariablen beschreibt die Wahrscheinlichkeit, mit welcher das Ereignis $x$ sowie das Ereignis $y$ auftritt. Sollten beide Zufallsvariablen unabhängig von einander sein, so lassen sich ihre Wahrscheinlichkeiten multiplizieren, siehe \autoref{eq:independent_joint_distribution}.
+Die multivariate Verteilung zweier Zufallsvariablen beschreibt die Wahrscheinlichkeit, mit welcher das Ereignis $x$ sowie das Ereignis $y$ auftritt. Sollten beide Zufallsvariablen unabhängig von einander sein, so lassen sich ihre Wahrscheinlichkeiten multiplizieren, siehe \autoref{eq:independent_joint_distribution}.
 
 \begin{equation}
 p(x, y) = p(x) \, p(y) \label{eq:independent_joint_distribution}
 \end{equation}
 
-Von der bedingten Wahrscheinlichkeit spricht man dann, wenn eine Zufallsvariable, Wissen über eine anderen Zufallsvariable besitzt, siehe \autoref{eq:conditional_probability}.
+Wenn eine Zufallsvariable, Wissen über eine andere Zufallsvariable besitzt, spricht man von der bedingten Wahrscheinlichkeit, siehe \autoref{eq:conditional_probability}.
+
+% Ursprüngliche Variante: Von der bedingten Wahrscheinlichkeit spricht man dann, wenn eine Zufallsvariable, Wissen über eine anderen Zufallsvariable besitzt, siehe \autoref{eq:conditional_probability}.
+
+% Wikipedia: Bedingte Wahrscheinlichkeit (auch konditionale Wahrscheinlichkeit) ist die Wahrscheinlichkeit des Eintretens eines Ereignisses A unter der Bedingung, dass das Eintreten eines anderen Ereignisses B bereits bekannt ist. 
 
 \begin{equation}
 p(x \mid y) = \frac{p(x, y)}{p(y)} \label{eq:conditional_probability}
@@ -254,14 +258,32 @@ Der Zustand der Umwelt kann nicht direkt gemessen werden, stattdessen muss diese
 %%%%%%%%%%
 \subsection{Bayes Filter}
 
-Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschreibung eines rekursiven Zustandsschätzer, siehe \autoref{fig:algorithm_bayes_filter}. Das heißt, aufbauend  auf der aktuellen Zustandsschätzung wird mit dem eintreffen neuer Wahrnehmungs- oder Steuerbefehl-Daten eine neue Zustandschätzung generiert. Abhängig vom Vorwissen des initialen Zustandes $bel(x_0)$ liefert diese entweder eine punktförmige Verteilung durch den initialen Zustand zurück oder eine stetige Gleichverteilung über den kompletten Zustandsraum. 
+Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschreibung eines rekursiven Zustandsschätzer, siehe \autoref{alg:algorithm_bayes_filter}. Das heißt, aufbauend  auf der aktuellen Zustandsschätzung wird mit dem eintreffen neuer Wahrnehmungs- oder Steuerbefehl-Daten eine neue Zustandschätzung generiert. Abhängig vom Vorwissen des initialen Zustandes $bel(x_0)$ liefert diese entweder eine punktförmige Verteilung durch den initialen Zustand zurück oder eine stetige Gleichverteilung über den kompletten Zustandsraum. 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{algorithm_bayes_filter}
-	\captionwithcite{Bayes Filter Algorithmus}{\cite{thrun2005probabilistic}}
-	\label{fig:algorithm_bayes_filter}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{algorithm_bayes_filter}
+%	\captionwithcite{Bayes Filter Algorithmus}{\cite{thrun2005probabilistic}}
+%	\label{fig:algorithm_bayes_filter}
+%\end{figure}
+
+\begin{algorithm}
+\begin{onehalfspacing}
+	\DontPrintSemicolon
+	\SetKwFunction{KwFn}{Bayes\_Filter}
+	\SetKwProg{KwPg}{Algorithm}{:}{\KwRet{$bel(x_t)$}}
+	\KwPg{\KwFn{$bel(x_{t-1})$, $u_t$, $z_t$}}
+	{
+		\ForAll{$x_t$}
+		{
+			$\overline{bel}(x_t) = \int \, p(x_t \mid u_t, x_{t-1}) \, bel(x_{t-1}) \, dx_{t-1}$\;
+			$bel(x_t) = \eta \, p(z_t \mid x_t) \, \overline{bel}(x_t)$\;
+		}
+	}
+\caption{Bayes Filter Algorithmus}
+\label{alg:algorithm_bayes_filter}
+\end{onehalfspacing}
+\end{algorithm}
 
 Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Prognose (engl. prediction) für den neuen Zustand erstellt, siehe Zeile 3. Der neue Zustand wird dabei aus dem vorherigen Zustand und dem aktuellen Steuerbefehl gebildet, siehe $p(x_t \mid, u_t, x_{t-1})$. Die daraus resultierende Verteilung wird mit der vorherige Belief Verteilung $bel(x_{t-1})$ multipliziert und ergibt die Prognose $\overline{bel}(x_t)$ für den neuen Zustand. Im zweite Schritt wird die erstellt Prognose mit der aktuellen Wahrnehmung korrigiert (engl. correction), siehe Zeile 4. Hierbei ist zu beachten, das für jede Zustandshypothese $x_t$ die erstelle Prognose $\overline{bel}(x_t)$ mit der Wahrscheinlichkeit multiplilziert wird, das die Wahrnehmung zu der Zustandprognose zutrifft $p(z_t \mid x_t)$.
 
@@ -282,14 +304,34 @@ Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Pro
 
 Die Familie der Gauß Filter, zu denen auch der Kalman Filter gehört, ist eine der frühsten konkreten Implementierungen des Bayes Filters. Die Idee hinter jedem Gauß Filter liegt dabei, das der Belief durch eine mehrdimensionale Normalverteilung repräsentiert wird, die eindeutig durch die ersten beiden Momente Mittelwert $\mu$ und Kovarianz $\Sigma$ beschrieben wird. Der große Vorteil einer normalverteilten Zufallsvariable ist, dass das Ergebnis einer Lineartransformation mit einer anderen normalverteilten Zufallsvariable wieder zu einer normalverteilten Zufallsvariable führt. Zu den Nachteilen zählt, dass der Gauß Filter nur im kontinuierlichen Zustandsraum angewendet werden kann und durch die unimodale Verteilung nur für die Positionsverfolgung (engl. Position Tracking Problem) in Frage kommt.
 
-Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, siehe \autoref{fig:algorithm_kalman_filter}. Im ersten Schritt wird aus dem vorherigen Zustand $\mu_{t-1}$ und $\Sigma_{t-1}$ und den aktuellen Steuerbefehlen $u_t$ die Prognose für den neuen Zustand berechnet, siehe Zeile 2--3. Über die Matrix $A_t$ wird festgelegt, wie sich der Zustand von $t-1$ nach $t$ entwickelt, ohne die Einwirkungen der Steuerbefehle oder von Rauschen. Die Matrix $B_t$ beschreibt wie die Steuerbefehle die Zustandsänderung von $t-1$ nach $t$ beeinflussen. Im zweiten Schritt wird zuerst der Kalman Gain $K_t$ berechnet, siehe Zeile 4. Bei dem Kalman Gain handelt es sich um ein Gewicht, das entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert wird, siehe Zeile 5--6. Bei der Matrix $C_t$ wird definiert wir die Wahrnehmungen auf den Zustand abgebildet werden. Die beiden Matrizen $R_t$ und $Q_t$ bilden dabei das unabhängige und zufällig normalverteilte Rauschen ab.
+Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, siehe \autoref{alg:algorithm_kalman_filter}. Im ersten Schritt wird aus dem vorherigen Zustand $\mu_{t-1}$ und $\Sigma_{t-1}$ und den aktuellen Steuerbefehlen $u_t$ die Prognose für den neuen Zustand berechnet, siehe Zeile 2--3. Über die Matrix $A_t$ wird festgelegt, wie sich der Zustand von $t-1$ nach $t$ entwickelt, ohne die Einwirkungen der Steuerbefehle oder von Rauschen. Die Matrix $B_t$ beschreibt wie die Steuerbefehle die Zustandsänderung von $t-1$ nach $t$ beeinflussen. Im zweiten Schritt wird zuerst der Kalman Gain $K_t$ berechnet, siehe Zeile 4. Bei dem Kalman Gain handelt es sich um ein Gewicht, das entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert wird, siehe Zeile 5--6. Bei der Matrix $C_t$ wird definiert wir die Wahrnehmungen auf den Zustand abgebildet werden. Die beiden Matrizen $R_t$ und $Q_t$ bilden dabei das unabhängige und zufällig normalverteilte Rauschen ab.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{algorithm_kalman_filter}
-	\captionwithcite{Kalman Filter Algorithmus}{\cite{thrun2005probabilistic}}
-	\label{fig:algorithm_kalman_filter}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{algorithm_kalman_filter}
+%	\captionwithcite{Kalman Filter Algorithmus}{\cite{thrun2005probabilistic}}
+%	\label{fig:algorithm_kalman_filter}
+%\end{figure}
+
+\begin{algorithm}
+\begin{onehalfspacing}
+	\DontPrintSemicolon
+	\SetKwFunction{KwFn}{Kalman\_Filter}
+	\SetKwProg{KwPg}{Algorithm}{:}{\KwRet{$\mu_t, \Sigma_t$}}
+	\KwPg{\KwFn{$\mu_{t-1}$, $\Sigma_{t-1}$, $u_t$, $z_t$}}
+	{
+		$\bar{\mu}_t = A_t \, \mu_{t-1} + B_t \, u_t$\;
+		$\bar{\Sigma}_t = A_t \, \Sigma_{t-1} \, A^T_t + R_t$\;
+		\BlankLine
+		\BlankLine
+		$K_t = \bar{\Sigma}_t \, C^T_t (C_t \, \bar{\Sigma}_t \, C^T_t + Q_t)^{-1}$\;
+		$\mu_t = \bar{\mu}_t + K_t (z_t - C_t \, \bar{\mu}_t)$\;
+		$\Sigma_t = (I - K_t \, C_t) \bar{\Sigma}_t$\;
+	}
+\captionwithcite{Kalman Filter Algorithmus}{\cite{thrun2005probabilistic}}
+\label{alg:algorithm_kalman_filter}
+\end{onehalfspacing}
+\end{algorithm}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -362,14 +404,43 @@ Die Stichproben aus der a posteriori Verteilung werden als Partikel (engl. Parti
 \mathcal{X}_t := x^{\lbrack 1 \rbrack}_t, x^{\lbrack 2 \rbrack}_t, \ldots, x^{\lbrack M \rbrack}_t \label{eq:particle_filter_particle_set}
 \end{equation}
 
-Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen rekursiven Algorithmus, dem das vorherige Partikel-Set $\mathcal{X}_{t-1}$, die aktuellen Steuerbefehle $u_t$ und Wahrnehmungen $z_t$ übergeben werden, siehe \autoref{fig:algorithm_particle_filter}. Dabei wird im ersten Schritt auf jedem Partikel, aus dem vorherigen Set, die aktuellen Steuerbefehle angewendet und somit eine neue Prognose für den aktuellen Zustand gebildet, siehe Zeile 4. Weiterhin wird mit der neuen Zustandsprognose und den aktuellen Wahrnehmungen das Gewicht des Partikels bestimmt, siehe Zeile 5. Die aktuelle Zustandsprognose sowie das Gewicht werden danach in dem temporären Set $\overline{\mathcal{X}}_t$ gesammelt, siehe Zeile 6. Im zweiten Schritt findet das sogenannte \textit{Resampling} oder \textit{Importance Sampling} statt, siehe Zeile 9. Hierbei werden die Partikel mit einem hohen Gewicht beibehalten und die mit einem geringen durch neue ersetzt, die im Bereich der Partikel mit den hohen Gewichten liegen. Dadurch ist gewährleistet, dass sich die Partikel nicht in Bereichen mit einer geringen a posteriori Wahrscheinlichkeit aufhalten. Das Ergebnis aus dem letzten Schritt wird in dem Partikel-Set $\mathcal{X}_t$ gespeichert und dem Aufrufer zurückgegeben.
+Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen rekursiven Algorithmus, dem das vorherige Partikel-Set $\mathcal{X}_{t-1}$, die aktuellen Steuerbefehle $u_t$ und Wahrnehmungen $z_t$ übergeben werden, siehe \autoref{alg:algorithm_particle_filter}. Dabei wird im ersten Schritt auf jedem Partikel, aus dem vorherigen Set, die aktuellen Steuerbefehle angewendet und somit eine neue Prognose für den aktuellen Zustand gebildet, siehe Zeile 4. Weiterhin wird mit der neuen Zustandsprognose und den aktuellen Wahrnehmungen das Gewicht des Partikels bestimmt, siehe Zeile 5. Die aktuelle Zustandsprognose sowie das Gewicht werden danach in dem temporären Set $\overline{\mathcal{X}}_t$ gesammelt, siehe Zeile 6. Im zweiten Schritt findet das sogenannte \textit{Resampling} oder \textit{Importance Sampling} statt, siehe Zeile 9. Hierbei werden die Partikel mit einem hohen Gewicht beibehalten und die mit einem geringen durch neue ersetzt, die im Bereich der Partikel mit den hohen Gewichten liegen. Dadurch ist gewährleistet, dass sich die Partikel nicht in Bereichen mit einer geringen a posteriori Wahrscheinlichkeit aufhalten. Das Ergebnis aus dem letzten Schritt wird in dem Partikel-Set $\mathcal{X}_t$ gespeichert und dem Aufrufer zurückgegeben.
 
-\begin{figure}
-	\centering
-	\fbox{	\includegraphics[width=0.5\linewidth]{algorithm_particle_filter}}
-	\captionwithcite{\glsentrylong{pf} Algorithmus}{\cite{thrun2005probabilistic}}
-	\label{fig:algorithm_particle_filter}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\fbox{	\includegraphics[width=0.5\linewidth]{algorithm_particle_filter}}
+%	\captionwithcite{\glsentrylong{pf} Algorithmus}{\cite{thrun2005probabilistic}}
+%	\label{fig:algorithm_particle_filter}
+%\end{figure}
+
+\begin{algorithm}
+\begin{onehalfspacing}
+	\DontPrintSemicolon
+	\SetKwFunction{KwFn}{Particle\_Filter}
+	\SetKwProg{KwPg}{Algorithm}{:}{\KwRet{$\mathcal{X}_t$}}
+	\SetKw{KwSample}{sample}
+	\SetKw{KwDraw}{draw}
+	\SetKw{KwWithProb}{with probability}
+	\SetKw{KwAdd}{add}
+	\KwPg{\KwFn{$\mathcal{X}_{t-1}$, $u_t$, $z_t$}}
+	{
+		$\bar{\mathcal{X}}_t = \mathcal{X} = \emptyset$\;
+		\For{$m=1$ \KwTo $M$}
+		{
+			\KwSample $x^{\lbrack m \rbrack}_t \sim p(x_t \mid u_t, x^{\lbrack m \rbrack}_{t-1})$\;
+			$w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t)$\;
+			$\bar{\mathcal{X}}_t = \bar{\mathcal{X}}_t + \left \langle x^{\lbrack m \rbrack}_t, w^{\lbrack m \rbrack}_t \right \rangle$\;
+		}
+		\For{$m=1$ \KwTo $M$}
+		{
+			\KwDraw $i$ \KwWithProb $\propto w^{\lbrack i \rbrack}_t$\;
+			\KwAdd $x^{\lbrack i \rbrack}_t$ \KwTo $\mathcal{X}_t$\;
+		}
+	}
+\captionwithcite{\glsentrylong{pf} Algorithmus}{\cite{thrun2005probabilistic}}
+\label{alg:algorithm_particle_filter}
+\end{onehalfspacing}
+\end{algorithm}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -610,7 +681,7 @@ Der Term für die a posteriori Verteilung der Karte aus der \autoref{eq:pf_slam_
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{fast_slam_conditionally_independent}
-	\captionwithcite{Darstellung des \gls{slam} Problems als bayessches Netz.}{\cite{thrun2005probabilistic}}
+	\captionwithcite{Darstellung des \glsentryshort{slam} Problems als bayessches Netz.}{\cite{thrun2005probabilistic}}
 	\label{fig:fast_slam_conditionally_independent}
 \end{figure}
 

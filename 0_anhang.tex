@@ -1,37 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \begin{appendices}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \chapter{Abbildungen}
 
 % Grundlagen - Geometrie - Gleichseitiges Dreieck
 
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\linewidth]{wikipedia_gleichseitiges_dreieck}
-	\caption{Gleichseitiges Dreieck \cite{wikipedia2018dreieck}}
+	\includegraphics[width=0.45\linewidth]{wikipedia_gleichseitiges_dreieck}
+	\captionwithcite{Ein gleichseitiges Dreieck.}{\cite{wikipedia2018dreieck}}
 	\label{fig:wikipedia_gleichseitiges_dreieck}
 \end{figure}
 
 
 % Grundlagen - Geometrie - Regelmäßiges Fünfeck
 
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\linewidth]{wikipedia_regelmaessiges_fuenfeck}
-	\caption{Ein regelmäßiges Fünfeck in rot und ein Pentagramm in violett. \cite{wikipedia2018fuenfeck}}
+	\includegraphics[width=0.45\linewidth]{wikipedia_regelmaessiges_fuenfeck}
+	\captionwithcite{Ein regelmäßiges Fünfeck in rot und ein Pentagramm in violett.}{\cite{wikipedia2018fuenfeck}}
 	\label{fig:wikipedia_regelmaessiges_fuenfeck}
 \end{figure}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \chapter{Tabellen}
 
-\begin{sidewaystable}
+\begin{sidewaystable}[h]
 	\centering
 	\begin{tabular}{||c|c|l|c|l|c|r||} 
 		\hline
@@ -44,7 +53,7 @@
 		\CheckedBox & \CheckedBox & Conrad & 1417644-62 & Kohleschicht-Widerstand \SI{180}{\ohm} & 4 & \SI{0.06}{\euro}\\\hline
 		\CheckedBox & \CheckedBox & Conrad & 180134-62 & LED Grün & 2 & \SI{0.25}{\euro}\\\hline
 		\CheckedBox & \CheckedBox & Conrad & 184756-62 & LED Rot & 2 & \SI{0.34}{\euro}\\\hline
-		\Square & \CheckedBox & Conrad & 251007-62 & Emmerich LiIon Akku ICR-18650 NH-SP& 1 & \SI{9.99}{\euro}\\\hline
+		\Square & \CheckedBox & Conrad & 251007-62 & Emmerich LiIon Akku ICR-18650 NH-SP & 1 & \SI{9.99}{\euro}\\\hline
 		\hline
 		\Square & \CheckedBox & EXP-Tech & EXP-R15-577 & Adafruit Pro Trinket LiPoly/LiIon Backpack & 1 & \SI{5.55}{\euro}\\\hline
 		\CheckedBox & \Square & EXP-Tech & EXP-R15-1157 & Adafruit CP2104 Friend & 1 & \SI{6.45}{\euro}\\\hline
@@ -56,7 +65,7 @@
 		\multicolumn{6}{|r|}{Gesamtpreis für einen \gls{tag}:} & \SI{45.15}{\euro}\\\hline
 		\multicolumn{6}{|r|}{Gesamtpreis für einen \gls{anchor}:} & \SI{56.24}{\euro}\\\hline
 	\end{tabular}
-	\caption{Materialkosten pro \gls{tag} bzw. \gls{anchor}.}
+	\caption{Materialkosten pro \glsentryshort{tag} bzw. \glsentryshort{anchor}.}
 	\label{tab:kosten_pro_modul}
 \end{sidewaystable}
 
@@ -92,7 +101,7 @@ Entfernung & $\overline{x}$ & $\sigma$ & $SE_{\overline{x}}$ & Min & Max & Bias 
 \num{9.0} & \num{9.204} & \num{0.023} & \num{0.0010} & \num{9.120} & \num{9.290} & \num{0.204} \\
 \hline
 	\end{tabular}
-	\caption{Stochastische Merkmale der \Gls{los}--Entfernungsmessung.}
+	\caption{Stochastische Merkmale der \glsentryshort{los}--Entfernungsmessung.}
 	\label{tab:entfernungsmessung_2018_01_20_los}
 \end{table}
 
@@ -123,7 +132,7 @@ Entfernung & $\overline{x}$ & $\sigma$ & $SE_{\overline{x}}$ & Min & Max & Bias 
 \num{9.0} & \num{10.680} & \num{0.315} & \num{0.0141} & \num{9.980} & \num{11.680} & \num{1.680} \\
 \hline
 	\end{tabular}
-	\caption{Stochastische Merkmale der \Gls{nlos}--Entfernungsmessung mit einem wassergefüllten Kunststoffbehälter.}
+	\caption{Stochastische Merkmale der \glsentryshort{nlos}--Entfernungsmessung mit einem wassergefüllten Kunststoffbehälter.}
 	\label{tab:entfernungsmessung_2018_01_20_nlos_water}
 \end{table}
 
@@ -154,7 +163,7 @@ Entfernung & $\overline{x}$ & $\sigma$ & $SE_{\overline{x}}$ & Min & Max & Bias 
 \num{9.0} & \num{9.490} & \num{0.237} & \num{0.0106} & \num{9.110} & \num{10.250} & \num{0.490} \\
 \hline
 	\end{tabular}
-	\caption{Stochastische Merkmale der \Gls{nlos}--Entfernungsmessung mit einem Aluminiumblech in einer Entfernung von \SI{50}{\centi\meter}.}
+	\caption{Stochastische Merkmale der \glsentryshort{nlos}--Entfernungsmessung mit einem Aluminiumblech in einer Entfernung von \SI{50}{\centi\meter}.}
 	\label{tab:entfernungsmessung_2018_01_20_nlos_metal}
 \end{table}
 
@@ -190,15 +199,15 @@ Entfernung & $\overline{x}$ & $\sigma$ & $SE_{\overline{x}}$ & Min & Max & Bias 
 \end{table}
 
 
-
-
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \chapter{Auflistungen}
 
 
-\begin{listing}[h!]
+\begin{listing}
 	\begin{minted}[frame=single]{xml}
 <node pkg="joy" type="joy_node" name="joy_node">
 
@@ -211,7 +220,7 @@ Entfernung & $\overline{x}$ & $\sigma$ & $SE_{\overline{x}}$ & Min & Max & Bias 
 \end{listing}
 
 
-\begin{listing}[h!]
+\begin{listing}
 	\begin{minted}[frame=single]{xml}
 <node pkg="hector_trajectory_server" type="hector_trajectory_server" name="hector_trajectory_server_node">
 
