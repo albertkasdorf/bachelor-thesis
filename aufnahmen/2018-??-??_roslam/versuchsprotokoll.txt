@@ -62,8 +62,12 @@ Versuch "Mean und Covariance pro Beacon aus dem MRPT-Framework bestimmen":
 	- begin()/end()/iterator
 	- saveToMATLABScript3D(const std::string&, const char*, float)
 
-- CBeacon
+- CBeacon : CPointPDF
 	- m_ID
+	- m_typePDF : TTypePDF {pdfMonteCarlo = 0, pdfGauss, pdfSOG}
+	- m_locationMC : CPointPDFParticles
+	- m_locationGauss : CPointPDFGaussian
+	- m_locationSOG : CPointPDFSOG
 	- getMean(mrpt::poses::CPoint3D&)
 	- getCovarianceAndMean(mrpt::math::CMatrixDouble33&, mrpt::poses::CPoint3D&)
 	- getAsMatlabDrawCommands(utils::CStringList&)
