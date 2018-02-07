@@ -106,6 +106,9 @@ function viz_some(pose_trajectory, pose_estimation)
 		plot([pose_tra_xy(1); pose_est_xy(1, 1)], [pose_tra_xy(2); pose_est_xy(1, 2)], 'b:');
 		
 	end
+	
+	% Trajektorie einzeichen
+	plot(pose_trajectory(:, cid_x) + map_center(1), pose_trajectory(:, cid_y) + map_center(2), 'm-');
 		
 	% Zoom into Figure
 	xlim([9 16]);

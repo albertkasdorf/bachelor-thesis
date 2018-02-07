@@ -1,88 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Forschungsstand:
+%	- Forschungsstand:
+%		- Welche wissenschaftlichen Erkenntnisse liegen zu dem Thema bereits vor?
+%		- Grundsätzlich gibt es zwei Möglichkeiten, einen Forschungsstand zu schreiben: Entweder ordnen Sie Ihren Literaturüberblick nach Themenkomplexen oder Sie geben einen rein chronologischen Überblick über die wichtigsten Publikationen.
+%		- Auf keinen Fall sollten Sie den Forschungsstand zu voll packen. Es geht nicht darum, dem Leser zu zeigen, was Sie alles studiert haben (wie fleißig Sie waren), sondern um einen kompakten Überblick über die wichtigste Literatur.
+%		- Wichtig: Listen Sie die Literatur nicht nur auf, sondern erklären Sie, welchen Beitrag die jeweilige Publikation zum Erkenntnisgewinn geleistet hat. Also, zum Beispiel: Was hat der Autor als Erster erkannt oder hinterfragt? Es muss ja einen Grund geben, weshalb Sie die betreffende Publikation unter die Meilensteine reihen – und den sollten Sie dem Leser deutlich machen.
+%	
+%	- Ferrein:
+%		- 4-5 Seiten in der Bachelorarbeit (deutlich umfangreicher als im Exposé)
+%		- Was unterscheidet meinen Ansatz von den anderen verhandenen Ansätzen?
 %
-% - Welche wissenschaftlichen Erkenntnisse liegen zu dem Thema bereits vor?
-% - Grundsätzlich gibt es zwei Möglichkeiten, einen Forschungsstand zu schreiben: Entweder ordnen Sie Ihren Literaturüberblick nach Themenkomplexen oder Sie geben einen rein chronologischen Überblick über die wichtigsten Publikationen.
-% - Auf keinen Fall sollten Sie den Forschungsstand zu voll packen. Es geht nicht darum, dem Leser zu zeigen, was Sie alles studiert haben (wie fleißig Sie waren), sondern um einen kompakten Überblick über die wichtigste Literatur.
-% - Wichtig: Listen Sie die Literatur nicht nur auf, sondern erklären Sie, welchen Beitrag die jeweilige Publikation zum Erkenntnisgewinn geleistet hat. Also, zum Beispiel: Was hat der Autor als Erster erkannt oder hinterfragt? Es muss ja einen Grund geben, weshalb Sie die betreffende Publikation unter die Meilensteine reihen – und den sollten Sie dem Leser deutlich machen.
+%	- Informationen aus dem Expose
+%		- Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
+%		- In \cite{smith1987closed} wird das grundlegende Prinzip erklärt um aus mehreren bekannten Sensoren die Position eines beweglichen Empfängers zu berechnen.
+%		- Der theoretische Hintergrund des SLAM-Verfahrens wird in \cite{dissanayake2001solution} vorgestellt. Zusätzlich wird bewiesen das die Unsicherheit bei der Kartenerstellung und Lokalisierung eine untere Schranke erreicht.
+%		- \citeauthor{kantor2002preliminary} stellen in Ihrer Arbeit \cite{kantor2002preliminary} ein Lokalisierungsverfahren vor, welches die Roboterposition anhand von Entfernungsmessungen zu vorher bekannten Landmarken bestimmen kann. Im letzten Abschnitt wird SLAM-Verfahren vorgestellt, welches über einen Kalman-Filter die Unsicherheit der Landmarkenposition modellieren kann.
+%		- Die Autoren \citeauthor{blanco2008pure} gehen in ihren Arbeiten \cite{blanco2008pure, blanco2008efficient} einen Schritt weiter und bestimmen die unbekannte Roboterposition sowie die unbekannten Landmarkenpositionen. Hierzu nutzen Sie im ersten Schritt einen Partikelfilter (engl. Particle Filter) bis die Schätzung eine ausreichende Genauigkeit erreicht hat um dann im zweiten Schritt über einen Kalman-Filter ein Positionsverfolgung (engl. Position Tracking) durchzuführen.
+%		- Die Arbeit \cite{ledergerber2015robot} von \citeauthor{ledergerber2015robot} gehen auf die Roboterlokalisierung unter Verwendung einer One-Way Ultra-Wideband Kommunikation ein. Dieses hat den Vorteil, das mit sehr wenigen Landmarken eine große Anzahl von Roboter lokalisiert werden kann.
+%		
+%		- The Cartesian EKF described above operates in the Cartesian space, we formulate our problem in polar coordinates.
+%		
+%		- The use of this parameterization derives motivation from the polar coordinate system, where annuli, crescents and other ringlike shapes can be easily modeled. This parameterization is called Relative Over Parameterized (ROP) because it over parameterizes the state relative to an origin.
+%	
+%		- EKF -> Polar EKF -> Multi-Hypothesis Filter
+%		
+%		- Partikel Filter
 %
-% Ferrein:
-% - 4-5 Seiten in der Bachelorarbeit (deutlich umfangreicher als im Exposé)
-% - Was unterscheidet meinen Ansatz von den anderen verhandenen Ansätzen?
-%
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-- Informationen aus dem Expose
-	- Einen guten Überblick über die Eigenschaften der Drahtlosen-Protokolle (engl. Wireless Protocols) Bluetooth, UWB, ZigBee und WiFi liefert die Arbeit \cite{lee2007comparative} von \citeauthor{lee2007comparative}.
-	- In \cite{smith1987closed} wird das grundlegende Prinzip erklärt um aus mehreren bekannten Sensoren die Position eines beweglichen Empfängers zu berechnen.
-	- Der theoretische Hintergrund des SLAM-Verfahrens wird in \cite{dissanayake2001solution} vorgestellt. Zusätzlich wird bewiesen das die Unsicherheit bei der Kartenerstellung und Lokalisierung eine untere Schranke erreicht.
-	- \citeauthor{kantor2002preliminary} stellen in Ihrer Arbeit \cite{kantor2002preliminary} ein Lokalisierungsverfahren vor, welches die Roboterposition anhand von Entfernungsmessungen zu vorher bekannten Landmarken bestimmen kann. Im letzten Abschnitt wird SLAM-Verfahren vorgestellt, welches über einen Kalman-Filter die Unsicherheit der Landmarkenposition modellieren kann.
-	- Die Autoren \citeauthor{blanco2008pure} gehen in ihren Arbeiten \cite{blanco2008pure, blanco2008efficient} einen Schritt weiter und bestimmen die unbekannte Roboterposition sowie die unbekannten Landmarkenpositionen. Hierzu nutzen Sie im ersten Schritt einen Partikelfilter (engl. Particle Filter) bis die Schätzung eine ausreichende Genauigkeit erreicht hat um dann im zweiten Schritt über einen Kalman-Filter ein Positionsverfolgung (engl. Position Tracking) durchzuführen.
-	- Die Arbeit \cite{ledergerber2015robot} von \citeauthor{ledergerber2015robot} gehen auf die Roboterlokalisierung unter Verwendung einer One-Way Ultra-Wideband Kommunikation ein. Dieses hat den Vorteil, das mit sehr wenigen Landmarken eine große Anzahl von Roboter lokalisiert werden kann.
-	
-	- The Cartesian EKF described above operates in the Cartesian space, we formulate our problem in polar coordinates.
-	
-	- The use of this parameterization derives motivation from the polar coordinate system, where annuli, crescents and other ringlike shapes can be easily modeled. This parameterization is called Relative Over Parameterized (ROP) because it over parameterizes the state relative to an origin.
-
-	- EKF -> Polar EKF -> Multi-Hypothesis Filter
-	
-	- Partikel Filter
-\end{comment}
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
-\chapter{Stand der Forschung und Technik (rework)}
+%%%%%%%%%%
+\chapter{Stand der Forschung und Technik}
 
 In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \Gls{roslam} geliefert. Jeder Autor verwendet eine etwas andere Terminologie, auch wenn es sich im Kern um die gleiche Sache handelt. Daher werden in diesem Kapitel die Begriffe Anker, Tag und Beacon synonym verwendet.
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{kantor2002preliminary}
-- Preliminary results in range-only localization and mapping (189)
-- Section 2
-	- Statische Lokalisierung
-		- Vorherige Sensorinformationen und Positionsschätzung werden nicht genutzt.
-		- Annahme: Position der Beacons ist bekannt und fix.
-	- Markovian probability grids
-	- Mit fehlerfreien Messungen ist die Positionsbestimmung trivial
-	- Entfernungsmessung mit einem erwarteten Fehler von 6 feet, also 1,82 meter. (1Fuß==30cm)
-	- 1. Characterizing Range Measurements
-		- Erstellen einer Verteilungsfunktion für die Entfernungsmessung
-		- experimentel bestimmt
-		- Diskrete Messungen in einem Set {0,6,12,...,50}
-	- 2. Creating Probability Grids
-		- Für jede Zelle des Grid wird die Wahrscheinlichkeit mittels der PDF berechnet.
-	- 3. Combine Probability Grids
-		- Multiply in a pointwise manner
-		- scale the result so that the sum over the squares is one.
-		- Aus den kombinierten Ergebnisgrid kann die schätzte Position mittels der gewichteten Durchschnitt der Gridzellen berechnet werden.
-		- Covariance Matrix lässt sich auch bestimmen
-	- Durchschnittlich geschätzer Fehler lag ab 1,62 feet bei einem geschätzen Entfernungsmess Fehler von 5.82 bis 7.18 feet.
-- Section 3
-	- Beacon positionen sind bekannt
-	- Vorherige Positionsschätzung und Odometry daten werden verwendet.
-	- Positionsverfolgung mittels Kalman und Monte Carlo
-	- Kalman
-		- Initiale Positionsschätzung wie in Section 2, jedoch mit drei Beacons.
-		- Approximieren eines ringförmigen Gauß-Verteilung um die geschätzte Position.
-		- Füttern eines entsprechenden EKF mit den Parametern
-	- Monte Carlo
-		- Verwendet die pdf aus Section 2 um die Partikels zu gewichten.
-	- Durchschnittliche Geschätzter Fehler
-		- EKT: 0,73 feet
-		- MC: 0,93 feet
-- Section 4
-	- Lokalisieren in einer Umgebung mit unsicheren beacon positionen
-		- Approximately known, good but not perfect
-		- crude measurement or estimate location on blueprint
-	- SLAM mit EKF
-		- State ist die Robot- und Beacon-Position
-		- Error: init 5.13 feet, end 0.77 feet
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{kantor2002preliminary}
+%	- Preliminary results in range-only localization and mapping (189)
+%	- Section 2
+%		- Statische Lokalisierung
+%			- Vorherige Sensorinformationen und Positionsschätzung werden nicht genutzt.
+%			- Annahme: Position der Beacons ist bekannt und fix.
+%		- Markovian probability grids
+%		- Mit fehlerfreien Messungen ist die Positionsbestimmung trivial
+%		- Entfernungsmessung mit einem erwarteten Fehler von 6 feet, also 1,82 meter. (1Fuß==30cm)
+%		- 1. Characterizing Range Measurements
+%			- Erstellen einer Verteilungsfunktion für die Entfernungsmessung
+%			- experimentel bestimmt
+%			- Diskrete Messungen in einem Set {0,6,12,...,50}
+%		- 2. Creating Probability Grids
+%			- Für jede Zelle des Grid wird die Wahrscheinlichkeit mittels der PDF berechnet.
+%		- 3. Combine Probability Grids
+%			- Multiply in a pointwise manner
+%			- scale the result so that the sum over the squares is one.
+%			- Aus den kombinierten Ergebnisgrid kann die schätzte Position mittels der gewichteten Durchschnitt der Gridzellen berechnet werden.
+%			- Covariance Matrix lässt sich auch bestimmen
+%		- Durchschnittlich geschätzer Fehler lag ab 1,62 feet bei einem geschätzen Entfernungsmess Fehler von 5.82 bis 7.18 feet.
+%	- Section 3
+%		- Beacon positionen sind bekannt
+%		- Vorherige Positionsschätzung und Odometry daten werden verwendet.
+%		- Positionsverfolgung mittels Kalman und Monte Carlo
+%		- Kalman
+%			- Initiale Positionsschätzung wie in Section 2, jedoch mit drei Beacons.
+%			- Approximieren eines ringförmigen Gauß-Verteilung um die geschätzte Position.
+%			- Füttern eines entsprechenden EKF mit den Parametern
+%		- Monte Carlo
+%			- Verwendet die pdf aus Section 2 um die Partikels zu gewichten.
+%		- Durchschnittliche Geschätzter Fehler
+%			- EKT: 0,73 feet
+%			- MC: 0,93 feet
+%	- Section 4
+%		- Lokalisieren in einer Umgebung mit unsicheren beacon positionen
+%			- Approximately known, good but not perfect
+%			- crude measurement or estimate location on blueprint
+%		- SLAM mit EKF
+%			- State ist die Robot- und Beacon-Position
+%			- Error: init 5.13 feet, end 0.77 feet
+%
+%%%%%%%%%%
 \section{Preliminary results in range-only localization and mapping}
 
 In \citetitle{kantor2002preliminary}\cite{kantor2002preliminary} verwendet der Author \Glspl{beacon} die eine Entfernungsschätzung mit einem mittleren Fehler von \SI{1.82}{\metre} (6 Fuß) liefern. Um das Problem der Datenzuordnung zu trivialisieren, liefert jeder \Gls{beacon} zusätzlich zur Messung eine eindeutigen Identifikationsnummer mit. Nur mit diesen Daten werden die Probleme der Roboter Lokalisierung, Positionsverfolgung und \Gls{slam} behandelt. Das algorithmische Fundament wird dabei durch den \Gls{ekf} und \Gls{mc} Partikelfilter gebildet.
@@ -119,22 +113,24 @@ Im nächsten Abschnitt wird die Positionsverfolgung mittels eines \Gls{ekf} bzw.
 Der letzte Abschnitt wird ein \Gls{slam}-Verfahren mittels einem \Gls{ekf} behandelt. Die initiale Roboter- und \Gls{beacon}-Position muss nicht genau jedoch ungefähr bekannt sein. Der Zustandsvektor des \Gls{ekf} beinhaltet die Roboter- und alle \Gls{beacon}-Positionen. Der durchschnittliche Fehler in der initalen Schätzung beträgt \SI{1.56}{\metre} und verbessert sich zum Schluss hin auf \SI{0.23}{\metre}.
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{kurth2003experimental}
-	- Experimental results in range-only localization with radio (82)
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{kurth2003experimental}
+%		- Experimental results in range-only localization with radio (82)
+%
+%%%%%%%%%%
 %\section{Experimental results in range-only localization with radio [todo]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{olson2004robust}
-	- Robust range-only beacon localization (264)
-	- Wie funktioniert die Exploration Strategy?
-		- Die Ungünstigeste strategy ist das geradeausfahren mit einem beacon links und rechts.
-		- Das Gradientenfeld der abstanddifferenz zwischen den beiden beacons führt einen auf den optimalen weg um die Abstandsdifferenz zu maximieren. (Aktive Exploration)
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{olson2004robust}
+%		- Robust range-only beacon localization (264)
+%		- Wie funktioniert die Exploration Strategy?
+%			- Die Ungünstigeste strategy ist das geradeausfahren mit einem beacon links und rechts.
+%			- Das Gradientenfeld der abstanddifferenz zwischen den beiden beacons führt einen auf den optimalen weg um die Abstandsdifferenz zu maximieren. (Aktive Exploration)
+%
+%%%%%%%%%%
 \section{Robust range-only beacon localization}
 
 In \citetitle{olson2004robust}\cite{olson2004robust} werden autonome Unterwasserfahrzeuge (engl. \gls{auv}) verwendet um den Ozeanen der Welt die letzten Geheimnisse zu entlocken. Hierfür ist eine genaue Lokalisierung der \gls{auv} notwendig. Dies wird über die Messung der Signallaufzeit zwischen dem \gls{auv} und mehreren stationären akustischen Transponder-\Gls{beacon} erreicht. Vor der eigentlichen Messung müssen jedoch die \Glspl{beacon} im Messbereich verteilt werden, deren Position genau bestimmt werden und zusätzlich dafür gesorgt werden, dass die \Glspl{beacon} ihre Position nicht ändern. Dadurch handelt es sich um ein sehr kostspieliges Prozedere und soll in dem vorgestellt Verfahren dahingehend optimierte werden, dass die \Gls{beacon}-Position vorher nicht bekannt sein muss. Dadurch ist eine autonome Verteilung der \Glspl{beacon} möglich und zusätzlich kann auch detektiert werden ob ein \Gls{beacon} seine Position verändert hat.
@@ -145,17 +141,20 @@ Bevor jedoch die Laufzeitmessungen verwendet werden können, müssen diese um \G
 Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messwerte von zwei verschiedenen \Glspl{beacon} wieder mit einandern überschnitten. Hieraus entstehen zwei mögliche Positionen des \gls{auv}. In einem Grid erhöhen diese beiden Positionen dann den Ihnen zugeordneten Zähler. Dieser Vorgang wird für weiter Messwerte wiederholt. Durch das daraus resultierende Voting-System entstehen zwei Gipfel (engl. Peak) die die mögliche Position des \gls{auv} approximieren. Ist der Höhenunterschied zwischen den Gipfeln ausreichend groß, wird die \gls{auv}-Position mit dem höchsten Gipfel an einen EKF-SLAM übergeben.
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
--\cite{smith2004tracking}
-	- Tracking moving devices with the cricket location system (547)
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	-\cite{smith2004tracking}
+%		- Tracking moving devices with the cricket location system (547)
+%
+%%%%%%%%%%
 %\section{Tracking moving devices with the cricket location system [todo]}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \section{A pure probabilistic approach to range-only SLAM}\label{sec:blanco2008pure}
 
 Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}-Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure} \cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}-Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein rein probabilistisches Verfahren genutzt.
@@ -186,11 +185,12 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 \end{figure}
 
 
-\begin{comment}
-------------------------------------------------------------------------------------------
-- \cite{blanco2008efficient}
-	- Efficient probabilistic range-only SLAM (71)
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{blanco2008efficient}
+%		- Efficient probabilistic range-only SLAM (71)
+%
+%%%%%%%%%%
 \section{Efficient probabilistic range-only SLAM}\label{sec:blanco2008efficient}
 
 Aufbauend auf der vorherigen Arbeit im Abschnitt~\ref{sec:blanco2008pure} wird in \citetitle{blanco2008efficient} \cite{blanco2008efficient} nicht mehr ein Hilfspartikelfilter verwendet, der ab einer gewissen Sicherheit in einen \Gls{ekf} umgewandelt wird. Stattdessen wird die ringförmiger Verteilung über radial angeordnete Normalverteilungen angenähert deren Nachbarschaftsabstand über den Parameter \textit{K} bestimmt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig17a}~--~\ref{fig:blanco2008efficient_fig17b}. Die Gesamtverteilung ergibt sich dabei über eine gewichtete Summe der Normalverteilungen (engl. Sum of Gaussians). Über die Gewichte lässt sich dabei steuern, ob eine der Normalverteilungen in dem Ring für die \textit{Beacon}-Position noch relevant ist oder entfernt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig10a}~--~\ref{fig:blanco2008efficient_fig10b}.
@@ -227,11 +227,12 @@ Sowohl das Verfahren aus dem Abschnitt~\ref{sec:blanco2008pure} als auch dieses 
 \end{figure}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-- \cite{djugash2009robust}
-	- A robust method of localization and mapping using only range
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{djugash2009robust}
+%		- A robust method of localization and mapping using only range
+%
+%%%%%%%%%%
 \section{A robust method of localization and mapping using only range}
 
 Jede bisherige Veröffentlichung die einen \Gls{roslam} mittels eines \Gls{ekf} umsetzen will, muss mit dem Problem der Linearisierung und der Multimodalität der Verteilung kämpfen. Hierfür wurde das Problem bisher immer im kartesischen Koordinatensystem betrachtet. Die Autoren dieses Werkes \cite{djugash2009robust} sind einen anderen Weg gegangen und haben das Problem ins Polarkoordinatensystem überführt. Dieses Vorgehen hat den großen Vorteil, dass ringförmige Verteilungen sehr gut im Polarkoordinatensystem modelliert werden können. Auch ist eine Vorverarbeitung (engl. Batch Process) der Entfernungsmessungen nicht mehr notwendig. Die Ergebnisse der Messung kann direkt an den Filter übergeben werden.
@@ -307,132 +308,138 @@ Nachdem zwei Messungen von verschiedenen Positionen aus durchgeführt wurden, er
 \end{figure}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-- \cite{ahmad2011newstatevector}
-	- A New State Vector for Range-Only SLAM
-\section{A New State Vector for Range-Only SLAM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{ahmad2011newstatevector}
+%		- A New State Vector for Range-Only SLAM
+%
+%%%%%%%%%%
+%\section{A New State Vector for Range-Only SLAM}
 
 
-☐ Zu Bearbeitende Paper (Least-Square-Root)
-		☐ [2011] A new state vector for range-only SLAM
-	☐ Zu Bearbeitende Paper (Square Root SAM)
-		☐ [2005] Square root SAM: Simultaneous localization and mapping via square root information smoothing
-		☐ [2006] Square Root SAM: Simultaneous localization and mapping via square root information smoothing
-		☐ [2014] A Comparison of SLAM Algorithms with Range Only Sensors
-	☐ Zu Bearbeitende Paper (Multiple hypotheses)
-		☐ [2010] A general gaussian-mixture approach for range-only mapping using multiple hypotheses
-		☐ [2010] Active sensing for range-only mapping using multiple hypothesis
-	☐ Zu Bearbeitende Paper
-		☐ Sind hier neue Ansetze zu finden?
-		☑ Preliminary results in range-only localization and mapping
-		☐ [2003] Experimental results in range-only localization with radio
-		☐ [2005] Further Results with Localization and Mapping using Range from Radio
-	☐ Zu Bearbeitende Paper (UWB+GPS+EKF+MC)
-		☐ Application of UWB and GPS technologies for vehicle localization in combined indoor-outdoor environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- \cite{herranz2014comparison}
+%		- A Comparison of SLAM Algorithms with Range Only Sensors
+%
+%%%%%%%%%%
+%\section{A Comparison of SLAM Algorithms with Range Only Sensors}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
+%	☐ Zu Bearbeitende Paper (Least-Square-Root)
+%			☐ [2011] A new state vector for range-only SLAM
+%		☐ Zu Bearbeitende Paper (Square Root SAM)
+%			☐ [2005] Square root SAM: Simultaneous localization and mapping via square root information smoothing
+%			☐ [2006] Square Root SAM: Simultaneous localization and mapping via square root information smoothing
+%			☐ [2014] A Comparison of SLAM Algorithms with Range Only Sensors
+%		☐ Zu Bearbeitende Paper (Multiple hypotheses)
+%			☐ [2010] A general gaussian-mixture approach for range-only mapping using multiple hypotheses
+%			☐ [2010] Active sensing for range-only mapping using multiple hypothesis
+%		☐ Zu Bearbeitende Paper
+%			☐ Sind hier neue Ansetze zu finden?
+%			☑ Preliminary results in range-only localization and mapping
+%			☐ [2003] Experimental results in range-only localization with radio
+%			☐ [2005] Further Results with Localization and Mapping using Range from Radio
+%		☐ Zu Bearbeitende Paper (UWB+GPS+EKF+MC)
+%			☐ Application of UWB and GPS technologies for vehicle localization in combined indoor-outdoor environments
 
-\end{comment}
 
-
-\begin{comment}
---------------------------------------------------------------------------------
-- \cite{herranz2014comparison}
-	- A Comparison of SLAM Algorithms with Range Only Sensors
-\section{A Comparison of SLAM Algorithms with Range Only Sensors}
-\end{comment}
-
-
-\begin{comment}
-------------------------------------------------------------------------------------------
-\section{Übersicht der Meilensteine [Remove in final version]}
-
-\begin{description}
-
-\item[2001]
-\begin{itemize}
-\item !A solution to the simultaneous localization and map building (SLAM) problem (Zitiert von: 2803)
-\item +Auxiliary variable based particle filters (115)
-\item +Factor graphs and the sum-product algorithm (5869)
-\item +Rao-Blackwellised particle filtering for dynamic Bayesian networks (1264)
-\end{itemize}
-
-\item[2002]
-\begin{itemize}
-\item +FastSLAM: A factored solution to the simultaneous localization and mapping problem (2469)
-\item Indoor geolocation science and technology (985)
-\end{itemize}
-
-\item[2003]
-\begin{itemize}
-\item !Experimental results in range-only localization with radio (82)
-\item !Pure range-only sub-sea SLAM (174)
-\item +Recent results in extensions to simultaneous localization and mapping (18)
-\end{itemize}
-
-\item[2004]
-\begin{itemize}
-\item !Tracking moving devices with the cricket location system (547)
-\item !A probabilistic approach to inference with limited information in sensor networks (42)
-\item +An introduction to factor graphs (672)
-\end{itemize}
-
-\item[2006]
-\begin{itemize}
-\item !Simultaneous localization and mapping: part I (2982)
-\item !Simultaneous localization and mapping (SLAM): Part II (1479)
-\item Further results with localization and mapping using range from radio (69)
-\item !Range-only slam for robots operating cooperatively with sensor networks (146)
-\item !Range-only slam with interpolated range data (28)
-\end{itemize}
-
-\item[2007]
-\begin{itemize}
-\item !Application of UWB and GPS technologies for vehicle localization in combined indoor-outdoor environments (52)
-\item +Rao-Blackwellized particle filter for multiple target tracking (264)
-\end{itemize}
-
-\item[2009]
-\begin{itemize}
-\item !Navigating with ranging radios: Five data sets with ground truth (18)
-\item !Mobile robot localization based on ultra-wide-band ranging: A particle filter approach (90)
-\item !Range-only SLAM with a mobile robot and a wireless sensor networks (109)
-\end{itemize}
-
-\item[2010]
-\begin{itemize}
-\item !Geolocation with range: Robustness, efficiency and scalability (11)
-\item !Studying of WiFi range-only sensor and its application to localization and mapping systems (3)
-\item !tinySLAM: A SLAM algorithm in less than 200 lines C-language program (62)
-\end{itemize}
-
-\item[2011]
-\begin{itemize}
-\item Ultra wide-band localization and SLAM: A comparative study for mobile robot navigation (17)
-\item !A new state vector for range-only SLAM (10)
-\end{itemize}
-
-\item[2013]
-\begin{itemize}
-\item A Spectral Learning Approach to Range-Only {SLAM} (13)
-\end{itemize}
-
-\item[2014]
-\begin{itemize}
-\item !A comparison of slam algorithms with range only sensors (2)
-\item !Efficient robot-sensor network distributed seif range-only slam (16)
-\end{itemize}
-
-\item[2015]
-\begin{itemize}
-\item ?Fusing ultra-wideband range measurements with accelerometers and rate gyroscopes for quadrocopter state estimation (30)
-\end{itemize}
-
-%\item[]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
+%\section{Übersicht der Meilensteine [Remove in final version]}
+%
+%\begin{description}
+%
+%\item[2001]
 %\begin{itemize}
-%\item 
+%\item !A solution to the simultaneous localization and map building (SLAM) problem (Zitiert von: 2803)
+%\item +Auxiliary variable based particle filters (115)
+%\item +Factor graphs and the sum-product algorithm (5869)
+%\item +Rao-Blackwellised particle filtering for dynamic Bayesian networks (1264)
 %\end{itemize}
-
-\end{description}
-\end{comment}
+%
+%\item[2002]
+%\begin{itemize}
+%\item +FastSLAM: A factored solution to the simultaneous localization and mapping problem (2469)
+%\item Indoor geolocation science and technology (985)
+%\end{itemize}
+%
+%\item[2003]
+%\begin{itemize}
+%\item !Experimental results in range-only localization with radio (82)
+%\item !Pure range-only sub-sea SLAM (174)
+%\item +Recent results in extensions to simultaneous localization and mapping (18)
+%\end{itemize}
+%
+%\item[2004]
+%\begin{itemize}
+%\item !Tracking moving devices with the cricket location system (547)
+%\item !A probabilistic approach to inference with limited information in sensor networks (42)
+%\item +An introduction to factor graphs (672)
+%\end{itemize}
+%
+%\item[2006]
+%\begin{itemize}
+%\item !Simultaneous localization and mapping: part I (2982)
+%\item !Simultaneous localization and mapping (SLAM): Part II (1479)
+%\item Further results with localization and mapping using range from radio (69)
+%\item !Range-only slam for robots operating cooperatively with sensor networks (146)
+%\item !Range-only slam with interpolated range data (28)
+%\end{itemize}
+%
+%\item[2007]
+%\begin{itemize}
+%\item !Application of UWB and GPS technologies for vehicle localization in combined indoor-outdoor environments (52)
+%\item +Rao-Blackwellized particle filter for multiple target tracking (264)
+%\end{itemize}
+%
+%\item[2009]
+%\begin{itemize}
+%\item !Navigating with ranging radios: Five data sets with ground truth (18)
+%\item !Mobile robot localization based on ultra-wide-band ranging: A particle filter approach (90)
+%\item !Range-only SLAM with a mobile robot and a wireless sensor networks (109)
+%\end{itemize}
+%
+%\item[2010]
+%\begin{itemize}
+%\item !Geolocation with range: Robustness, efficiency and scalability (11)
+%\item !Studying of WiFi range-only sensor and its application to localization and mapping systems (3)
+%\item !tinySLAM: A SLAM algorithm in less than 200 lines C-language program (62)
+%\end{itemize}
+%
+%\item[2011]
+%\begin{itemize}
+%\item Ultra wide-band localization and SLAM: A comparative study for mobile robot navigation (17)
+%\item !A new state vector for range-only SLAM (10)
+%\end{itemize}
+%
+%\item[2013]
+%\begin{itemize}
+%\item A Spectral Learning Approach to Range-Only {SLAM} (13)
+%\end{itemize}
+%
+%\item[2014]
+%\begin{itemize}
+%\item !A comparison of slam algorithms with range only sensors (2)
+%\item !Efficient robot-sensor network distributed seif range-only slam (16)
+%\end{itemize}
+%
+%\item[2015]
+%\begin{itemize}
+%\item ?Fusing ultra-wideband range measurements with accelerometers and rate gyroscopes for quadrocopter state estimation (30)
+%\end{itemize}
+%
+%%\item[]
+%%\begin{itemize}
+%%\item 
+%%\end{itemize}
+%
+%\end{description}
