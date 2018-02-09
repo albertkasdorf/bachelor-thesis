@@ -1,15 +1,45 @@
 Fragen:
-- Wie bekomme ich die ganzen Daten synchronisiert?
++ Wie bekomme ich die ganzen Daten synchronisiert?
 - Wie sehr kann man den Odometrie-Daten glauben?
 - Wie sehr kann man den Laser-Odometrie-Daten glauben?
 - Wie groß ist der Fehler zwischen der Messung, dem GT und der Schätzung. (Beacon/Pose)
 - Nach welcher Zeitspanne konvergieren die Beacons zu ihrer richtigen Position?
 
-Aufgaben:
-- Teleop-Node
+
+Offene Fragen:
++ Werden die UWB-Entfernungen durch den TF transformiert?
+	+ Nein die Transformation wird im MRPT Framework durchgeführt.
+
+
+Besorgungen 2018-02-07:
+- tmux cheat cheet
+
+
+Aufgaben 2018-02-07:
++ UWB-Beacon aufladen
+
++ beacon_observer.py
+	+ Beoachten welche Beacons vorhanden sind und welche Entfernungen diese zurückgeben.
+	+ Testen mit einem Bag-File
+
++ UWB-Beacon mit ihren speziellen Verzögerungen programmieren und testen.
+	+ B0=176=16442
+	+ B1=177=16401
+	+ B2=178=16402
+	+ B3=179=16384
+	+ B4=180=16435
+
+(-) beacon_transformer
+	- Systematischen Fehler korrigieren (beacon_sys)
+	- Winkel Fehler korrigieren (beacon_angle)
+	- Systematischen und Winkel Fehler korrigieren (beacon_sys_angle)
+	- Individuelle Korrektur pro Beacon?
+
+(-) Teleop-Node
 	- http://wiki.ros.org/teleop_twist_joy
 	- http://yardbot.ca/2014/10/writing-custom-joystick-teleop-node-ros/
-	- ~autorepeat_rate (double, default: 0.0 (disabled)): Rate in Hz at which a joystick that has a non-changing state will resend the previously sent message.
+	- ~autorepeat_rate (double, default: 0.0 (disabled)):
+		- Rate in Hz at which a joystick that has a non-changing state will resend the previously sent message.
 	- Test with TurtleSim
 	- http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics
 	- Map-Funktion verwenden um vom Bereich 0-1 auf den Geschwindigkeitsbereich zu übertragen.
@@ -18,21 +48,30 @@ Aufgaben:
 		- Werte unterhalb der Zielwerte werden verworfen, also gleich Null gesetzt.
 		- Werte oberhalb der Zielwerte werden auf den oberen Zielwert gesetzt.
 
-- Aufzeichnungsrichtlinien (RO-SLAM)
+
+Aufgaben 2018-02-08:
++ UWB-Modul befestigen
++ TF-Tree anpassen
+	+ Pose in beacon_publisher anpassen
+	+ URDF-Model anpassen
+
+
+Aufzeichnungsrichtlinien (RO-SLAM):
 	+ Robotino Odom zurücksetzen
 		+ rosservice call /reset_odometry 0 0 0
+		+ x=0, y=0, phi=0
 	+ Warten bis alle Beacons registiert sind (10 Sekunden)
 		+ rostopic echo "/beacon/sensed_data[0]/id"
 	- Beacon Platzierung
 		+ Beacons auf keinen Fall symmetrisch plazieren.
 		+ Beacon-Position muss im Nachhinein bestimmt werden können.
-		? Beacons erhöht positionieren, damit sie vom Laser erkannt werden.
-		- Karte erstellen mit Beacon-Positionen
-	- Robotino Platzierung
+		+ (Nein) Beacons erhöht positionieren, damit sie vom Laser erkannt werden.
+		+ Karte erstellen mit Beacon-Positionen
+	+ Robotino Platzierung
 		+ Horizontale wird an dem Türrahmen ausgerichtet
 		+ Rückkehren zum Startpunkt, sinnvoll wegen Drift.
-		- Startpunkt festlegen auf der Karte
-		- Startpunkt mit Tape abkleben
+		+ Startpunkt festlegen auf der Karte
+		+ Startpunkt mit Tape abkleben
 	+ Skizze des Raums anfertigen mit Maßen
 		+ Breite: 2.008m
 		+ Segmentlänge: 4.062m
@@ -44,41 +83,64 @@ Aufgaben:
 			- [todo]
 			- http://wiki.ros.org/teleop_twist_joy
 			- http://yardbot.ca/2014/10/writing-custom-joystick-teleop-node-ros/
-	- URDF-Modell anpassen
-		- [todo] Position des Beacons anpassen
 
 
-Versuch "Mean und Covariance pro Beacon aus dem MRPT-Framework bestimmen":
-- CMultiMetricMap
-	- m_beaconMap : CBeaconMap
-		- getBeaconByID(...)
-			- CBeacon
-				- getCovarianceAndMean(...)
-	- geometry_msgs/PoseWithCovariance
-	- http://www.visiondummy.com/2014/04/draw-error-ellipse-representing-covariance-matrix/
-	- https://gist.github.com/Piyush3dB/bf2c83a8eb7344798644
-
-- CBeaconMap
-	- begin()/end()/iterator
-	- saveToMATLABScript3D(const std::string&, const char*, float)
-
-- CBeacon : CPointPDF
-	- m_ID
-	- m_typePDF : TTypePDF {pdfMonteCarlo = 0, pdfGauss, pdfSOG}
-	- m_locationMC : CPointPDFParticles
-	- m_locationGauss : CPointPDFGaussian
-	- m_locationSOG : CPointPDFSOG
-	- getMean(mrpt::poses::CPoint3D&)
-	- getCovarianceAndMean(mrpt::math::CMatrixDouble33&, mrpt::poses::CPoint3D&)
-	- getAsMatlabDrawCommands(utils::CStringList&)
-
-- CStringList
-	- std::string getText()
++Versuch 0: "Gute Beacon Position bestimmen"
 
 
-Versuch "???":
-- Entfernen aller Odom Transformationen
-- beacon + laser als quelle einstellen
++Versuch 1: "Beacon-spezifische Abweichung bestimmen"
+	+ beacon_publisher starten
+	+ beacon_observer starten
+	+ Entfernung vom Robotino zu jedem Beacon messen
+		+ ID ->ID : GT   m - Measurement m
+		+ 176->177: 2.13 m - 2.45 m
+		+ 176->178: 2.29 m - 2.45 m
+		+ 176->179: 5.25 m - 5.48 m
+		+ 176->180: 4.00 m - 3.95 m
 
-Versuch NLOS-RO-SLAM:
-	- Ganz viele Stühle quer stellen und die Beacons dahinter stellen und dann um diese Hinternisse navigieren.
+
+Versuch 2: "Genauigkeit der Odometrie bestimmen"
+	- Position der Robotino festlegen
+		- Abstecken mit Kreppband
+		- Position bestimmen
+		- Immer an diese Position zurückkehren
+	+ Robotino Odom zurücksetzen
+		+ rosservice call /reset_odometry 0 0 0
+	+ 5 Sekunden warten
+	+ Kurze Runde abfahren
+		+ (Record_2018-02-08-12-30-43.bag)
+	+ 5 Sekunden warten
+	+ Lange Runde abfahren
+		+ (Record_2018-02-08-12-33-53.bag)
+	+ 5 Sekunden warten
+	+ Lange+Schlangenlinie+Kreuz-und-Quer Runde abfahren
+		+ (Record_2018-02-08-12-37-13.bag)
+	(-) Auswertung
+		- Herausfiltern der Odometry Nachrichten aus den Bag--Dateien
+			- /home/albert/catkin_ws/src/ro_slam_with_uwb/bags/filter.sh
+		- Odometry aus den Laser-Scans bestimmen und Trajektorie aufzeichen.
+			- rf2o_laser_odometry_node
+			- laser_scan_matcher_node
+			- hector_trajectory_server
+			- /home/albert/catkin_ws/src/ro_slam_with_uwb/scripts/trajectory_to_csv.py
+				- robotino_odometry.csv
+				- rf2o_odometry.csv
+				- lsm_odometry.csv
+		- Trajektorien vergleichen
+			- /home/albert/Documents/bachelor-thesis/aufnahmen/2018-01-10_trajectory/auswertung.m
+
+
+Versuch 3: "LOS-RO-SLAM"
+
+
+Versuch 4: "NLOS-RO-SLAM"
+	- Ganz viele Stühle quer stellen
+	- Beacons dahinter stellen
+	- Um diese Hinternisse navigieren.
+	- (.bag)
+
+
+
+
+
+
