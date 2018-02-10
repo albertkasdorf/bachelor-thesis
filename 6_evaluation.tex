@@ -1,14 +1,17 @@
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \chapter{Evaluation}\label{ch:eval}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-- TODO: Stimmen die 10Hz?
-- Start 13:50-23:50, 12:50-20:00 => 10+7 => 17 Stunden
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- TODO: Stimmen die 10Hz?
+%	- Start 13:50-23:50, 12:50-20:00 => 10+7 => 17 Stunden
+%
+%%%%%%%%%%
 \section{Batterielaufzeit}
 
 Beim Test der Batterielaufzeit wurden zwei \gls{uwbm} in einem Abstand von \SI{4.7}{\metre} aufgestellt. Beide \gls{uwbm} hatten eine direkte \gls{los} zu einandern. Über den kompletten Zeitraum wurden Entfernungsmessungen mit einer Rate von \SI{10}{\hertz} durchgeführt. Als Testprogramme wurden dabei \textit{DW1000Ranging\_ANCHOR} und \textit{DW1000Ranging\_TAG} aus dem GitHub-Projekt \cite{Trojer2015} verwendet.
@@ -16,13 +19,14 @@ Beim Test der Batterielaufzeit wurden zwei \gls{uwbm} in einem Abstand von \SI{4
 Der \Gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig später folgte Ihm der \Gls{tag}. Deutlich höhere Batterielaufzeiten können dadurch erzielt werden, dass die Senderate reduziert wird und die Stromsparfunktionen sowohl des DWM1000 als auch des ATmega328/P genutzt werden.
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-- 3-sigma
-	- https://www.easycalculation.com/statistics/learn-three-sigma.php
-	- https://bizfluent.com/how-5214886-calculate-sigma.html
-	- https://stackoverflow.com/questions/28699342/calculate-the-3rd-standard-deviation-for-an-array
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- 3-sigma
+%		- https://www.easycalculation.com/statistics/learn-three-sigma.php
+%		- https://bizfluent.com/how-5214886-calculate-sigma.html
+%		- https://stackoverflow.com/questions/28699342/calculate-the-3rd-standard-deviation-for-an-array
+%
+%%%%%%%%%%
 \section{Kalibierung}
 
 Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervorgänge durchgeführt. Der erste Kalibriervorgang orientiert sich an den Herstellervorgaben aus \cite{decawave2014calibration}. Dazu werden drei \Glspl{uwbm} an die Spitzen eines gleichseitigen Dreieckes positioniert. Um das Dreieck zu konstruieren, wird in der Mitte des Dreiecks eine ausgemessene Maurerschnur befestigt, darüber wird eine Winkelschablone gelegt und dann reihum die Spitzen es Dreiecks auf dem Boden eingezeichnet, siehe \autoref{fig:calibration_triangle2}. Die Seitenlänge $a \approx \SI{1.73}{\meter}$ wird dabei aus dem Umkreisradius $r_u = \SI{1}{\meter}$ mit der \autoref{eq:dreieck_seitenlaenge_aus_umkreis} berechnet.
@@ -175,14 +179,16 @@ Für das regelmäßige Fünfeck/Pentagramm wurde nur noch das \textit{LGS}-Ka\-l
 \end{table}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-- Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line-of-sight (LOS)) und indirekten Sichtverbindung (engl. Non-line-of-sight (NLOS))?
-- Stochastik
-	- https://matheguru.com/stochastik/mittel-durchschnitt-und-lageparameter.html
-	- https://matheguru.com/stochastik/standardabweichung.html
-	- https://matheguru.com/stochastik/standardfehler.html
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line-of-sight (LOS)) und indirekten Sichtverbindung (engl. Non-line-of-sight (NLOS))?
+%	- Stochastik
+%		- https://matheguru.com/stochastik/mittel-durchschnitt-und-lageparameter.html
+%		- https://matheguru.com/stochastik/standardabweichung.html
+%		- https://matheguru.com/stochastik/standardfehler.html
+
+%
+%%%%%%%%%%
 \section{Entfernungsmessung}
 
 Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}- und drei \Gls{nlos}-Messreihen aufgezeichnet. Jede Messreihe beginnt bei einer Entfernung von einem Meter zwischen \Gls{tag} und \Gls{anchor}. Pro Entfernung werden jeweils fünfhundert Messwerte aufgezeichnet. Danach wird die Entfernung um einen halben Meter erhöht, indem der \Gls{anchor} verschoben wird. Dies erfolgt solange bis eine Entfernung von neun Meter erreicht ist. Somit enthält jede Messreihe siebzehn Entfernungen mit achttausendfünfhundert Entfernungsmessungen.
@@ -268,29 +274,95 @@ Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer 
 \end{figure}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-- Diagramme
-	- \cite{kurth2003experimental}
-		- Fig. 5: (1) The ground truth path with tags indicated by circles. The numbers indicate how many range measurements were received from each tag over the duration of Test 1. (2) The path estimate from dead reckoning alone. (3) The path estimate from localization using a Kalman Filter. The Filter fuses data from odometry and a gyro with absolute measurements from RF tags to produce this path estimate. Numerical results are given in Table 1. (X: position in x(m), Y: position in y(m), Ground truth path with tag locations, Dead reckoning path, Kalman filter localization path)
-
-		
-- Versuchsbeschreibung:
-	- Warum wurden die uwbm da platziert wo sie jetzt stehen?
-	
-\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Diagramme
+%		- \cite{kurth2003experimental}
+%			- Fig. 5: (1) The ground truth path with tags indicated by circles.
+%			- The numbers indicate how many range measurements were received from each tag over the duration of Test 1. 				- (2) The path estimate from dead reckoning alone.
+%			- (3) The path estimate from localization using a Kalman Filter.
+%				- The Filter fuses data from odometry and a gyro with absolute measurements from RF tags to produce this path estimate
+%				- Numerical results are given in Table 1. (X: position in x(m), Y: position in y(m), Ground truth path with tag locations, Dead reckoning path, Kalman filter localization path)
+%	
+%	- Versuchsbeschreibung:
+%		- Warum wurden die uwbm da platziert wo sie jetzt stehen?
+%
+%%%%%%%%%%
 \section{RO-SLAM [todo]}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
-\subsection{Trajektorie [todo]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
+\subsection{Trajektorie}
+
+Wie man dem Architekturplan \autoref{} entnehmen kann, spielen die Odometrie Informationen eine wichtige Rolle für den ro-slam. Daher wird im ersten Schritt bestimmt, welche Odometriequelle die besten Daten liefert.
+
+Hierfür wurden zwei messfahrten durchgeführt, eine mit einem harmlosen und eine mit einem schwindelerregenden Verlauf. In beiden Fällen kehrt die Roboterplattform zu der Startposition zurück um den versatz berechnen zu können.
+
+Die Aufzeichnungen wurden in Bag-Dateien gespeichert. Dabei ist sind Odometrieinformationen der Inkrementalgeber auch in der Bag-Datei vorhanden. Das bringt den Nachteil mit sich, das wenn man die alternativen Odometriequellen hinzuschaltet, es zu mehrdeutigen Informationen im ros-system führen kann, da ja zwei Odometrie quellen aktiv sind. Um dieses Problem zu lösen, muss die Bagdatei um diese Informationen bereinigt werden. Hierfür wird der folgende Befehl verwendete.
+
+\begin{listing}
+	\begin{minted}{bash}
+rosbag filter $1 $2 '(topic != "/tf" and topic != "/tf_static") or topic == "/tf" and m.transforms[0].header.frame_id != "odom" and m.transforms[0].child_frame_id != "base_link"'
+	\end{minted}
+	\unskip
+	\caption{???}
+	\label{lst:clean_bag_from_odom_data}
+\end{listing}
+
+Mit der original und der gefilterten Bag-datei können nun die mittels hector\_trajectory\_server die Trajektorien der verschiedenen Odometriequellen aufgezeichnet werden und über das Script \textit{trajectory\_to\_csv.py} in eine CSV-Datei exportiert werden.
+
+Der hector\_trajectory\_server hat die Möglichkeit, die Trajektorie im Odometrie- und im Karten-Koordindatensystem aufzunehmen. Die Transformation zwischen dem Karten- und dem Roboterplattform-Koordinatensystem wird durch das ros-modul \textit{hector\_mapping} anhand der 2D-Laser-Entfernungsmessungen bestimmt. Dadurch eigent es sich ideal um als Ground Truth Trajektorie verwendet zu werden. Diese Ground Truth Trajektorie wird dann mit den Trajketorien vergleichen die im Odometire-Koordinatensystem der jeweiligen Odometire-Quelle aufgezeichnet wurde.
+
+Um die Trajektorie in einer Karte der Umwelt darzustellen kann wird die Belegtheitskarte aus dem ros modul  \textit{hector\_mapping} extrahiert. Das erfolgt mit dem Befehl \textit{rosrun map\_server map\_saver -f file\_name}.
+
+Bei der stochastischen Auswertung war eine direkte zeitliche Zuordnung der Messwerte aller drei Verfahren zum Ground Truth nicht möglich, da jede Odometriequelle eine spezifische Verarbeitungsdauer besitzt. Deshalb wird pro Sekunde der Mittelwert der verfügbaren Positionen gebildet und aus diesem dann die Entfernung zur Ground Truth Position berechnet, siehe \autoref{tab:stochastik_odometrie_quellen}.
+
+Sowohl die Umgebungskarte als auch die verfahren Trajektorien sind in der \autoref{} dargestellt. In \autoref{a} ist die Ground Truth Trajektorie abgebildet. In \autoref{b} die Trajektorie die sich aus den Inkremental Gebern der Roboterplattform ergibt. Es ist deutlich zu erkennen das die Trajektorie sowohl in der X- als auch in der Y-Achse gestaucht ist. Der LSM ist in \autoref{c} abgebildet und hat große Problem in Kurvenfahrte in der keine Merkmals gefunden werden können die er Zuordnen kann. Einzig der RF2O bildet die Trajektorie einigermaßen ordentlich ab, wenn auch mit einem kleinen rotationsfehler, siehe \autoref{d}.
+
+In der \autoref{} sind die X- und Y-Koordinaten der verschiedenen Verfahren gegenüber der Zeit abgetragen. Deutlich sind die Abweichungen der Robotino und LSM Odometrie gegenüber dem Ground Truth Werte zu erkennen.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{trajektorien}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{trajektorien_abweichungen}
+\end{figure}
+
+Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen der Entfernung der Position zur Ground Truth Position, siehe \autoref{tab:stochastik_odometrie_quellen}. Sowohl der Inkrementalgeber als auch der RF2O sind als Odometriequelle geeigent. Aufgrund der starken Abweichung wird der LSM nicht eingesetzt. Aufgrund der guten stochastischen Ergebnisse wird der RF2O als Odometriequelle eingesetzt.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{||l||c|c|c||c|c||}
+		\hline
+		Odometriequelle & $\overline{x}$ & $\sigma$ & $SE_{\overline{x}}$ & Min & Max \\
+		& [\si{\meter}] & [\si{\meter}] & [\si{\meter}] & [\si{\meter}] & [\si{\meter}] \\
+		\hline
+		\hline
+		Inkrementalgeber & \num{0.327} & \num{0.203} & \num{0.017} & \num{0.000} & \num{0.806} \\
+		LSM & \num{0.875} & \num{0.929} & \num{0.079} & \num{0.000} & \num{2.477} \\
+		RF2O & \num{0.247} & \num{0.180} & \num{0.015} & \num{0.002} & \num{0.558} \\
+		\hline
+	\end{tabular}
+	\caption{Stochastische Eigenschaften der Entfernungen zwischen der Odometrie- und der Ground Truth Position.}
+	\label{tab:stochastik_odometrie_quellen}
+\end{table}
 
 
-\begin{comment}
---------------------------------------------------------------------------------
-\end{comment}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
 \subsection{Vergleich von MC und SOG [todo]}
 
 % Figure 7.11 \cite{thrun2005probabilistic}
