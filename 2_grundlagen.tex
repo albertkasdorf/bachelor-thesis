@@ -13,6 +13,8 @@
 %%%%%%%%%%
 \chapter{Grundlagen}
 
+Die Abschnitte mit der \nameref{sec:probability_theory}, der \nameref{sec:state_estimator}, des \nameref{sec:particle_filter} und dem \nameref{sec:slam} orientieren sich an dem Buch \citetitle{thrun2005probabilistic} \cite{thrun2005probabilistic} ohne dieses in jedem Absatz zu zitieren.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -184,6 +186,7 @@ d = \frac{a}{2} \left(1 + \sqrt{5} \right) \label{eq:fuenfeck_diagonale}
 %
 %%%%%%%%%%
 \section{Wahrscheinlichkeitstheorie}
+\label{sec:probability_theory}
 
 Ob sich ein Roboter an einer ganz bestimmten Position befindet, lässt sich in der Praxis nicht genau bestimmen. Auch durch das genauere Vermessen der Position bleibt eine gewisse Unsicherheit. Um diese Unsicherheit abzubilden, wird in der Robotik die Wahrscheinlichkeitstheorie angewendet. Zum Einsatz kommen hierbei kontinuierliche Zufallsvariablen und die mit ihnen verbundene \Gls{wdf}. In der Regel wird eine Gaußsche Normalverteilung eingesetzt, die sich über den Mittelwert $\mu$ und Varianz $\sigma^2$ beschreiben lässt, siehe \autoref{eq:normal_distribution}. Häufig wird die Normalverteilung auch über $\operatorname{\mathcal{N}}{(x; \mu, \sigma^2)}$ abgekürzt.
 
@@ -238,6 +241,7 @@ p(x \mid y) = \eta \, p(y \mid x) \, p(x) \label{eq:bayes_rule_with_normalizer}
 %
 %%%%%%%%%%
 \section{Zustandsschätzer}
+\label{sec:state_estimator}
 
 Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren. Das Ergebnis der Modellierung bezeichnet man als Zustand. Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen. Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann. Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung. Beschrieben wird er Zustand mit dem Symbol $x$.
 
@@ -388,6 +392,7 @@ Der \Gls{ekf} löst das Problem in dem eine Linearisierung der nicht linearen Fu
 %
 %%%%%%%%%%
 \section{\glsentrylong{pf}}
+\label{sec:particle_filter}
 
 Bisherige Filter haben eine parametrisierte Form genutzt, um die Verteilung zu modellieren. Der \Gls{pf} geht einen anderen Weg und verwendet stattdessen eine Menge von Stichproben (engl. Samples) aus der gewünschten Verteilung. Dadurch ist es möglich multimodale Verteilungen abzubilden, die jedoch nur einer Annäherung entsprechen. Weiterhin ist es möglich Zufallsvariablen durch eine nicht lineare Funktion abzubilden, siehe \autoref {fig:particle_filter_with_non_linear_function}. Im unteren rechten Bild wird eine Menge von Stichproben aus einer Normalverteilung dargestellt. Diese werden dann durch die nicht lineare Funktion $g(x)$ auf eine multimodale Verteilung abgebildet. Je dichter die Stichproben an einander liegen desto höher ist an dieser Stelle auch die Wahrscheinlichkeit.
 
@@ -548,6 +553,7 @@ w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte
 %
 %%%%%%%%%%
 \section{\glsentrylong{slam}}
+\label{sec:slam}
 
 
 % Was versteht man unter Mapping?
