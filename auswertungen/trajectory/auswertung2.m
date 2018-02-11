@@ -12,8 +12,8 @@ cid_x = 4;
 cid_y = 5;
 
 % Dateipfad
-%file_name = 'Record_2018-02-08-12-30-43';
-file_name = 'Record_2018-02-08-12-33-53';
+file_name = 'Record_2018-02-08-12-30-43';
+%file_name = 'Record_2018-02-08-12-33-53';
 %file_name = 'Record_2018-02-08-13-09-17';
 
 robo_file_name = strcat(file_name, '_odom_robotino.csv');

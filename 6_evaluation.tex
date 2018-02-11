@@ -276,68 +276,64 @@ Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%	- Diagramme
-%		- \cite{kurth2003experimental}
-%			- Fig. 5: (1) The ground truth path with tags indicated by circles.
-%			- The numbers indicate how many range measurements were received from each tag over the duration of Test 1. 				- (2) The path estimate from dead reckoning alone.
-%			- (3) The path estimate from localization using a Kalman Filter.
-%				- The Filter fuses data from odometry and a gyro with absolute measurements from RF tags to produce this path estimate
-%				- Numerical results are given in Table 1. (X: position in x(m), Y: position in y(m), Ground truth path with tag locations, Dead reckoning path, Kalman filter localization path)
-%	
-%	- Versuchsbeschreibung:
-%		- Warum wurden die uwbm da platziert wo sie jetzt stehen?
-%
-%%%%%%%%%%
-\section{RO-SLAM [todo]}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
 %
 %
 %%%%%%%%%%
-\subsection{Trajektorie}
+\section{Trajektorie}
 
-Wie man dem Architekturplan \autoref{} entnehmen kann, spielen die Odometrie Informationen eine wichtige Rolle für den ro-slam. Daher wird im ersten Schritt bestimmt, welche Odometriequelle die besten Daten liefert.
+Der Softwarearchitektur, siehe \autoref{fig:architektur_grouped}, ist zu entnehmen, dass die Odometriedaten eine wichtige Rolle für den \gls{roslam} spielen. Insgesamt stehen drei Odometriequellen zur Verfügung. Einmal die Inkrementalgeber der Antriebseinheit und zwei laserbasierte Odometrien. Alle drei Verfahren werden im Folgenden auf ihre Genauigkeit untersucht.
 
-Hierfür wurden zwei messfahrten durchgeführt, eine mit einem harmlosen und eine mit einem schwindelerregenden Verlauf. In beiden Fällen kehrt die Roboterplattform zu der Startposition zurück um den versatz berechnen zu können.
+Für die Untersuchung werden zwei Messfahrten durchgeführt. Bei der ersten Messfahrt entspricht die Trajektorie einem abgerundeten Rechteckt und bei der zweiten wird das abgerundete Rechteck um mehrere Kreisbahnen erweitert. In beiden Fällen kehrte die Roboterplattform zu der Startposition zurück um den Versatz berechnen zu können. Im Folgenden wird nur noch die zweite Messfahrt betrachtet, da bei der ersten alle Verfahren in etwa gleich abgeschnitten haben, siehe \autoref{fig:Record_2018-02-08-12-30-43_trajectory}.
 
-Die Aufzeichnungen wurden in Bag-Dateien gespeichert. Dabei ist sind Odometrieinformationen der Inkrementalgeber auch in der Bag-Datei vorhanden. Das bringt den Nachteil mit sich, das wenn man die alternativen Odometriequellen hinzuschaltet, es zu mehrdeutigen Informationen im ros-system führen kann, da ja zwei Odometrie quellen aktiv sind. Um dieses Problem zu lösen, muss die Bagdatei um diese Informationen bereinigt werden. Hierfür wird der folgende Befehl verwendete.
+Alle \gls{ros}-Nachrichten, der beiden Messfahrten, wurden aufgezeichnet und in separaten Bag-Dateien abgespeichert. Bevor die Bag-Dateien mit den laserbasierten Odometriequellen untersucht werden können, müssen die Odometriedaten der Inkrementalgeber entfernt werden, um widersprüchliche Informationen aus mehreren Odometriequellen zu verhindern. Für die Filterung der Bag-Dateien ist das Kommandozeilenprogramm \textit{rosbag} zuständig. Über den Parameter \textit{filter} und einem Python-Ausdruck werden alle Transformationsnachrichten zwischen dem Roboterplattform- und dem Odometrie-Koordinatensystem entfernt.
 
-\begin{listing}
-	\begin{minted}{bash}
-rosbag filter $1 $2 '(topic != "/tf" and topic != "/tf_static") or topic == "/tf" and m.transforms[0].header.frame_id != "odom" and m.transforms[0].child_frame_id != "base_link"'
-	\end{minted}
-	\unskip
-	\caption{???}
-	\label{lst:clean_bag_from_odom_data}
-\end{listing}
+Mit dem \gls{rosm} \textit{hector\_trajectory\_server} und dem Skript \textit{trajectory\_to\_csv.py} wurden die Trajektorien der drei Odometriequellen in eine CSV-Datei gespeichert, um diese auswerten zu können. Dabei wurden aus den ungefilterten Aufzeichnungen die Trajektorie der Inkrementalgeber extrahiert. Mit den \glsuseri{rosm} für die laserbasierten Odometrien und den gefilterten Aufzeichnungen wurden die laserbasierten Trajektorien extrahiert.
 
-Mit der original und der gefilterten Bag-datei können nun die mittels hector\_trajectory\_server die Trajektorien der verschiedenen Odometriequellen aufgezeichnet werden und über das Script \textit{trajectory\_to\_csv.py} in eine CSV-Datei exportiert werden.
+Das \gls{rosm} \textit{hector\_trajectory\_server} hat die Möglichkeit, die Trajektorie im Odometrie- und im Karten-Koordinatensystem aufzunehmen. Die Transformation zwischen dem Karten- und dem Roboterplattform-Koordinatensystem wird durch das \gls{rosm} \textit{hector\_mapping} anhand der 2D-Laser-Entfernungsmessung bestimmt. Dadurch eignet es sich ideal, um als Ground Truth Trajektorie verwendet zu werden. Diese Ground Truth Trajektorie wird dann mit den Trajektorien verglichen, die im Odometrie-Koordinatensystem der jeweiligen Odometriequelle aufgezeichnet wurde.
 
-Der hector\_trajectory\_server hat die Möglichkeit, die Trajektorie im Odometrie- und im Karten-Koordindatensystem aufzunehmen. Die Transformation zwischen dem Karten- und dem Roboterplattform-Koordinatensystem wird durch das ros-modul \textit{hector\_mapping} anhand der 2D-Laser-Entfernungsmessungen bestimmt. Dadurch eigent es sich ideal um als Ground Truth Trajektorie verwendet zu werden. Diese Ground Truth Trajektorie wird dann mit den Trajketorien vergleichen die im Odometire-Koordinatensystem der jeweiligen Odometire-Quelle aufgezeichnet wurde.
+% Um die Trajektorie in einer Karte der Umwelt darzustellen, wird die Belegtheitskarte aus dem \gls{rosm} \textit{hector\_mapping} extrahiert. Das erfolgt mit dem Befehl \textit{rosrun map\_server map\_saver -f file\_name}.
 
-Um die Trajektorie in einer Karte der Umwelt darzustellen kann wird die Belegtheitskarte aus dem ros modul  \textit{hector\_mapping} extrahiert. Das erfolgt mit dem Befehl \textit{rosrun map\_server map\_saver -f file\_name}.
-
-Bei der stochastischen Auswertung war eine direkte zeitliche Zuordnung der Messwerte aller drei Verfahren zum Ground Truth nicht möglich, da jede Odometriequelle eine spezifische Verarbeitungsdauer besitzt. Deshalb wird pro Sekunde der Mittelwert der verfügbaren Positionen gebildet und aus diesem dann die Entfernung zur Ground Truth Position berechnet, siehe \autoref{tab:stochastik_odometrie_quellen}.
-
-Sowohl die Umgebungskarte als auch die verfahren Trajektorien sind in der \autoref{} dargestellt. In \autoref{a} ist die Ground Truth Trajektorie abgebildet. In \autoref{b} die Trajektorie die sich aus den Inkremental Gebern der Roboterplattform ergibt. Es ist deutlich zu erkennen das die Trajektorie sowohl in der X- als auch in der Y-Achse gestaucht ist. Der LSM ist in \autoref{c} abgebildet und hat große Problem in Kurvenfahrte in der keine Merkmals gefunden werden können die er Zuordnen kann. Einzig der RF2O bildet die Trajektorie einigermaßen ordentlich ab, wenn auch mit einem kleinen rotationsfehler, siehe \autoref{d}.
-
-In der \autoref{} sind die X- und Y-Koordinaten der verschiedenen Verfahren gegenüber der Zeit abgetragen. Deutlich sind die Abweichungen der Robotino und LSM Odometrie gegenüber dem Ground Truth Werte zu erkennen.
+Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory} dargestellt. Die Ground Truth Trajektorie, mit der die anderen Trajektorien verglichen werden, ist in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory1} zu sehen. Deutlich zu erkennen ist, dass die Trajektorie der Inkrementalgeber sowohl in der X- als auch in der Y-Achse gestaucht ist, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory2}. Die laserbasierte Odometrie des LSM-Verfahrens hat große Problem mit den gefahrenen Kreisbahnen und driftet zum Ende hin sehr stark von der Startposition ab, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory3}. Einzig die laserbasierte Odometrie des RF2O-Verfahrens bildet die gefahrene Trajektorie gegenüber dem Ground Turth gut ab, auch wenn die Start- und Zielpositionen voneinander abweichen, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory4}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{trajektorien}
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory1}
+		\caption{Ground Truth}
+		\label{fig:Record_2018-02-08-12-33-53_trajectory1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory2}
+		\caption{Inkrementalgeber}
+		\label{fig:Record_2018-02-08-12-33-53_trajectory2}
+	\end{subfigure}
+	\par
+	\bigskip
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory3}
+		\caption{LSM}
+		\label{fig:Record_2018-02-08-12-33-53_trajectory3}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory4}
+		\caption{RF2O}
+		\label{fig:Record_2018-02-08-12-33-53_trajectory4}
+	\end{subfigure}
+	\caption{Rechteckige Trajektorien mit einigen Kreisbahnen der verschiedenen Odometriequellen.}
+	\label{fig:Record_2018-02-08-12-33-53_trajectory}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{trajektorien_abweichungen}
-\end{figure}
+Bei der stochastischen Auswertung war eine direkte zeitliche Zuordnung der Messwerte aller drei Verfahren zum Ground Truth nicht möglich, da jede Odometriequelle eine spezifische Verarbeitungsdauer besitzt. Deshalb wird pro Sekunde der Mittelwert der verfügbaren Positionen gebildet und aus dieser dann die Entfernung zur Ground Truth Position berechnet, siehe \autoref{tab:stochastik_odometrie_quellen}.
 
-Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen der Entfernung der Position zur Ground Truth Position, siehe \autoref{tab:stochastik_odometrie_quellen}. Sowohl der Inkrementalgeber als auch der RF2O sind als Odometriequelle geeigent. Aufgrund der starken Abweichung wird der LSM nicht eingesetzt. Aufgrund der guten stochastischen Ergebnisse wird der RF2O als Odometriequelle eingesetzt.
+Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen der Entfernung der Position zur Ground Truth Position, siehe \autoref{tab:stochastik_odometrie_quellen}. Das LSM-Verfahren weicht im Mittelwert und bei der Standardabweichung deutlich von dem Inkrementalgebern und dem RF2O-Verfahren ab. Das der Mittelwert und die Standardabweichung zwischen den Inkrementalgebern und dem RF2O-Verfahren nur sehr geringe Unterschiede aufweisen, jedoch große Unterschiede in der visuellen Trajektorie festzustellen sind, kann nur damit erklärt werden, das sich die aufsummierten Fehler der Inkrementalgebern bei der Rückfahrt wieder aufheben.
 
-\begin{table}[h]
+\begin{table}
 	\centering
 	\begin{tabular}{||l||c|c|c||c|c||}
 		\hline
@@ -354,8 +350,24 @@ Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen
 	\label{tab:stochastik_odometrie_quellen}
 \end{table}
 
+Da die Trajektorie des laserbasierten RF2O-Verfahren am besten der Ground Truth Trajektorie entspricht, wird diese als Odometriequelle für das \gls{roslam}-Verfahren verwendet.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Diagramme
+%		- \cite{kurth2003experimental}
+%			- Fig. 5: (1) The ground truth path with tags indicated by circles.
+%			- The numbers indicate how many range measurements were received from each tag over the duration of Test 1. 				- (2) The path estimate from dead reckoning alone.
+%			- (3) The path estimate from localization using a Kalman Filter.
+%				- The Filter fuses data from odometry and a gyro with absolute measurements from RF tags to produce this path estimate
+%				- Numerical results are given in Table 1. (X: position in x(m), Y: position in y(m), Ground truth path with tag locations, Dead reckoning path, Kalman filter localization path)
+%	
+%	- Versuchsbeschreibung:
+%		- Warum wurden die uwbm da platziert wo sie jetzt stehen?
+%
+%%%%%%%%%%
+\section{RO-SLAM [todo]}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
