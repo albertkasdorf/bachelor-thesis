@@ -1,6 +1,8 @@
 classdef cid < double
    enumeration
       time(1)
+			p_sec(2)
+			p_nsec(3)
 			x(4)
 			y(5)
 			
@@ -21,5 +23,9 @@ classdef cid < double
 			bord_cov01(9)
 			bord_cov10(10)
 			bord_cov11(11)
+			
+			% Beacon Information: time;sec;nsec;id;range
+			b_id(4)
+			b_range(5)
    end
 end

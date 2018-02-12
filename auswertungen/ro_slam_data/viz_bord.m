@@ -6,10 +6,10 @@ close all; clear; clc;
 format long; format compact;
 
 % Konstanten
-bid = 4;
+bid = 1;
 
-subplot_m = 3;
-subplot_n = 4;
+subplot_m = 2;
+subplot_n = 2;
 subplot_count = (subplot_m * subplot_n);
 
 map_resolution = 0.02;
@@ -60,7 +60,7 @@ for p = 1:subplot_count
 	time = get_time(time_p, unique_times);
 	
 	% Karte anzeigen
-	show(map);
+	%show(map);
 	hold on; grid on; grid minor;
 	title(strcat('Time=', num2str(time_p*100), '%'));
 	

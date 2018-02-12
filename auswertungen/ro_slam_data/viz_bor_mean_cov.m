@@ -30,7 +30,7 @@ map = robotics.OccupancyGrid(map_image, 1 / map_resolution);
 show(map);
 hold on; grid on; grid minor;
 
-for t = linspace(0, 1, 5)
+for t = linspace(0, 1, 100)
 	%
 	time = get_time(t, unique_times);
 

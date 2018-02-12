@@ -1,5 +1,4 @@
-close all; clear;
-%clc;
+close all; clear; clc;
 format long; format compact;
 
 % Globale Variablen
@@ -10,95 +9,81 @@ cid_time = 1;
 cid_x = 4;
 cid_y = 5;
 
+% Kartenparameter
+map_resolution = 0.02;
+map_size = [1024 1024];
+map_center = (map_size * map_resolution) / 2;
+
 %
-source_file_name = 'Record_2017-12-18-11-53-54';
-pt_file_name = strcat(source_file_name, '_pt.csv');
-pe_file_name = strcat(source_file_name, '_pe.csv');
+%file_name_source = 'Record_2017-12-18-11-53-54';
+file_name_source = 'Record_2018-02-08-12-33-53_filtered';
+file_name_number = '_5';
+file_name_pt = strcat(file_name_source, file_name_number, '_pt.csv');
+file_name_pe = strcat(file_name_source, file_name_number, '_pe.csv');
+file_name_map = strcat(file_name_source, '.pgm');
 
 % Daten einlesen
-data_pt = dlmread(pt_file_name, ';', 1, 0);
-data_pe = dlmread(pe_file_name, ';', 1, 0);
+data_pt = dlmread(file_name_pt, ';', 1, 0);
+data_pe = dlmread(file_name_pe, ';', 1, 0);
+
+% Positionen korrigieren
+data_pt = data_pt(:, :) + [0 0 0 map_center(1) map_center(2) 0 0 0 0 0];
+data_pe = data_pe(:, :) + [0 0 0 map_center(1) map_center(2) 0 0 0 0 0];
+
+% Bild des OccupanyGrid laden, normalisieren und invertieren.
+data_map = imread(file_name_map);
+data_map = 1 - (data_map / 255);
+occupancy_grid = robotics.OccupancyGrid(data_map, 1 / map_resolution);
+
 
 
 %[mean_xyr, std_xyr] = mean_std_of_all_xyr(data_pt, data_pe);
 %[mean_xyr, std_xyr] = mean_std_of_some_xyr(data_pt, data_pe);
 
-%viz_one(data_pt, data_pe);
-viz_some(data_pt, data_pe);
+%viz_one(data_pt, data_pe, occupancy_grid);
+viz_some(data_pt, data_pe, occupancy_grid);
+%viz_trajectory(data_pt, data_pe, occupancy_grid);
 
 
-function viz_one(pose_trajectory, pose_estimation)
-	global cid_time; global cid_x; global cid_y;
 
-	% Kartenparameter
-	map_resolution = 0.02;
-	map_size = [1024 1024];
-	map_center = (map_size * map_resolution) / 2;
+function viz_trajectory(pose_trajectory, pose_estimation, occupancy_grid)
 	
-	% Bild des OccupanyGrid laden, normalisieren und invertieren.
-	map_image = imread('map.pgm');
-	map_image = 1 - (map_image / 255);
-
-	% Karte anzeigen
-	map = robotics.OccupancyGrid(map_image, 1 / map_resolution);
-	show(map);
-	hold on;
-	grid on; grid minor;
-	axis equal;
+	%
+	show(occupancy_grid);
+	hold on; grid on; grid minor;
 	
-	% Position und Partikel bestimmen
-	ROWS = size(unique(pose_trajectory(:, cid_time)), 1);
+	% Ground Truth Trajectory
+	plot(pose_trajectory(:, cid.x), pose_trajectory(:, cid.y), 'b-', 'DisplayName', 'Ground Truth Trajektorie');
 	
-	idx = 200;
-	pose_time = pose_trajectory(idx, cid_time);
-	pose_tra_xy = pose_trajectory(idx, [cid_x, cid_y]);
-	pose_tra_xy = pose_tra_xy + map_center;
+	% Particle Filter Trajectory
+	plot(pose_estimation(:, cid.x), pose_estimation(:, cid.y), 'r.', 'DisplayName', 'Partikel Positionsschätzung');
 	
-	selector = pose_estimation(:, cid_time) == pose_time;
-	pose_est_xy = pose_estimation(selector, [cid_x, cid_y]);
-	pose_est_xy = pose_est_xy + map_center;
-	
-	% Position und Partikel eintragen
-	plot(pose_tra_xy(:,1), pose_tra_xy(:,2), 'gp', 'MarkerSize', 10 );
-	plot(pose_est_xy(:,1), pose_est_xy(:,2), 'r+', 'MarkerSize', 10 );
-	
-	% Zoom into Figure
+	%
+	%axis equal;
 	xlim([9 16]);
-	ylim([9 12]);
+	ylim([8 13]);
+	legend();
 end
 
-function viz_some(pose_trajectory, pose_estimation)
-	global cid_time; global cid_x; global cid_y;
-
-	% Kartenparameter
-	map_resolution = 0.02;
-	map_size = [1024 1024];
-	map_center = (map_size * map_resolution) / 2;
+function viz_some(pose_trajectory, pose_estimation, occupancy_grid)
 	
-	% Bild des OccupanyGrid laden, normalisieren und invertieren.
-	map_image = imread('map.pgm');
-	map_image = 1 - (map_image / 255);
-
 	% Karte anzeigen
-	map = robotics.OccupancyGrid(map_image, 1 / map_resolution);
-	show(map);
+	show(occupancy_grid);
 	hold on;
 	grid on; grid minor;
 	axis equal;
 	
 	% Position und Partikel bestimmen
-	SAMPLES = 10;
-	ROWS = size(unique(pose_trajectory(:, cid_time)), 1);
+	SAMPLES = 50;
+	ROWS = size(unique(pose_trajectory(:, cid.time)), 1);
 		
 	for idx_time = round(linspace(1, ROWS, SAMPLES))
 		
-		pose_time = pose_trajectory(idx_time, cid_time);
-		pose_tra_xy = pose_trajectory(idx_time, [cid_x, cid_y]);
-		pose_tra_xy = pose_tra_xy + map_center;
+		pose_time = pose_trajectory(idx_time, cid.time);
+		pose_tra_xy = pose_trajectory(idx_time, [cid.x, cid.y]);
 		
-		selector = pose_estimation(:, cid_time) == pose_time;
-		pose_est_xy = pose_estimation(selector, [cid_x, cid_y]);
-		pose_est_xy = pose_est_xy + map_center;
+		selector = pose_estimation(:, cid.time) == pose_time;
+		pose_est_xy = pose_estimation(selector, [cid.x, cid.y]);
 		
 		% Position und Partikel eintragen
 		plot(pose_tra_xy(:,1), pose_tra_xy(:,2), 'gp', 'MarkerSize', 10 );
@@ -108,15 +93,42 @@ function viz_some(pose_trajectory, pose_estimation)
 	end
 	
 	% Trajektorie einzeichen
-	plot(pose_trajectory(:, cid_x) + map_center(1), pose_trajectory(:, cid_y) + map_center(2), 'm-');
+	plot(pose_trajectory(:, cid.x), pose_trajectory(:, cid.y), 'm-');
 		
 	% Zoom into Figure
 	xlim([9 16]);
-	ylim([9 12]);
+	ylim([8 13]);
 	
 	% Legende
 	legend('1x Position Odometrie','10x Position Partikel Filter', 'Location', 'northwest' );
 
+end
+
+function viz_one(pose_trajectory, pose_estimation, occupancy_grid)
+	
+	% Karte anzeigen
+	show(occupancy_grid);
+	hold on;
+	grid on; grid minor;
+	axis equal;
+	
+	% Position und Partikel bestimmen
+	ROWS = size(unique(pose_trajectory(:, cid.time)), 1);
+	
+	idx = 200;
+	pose_time = pose_trajectory(idx, cid.time);
+	pose_tra_xy = pose_trajectory(idx, [cid.x, cid.y]);
+	
+	selector = pose_estimation(:, cid.time) == pose_time;
+	pose_est_xy = pose_estimation(selector, [cid.x, cid.y]);
+	
+	% Position und Partikel eintragen
+	plot(pose_tra_xy(:,1), pose_tra_xy(:,2), 'gp', 'MarkerSize', 10 );
+	plot(pose_est_xy(:,1), pose_est_xy(:,2), 'r+', 'MarkerSize', 10 );
+	
+	% Zoom into Figure
+	xlim([9 16]);
+	ylim([9 12]);
 end
 
 

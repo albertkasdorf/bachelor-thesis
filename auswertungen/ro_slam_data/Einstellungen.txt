@@ -1,0 +1,61 @@
+Record_2018-02-08-12-33-53_filtered_3
+- sampleSize=50
+- BETA=0.25
+- localizeLinDistance = 0.01
+- localizeAngDistance_deg = 01.0
+- insertAsMonteCarlo=0
+- msg.sensor_std_range = 0.02
+
+
+Record_2018-02-08-12-33-53_filtered_4
+- sampleSize=50
+- BETA=0.25
+- localizeLinDistance = 0.01
+- localizeAngDistance_deg = 01.0
+- insertAsMonteCarlo=0
+- msg.sensor_std_range = 0.02
+- fake_beacons
+	- range1, 1.0, 0.0
+	- range2, 4.0, 0.0
+	- range3, 4.0, 2.0
+	- range4, 1.0, 2.0
+
+Record_2018-02-08-12-33-53_filtered_5
+- sampleSize=50
+- BETA=0.25
+- localizeLinDistance = 0.01
+- localizeAngDistance_deg = 01.0
+- insertAsMonteCarlo=0
+- msg.sensor_std_range = 0.02
+- fake_beacons
+	- range1, 1.0, 0.0
+	- range2, 4.0, 0.0
+	- range3, 4.0, 2.0
+	- range4, 1.0, 2.0
+
+
+Record_2018-02-08-12-33-53_filtered_6
+- sampleSize=50
+- BETA=0.25
+- localizeLinDistance = 0.01
+- localizeAngDistance_deg = 01.0
+- insertAsMonteCarlo=1
+	- MC_numSamplesPerMeter=1000
+	- MC_maxStdToGauss=0.07
+- msg.sensor_std_range = 0.02
+- fake_beacons
+	- range1, 1.0, 0.0
+	- range2, 4.0, 0.0
+	- range3, 4.0, 2.0
+	- range4, 1.0, 2.0
+
+Record_2018-02-08-12-33-53_filtered_6
+- sampleSize=50
+- BETA=0.25
+- localizeLinDistance = 0.01
+- localizeAngDistance_deg = 01.0
+- insertAsMonteCarlo=1
+	- MC_numSamplesPerMeter=1000
+	- MC_maxStdToGauss=0.07
+- msg.sensor_std_range = 0.02
+- correction = {177:0, 178:0, 179:0, 180:0}
