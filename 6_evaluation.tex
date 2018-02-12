@@ -293,7 +293,7 @@ Das \gls{rosm} \textit{hector\_trajectory\_server} hat die Möglichkeit, die Tra
 
 % Um die Trajektorie in einer Karte der Umwelt darzustellen, wird die Belegtheitskarte aus dem \gls{rosm} \textit{hector\_mapping} extrahiert. Das erfolgt mit dem Befehl \textit{rosrun map\_server map\_saver -f file\_name}.
 
-Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory} dargestellt. Die Ground Truth Trajektorie, mit der die anderen Trajektorien verglichen werden, ist in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory1} zu sehen. Deutlich zu erkennen ist, dass die Trajektorie der Inkrementalgeber sowohl in der X- als auch in der Y-Achse gestaucht ist, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory2}. Die laserbasierte Odometrie des LSM-Verfahrens hat große Problem mit den gefahrenen Kreisbahnen und driftet zum Ende hin sehr stark von der Startposition ab, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory3}. Einzig die laserbasierte Odometrie des RF2O-Verfahrens bildet die gefahrene Trajektorie gegenüber dem Ground Turth gut ab, auch wenn die Start- und Zielpositionen voneinander abweichen, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory4}.
+Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory} dargestellt. Die Ground Truth Trajektorie, mit der die anderen Trajektorien verglichen werden, ist in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory1} zu sehen. Deutlich zu erkennen ist, dass die Trajektorie der Inkrementalgeber sowohl in der X- als auch in der Y-Achse gestaucht ist, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory2}. Die laserbasierte Odometrie des LSM-Verfahrens hat große Problem mit den gefahrenen Kreisbahnen und driftet zum Ende hin sehr stark von der Startposition ab, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory3}. Einzig die laserbasierte Odometrie des \gls{rf2o}-Verfahrens bildet die gefahrene Trajektorie gegenüber dem Ground Turth gut ab, auch wenn die Start- und Zielpositionen voneinander abweichen, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory4}.
 
 \begin{figure}
 	\centering
@@ -331,7 +331,7 @@ Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \a
 
 Bei der stochastischen Auswertung war eine direkte zeitliche Zuordnung der Messwerte aller drei Verfahren zum Ground Truth nicht möglich, da jede Odometriequelle eine spezifische Verarbeitungsdauer besitzt. Deshalb wird pro Sekunde der Mittelwert der verfügbaren Positionen gebildet und aus dieser dann die Entfernung zur Ground Truth Position berechnet, siehe \autoref{tab:stochastik_odometrie_quellen}.
 
-Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen der Entfernung der Position zur Ground Truth Position, siehe \autoref{tab:stochastik_odometrie_quellen}. Das LSM-Verfahren weicht im Mittelwert und bei der Standardabweichung deutlich von dem Inkrementalgebern und dem RF2O-Verfahren ab. Das der Mittelwert und die Standardabweichung zwischen den Inkrementalgebern und dem RF2O-Verfahren nur sehr geringe Unterschiede aufweisen, jedoch große Unterschiede in der visuellen Trajektorie festzustellen sind, kann nur damit erklärt werden, das sich die aufsummierten Fehler der Inkrementalgebern bei der Rückfahrt wieder aufheben.
+Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen der Entfernung der Position zur Ground Truth Position, siehe \autoref{tab:stochastik_odometrie_quellen}. Das LSM-Verfahren weicht im Mittelwert und bei der Standardabweichung deutlich von dem Inkrementalgebern und dem \gls{rf2o}-Verfahren ab. Das der Mittelwert und die Standardabweichung zwischen den Inkrementalgebern und dem \gls{rf2o}-Verfahren nur sehr geringe Unterschiede aufweisen, jedoch große Unterschiede in der visuellen Trajektorie festzustellen sind, kann nur damit erklärt werden, das sich die aufsummierten Fehler der Inkrementalgebern bei der Rückfahrt wieder aufheben.
 
 \begin{table}
 	\centering
@@ -350,7 +350,7 @@ Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen
 	\label{tab:stochastik_odometrie_quellen}
 \end{table}
 
-Da die Trajektorie des laserbasierten RF2O-Verfahren am besten der Ground Truth Trajektorie entspricht, wird diese als Odometriequelle für das \gls{roslam}-Verfahren verwendet.
+Da die Trajektorie des laserbasierten \gls{rf2o}-Verfahren am besten der Ground Truth Trajektorie entspricht, wird diese als Odometriequelle für das \gls{roslam}-Verfahren verwendet.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

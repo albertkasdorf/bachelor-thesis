@@ -186,12 +186,15 @@ Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Od
 %
 %	- \url{http://wiki.ros.org/rf2o}
 %	- \url{http://wiki.ros.org/laser_scan_matcher}
-%	- todo: Kurz erklären wie der lsm und der rf2o funktionieren.
 %
 %%%%%%%%%%
 \subsubsection{Laser-Odometrie}
 
-Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quelle für die Odometrie vorgestellt. Beide \Glspl{rosm} nutzen nur die Daten der 2D-Laser-Entfernungsmessung um eine Schätzung für die aktuelle Pose zu erstellen. Bei dem ersten handelt es sich um den \textit{laser\_scan\_matcher\_node} aus dem Paket \textit{laser\_scan\_matcher} und bei dem zweiten um den \textit{rf2o\_laser\_odometry\_node} aus dem Paket \textit{rf2o\_laser\_odometry}.
+Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quelle für die Odometrie vorgestellt. Beide \Glspl{rosm} nutzen nur die Daten der 2D-Laser-Entfernungsmessung um eine Schätzung für die aktuelle Pose zu erstellen.
+
+Bei dem ersten \gls{rosm} handelt es sich um den \textit{laser\_scan\_matcher\_node} aus dem Paket \textit{laser\_scan\_matcher}. Hierbei handelt es sich um eine Variante des \gls{icp}-Verfahrens, welches versucht eine Transformation zwischen den Punkt einer Oberfläche aus den vorherigen und aktuellen Sensordaten zu finden. Jedoch wird anstatt einer Punkt-zu-Punkt- eine Punkt-zu-Linie-Metrik für die Minimierung verwendet. \cite{censi2008icp} Dieses Verfahren wird im Folgenden nur noch als LSM-Verfahren bezeichnet.
+
+Bei dem zweiten \gls{rosm} handelt es sich um den \textit{rf2o\_laser\_odometry\_node} aus dem Paket \textit{rf2o\_laser\_odometry}. Hierbei handelt es sich um eine Implementierung des \gls{rf2o}-Verfahrens, bei dem jeder beobachtete Punkt des Sensors als eine Funktion der Geschwindigkeit des Sensors modelliert wird. Die Bewegung des Sensors wird dann aus der Minimierung der Dichteformulierung aller Punkt-Funktionen berechnet. \cite{jaimez2016planar}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
