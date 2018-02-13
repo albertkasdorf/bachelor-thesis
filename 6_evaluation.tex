@@ -355,19 +355,61 @@ Da die Trajektorie des laserbasierten \gls{rf2o}-Verfahren am besten der Ground 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%	- Diagramme
-%		- \cite{kurth2003experimental}
-%			- Fig. 5: (1) The ground truth path with tags indicated by circles.
-%			- The numbers indicate how many range measurements were received from each tag over the duration of Test 1. 				- (2) The path estimate from dead reckoning alone.
-%			- (3) The path estimate from localization using a Kalman Filter.
-%				- The Filter fuses data from odometry and a gyro with absolute measurements from RF tags to produce this path estimate
-%				- Numerical results are given in Table 1. (X: position in x(m), Y: position in y(m), Ground truth path with tag locations, Dead reckoning path, Kalman filter localization path)
-%	
-%	- Versuchsbeschreibung:
-%		- Warum wurden die uwbm da platziert wo sie jetzt stehen?
+%
 %
 %%%%%%%%%%
-\section{RO-SLAM [todo]}
+\section{RO-SLAM}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Fragen
+%		- Wer ist für die Positionsschätzung zuständig? => PF
+%		- Welche Datensätze wurden verwendet?
+%		- Wie gut ist die Positionsschätzung?
+%
+%%%%%%%%%%
+\subsection{Positionsschätzung}
+
+Im vorherigen Abschnitt wurde bereits die Trajektorie der verschiedenen Odometriequellen untersucht. Mit dem rf2o-Verfahren wird die Positionsschätzung des roslam-Verfahrens untersucht. Es wird dabei die Trajektorie mit dem abgerundeten Rechteck mit mehrere Kreisbahnen verwendet, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory}. Da auch die Entfernungsmessungen der uwbm einen Einfluss auf die Positionsschätzung besitz, werden neben den echten Entfernungmessungen auch Entfernungsmessungen von perfekten virtuellen uwbm verwendet.
+
+In der Abbildung ... ist die tätschliche Trajektorie und die des Partikel Filters abgebildet. Die oben zwei Bilder verwenden die Entfernungsmessungen der echten uwbm, wobei die unteren zwei Bilder die Entfernungsmessung von virtuellen uwbm verwenden. Es ist eindeutigen zu erkennen das die Genauigkeit der Entfernungsmessung einen großen Einfluss auf die Positionsschätzung besitzt. Die oberen zwei Positionsschätzungen weisen starke Abweichungen von der tatsächlichen Trajektorie auf. Erstaunlich ist es auch, das das Abspielen des gleichen Datensatzes immer wieder zu einer anderen Trajektorie führt. Dieses Verhalten lässt sich nur bedingt dadurch erklären, das beim Resampling zufällige Partikel erzeugt werden.
+
+Die Abweichung bei den virtuellen uwbm fällt deutlich geringer aus, wie man in den Abbildung (c) und (d) sehen kann. Daher liegt die Vermutung sehr nahe, das die Entfernungsmessung der uwbm nicht ausreichtend genau ist .
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
+		\caption{Trajektorie mit echten UWB-Modulen.}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
+		\caption{???}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
+	\end{subfigure}
+	\par
+	\bigskip
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
+		\caption{???}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
+		\caption{???}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
+	\end{subfigure}
+	\caption{???}
+	\label{fig:Record_2018-02-08-12-33-53_filtered_trajectory_pf}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -375,7 +417,65 @@ Da die Trajektorie des laserbasierten \gls{rf2o}-Verfahren am besten der Ground 
 %
 %
 %%%%%%%%%%
-\subsection{Vergleich von MC und SOG [todo]}
+\subsection{Beaconschätzung}
 
-% Figure 7.11 \cite{thrun2005probabilistic}
 
+
+% Wandernde Beacon
+% Tabelle mit den Beaconschätzungen (Zeit{0-100%}, Entfernung, usw.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Fragen
+%		- Wie lange dauerte es bei SOG/MC bis diese in eine Normalverteilung umgewandelt werden?
+%		- PDF, Wahrscheinlichkeitsdichtefunktion (WDF)
+%			- Darstellung der WDF durch eine SOG oder durch einen ringförmigen MC Partikel Filter
+%		- Kann man den Schwellwert dafür setzen?
+%			- MC ja: MC_maxStdToGauss
+%			- SOG nein: Fix auf < 0.10
+%		- CBeaconMap::internal_insertObservation
+%
+%%%%%%%%%%
+\subsection{Konvergenz der \glsentryshort{wdf}}
+
+Solange die Positionsschätzung der \gls{uwbm} Mehrdeutigkeiten aufweist, werden als \gls{wdf} das \gls{sog}- oder das \gls{mc}-Verfahren eingesetzt. Liegen keine Mehrdeutigkeiten mehr vor, wird die \gls{wdf} mit dem \gls{ekf}-Verfahren abgebildet. Das bedeutet, das jedes \gls{uwbm} nur noch über die Parameter Mittelwert und Kovarianz beschrieben wird, was zu einer Reduktion der genutzten Ressourcen der Verarbeitungseinheit führt.
+
+In der \autoref{tab:timespan_and_distance_to_switch_to_ekf} sind die Zeitspannen und die zurückgelegte Entfernung der Roboterplattform pro \gls{uwbm} aufgelistet, bis die \gls{wdf} durch das \gls{ekf}-Verfahren abgebildet wird. Sowohl mit den virtuellen als auch mit den realen \gls{uwbm} findet die Umwandlung bereits nach weniger als \SI{1}{\meter} bzw. weniger als \SI{10}{\second} statt. Einzig bei den virtuellen \glsuseri{uwbm} benötigte das \gls{sog}-Verfahren deutlich länger. Im Allgemeinen konvergieren sowohl das \gls{sog}- als auch das \gls{mc}-Verfahren gleich schnell.
+
+\begin{table}
+	\centering
+	\begin{tabular}{||c|c||c||c|c||}
+		\hline
+\gls{uwbm} & ID & Verfahren & Zeitspanne [\si{\second}] & Entfernung [\si{\meter}] \\
+\hline
+% Record_2018-02-08-12-33-53_filtered_3
+Real & \num{177} & \gls{sog} & \num{3.8} & \num{0.505} \\
+Real & \num{178} & \gls{sog} & \num{4.4} & \num{0.616} \\
+Real & \num{179} & \gls{sog} & \num{5.0} & \num{0.708} \\
+Real & \num{180} & \gls{sog} & \num{7.0} & \num{1.047} \\
+\hline
+\hline
+% Record_2018-02-08-12-33-53_filtered_7
+Real & \num{177} & \gls{mc} & \num{5.6} & \num{0.821} \\
+Real & \num{178} & \gls{mc} & \num{8.3} & \num{1.207} \\
+Real & \num{179} & \gls{mc} & \num{4.8} & \num{0.670} \\
+Real & \num{180} & \gls{mc} & \num{8.0} & \num{1.168} \\
+\hline
+\hline
+% Record_2018-02-08-12-33-53_filtered_5
+Virtuell & \num{1} & \gls{sog} & \num{3.0} & \num{0.357} \\
+Virtuell & \num{2} & \gls{sog} & \num{10.0} & \num{1.396} \\
+Virtuell & \num{3} & \gls{sog} & \num{15.5} & \num{2.245} \\
+Virtuell & \num{4} & \gls{sog} & \num{4.5} & \num{0.606} \\
+\hline
+\hline
+% Record_2018-02-08-12-33-53_filtered_6
+Virtuell & \num{1} & \gls{mc} & \num{1.0} & \num{0.047} \\
+Virtuell & \num{2} & \gls{mc} & \num{6.1} & \num{0.868} \\
+Virtuell & \num{3} & \gls{mc} & \num{1.0} & \num{0.047} \\
+Virtuell & \num{4} & \gls{mc} & \num{5.5} & \num{0.761} \\
+\hline
+	\end{tabular}
+	\caption{Die Zeitspanne und die zurückgelegte Entfernung der Roboterplattform bis die \gls{wdf} durch das \gls{ekf}-Verfahren abgebildet wird.}
+	\label{tab:timespan_and_distance_to_switch_to_ekf}
+\end{table}

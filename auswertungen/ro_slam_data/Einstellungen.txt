@@ -49,7 +49,7 @@ Record_2018-02-08-12-33-53_filtered_6
 	- range3, 4.0, 2.0
 	- range4, 1.0, 2.0
 
-Record_2018-02-08-12-33-53_filtered_6
+Record_2018-02-08-12-33-53_filtered_7
 - sampleSize=50
 - BETA=0.25
 - localizeLinDistance = 0.01
