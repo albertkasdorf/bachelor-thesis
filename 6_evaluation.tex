@@ -325,7 +325,7 @@ Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \a
 		\caption{RF2O}
 		\label{fig:Record_2018-02-08-12-33-53_trajectory4}
 	\end{subfigure}
-	\caption{Rechteckige Trajektorien mit einigen Kreisbahnen der verschiedenen Odometriequellen.}
+	\caption{Die Trajektorien der verschiedenen Odometriequellen.}
 	\label{fig:Record_2018-02-08-12-33-53_trajectory}
 \end{figure}
 
@@ -371,25 +371,26 @@ Da die Trajektorie des laserbasierten \gls{rf2o}-Verfahren am besten der Ground 
 %%%%%%%%%%
 \subsection{Positionsschätzung}
 
-Im vorherigen Abschnitt wurde bereits die Trajektorie der verschiedenen Odometriequellen untersucht. Mit dem rf2o-Verfahren wird die Positionsschätzung des roslam-Verfahrens untersucht. Es wird dabei die Trajektorie mit dem abgerundeten Rechteck mit mehrere Kreisbahnen verwendet, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory}. Da auch die Entfernungsmessungen der uwbm einen Einfluss auf die Positionsschätzung besitz, werden neben den echten Entfernungmessungen auch Entfernungsmessungen von perfekten virtuellen uwbm verwendet.
+Im vorherigen Abschnitt wurde bereits die Trajektorie der verschiedenen Odometriequellen untersucht. Die Entscheidung fiel auf das \gls{rf2o}-Verfahren, mit dem nun die Positionsschätzung des \gls{roslam}-Verfahren untersucht wird. Es wird dabei die Trajektorie mit dem abgerundeten Rechteck mit mehrere Kreisbahnen verwendet, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory}. Da auch die Entfernungsmessungen der \glspl{uwbm} einen Einfluss auf die Positionsschätzung haben, werden neben den realen auch virtuelle \glsuseri{uwbm} verwendet. Die virtuellen \glspl{uwbm} zeichnen sich dadurch aus, dass ihre Entfernungsmessungen keine Fehler aufweisen und daher als perfekt angesehen werden können.
 
-In der Abbildung ... ist die tätschliche Trajektorie und die des Partikel Filters abgebildet. Die oben zwei Bilder verwenden die Entfernungsmessungen der echten uwbm, wobei die unteren zwei Bilder die Entfernungsmessung von virtuellen uwbm verwenden. Es ist eindeutigen zu erkennen das die Genauigkeit der Entfernungsmessung einen großen Einfluss auf die Positionsschätzung besitzt. Die oberen zwei Positionsschätzungen weisen starke Abweichungen von der tatsächlichen Trajektorie auf. Erstaunlich ist es auch, das das Abspielen des gleichen Datensatzes immer wieder zu einer anderen Trajektorie führt. Dieses Verhalten lässt sich nur bedingt dadurch erklären, das beim Resampling zufällige Partikel erzeugt werden.
+In der \autoref{fig:Record_2018-02-08-12-33-53_filtered_trajectory_pf} ist die tatsächliche Trajektorie und die des \gls{roslam} Partikel Filters abgebildet. Die oberen zwei Abbildungen verwenden die Entfernungsmessungen der realen \glspl{uwbm} und die unteren zwei Abbildungen die Entfernungsmessung von virtuellen \glspl{uwbm}. Auf der linken Seite befinden sich die Positionsschätzungen die die Ground Truth Trajektorie gut abbilden und auf der rechten Seite die die sie schlecht abbilden. Während bei den realen \glsuseri{uwbm} die Positionsschätzung sehr große Abweichungen von der Ground Truth Trajektorie besitzt, bildet die Positionsschätzung der virtuellen \glspl{uwbm} die Ground Truth Trajektorie deutlich besser ab, selbst bei der schlechten Abbildung weist die Positionsschätzung nur einen leichten Winkelfehler auf.
 
-Die Abweichung bei den virtuellen uwbm fällt deutlich geringer aus, wie man in den Abbildung (c) und (d) sehen kann. Daher liegt die Vermutung sehr nahe, das die Entfernungsmessung der uwbm nicht ausreichtend genau ist .
+Das führt zu der Vermutung, dass die Qualität der Entfernungsmessung einen entscheidenden Einfluss auf die Positionsschätzung des \gls{roslam}-Verfahrens besitzt. Je geringe die Abweichungen der Entfernungsmessung von der tatsächlichen Entfernung desto besser. Bemerkenswert ist es auch, dass die Reproduzierbarkeit der Ergebnisse mit den virtuellen \glsuseri{uwbm} deutlich eher gegeben war, als mit den realen \glsuseri{uwbm}.
 
+% pose_diff.m -> viz_trajectory(...)
 \begin{figure}
 	\centering
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
-		\caption{Trajektorie mit echten UWB-Modulen.}
+		\caption{\textit{Gute} Trajektorie mit den realen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
-		\caption{???}
+		\caption{\textit{Schlechte} Trajektorie mit den realen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
 	\end{subfigure}
 	\par
@@ -397,17 +398,17 @@ Die Abweichung bei den virtuellen uwbm fällt deutlich geringer aus, wie man in 
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
-		\caption{???}
+		\caption{\textit{Gute} Trajektorie mit den virtuellen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
-		\caption{???}
+		\caption{\textit{Schlechte} Trajektorie mit den virtuellen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
 	\end{subfigure}
-	\caption{???}
+	\caption{Resultierende Trajektorie aus der Positionsschätzung des \glsentryshort{roslam} mit realen und virtuellen \glsuseri{uwbm}.}
 	\label{fig:Record_2018-02-08-12-33-53_filtered_trajectory_pf}
 \end{figure}
 

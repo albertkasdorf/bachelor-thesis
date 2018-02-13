@@ -17,7 +17,7 @@ map_center = (map_size * map_resolution) / 2;
 %
 %file_name_source = 'Record_2017-12-18-11-53-54';
 file_name_source = 'Record_2018-02-08-12-33-53_filtered';
-file_name_number = '_6';
+file_name_number = '_4';
 file_name_pt = strcat(file_name_source, file_name_number, '_pt.csv');
 file_name_pe = strcat(file_name_source, file_name_number, '_pe.csv');
 file_name_map = strcat(file_name_source, '.pgm');
@@ -45,10 +45,10 @@ occupancy_grid = robotics.OccupancyGrid(data_map, 1 / map_resolution);
 viz_trajectory(data_pt, data_pe, occupancy_grid);
 
 
-file_name = strcat(file_name_source, file_name_number);
-[file_path, file_name, file_ext] = fileparts(file_name);
-file_saveas = fullfile(file_path, [file_name '_trajectory_pf']);
-saveas(gcf, file_saveas, 'png');
+% file_name = strcat(file_name_source, file_name_number);
+% [file_path, file_name, file_ext] = fileparts(file_name);
+% file_saveas = fullfile(file_path, [file_name '_trajectory_pf']);
+% saveas(gcf, file_saveas, 'png');
 
 
 function viz_trajectory(pose_trajectory, pose_estimation, occupancy_grid)
@@ -56,18 +56,21 @@ function viz_trajectory(pose_trajectory, pose_estimation, occupancy_grid)
 	%
 	show(occupancy_grid);
 	hold on; grid on; grid minor;
+	title('');
+	xlabel('X [m]');
+	ylabel('Y [m]');
 	
 	% Ground Truth Trajectory
 	plot(pose_trajectory(:, cid.x), pose_trajectory(:, cid.y), 'b-', 'DisplayName', 'Ground Truth Trajektorie');
 	
 	% Particle Filter Trajectory
-	plot(pose_estimation(:, cid.x), pose_estimation(:, cid.y), 'r.', 'DisplayName', 'Partikel Positionsschätzung');
+	plot(pose_estimation(:, cid.x), pose_estimation(:, cid.y), 'r.', 'DisplayName', 'Positionsschätzung des RO-SLAM');
 	
 	%
 	%axis equal;
 	xlim([9 16]);
 	ylim([8 13]);
-	legend('Location', 'southeast');
+	legend('Location', 'northeast');
 end
 
 function viz_some(pose_trajectory, pose_estimation, occupancy_grid)
