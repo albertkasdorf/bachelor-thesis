@@ -418,9 +418,86 @@ Das führt zu der Vermutung, dass die Qualität der Entfernungsmessung einen ent
 %
 %
 %%%%%%%%%%
-\subsection{Beaconschätzung}
+\subsection{Positionsschätzung der \glsentrytext{uwbm}e}
 
+Mit den gleichen Datensätzen wie in \autoref{fig:Record_2018-02-08-12-33-53_filtered_trajectory_pf} wurden nun in der \autoref{fig:Record_2018-02-08-12-33-53_filtered_beacon_error} die Fehlerellipsen für die \glspl{uwbm} eingezeichnet. Um die Fehlerellipsen darstellen zu können, wurde diese mit einem Faktor von 10 skaliert. Die Ground Truth Position der \gls{uwbm} ist an dem schwarzen Kreuz erkennbar. Die Roboterplattform wird durch einen blauen Stern symbolisiert, der sich zu unterschiedlichen Zeitpunkten auf der Trajektorie befindet. Die gepunkteten Linien ordnen der Roboterplattform, zu einem bestimmten Zeitpunkt, die Positionsschätzung der \glspl{uwbm} zu.
 
+Sowohl mit den realen als auch mit den virtuellen \glsuseri{uwbm} verringert sich die Unsicherheit der Positionsschätzung der \glspl{uwbm} kontinuiertlich über die Zeit. Durch die ungenaue Positionsschätzung der Roboterplattform durch die realen \glspl{uwbm} sind auch die Positionsschätzungen der \gls{uwbm} entsprechend verschoben im Bezug zu ihren Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_3_beacon_error} und \autoref{fig:Record_2018-02-08-12-33-53_filtered_1_beacon_error}. Besser verhält es sich bei den virtuellen \glsuseri{uwbm}, hier entspricht die Positionsschätzung der \glspl{uwbm} dem der Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_5_beacon_error}. Der Winkelfehler in der Positionsschätzung aus der \autoref{fig:Record_2018-02-08-12-33-53_filtered_4_trajectory_pf} spiegelt sich ebenfalls in der Positionsschätzung der \glspl{uwbm} wieder, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_beacon_error}.
+
+% viz_bor_mean_cov, cov=cov*10
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_3_beacon_error}
+		\caption{Reale \glsentrytext{uwbm}e}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_3_beacon_error}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_1_beacon_error}
+		\caption{Reale \glsentrytext{uwbm}e}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_1_beacon_error}
+	\end{subfigure}
+	\par
+	\bigskip
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_beacon_error}
+		\caption{Virtuelle \glsentrytext{uwbm}e}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_5_beacon_error}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_beacon_error}
+		\caption{Virtuelle \glsentrytext{uwbm}e}
+		\label{fig:Record_2018-02-08-12-33-53_filtered_4_beacon_error}
+	\end{subfigure}
+	\caption{Positionsschätzungen der realen und virtuellen \glsentrytext{uwbm}en zu bestimmten Zeitpunkten.}
+	\label{fig:Record_2018-02-08-12-33-53_filtered_beacon_error}
+\end{figure}
+
+In den \autoref{tab:distance_between_real_uwb_and_gt} und \autoref{tab:distance_between_virtual_uwb_and_gt} sind die Entfernungen der Positionsschätzung der uwbm zu den Ground Truth Positionen zu bestimten Zeitpunkten aufgelistet. 
+
+Neben einer verbesserung der Positionsschätzung der uwbm ist ebenfalls eine verschlechterung möglich, siehe die Spalten 179 der \autoref{tab:distance_between_real_uwb_and_gt} und Spalte 4 der \autoref{tab:distance_between_virtual_uwb_and_gt}.
+
+Anzumerken ist noch folgendes, das roslam-Verfahren geht von der Annahme aus das die Position der uwbm sich über die Zeit nicht ändert. Während der Auswertung der Daten konnte aber mehrfach beobachtet werden, das sich die positionen der uwbm über die Zeit änderten. Somit ist nicht ausgeschlossen, dass die positionsänderungen der uwbm verfolgt werden kann, sobald die wdf durch das ekf-Verfahren repräsentiert wird.
+
+\begin{table}
+	\centering
+	\begin{tabular}{||r||c|c|c|c||c|c|c|c||}
+		\hline
+ & 177 & 178 & 179 & 180 & 177 & 178 & 179 & 180 \\
+\hline
+\SI{6}{\second} & \SI{0.317}{\meter} & \SI{0.159}{\meter} & \SI{1.561}{\meter} & \SI{1.601}{\meter} & \SI{0.396}{\meter} & \SI{0.212}{\meter} & \SI{0.488}{\meter} & \SI{2.439}{\meter} \\
+\SI{39}{\second} & \SI{0.739}{\meter} & \SI{0.261}{\meter} & \SI{0.816}{\meter} & \SI{0.414}{\meter} & \SI{0.426}{\meter} & \SI{0.162}{\meter} & \SI{1.049}{\meter} & \SI{0.687}{\meter} \\
+\SI{71}{\second} & \SI{0.584}{\meter} & \SI{0.404}{\meter} & \SI{0.883}{\meter} & \SI{0.406}{\meter} & \SI{0.396}{\meter} & \SI{0.175}{\meter} & \SI{0.905}{\meter} & \SI{0.360}{\meter} \\
+\SI{103}{\second} & \SI{0.536}{\meter} & \SI{0.460}{\meter} & \SI{0.972}{\meter} & \SI{0.424}{\meter} & \SI{0.240}{\meter} & \SI{0.167}{\meter} & \SI{1.046}{\meter} & \SI{0.441}{\meter} \\
+\SI{135}{\second} & \SI{0.567}{\meter} & \SI{0.490}{\meter} & \SI{0.975}{\meter} & \SI{0.396}{\meter} & \SI{0.281}{\meter} & \SI{0.170}{\meter} & \SI{1.036}{\meter} & \SI{0.709}{\meter} \\
+\hline
+	\end{tabular}
+	\caption{Entfernung der Positionsschätzung der realen \glsentrytext{uwbm} zu den Ground Truth Positionen.}
+	\label{tab:distance_between_real_uwb_and_gt}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{||r||c|c|c|c||c|c|c|c||}
+		\hline
+ & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
+\hline
+\SI{7}{\second} & \SI{0.074}{\meter} & \SI{0.049}{\meter} & \SI{1.572}{\meter} & \SI{0.102}{\meter} & \SI{0.161}{\meter} & \SI{0.756}{\meter} & \SI{1.106}{\meter} & \SI{0.438}{\meter} \\
+\SI{39}{\second} & \SI{0.049}{\meter} & \SI{0.165}{\meter} & \SI{0.205}{\meter} & \SI{0.100}{\meter} & \SI{0.156}{\meter} & \SI{0.828}{\meter} & \SI{0.986}{\meter} & \SI{0.486}{\meter} \\
+\SI{71}{\second} & \SI{0.050}{\meter} & \SI{0.177}{\meter} & \SI{0.205}{\meter} & \SI{0.108}{\meter} & \SI{0.162}{\meter} & \SI{0.829}{\meter} & \SI{0.956}{\meter} & \SI{0.491}{\meter} \\
+\SI{103}{\second} & \SI{0.050}{\meter} & \SI{0.177}{\meter} & \SI{0.226}{\meter} & \SI{0.158}{\meter} & \SI{0.153}{\meter} & \SI{0.861}{\meter} & \SI{0.976}{\meter} & \SI{0.528}{\meter} \\
+\SI{135}{\second} & \SI{0.051}{\meter} & \SI{0.177}{\meter} & \SI{0.228}{\meter} & \SI{0.159}{\meter} & \SI{0.154}{\meter} & \SI{0.861}{\meter} & \SI{0.976}{\meter} & \SI{0.529}{\meter} \\
+\hline
+	\end{tabular}
+	\caption{Entfernung der Positionsschätzung der virtuellen \glsentrytext{uwbm} zu den Ground Truth Positionen.}
+	\label{tab:distance_between_virtual_uwb_and_gt}
+\end{table}
 
 % Wandernde Beacon
 % Tabelle mit den Beaconschätzungen (Zeit{0-100%}, Entfernung, usw.)
@@ -443,6 +520,7 @@ Solange die Positionsschätzung der \gls{uwbm} Mehrdeutigkeiten aufweist, werden
 
 In der \autoref{tab:timespan_and_distance_to_switch_to_ekf} sind die Zeitspannen und die zurückgelegte Entfernung der Roboterplattform pro \gls{uwbm} aufgelistet, bis die \gls{wdf} durch das \gls{ekf}-Verfahren abgebildet wird. Sowohl mit den virtuellen als auch mit den realen \gls{uwbm} findet die Umwandlung bereits nach weniger als \SI{1}{\meter} bzw. weniger als \SI{10}{\second} statt. Einzig bei den virtuellen \glsuseri{uwbm} benötigte das \gls{sog}-Verfahren deutlich länger. Im Allgemeinen konvergieren sowohl das \gls{sog}- als auch das \gls{mc}-Verfahren gleich schnell.
 
+% conversion_time.m
 \begin{table}
 	\centering
 	\begin{tabular}{||c|c||c||c|c||}

@@ -66,7 +66,7 @@ for bindex = 1:size(unique_bid, 1)
 		
 	%
 	selector = (data_bor(:, cid.bor_bid) == bid) & (data_bor(:, cid.bor_pdf) == 1);
-	gauss_switch_time = sort(data_bor(selector, :), cid.time);
+	gauss_switch_time = sortrows(data_bor(selector, :), cid.time);
 	gauss_switch_time = gauss_switch_time(1, cid.time);
 	
 	%

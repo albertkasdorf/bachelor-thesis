@@ -7,7 +7,7 @@ format long; format compact;
 	
 % Dateipfad
 file_name_source = 'Record_2018-02-08-12-33-53_filtered';
-file_name_number = '_1';
+file_name_number = '_4';
 file_name_source_number = strcat(file_name_source, file_name_number);
 file_name_pt = strcat(file_name_source, file_name_number, '_pt.csv');
 file_name_bor = strcat(file_name_source, file_name_number, '_bor.csv');
@@ -108,10 +108,9 @@ for t = linspace(0.05, 1, 5)
 
 		plot([data_pose(:, cid.x); mean(1, 1)], [data_pose(:, cid.y); mean(1, 2)], 'b:');
 		
-		selector = data_bgt(:, 1) == unique_bids(b);
-		data_gt = data_bgt(selector, :);
+		selector = data_bgt
 		
-		fprintf('\\SI{%.3f}{\\meter} & ', sqrt((data_gt(1, 2) - mean(1, 1)) .^ 2 + (data_gt(1, 3) - mean(1, 2)) .^ 2));
+		fprintf('\\SI{%.3f}{\\meter} & ', sqrt((data_pose(:, cid.x) - mean(1, 1)) .^ 2 + (data_pose(:, cid.y) - mean(1, 2)) .^ 2));
 	end
 	fprintf('\\\\\n');
 end

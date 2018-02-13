@@ -57,7 +57,7 @@ for b = 1:unique_bid_count
 	
 	%
 	selector = (data_bor(:, cid.bor_bid) == bid) & (data_bor(:, cid.bor_pdf) == 1);
-	data = sort(data_bor(selector, :), cid.time);
+	data = sortrows(data_bor(selector, :), cid.time);
 	
 	%
 	time = data(1, cid.time);
