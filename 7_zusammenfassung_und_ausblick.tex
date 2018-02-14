@@ -1,16 +1,157 @@
-\begin{comment}
-- Eine aktuelle Recherche (3. Januar 2017) in den einschlägigen deutschen Bestellportalen (Ebay, Amazon, Conrad, Euronics, …) ergab, dass Geräte mit CWUSB-Unterstützung dort derzeit in Deutschland nicht bestellbar sind. Bei Amazon ließen sich in den Kundenrezensionen Spuren finden, dass im Jahr 2010 entsprechende Geräte auch vertrieben wurden. Zwei Entwicklungen machen es den Geräten schwer, sich am Markt zu behaupten: Einerseits wurde mit USB 3.0 die Datendurchsatzrate deutlich angehoben, was die Anforderungen an den Wireless-USB-Standard verschärft. Andererseits hat die Marktentwicklung bei den Smartphones die Verbreitung des Bluetooth-Standards stark ausgebaut. Während das Bluetooth-Konsortium seinen Standard laufend weiterentwickelt (zuletzt 2016 mit Version 5), datiert die letzte Version des USBCV-Tools für den Test und die Entwicklung von Wireless USB auf den 17. Juli 2009. Vor diesem Hintergrund erscheint es derzeit fraglich, ob CWUSB noch einmal aus der Versenkung auftauchen wird. [Wikipedia, Wireless USB]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- [Wikipedia, Wireless USB]
+%		- Eine aktuelle Recherche (3. Januar 2017) in den einschlägigen deutschen Bestellportalen (Ebay, Amazon, Conrad, Euronics, …) ergab, dass Geräte mit CWUSB-Unterstützung dort derzeit in Deutschland nicht bestellbar sind.
+%		- Bei Amazon ließen sich in den Kundenrezensionen Spuren finden, dass im Jahr 2010 entsprechende Geräte auch vertrieben wurden.
+%		- Zwei Entwicklungen machen es den Geräten schwer, sich am Markt zu behaupten:
+%			- Einerseits wurde mit USB 3.0 die Datendurchsatzrate deutlich angehoben, was die Anforderungen an den Wireless-USB-Standard verschärft.
+%			- Andererseits hat die Marktentwicklung bei den Smartphones die Verbreitung des Bluetooth-Standards stark ausgebaut.
+%			- Während das Bluetooth-Konsortium seinen Standard laufend weiterentwickelt (zuletzt 2016 mit Version 5), datiert die letzte Version des USBCV-Tools für den Test und die Entwicklung von Wireless USB auf den 17. Juli 2009. Vor diesem Hintergrund erscheint es derzeit fraglich, ob CWUSB noch einmal aus der Versenkung auftauchen wird. 
+%	
+%	- Vielleicht sollte man sich diese Einschätzung für das Fazit aufgewahren? Komnsumer Markt nein, Spezial Markt ja.
+%	
+%
+%%%%%%%%%%
+\chapter{Zusammenfassung und Ausblick}
 
-- Vielleicht sollte man sich diese Einschätzung für das Fazit aufgewahren? Komnsumer Markt nein, Spezial Markt ja.
+% Grundlagen
+%- Entfernungsbestimmung
+%	- Triangulation (AOA, DOA)
+%	- Trilateration (ToA, TDoA)
+%	- Nachrichten austausch, Delay Send
+%	- Double-sided Two-way Ranging
+%- Geometrie
+%	- Gleichseitiges Dreieck, Regelmäßiges Fünfeck
+%- Wahrscheinlichkeitstheorie
+%	- def. gaußen Normalverteilung (Skalar und Mehr-D)
+%	- Bedingten Wahrscheinlichkeit
+%	- Satz von Bayes
+%- Zustandsschätzer
+%	- Was ist ein Zustand
+%	- Wahrnehmungen / Steuerbefehle
+%	- Belief
+%	- Bayes Filter
+%		- abstrakte rekursive zustandsschätzung
+%		- Prognose (Steuerbefehle) / Korrektur (Wahrnehmung)
+%	- Kalman Filter
+%		- Repräsentiert den Belief über eine mehrdimensionale Normalverteilung
+%		- Kalman Gain (entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert)
+%	- EKF
+%		- Linearisierung von nicht liniearen Funktionen
+%	- PF
+%		- multimodale Verteilung
+%		- Menge von Stichproben
+%		- Gewicht
+%		- Resampling
+%- SLAM
+%	- Pose und Karte gleichzeitig bestimmen
+%	- EKF-SLAM
+%		- Aufbau Zustandsvektor
+%	- FastSLAM
+%		- pf problem mit großen Zustandsraum
+%		- pf für pfad, pro Partikel eine menge von landmarken
+%- ROS
+%	- Master, Knoten, Nachrichten, Datenbusse, Dienste
+	
+% Stand der Forschung und Technik
+%- Probability Grids werden mit einander kombiniert
+%- AUV
+%	- Bereinigen der Daten über das Spectral Graph Partitioning Verfahren
+%	- Eintragen der
+%	- Voting-System
+%	- EKF-SALM
+%- PF mit Radialen Hilfspartikel filter.
+%	-  Nach dem konvergierne wird ein ekf draus.
+%- PF mit SOG
+%	-  Nach dem konvergierne wird ein ekf draus.
+%- Ringförmige Verteilung im Polarkoordinaten system
 
-- UWB-Module
-	- Stärker Prozessor um den DWM mit maximaler SPI-Geschwindigkeit anzusteuern (20 Mhz)
-	- Identifier über DIP Schalter einstellbar
-	- Größerer Speicher um mehr Anchor/Tags verwalten zu können.
-\end{comment}
+% Ulta-Wideband
+%- Signale werden nicht auf eine sinusförmige Trägerfrequenz auf moduliert sondern im Basisband durch kurze Impulse
+%- Große Bandbreite
+%- Erstellte Hardware
+%	- Anforderungen
+%		- Gemeinsame Hardwareplatform, Separate STromversorgung, Kommunikation
+%	- Hardware Zusammenstellung
+%		- uwbt von decawave mit kommunikation über die SPI schnittstelle
+%		- Warum ProTrinket anstatt ardunino
+%		- Datenaustausch
+%	- Prototypen
+%		- Nachrichten austausch und Entfernungsmessung
+%	- Platinendesign
+%		- Berücksichtigen der Herstellerangaben
+%	- Steuersoftware
+%		- GitHub-Projekt
+%		- DW1000Ranging
+%		- Austausch Entfernungen, Übertragen an die Verarbeitungseinheit, Einspeisen ins ROS
+%	- Kalibierung
+%		- Antennenverzögerung
+%		- DecaWave Verfahren
+%		- LGS
 
-\chapter{Zusammenfassung und Ausblick (todo)}
 
-\section{Zusammenfassung (todo)}
+% Umsetzung des RO-SLAM in ROS
+%- Roboterplattform
+%	- Robotino 2, 2D-Laser-Entfernungsmesser, holonomer Antrieb mit Inkrementalgeber, Verarbeitungseinheit
+%	- Softwarearchitektur
+%		- Transformatinosbaum mit Odometrie + Entfernungsmessungen
+%	- ROS-Hauptmodule
+%		- Robotino-Steuerung
+%		- Koordindatentransformationen
+%		- Teleoperation
+%		- UWB-Entfernungsmessung
+%	- ROS-Hilfsmodule
+%		- 2D-Laser-Entfernungsmesser
+%		- Belegtheitskarten
+%		- Trajektorie
+%		- Laser-Odometrie
+%	- MRPT
 
-\section{Ausblick (todo)}
+% Evaluation
+%- Batterielaufzeit
+%- Kalibierung
+%	- LGS
+%	- DecaWave
+%	- Normalverteilung der Messwerte
+%	- Fünfeck
+%- Entfernungsmessung
+%	- LOS/NLOS
+%	- 1-9m in 0.5 schritten
+%	- Blech/Wasser
+%- Trajektorie
+%	- Testen der verschieden Odometriequellen
+%	- Inkrementalgeber + laserbasierte
+%- Positionsschätzung
+%	- RF2O
+%	- virtuelle + reale uwbm
+%- Positionsschätzung der UWB-Module
+%	- virtuelle werden auf ca. 0.15-0.97m geschätzt
+%	- reale werden von ca 0.49-1,03m geschätzt
+%- Konvergenz der WDF
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%%%%%%%%%%
+\section{Zusammenfassung}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- UWB-Module
+%		- Stärker Prozessor um den DWM mit maximaler SPI-Geschwindigkeit anzusteuern (20 Mhz)
+%		- Identifier über DIP Schalter einstellbar
+%		- Größerer Speicher um mehr Anchor/Tags verwalten zu können.
+%		- Stromsparfunktionen
+%		- vergleich mit dem kommerziellen Produkt
+%	- RO-SLAM
+%		- 
+%
+%%%%%%%%%%
+\section{Ausblick}
+
+
+\section{Fazit}
+

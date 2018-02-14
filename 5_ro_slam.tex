@@ -51,7 +51,7 @@ Die Fahrbefehle werden dem Robotino über einen Xbox Wireless Controller übermi
 
 Der Softwarearchitektur, siehe \autoref{fig:architektur_grouped}, lassen sich zwei Nachrichtentypen entnehmen die für den \gls{roslam} essentiell sind. Zum einen sind das die Daten der Entfernungsmessungen (\textit{mrpt\_msgs/ObservationRangeBeacon}) zwischen den \gls{uwbm} und dem Transformationsbaum (\textit{tf2\_msgs/TFMessage}) auf der anderen. Die Nachrichten des Transformationsbaums werden dabei nur indirekt benötigt, um zu bestimmen wie weit sich die Roboterplattform bewegt hat, sprich die Odometrieinformationen.
 
-Als Datenquelle für den Transformationsbaum sind zuerst die statischen Transformationen zu nennen, dann die Belegtheitskarten für die Transformation von dem Odometrie- in das Kartenkoordinatensystem. Und zuletzt die zwei Arten der Odometrie. Die erste liefert die Daten anhand der Inkrementalgeber in der Antriebseinheit und die zweite eine Odometrie über das auswerten der 2D-Laser-Entfernungsmessers. Bei der Laser-Odometrie haben sich zwei unterschiedliche Verfahren etabliert und alle drei Verfahren sollen auf ihre Genauigkeit Untersucht werden.
+Als Datenquelle für den Transformationsbaum sind zuerst die statischen Transformationen zu nennen, dann die Belegtheitskarten für die Transformation von dem Odometrie- in das Kartenkoordinatensystem und zuletzt die zwei Arten der Odometrie. Die erste liefert die Daten anhand der Inkrementalgeber in der Antriebseinheit und die zweite eine Odometrie über das auswerten der 2D-Laser-Entfernungsmessers. Bei der Laser-Odometrie haben sich zwei unterschiedliche Verfahren etabliert und alle drei Verfahren sollen auf ihre Genauigkeit Untersucht werden.
 
 Der untere Bereich ist über keinen Datenbus mit den anderen \gls{rosm} verbunden. Jedoch wird dieser zum einen benötigt um die Kommunikation zwischen der Robotino Steuereinheit herzustellen und zum anderem um die Roboterplattform als Ganzes durch ein Eingabegerät zu steuern.
 
@@ -222,7 +222,7 @@ Um die \Gls{roslam}-Algorithmen aus dem \Gls{mrpt}-Framework zu nutzen, wird das
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{rviz_robot_and_beacon_estimate}
-	\caption{Positionsschätzung für die Roboterplattform mit roten Pfeilen und für die \Glspl{uwbm} mit grünen Pfeilen.}
+	\caption{Positionsschätzung für die Roboterplattform mit roten Pfeilen und für die \Glspl{uwbm} mit blauen Pfeilen.}
 	\label{fig:rviz_robot_and_beacon_estimate}
 \end{figure}
 

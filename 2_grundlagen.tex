@@ -26,7 +26,7 @@ Die Abschnitte mit der \nameref{sec:probability_theory}, der \nameref{sec:state_
 Bei der \textit{Triangulation} werden die Winkel zwischen mehreren Referenzpunkten bestimmt und dann die dazu gehörige Entfernung mittels trigonometrischer Funktionen berechnet. Dieses Verfahren ist auch unter den Namen \Gls{aoa} bzw. \Gls{doa} bekannt. Um eine genau Ortsbestimmung durchzuführen müssen die Winkel sehr genau bestimmt werden. Um das zu bewerkstelligen werden im Empfänger mehrere Antennen zu einem Feld (engl. Antenna Array) zusammengefasst. Jedoch ist diese Konstruktion sehr teuer und empfindlich für Mehrwegeempfang (engl. Multipath) bzw. Signalabschattungen. \cite{gezici2005localization, liu2007survey, decawave2014rtls}
 
 Im Gegensatz dazu werden bei der \textit{Trilateration} die Entfernungen zwischen mehreren Referenzpunkten betrachtet. Es werden dabei die Verfahren \Gls{toa} und \Gls{tdoa} unterschieden.
-Bei dem \Gls{toa}-Verfahren wird zuerst die Zeitdifferenz zwischen dem Senden und Empfangen eines Funksignals berechnet. Mittels der Signallaufzeit (engl. \acrfull{tof}) und der Ausbreitungsgeschwindigkeit des Funksignals kann die Entfernung berechnet werden. Die Ortsbestimmung erfolgt dann über die Schnittpunkte von drei Kreisen (2D) bzw. vier Kugeln (3D) miteinander. Um dieses Verfahren anwenden zu können, ist es erforderlich das das Funksignal mit einem Zeitstempel des Startzeitpunktes versehen ist. Daraus folgt aber auch, das die Zeit zwischen Sender und Empfänger sehr genau synchronisiert werden müssen um den Fehler möglich klein zu halten.
+Bei dem \Gls{toa}-Verfahren wird zuerst die Zeitdifferenz zwischen dem Senden und Empfangen eines Funksignals berechnet. Mittels der Signallaufzeit (engl. \glsreset{tof}\gls{tof}) und der Ausbreitungsgeschwindigkeit des Funksignals kann die Entfernung berechnet werden. Die Ortsbestimmung erfolgt dann über die Schnittpunkte von drei Kreisen (2D) bzw. vier Kugeln (3D) miteinander. Um dieses Verfahren anwenden zu können, ist es erforderlich das das Funksignal mit einem Zeitstempel des Startzeitpunktes versehen ist. Daraus folgt aber auch, das die Zeit zwischen Sender und Empfänger sehr genau synchronisiert werden müssen um den Fehler möglich klein zu halten.
 Bei dem \Gls{tdoa}-Verfahren werden die Zeitdifferenz zwischen dem Empfang des Funksignals an mehreren Empfängern ausgewertet. Dies hat den großen Vorteil das nur noch die Zeit zwischen den Empfängern synchronisiert werden muss. \cite{zekavat2011handbook, decawave2014rtls}
 
 Neben der \textit{Triangulation} und \textit{Trilateration} besteht auch die Möglichkeit auf Grund der empfangenen Signalstärke (engl. \acrfull{ss_radio}, \acrfull{rss} oder auch \acrfull{rssi}) Rückschlüsse über die Entfernung zu ziehen. Dazu muss die ursprüngliche Signalstärke und die Ausbreitungscharakteristik der elektromagnetischen Welle in der spezifischen Umgebung bekannt sein. \cite{gezici2005localization, decawave2014rtls}
@@ -54,7 +54,7 @@ Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, is
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{single_sided_two_way_ranging}
-	\captionwithcite{Ablauf des \glsentrylong{sstwr}.}{\cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Der Ablauf des \glsentrylong{sstwr}-Verfahren.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:single_sided_two_way_ranging}
 \end{figure}
 
@@ -91,7 +91,7 @@ Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Ve
 	\centering
 %	\includegraphics[width=0.7\linewidth]{double_sided_two_way_ranging}
 	\includegraphics[width=0.8\linewidth]{double_sided_two_way_ranging}
-	\captionwithcite{Ablauf des \glsentrylong{dstwr}.}{\cite{decawave2016dw1kusermanual}} 
+	\captionwithcite{Der Ablauf des \glsentrylong{dstwr}-Verfahren.}{\cite{decawave2016dw1kusermanual}} 
 	\label{fig:double_sided_two_way_ranging}
 \end{figure}
 
@@ -109,24 +109,23 @@ error=T_{prop}\times\left(1-\frac{k_a+k_b}{2}\right)
 
 Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber von der Nennfrequenz und liegen beide sehr nahe bei eins.
 
-Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \autoref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bist alle Antwortnachrichten angekommen sind um im der letzten Nachricht, dann jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}-Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
+Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \autoref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bis alle Antwortnachrichten angekommen sind um im der letzten Nachricht jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}-Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
 
-%\begin{figure}[ht]
+% todo: In den Anhang verschieben.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{double_sided_two_way_ranging_with_three_anchor}
-	\captionwithcite{Ablauf des \glsentrylong{dstwr} mit einem \glsentryshort{tag} und drei \glsentryshort{anchor}.}{\cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Der Ablauf des \glsentrylong{dstwr}-Verfahren mit einem \glsentrytext{tag} und drei \glsentrytext{anchor}.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:double_sided_two_way_ranging_with_three_anchor}
 \end{figure}
 
 In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der \Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
 
-%\begin{figure}[ht]
+% todo: In den Anhang verschieben.
 \begin{figure}
 	\centering
-%	\includegraphics[width=0.4\linewidth]{discovery_and_ranging_phase2}
 	\includegraphics[width=0.3\linewidth]{discovery_and_ranging_phase2}
-	\captionwithcite{Ablauf der \textit{Discovery} und \textit{Range Phase} zwischen einem \Gls{tag} und mehreren \Gls{anchor}n.}{\cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Der Ablauf der \textit{Discovery} und \textit{Range Phase} zwischen einem \glsentrytext{tag} und mehreren \glsentrytext{anchor}n.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:discovery_and_ranging_phase}
 \end{figure}
 
@@ -243,13 +242,13 @@ p(x \mid y) = \eta \, p(y \mid x) \, p(x) \label{eq:bayes_rule_with_normalizer}
 \section{Zustandsschätzer}
 \label{sec:state_estimator}
 
-Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren. Das Ergebnis der Modellierung bezeichnet man als Zustand. Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen. Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann. Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung. Beschrieben wird er Zustand mit dem Symbol $x$.
+Ein Roboter der sich in seiner Umwelt zurechtfinden soll, muss diese modellieren. Das Ergebnis der Modellierung bezeichnet man als Zustand. Ein Zustand beschreibt dabei alle Aspekte des Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Ein Zustand kann dabei aus statischen sowie dynamischen Komponenten bestehen. Aus dem letzteren ergibt sich zwangsweise, dass ein Zustand sich auch über die Zeit verändern kann. Ein Zustand kann z.B. die Pose des Roboters sein, die Positionen von stationären Landmarken oder aber auch der Ladezustand der Energieversorgung. Beschrieben wird er Zustand mit dem Symbol~$x$.
 
-Die meisten Roboter verfügen über Sensoren um Änderungen an Ihrer Umwelt wahrzunehmen. Diese Wahrnehmungen werden dabei mit dem Symbol $z$ beschrieben. Zusätzlich kann der Roboter aktiv Änderungen an seiner Umwelt vornehmen, in dem er Steuerbefehle and die Aktorik sendet und sich somit durch seine Umwelt bewegt. Steuerbefehle werden mit dem Symbol $u$ beschrieben.
+Die meisten Roboter verfügen über Sensoren um Änderungen an Ihrer Umwelt wahrzunehmen. Diese Wahrnehmungen werden dabei mit dem Symbol~$z$ beschrieben. Zusätzlich kann der Roboter aktiv Änderungen an seiner Umwelt vornehmen, in dem er Steuerbefehle an die Aktorik sendet und sich somit durch seine Umwelt bewegt. Steuerbefehle werden mit dem Symbol~$u$ beschrieben.
 
-Um Auszudrücken, dass die Information des Zustandes, der Wahrnehmung und der Steuerbefehle, zu einem bestimmen Zeitpunkt gehören wird der Index $x_t$ verwendet. Eine Zeitspanne wird über den Index $x_{1:t}$ ausgedrückt. Im mathematischen Sinne werden alle drei Größe als Spaltenvektoren beschrieben, die nicht über die gleiche Dimension verfügen müssen. Zum Beispiel könnte der Zustand aus den X-/Y-Position und der Orientierung $\theta$ zusammengesetzt sein, während die Wahrnehmung aus vielen hunderten Entfernungsmessungen bestehen.
+Um Auszudrücken, dass die Information des Zustandes, der Wahrnehmung und der Steuerbefehle, zu einem bestimmen Zeitpunkt gehören wird der Index $x_t$ verwendet. Eine Zeitspanne wird über den Index~$x_{1:t}$ ausgedrückt. Im mathematischen Sinne werden alle drei Größe als Spaltenvektoren beschrieben, die nicht über die gleiche Dimension verfügen müssen. Zum Beispiel könnte der Zustand aus den X-/Y-Position und der Orientierung~$\theta$ zusammengesetzt sein, während die Wahrnehmung aus vielen hunderten Entfernungsmessungen bestehen.
 
-Der Zustand der Umwelt kann nicht direkt gemessen werden, stattdessen muss dieser aus den Daten der Wahrnehmung und der Steuerbefehle geschlussfolgert werden. Das interne Wissen des Roboters über den Zustand seiner Umwelt wird dabei als Belief $bel(x_t)$ bezeichnet. Der Belief wird dabei durch eine bedingte Wahrscheinlichkeitsverteilung repräsentiert. Jeder Zustandshypothese ordnet der Belief dabei eine Wahrscheinlichkeit für ihre Gültigkeit zu.
+Der Zustand der Umwelt kann nicht direkt gemessen werden, stattdessen muss dieser aus den Daten der Wahrnehmung und der Steuerbefehle geschlussfolgert werden. Das interne Wissen des Roboters über den Zustand seiner Umwelt wird dabei als Belief~$bel(x_t)$ bezeichnet. Der Belief wird dabei durch eine bedingte Wahrscheinlichkeitsverteilung repräsentiert. Jeder Zustandshypothese ordnet der Belief dabei eine Wahrscheinlichkeit für ihre Gültigkeit zu.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -262,7 +261,7 @@ Der Zustand der Umwelt kann nicht direkt gemessen werden, stattdessen muss diese
 %%%%%%%%%%
 \subsection{Bayes Filter}
 
-Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschreibung eines rekursiven Zustandsschätzer, siehe \autoref{alg:algorithm_bayes_filter}. Das heißt, aufbauend  auf der aktuellen Zustandsschätzung wird mit dem eintreffen neuer Wahrnehmungs- oder Steuerbefehl-Daten eine neue Zustandschätzung generiert. Abhängig vom Vorwissen des initialen Zustandes $bel(x_0)$ liefert diese entweder eine punktförmige Verteilung durch den initialen Zustand zurück oder eine stetige Gleichverteilung über den kompletten Zustandsraum. 
+Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschreibung eines rekursiven Zustandsschätzer, siehe \autoref{alg:algorithm_bayes_filter}. Das heißt, aufbauend  auf der aktuellen Zustandsschätzung wird mit dem eintreffen neuer Wahrnehmungs- oder Steuerbefehls-Daten eine neue Zustandschätzung generiert. Abhängig vom Vorwissen des initialen Zustandes~$bel(x_0)$ liefert diese entweder eine punktförmige Verteilung durch den initialen Zustand zurück oder eine stetige Gleichverteilung über den kompletten Zustandsraum. 
 
 %\begin{figure}
 %	\centering
@@ -289,7 +288,7 @@ Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschre
 \end{onehalfspacing}
 \end{algorithm}
 
-Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Prognose (engl. prediction) für den neuen Zustand erstellt, siehe Zeile 3. Der neue Zustand wird dabei aus dem vorherigen Zustand und dem aktuellen Steuerbefehl gebildet, siehe $p(x_t \mid, u_t, x_{t-1})$. Die daraus resultierende Verteilung wird mit der vorherige Belief Verteilung $bel(x_{t-1})$ multipliziert und ergibt die Prognose $\overline{bel}(x_t)$ für den neuen Zustand. Im zweite Schritt wird die erstellt Prognose mit der aktuellen Wahrnehmung korrigiert (engl. correction), siehe Zeile 4. Hierbei ist zu beachten, das für jede Zustandshypothese $x_t$ die erstelle Prognose $\overline{bel}(x_t)$ mit der Wahrscheinlichkeit multiplilziert wird, das die Wahrnehmung zu der Zustandprognose zutrifft $p(z_t \mid x_t)$.
+Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Prognose (engl. Prediction) für den neuen Zustand erstellt, siehe Zeile 3. Der neue Zustand wird dabei aus dem vorherigen Zustand und dem aktuellen Steuerbefehl gebildet, siehe $p(x_t \mid, u_t, x_{t-1})$. Die daraus resultierende Verteilung wird mit der vorherige Belief Verteilung $bel(x_{t-1})$ multipliziert und ergibt die Prognose $\overline{bel}(x_t)$ für den neuen Zustand. Im zweite Schritt wird die erstellt Prognose mit der aktuellen Wahrnehmung korrigiert (engl. Correction), siehe Zeile 4. Hierbei ist zu beachten, das für jede Zustandshypothese $x_t$ die erstelle Prognose $\overline{bel}(x_t)$ mit der Wahrscheinlichkeit multiplilziert wird, das die Wahrnehmung zu der Zustandprognose $p(z_t \mid x_t)$ zutrifft.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -349,7 +348,7 @@ Der Kalman Filter geht von der Annahme aus, dass die Zustandsänderung und die W
 
 Das Hauptproblem bei der linearen Annahme ist, dass viele Zustandsänderung und Wahrnehmungen nicht mit einer linearen Funktion beschrieben werden können, z.B. rotatorische Zustandsänderungen. Die \autoref{fig:random_variable_non_linear_transformation} verdeutlich, was mit der Normalverteilung einer Zufallsvariable $x$ passiert, wenn diese durch eine nicht lineare Funktion $g(x)$ abgebildet wird. Von der Normalverteilung der Zufallsvariable $y$ bleibt nicht mehr viel übrig.
 
-Der \Gls{ekf} löst das Problem in dem eine Linearisierung der nicht linearen Funktion vorgenommen wird, siehe \autoref{fig:random_variable_taylor_linearization}. Hierzu wird eine Taylorreihe des ersten Grades gebildet. Der Funktionswert der Mittelwertes $g(\mu)$ dient dabei als Entwicklungsstelle. Durch die Linearisierung wird die Normalverteilung der Zufallsvariable $x$ wieder ordnungsgemäß auf die Zufallsvariable $y$ abgebildet. Da es sich bei der Linearisierung nicht um die Originalfunktion handelt entsteht ein Linearisierungsfehler der am Unterschied zwischen der durchgezogen und gestrichelten Kurve zu erkennen ist.
+Der \Gls{ekf} löst das Problem in dem eine Linearisierung der nicht linearen Funktion vorgenommen wird, siehe \autoref{fig:random_variable_taylor_linearization}. Hierzu wird eine Taylorreihe des ersten Grades gebildet. Der Funktionswert der Mittelwertes $g(\mu)$ dient dabei als Entwicklungsstelle. Durch die Linearisierung wird die Normalverteilung der Zufallsvariable $x$ wieder ordnungsgemäß auf die Zufallsvariable $y$ abgebildet. Da es sich bei der Linearisierung nicht um die Originalfunktion handelt entsteht ein Linearisierungsfehler der am Unterschied zwischen der durchgezogen und gestrichelten Kurve zu erkennen ist, siehe \autoref{fig:random_variable_transformation}.
 
 \begin{figure}
 	\centering
@@ -457,7 +456,7 @@ Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen r
 %%%%%%%%%%
 \subsection{\glsentrylong{mcl}}
 
-Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegeln und damit ideal durch einen \Gls{pf} abgebildet werden kann. Bei der \Gls{mcl} handelt es sich um genau so einen \Gls{pf}, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
+Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegelt und damit ideal durch einen \Gls{pf} abgebildet werden kann. Bei der \Gls{mcl} handelt es sich um genau so einen \Gls{pf}, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
 
 Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein einer sehr genauen Karte der Umwelt. Die Kartendaten $m$ werden bei der Berechnung der Gewichte für die Zustandsprognosen eingesetzt. Somit unterscheidet sich der Monte Carlo Algorithmus nur in der fünften Zeile von dem generische Partikel Filter Algorithmus, siehe \autoref{eq:monte_carlo_measurement_model}. 
 
@@ -465,7 +464,6 @@ Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein eine
 w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte_carlo_measurement_model}
 \end{equation}
 
-% TODO: Erklären wie die MCL abläuft?
 %
 %- 8. Monte Carlo Localization
 %	- Figure 8.11 - Monte Carlo Localization, a particle filter applied to mobile robot localization.
@@ -529,7 +527,7 @@ w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte
 %		- The Batch algorithm, in comparison, processes those same measurements simultaneously via iterative least-squares estimation. An overview of the comparison of measurement processing among the two algorithms is shown in Figure-1. Batch algorithm estimations were made in parallel with those of the EKF for comparison of estimation error time histories.
 %
 %%%%%%%%%%
-%\section{Batch optimization [todo,optional]}
+%\section{Batch optimization}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -538,7 +536,7 @@ w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte
 %		- Additionally, we will extend the batch method to produce a variable dimension filter, as used by Deans for the case of bearing-only sensors [3], which would consider some window of previous robot states and optimize the position estimates based on the data in that window.
 %
 %%%%%%%%%%
-%\section{Variable Dimension Filter [todo,optional]}
+%\section{Variable Dimension Filter}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -713,7 +711,7 @@ Für den EKF-SLAM ist es entscheiden, die Zuordnung zwischen den Landmarken und 
 	\label{fig:fast_slam_data_association_problemn}
 \end{figure}
 
-Der \textit{FastSLAM} Algorithmus bildet die Grundlage für die beiden \gls{roslam} Verfahren die zum einen in den Abschnitten \autoref{sec:blanco2008pure} und \autoref{sec:blanco2008efficient} vorgestellt werden und zum anderen im der Evaluation ausgewertet.
+Der \textit{FastSLAM} Algorithmus bildet die Grundlage für die beiden \gls{roslam} Verfahren die zum einen in den Abschnitten \ref{sec:blanco2008pure} und \ref{sec:blanco2008efficient} vorgestellt und zum anderen im der Evaluation ausgewertet werden.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -721,7 +719,7 @@ Der \textit{FastSLAM} Algorithmus bildet die Grundlage für die beiden \gls{rosl
 % - https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
 %
 %%%%%%%%%%
-%\subsection{RO-SLAM [todo]}
+%\subsection{RO-SLAM}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -738,7 +736,7 @@ Der \textit{FastSLAM} Algorithmus bildet die Grundlage für die beiden \gls{rosl
 
 Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssystem, sondern vielmehr um ein Framework das die Kommunikation zwischen verschiedenen Verarbeitungseinheiten regelt. Im Jahre 2007 begann die Entwicklung von \Gls{ros} an der Stanford University. Ab 2009 wurde dieses dann hauptsächlich an dem Robotik Institut Willow Garage weiterentwickelt. Durch die BSD Lizenz steht \Gls{ros} als Open-Source-Projekt sowohl der nicht-kommerziellen auch der kommerziellen Weiterentwicklung zur Verfügung. \cite{quigley2009ros}
 
-Jedes \Gls{ros}-System muss über einen \Gls{ros}-Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von Knoten (engl. Nodes), Datenbusse (engl Topics) und Dienste (engl. Services) zur Verfügung.
+Jedes \Gls{ros}-System muss über einen \Gls{ros}-Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von Knoten (engl. Nodes), Datenbusse (engl. Topics) und Dienste (engl. Services) zur Verfügung.
 
 Jeder Verarbeitungseinheit in \Gls{ros} wird durch einen Knoten repräsentiert. Ziel ist es möglichst kleine, wiederverwendbare und miteinander kombinierbare Einheiten zu bilden. Die Programmierung eines Knoten erfolgt dabei in den Programmiersprachen C++, Python oder Lisp.
 

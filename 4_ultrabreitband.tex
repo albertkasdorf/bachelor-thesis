@@ -41,7 +41,7 @@ Durch die Einführung der zeitbereichsbasierten Abtastoszilloskope im Jahre 1962
 
 Ab dem Jahre 1964 produzierten beide Hersteller Messgeräte für die Diagnose im Zeitbereich. \cite{barrett2001technical}
 
-Ab den Anfängen der 1970er Jahre waren alle wichtigen Grundsteine für ein \gls{uwb} System für Kommunikation- bzw. Radaranwendungen gelegt. Dazu zählten auch diverse eingereichte Patente von Harmuth an der \gls{cua}, Ross und Robbins bei der Sperry Rand Corporation und Paul van Etten an der \gls{usaf} im Rome Air Development Center.\cite{barrett2001technical, fontana2004recent, yang2004uwbcom} Hervorzuheben ist das eingereichte Patent von Ross im Jahre 1973, siehe \cite{g1973transmission}.
+Ab den Anfängen der 1970er Jahre waren alle wichtigen Grundsteine für ein \gls{uwb} System für Kommunikation- bzw. Radaranwendungen gelegt. Dazu zählten auch diverse eingereichte Patente von Harmuth an der \gls{cua}, Ross und Robbins bei der Sperry Rand Corporation und Paul van Etten an der \gls{usaf} im Rome Air Development Center. \cite{barrett2001technical, fontana2004recent, yang2004uwbcom} Hervorzuheben ist das eingereichte Patent von Ross im Jahre 1973, siehe \cite{g1973transmission}.
 
 % INFO:
 % Rome Laboratory (Rome Air Development Center until 1991) is the US
@@ -69,8 +69,6 @@ Kurz darauf im Jahre 1974 wurde die \gls{uwb} Technologie kommerziell erfolgreic
 
 Im Zeittraum von 1977 bis 1989 wurden mehrere Programme und Workshops organisiert um die Entwicklung von \gls{uwb} Systemen voranzutreiben, darunter auch bei der \gls{usaf} und dem \gls{usdod}. Ebenfalls gab es mehrere akademische Programme an diversen Instituten, darunter auch am \gls{llnl}, \gls{lanl}, University of Michigan, University of Rochester und
 Polytechnic University, mit dem Fokus auf den physikalischen Unterschieden zwischen der Kurzimpulsübertragung und den Langimpulssignalen bzw. kontinuierlichen Impulssignalen bei der Interaktion mit verschiedenen Materialien.\cite{barrett2001technical}
-
-% TODO: Der letzte Satz ist zu lang. Aufspalten!
 
 Ab dem Jahre 1989 wurde der Name \gls{uwb}\footnotemark{} durch das \gls{usdod} geprägt. Diese Definition galt für alle Geräte die mindestens eine Bandbreite von \SI{1.5}{\GHz} bzw. \SI{25}{\percent} der \gls{fbw} belegten. \cite{eltaher2004positioning, fowler1990assessment, yang2004uwbcom, aiello2006ultra, fontana2004recent}
 
@@ -174,31 +172,29 @@ LED Vorwiderstand berechnen
 	- https://www.youtube.com/watch?v=iNZj91TSRUg
 	- DW1000 Datasheet - 5.9 General Purpose Input Output (GPIO)
 \end{comment}
-\subsubsection{\glsentrylong{uwbt}}\label{subsec:uwb_transceiver}
+\subsubsection{\glsentrytext{uwbt}}\label{subsec:uwb_transceiver}
 
-Als \Gls{uwbt} werden die Komponenten der Firma \textit{DecaWave} verwendet. Bei dem \textit{DW1000} handelt es sich nur um dem \Gls{ic} der für das Erzeugen und Verarbeiten der \gls{uwb}-Funksignale zuständig ist. Der \textit{DWM1000} beinhaltet neben dem \textit{DW1000} auch die notwendige Beschaltung und zusätzlich eine Antenne für die Übertragung, siehe \figurename~\ref{fig:pin_assignment}.
+Als \Gls{uwbt} werden die Komponenten der Firma \textit{DecaWave} verwendet. Bei dem \textit{DW1000} handelt es sich nur um dem \Gls{ic} der für das Erzeugen und Verarbeiten der \gls{uwb}-Funksignale zuständig ist. Der \textit{DWM1000} beinhaltet neben dem \textit{DW1000} auch die notwendige Beschaltung und zusätzlich eine Antenne für die Übertragung, siehe \autoref{fig:pin_assignment}.
 
 \begin{figure}
 	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{dw1000_pin_assignments.png}
-		\caption{DW1000 \gls{ic}}
+		\captionwithcite{DW1000 \gls{ic}}{\cite{decawave2016dw1kdatasheet}}
 		\label{fig:dw1000_pin_assignments}
-		\source{\cite{decawave2016dw1kdatasheet}}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{dwm1000_pin_assignments.png}
-		\caption{DWM1000 Modul}
+		\captionwithcite{DWM1000 Modul}{\cite{decawave2016dwm1kdatasheet}}
 		\label{fig:dwm1000_pin_assignments}
-		\source{\cite{decawave2016dwm1kdatasheet}}
 	\end{subfigure}
 	\caption{DecaWave \gls{ic} Pin Belegung}
 	\label{fig:pin_assignment}
 \end{figure}
 
-Der \textit{DWM1000} kann mit einer Spannung von \SIrange{2.8}{3.6}{\volt}\cite{decawave2016dwm1kdatasheet} betrieben werden, idealerweise mit \SI{3.3}{\volt}. Das bedeutet aber auch, dass die Logikpegelspannung für die \gls{spi} Schnittstelle \SI{3.3}{\volt} beträgt. Dieser Umstand muss bei der Auswahl des Mikrocontrollers berücksichtigt werden.
+Der \textit{DWM1000} kann mit einer Spannung von \SIrange{2.8}{3.6}{\volt} \cite{decawave2016dwm1kdatasheet} betrieben werden, idealerweise mit \SI{3.3}{\volt}. Das bedeutet aber auch, dass die Logikpegelspannung für die \gls{spi} Schnittstelle \SI{3.3}{\volt} beträgt. Dieser Umstand muss bei der Auswahl des Mikrocontrollers berücksichtigt werden.
 
-Die Kommunikation mit dem \textit{DWM1000} erfolgt über die \gls{spi} Schnittstelle, hierfür sind die Pins \gls{sclk}, \gls{mosi}, \gls{miso} und \gls{ss} zu verwenden \cite{decawave2016dwm1kdatasheet}. Bei der \gls{spi}-Schnittstelle handelt es sich um eine Master-Slave Architektur, das bedeutet das Daten vom Master gesendet und angefragt werden können. Der Slave kann jedoch nur Daten auf Anfrage senden. Um zu verhindern, dass der Master periodisch auf das Eintreffen einer Nachricht anfragen muss, kann der \gls{irq}-Pin des Slaves verwendet werden. Um zu verhindern das kurzfristige Spannungsspitzen einen Interrupt auslösen, muss der \gls{irq}-Pin über einen Pulldown-Widerstand auf Masse gezogen werden.
+Die Kommunikation mit dem \textit{DWM1000} erfolgt über die \gls{spi} Schnittstelle, hierfür sind die Pins \gls{sclk}, \gls{mosi}, \gls{miso} und \gls{ss} zu verwenden. \cite{decawave2016dwm1kdatasheet} Bei der \gls{spi}-Schnittstelle handelt es sich um eine Master-Slave Architektur, das bedeutet das Daten vom Master gesendet und angefragt werden können. Der Slave kann jedoch nur Daten auf Anfrage senden. Um zu verhindern, dass der Master periodisch auf das Eintreffen einer Nachricht anfragen muss, kann der \gls{irq}-Pin des Slaves verwendet werden. Um zu verhindern das kurzfristige Spannungsspitzen einen Interrupt auslösen, muss der \gls{irq}-Pin über einen Pulldown-Widerstand auf Masse gezogen werden.
 
 Um das \textit{DWM1000} erfolgreich zu initialisieren muss der RSTn-Pin durch den Mikrocontroller angesteuert werden. Zusätzlich ergibt sich, über die Beschaltung dieses Pins, die Möglichkeit den \textit{DWM1000} per Hardware im laufenden Betrieb neu zu starten.
 
@@ -216,9 +212,8 @@ Wie bereits im Abschnitt~\ref{subsec:uwb_transceiver} erwähnt beträgt die Logi
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{adafruit_pro_trinket_5v.png}
-	\caption[Adafruit Pro Trinket]{Adafruit Pro Trinket\protect\footnotemark}
+	\captionwithcite[Adafruit Pro Trinket]{Adafruit Pro Trinket\protect\footnotemark}{\cite{adafruit2014protrinket}}
 	\label{fig:adafruit_pro_trinket}
-	\source{\cite{adafruit2014protrinket}}
 \end{figure}
 
 \footnotetext{Der \textit{Adafruit Pro Trinket} \SI{3.3}{\volt} ist zum Großteil pinkompatibel zu der \SI{5}{\volt} Variante. Nur der Pin \textit{BAT+} benötigte eine Batteriespannung von \SIrange{3.5}{16}{\volt} und der drei Reihen weiter unten liegende \SI{5}{\volt} Pin liefert nur \SI{3.3}{\volt}.}
@@ -274,8 +269,7 @@ Bevor jedoch dieses Modul eingesetzt werden kann, müssen noch zwei Modifikation
 		\caption{Modifikation für einen höheren Ladestrom.}
 		\label{fig:pro_trinket_liion_backpack_bottom}
 	\end{subfigure}
-	\caption{Adafruit Pro Trinket LiPoly/LiIon Backpack}
-	\source{\cite{adafruit2014liionbackpack}}
+	\captionwithcite{Adafruit Pro Trinket LiPoly/LiIon Backpack}{\cite{adafruit2014liionbackpack}}
 	\label{fig:pro_trinket_liion_backpack}
 \end{figure}
 
@@ -312,7 +306,7 @@ Um den Lithium-Ionen Akku zu laden, bedarf es nicht mehr als den \Gls{usb}-Steck
 \subsubsection{Datenaustausch}
 
 % TODO: Computer? PC? Verarbeitungseinheit?
-Der \Gls{atmega} verfügt nicht über einen eingebauten \Gls{usb}-Controller, daher ist ein direkter Datenaustausch zwischen dem Mikrocontroller und einem Computer nicht möglich. Jedoch verfügt der \Gls{atmega} über eine \gls{uart}-Schnittstelle, mit der Daten seriell über die Pins RX und TX übertragen und empfangen werden können. Mittels eines zusätzlichen Moduls kann diesen Datenstrom aufgefangen und über die \Gls{usb}-Schnittstelle übertragen werden. Der \textit{CP2104 Friend} von \textit{Adafruit} erledigt genau diese Aufgabe. Angeschlossen wird er über den \gls{ftdi}-Header, siehe \figurename~\ref{fig:adafruit_pro_trinket}. Dadurch ist es möglich die \Gls{uwbm} die einen Datenaustausch benötigen mit einem entsprechenden Modul auszurüsten.
+Der \Gls{atmega} verfügt nicht über einen eingebauten \Gls{usb}-Controller, daher ist ein direkter Datenaustausch zwischen dem Mikrocontroller und einem Computer nicht möglich. Jedoch verfügt der \Gls{atmega} über eine \gls{uart}-Schnittstelle, mit der Daten seriell über die Pins RX und TX übertragen und empfangen werden können. Mittels eines zusätzlichen Moduls kann diesen Datenstrom aufgefangen und über die \Gls{usb}-Schnittstelle übertragen werden. Der \textit{CP2104 Friend} von \textit{Adafruit} erledigt genau diese Aufgabe. Angeschlossen wird er über den \gls{ftdi}-Header, siehe \figurename~\ref{fig:adafruit_pro_trinket}. Dadurch ist es möglich die \Glspl{uwbm}, die einen Datenaustausch benötigen, mit einem entsprechenden Modul auszurüsten.
 
 % TODO: In jedem Abschnitt der gleiche Satz :$
 Um eine Verbindung zwischen dem \textit{CP2104 Friend} und dem \textit{Pro Trinket} herzustellen, müssen die Pins anhand der \tablename~\ref{tab:pin_assignment_between_cp2104_and_pro_trinket} verbunden werden.
@@ -424,7 +418,7 @@ Während dem Aufbau des ersten Prototypen wurde ein \Gls{pcb}-Adapterboard, sieh
 \end{comment}
 \subsection{Platinendesign}
 
-Nachdem die Korrektheit des Schaltplans durch die Prototypen bestätigt wurde, kann nun das Layout für die endgültigen \Gls{pcb}-Platinen erstellt werden. Sowohl der Schaltplan als auch das Platinen-Layout werden mit dem Programm \textit{fritzing}\cite{fritzing} erstellt. Jedes im Schaltplan verwendete elektrische Bauelement besitzt einen \Gls{footprint}, der die Größe des Bauelementes und seine elektrischen Anschlüsse auf der Leiterplatte festlegt, siehe \figurename~\ref{fig:breadboard_schematic_pcb}. Anhand des \Glspl{footprint} muss nun jedes Bauteil so platziert werden, das es idealerweise möglichst wenig Platz auf der Leiterplatte verschwendet wird. Den je kleiner die Leiterplatte ist, desto günstiger in der Herstellung.
+Nachdem die Korrektheit des Schaltplans durch die Prototypen bestätigt wurde, kann nun das Layout für die endgültigen \Gls{pcb}-Platinen erstellt werden. Sowohl der Schaltplan als auch das Platinen-Layout werden mit dem Programm \textit{fritzing} \cite{fritzing} erstellt. Jedes im Schaltplan verwendete elektrische Bauelement besitzt einen \Gls{footprint}, der die Größe des Bauelementes und seine elektrischen Anschlüsse auf der Leiterplatte festlegt, siehe \figurename~\ref{fig:breadboard_schematic_pcb}. Anhand des \Glspl{footprint} muss nun jedes Bauteil so platziert werden, das es idealerweise möglichst wenig Platz auf der Leiterplatte verschwendet wird. Den je kleiner die Leiterplatte ist, desto günstiger in der Herstellung.
 
 \begin{figure}
 	\begin{subfigure}[t]{0.3\textwidth}
@@ -462,17 +456,15 @@ Nachdem jedes elektrische Bauelement auf der Leiterplatte positioniert wurde, mu
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{dwm1000_antenna_radiation_pattern}
-	\caption{Das Antennenabstrahlmuster in horizontaler Richtung.}
+	\captionwithcite{Das Antennenabstrahlmuster in horizontaler Richtung.}{\cite{decawave2016dwm1kdatasheet}}
 	\label{fig:dwm1000_antenna_radiation_pattern}
-	\source{\cite{decawave2016dwm1kdatasheet}}
 \end{figure}
 	
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{dwm1000_application_board_keep_out_areas}
-	\caption{Antennenfreiräume}
+	\captionwithcite{Antennenfreiräume}{\cite{decawave2016dwm1kdatasheet}}
 	\label{fig:dwm1000_application_board_keep_out_areas}
-	\source{\cite{decawave2016dwm1kdatasheet}}
 \end{figure}
 
 %\begin{figure}
@@ -707,9 +699,8 @@ Je genauer sich die Zeitstempel für den Empfang bzw. für das Versenden einer N
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{decawave2014calibration_fig1}
-	\caption{Antennenverzögerung zwischen zwei \Glsuseri{uwbm}.}
+	\captionwithcite{Antennenverzögerung zwischen zwei \Glsuseri{uwbm}.}{\cite{decawave2014calibration}}
 	\label{fig:decawave2014calibration_fig1}
-	\source{\cite{decawave2014calibration}}
 \end{figure}
 
 Die gemessene Zeitspanne ergibt sich dabei aus der Gleichung: 

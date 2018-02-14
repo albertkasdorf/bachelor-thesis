@@ -29,7 +29,7 @@
 %%%%%%%%%%
 \chapter{Stand der Forschung und Technik}
 
-In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \Gls{roslam} geliefert. Jeder Autor verwendet eine etwas andere Terminologie, auch wenn es sich im Kern um die gleiche Sache handelt. Daher werden in diesem Kapitel die Begriffe Anker, Tag und Beacon synonym verwendet.
+In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publikationen zum Thema \Gls{roslam} geliefert. Jeder Autor verwendet eine etwas andere Terminologie, auch wenn es sich im Kern um die gleiche Sache handelt. Daher werden in diesem Kapitel die Begriffe \Gls{anchor}, \Gls{tag} und \Gls{beacon} synonym verwendet.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -79,35 +79,50 @@ In diesem Kapitel wird ein chronologischer Überblick über die wichtigsten Publ
 %%%%%%%%%%
 \section{Preliminary results in range-only localization and mapping}
 
-In \citetitle{kantor2002preliminary}\cite{kantor2002preliminary} verwendet der Author \Glspl{beacon} die eine Entfernungsschätzung mit einem mittleren Fehler von \SI{1.82}{\metre} (6 Fuß) liefern. Um das Problem der Datenzuordnung zu trivialisieren, liefert jeder \Gls{beacon} zusätzlich zur Messung eine eindeutigen Identifikationsnummer mit. Nur mit diesen Daten werden die Probleme der Roboter Lokalisierung, Positionsverfolgung und \Gls{slam} behandelt. Das algorithmische Fundament wird dabei durch den \Gls{ekf} und \Gls{mc} Partikelfilter gebildet.
+In \citetitle{kantor2002preliminary} \cite{kantor2002preliminary} verwendet der Author \Glspl{beacon} die eine Entfernungsschätzung mit einem mittleren Fehler von \SI{1.82}{\metre} (6 Fuß) liefern. Um das Problem der Datenzuordnung zu trivialisieren, liefert jeder \Gls{beacon} zusätzlich zur Messung eine eindeutigen Identifikationsnummer mit. Nur mit diesen Daten werden die Probleme der Roboter Lokalisierung, Positionsverfolgung und \Gls{slam} behandelt. Das algorithmische Fundament wird dabei durch den \Gls{ekf} und \Gls{mc} \Gls{pf} gebildet.
 
-Im ersten Abschnitt wird die statische Lokalisierung thematisiert, die für eine Positionsschätzung auf vorherige Sensorinformationen und Positionsschätzungen verzichtet. Bei einer fehlerfreien Entfernungsmessungen ist die Positionsbestimmung ein mathematisch triviales Problem. Da die Messungenauigkeit mit \SI{1.82}{\metre} jedoch sehr hoch ist, werden Methoden der Wahrscheinlichkeitstheorie verwendet. Im ersten Schritt wird die Verteilungsfunktion experimentell für einige diskreten Abstände bestimmt. Unter zuhilfenahme der erstellten Verteilungsfunktion wird für jeden \Gls{beacon} und für jede Zelle des \Gls{propgrid} die Wahrscheinlichkeit berechnet, siehe \figurename~\ref{fig:kantor2002preliminary_figure1b} links. Im letzten Schritt werden die einzelnen \Gls{propgrid} miteinandern multipliziert und im Abschluss skaliert damit die Summe über alle Zellen gleich eins ist, siehe \figurename~\ref{fig:kantor2002preliminary_figure1c} rechts. Aus dem gewichteten Durchschnitt der Zellen lässt sich die Position schätzen, siehe \figurename~\ref{fig:kantor2002preliminary_figure1c}. Der durchschnittliche Schätzungsfehler beträgt \SI{0.49}{\metre} bei einem erwarteten Fehler von \SIrange{1,77}{2,18}{\metre} bei der Entfernungsmessung.
+Im ersten Abschnitt wird die statische Lokalisierung thematisiert, die für eine Positionsschätzung auf vorherige Sensorinformationen und Positionsschätzungen verzichtet. Bei einer fehlerfreien Entfernungsmessungen ist die Positionsbestimmung ein mathematisch triviales Problem. Da die Messungenauigkeit mit \SI{1.82}{\metre} jedoch sehr hoch ist, werden Methoden der Wahrscheinlichkeitstheorie verwendet. Im ersten Schritt wird die Verteilungsfunktion experimentell für einige diskrete Abstände bestimmt. Unter zuhilfenahme der erstellten Verteilungsfunktion wird für jeden \Gls{beacon} und für jede Zelle des \Gls{propgrid} die Wahrscheinlichkeit berechnet, siehe \autoref{fig:kantor2002preliminary_figure1b} links. Im letzten Schritt werden die einzelnen \Gls{propgrid} miteinandern multipliziert und im Abschluss skaliert damit die Summe über alle Zellen gleich eins ist, siehe \autoref{fig:kantor2002preliminary_figure1c} rechts. Aus dem gewichteten Durchschnitt der Zellen lässt sich die Position schätzen, siehe \autoref{fig:kantor2002preliminary_figure1c}. Der durchschnittliche Schätzungsfehler beträgt \SI{0.49}{\metre} bei einem erwarteten Fehler von \SIrange{1,77}{2,18}{\metre} bei der Entfernungsmessung.
 
-\begin{figure}[htbp]
-  \begin{minipage}[t]{0.45\linewidth}
+%\begin{figure}
+%  \begin{minipage}[t]{0.45\linewidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{kantor2002preliminary_figure1b}
+%    \captionwithcite{Links: \Gls{propgrid} pro \Gls{beacon}. Rechts: Kombination zweier \Glspl{propgrid}.}{\cite{kantor2002preliminary}}
+%    \label{fig:kantor2002preliminary_figure1b}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}[t]{0.45\linewidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{kantor2002preliminary_figure1c}
+%    \captionwithcite{Kombiniertes \Gls{propgrid} aller \Glspl{beacon}.}{\cite{kantor2002preliminary}}
+%    \label{fig:kantor2002preliminary_figure1c}
+%  \end{minipage}
+%\end{figure}
+
+\begin{figure}
+  \begin{subfigure}{0.45\linewidth}
     \centering
     \includegraphics[width=\linewidth]{kantor2002preliminary_figure1b}
-    \caption{Links: \Gls{propgrid} pro \Gls{beacon}. Rechts: Kombination zweier \Glspl{propgrid}.}
+    \caption{Kombination zweier \Gls{beacon} \Glspl{propgrid} zu einem Gemeinsamen.}
     \label{fig:kantor2002preliminary_figure1b}
-  \end{minipage}
+  \end{subfigure}
   \hfill
-  \begin{minipage}[t]{0.45\linewidth}
+  \begin{subfigure}{0.45\linewidth}
     \centering
     \includegraphics[width=\linewidth]{kantor2002preliminary_figure1c}
     \caption{Kombiniertes \Gls{propgrid} aller \Glspl{beacon}.}
     \label{fig:kantor2002preliminary_figure1c}
-  \end{minipage}
-	\source{\cite{kantor2002preliminary}}
+  \end{subfigure}
+  \captionwithcite{Darstellung der \Glspl{beacon} in einem \Gls{propgrid}.}{\cite{kantor2002preliminary}}
 \end{figure}
 
-Im nächsten Abschnitt wird die Positionsverfolgung mittels eines \Gls{ekf} bzw. \Gls{mc} Partikelfilter behandelt. Hier für werden die Odometriedaten und die vorhergie Positionsschätzung verwendet. Für eine initiale Positionsschätzung wird das Verfahren aus dem vorherigen Abschnitt verwendet. Aus der Entfernungsschätzung eines \Glspl{beacon} ergibt sich eine ringförmige Verteilungsfunktion, die mit einer unimodalen Verteilung nicht modelliert werden kann. Als Annäherung wird eine Normalverteilung verwendet, die in tangentialer Richtung gestreckt und in radialer Richtung gestaucht ist. Als Mittelwert wird die vorherige Positionsschätzung verwendet, siehe \figurename~\ref{fig:kantor2002preliminary_figure2}. Um die Partikel im \Gls{mc} Partikelfilter zu gewichten ist die ringförmige Verteilung vollkommen ausreichend. Der durchschnittliche Schätzungsfehler beträgt beim \Gls{ekf} \SI{0.22}{\metre} und \SI{0.28}{\metre} beim \Gls{mc} Partikelfilter.
+Im nächsten Abschnitt wird die Positionsverfolgung mittels eines \Gls{ekf} bzw. \Gls{mc} \Gls{pf} behandelt. Hierfür werden die Odometriedaten und die vorhergie Positionsschätzung verwendet. Für eine initiale Positionsschätzung wird das Verfahren aus dem vorherigen Abschnitt verwendet. Aus der Entfernungsschätzung eines \Glspl{beacon} ergibt sich eine ringförmige Verteilungsfunktion, die mit einer unimodalen Verteilung nicht modelliert werden kann. Als Annäherung wird eine Normalverteilung verwendet, die in tangentialer Richtung gestreckt und in radialer Richtung gestaucht ist. Als Mittelwert wird die vorherige Positionsschätzung verwendet, siehe \autoref{fig:kantor2002preliminary_figure2}. Um die Partikel im \Gls{mc} \Gls{pf} zu gewichten ist die ringförmige Verteilung vollkommen ausreichend. Der durchschnittliche Schätzungsfehler beträgt beim \Gls{ekf} \SI{0.22}{\metre} und \SI{0.28}{\metre} beim \Gls{mc} \Gls{pf}.
 
-\begin{figure}[htbp]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{kantor2002preliminary_figure2}
-	\caption{Annäherung einer ringförmigen Verteilung an eine Normalverteilung.}
+	\captionwithcite{Annäherung einer ringförmigen Verteilung an eine Normalverteilung.}{\cite{kantor2002preliminary}}
 	\label{fig:kantor2002preliminary_figure2}
-	\source{\cite{kantor2002preliminary}}
 \end{figure}
 
 Der letzte Abschnitt wird ein \Gls{slam}-Verfahren mittels einem \Gls{ekf} behandelt. Die initiale Roboter- und \Gls{beacon}-Position muss nicht genau jedoch ungefähr bekannt sein. Der Zustandsvektor des \Gls{ekf} beinhaltet die Roboter- und alle \Gls{beacon}-Positionen. Der durchschnittliche Fehler in der initalen Schätzung beträgt \SI{1.56}{\metre} und verbessert sich zum Schluss hin auf \SI{0.23}{\metre}.
@@ -119,7 +134,7 @@ Der letzte Abschnitt wird ein \Gls{slam}-Verfahren mittels einem \Gls{ekf} behan
 %		- Experimental results in range-only localization with radio (82)
 %
 %%%%%%%%%%
-%\section{Experimental results in range-only localization with radio [todo]}
+%\section{Experimental results in range-only localization with radio}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,10 +148,9 @@ Der letzte Abschnitt wird ein \Gls{slam}-Verfahren mittels einem \Gls{ekf} behan
 %%%%%%%%%%
 \section{Robust range-only beacon localization}
 
-In \citetitle{olson2004robust}\cite{olson2004robust} werden autonome Unterwasserfahrzeuge (engl. \gls{auv}) verwendet um den Ozeanen der Welt die letzten Geheimnisse zu entlocken. Hierfür ist eine genaue Lokalisierung der \gls{auv} notwendig. Dies wird über die Messung der Signallaufzeit zwischen dem \gls{auv} und mehreren stationären akustischen Transponder-\Gls{beacon} erreicht. Vor der eigentlichen Messung müssen jedoch die \Glspl{beacon} im Messbereich verteilt werden, deren Position genau bestimmt werden und zusätzlich dafür gesorgt werden, dass die \Glspl{beacon} ihre Position nicht ändern. Dadurch handelt es sich um ein sehr kostspieliges Prozedere und soll in dem vorgestellt Verfahren dahingehend optimierte werden, dass die \Gls{beacon}-Position vorher nicht bekannt sein muss. Dadurch ist eine autonome Verteilung der \Glspl{beacon} möglich und zusätzlich kann auch detektiert werden ob ein \Gls{beacon} seine Position verändert hat.
+In \citetitle{olson2004robust} \cite{olson2004robust} werden autonome Unterwasserfahrzeuge (engl. \gls{auv}) verwendet um den Ozeanen der Welt die letzten Geheimnisse zu entlocken. Hierfür ist eine genaue Lokalisierung der \gls{auv} notwendig. Dies wird über die Messung der Signallaufzeit zwischen dem \gls{auv} und mehreren stationären akustischen Transponder-\Gls{beacon} erreicht. Vor der eigentlichen Messung müssen jedoch die \Glspl{beacon} im Messbereich verteilt werden, deren Position genau bestimmt werden und zusätzlich dafür gesorgt werden, dass die \Glspl{beacon} ihre Position nicht ändern. Dadurch handelt es sich um ein sehr kostspieliges Prozedere und soll in dem vorgestellt Verfahren dahingehend optimierte werden, dass die \Gls{beacon}-Position vorher nicht bekannt sein muss. Dadurch ist eine autonome Verteilung der \Glspl{beacon} möglich und zusätzlich kann auch detektiert werden ob ein \Gls{beacon} seine Position verändert hat.
 
-% TODO: Spectral Graph Partitioning Übersetzung? 
-Bevor jedoch die Laufzeitmessungen verwendet werden können, müssen diese um \Gls{outlier} (dt. Ausreißer) bereinigt werden. Diese entstehen z.B. durch unterschiedliche Ausbreitungsgeschwindigkeiten der Schallwellen im Wasser, durch Reflektionen am Meeresgrund (engl. \Gls{multipath}) oder durch Interferenzen der Nutzlast (engl. \Gls{payload}) mit den Sensoren. Die Bereinigung der Messdaten erfolgt hierbei über das \textit{Spectral Graph Partitioning} Verfahren. Hierbei wird jede Messung als Kreis dargestellt. Überschneiden sich zwei Kreise gelten diese beiden Messungen als konsistent. Jede der Messungen wird in einem Graphen zu einem Vertex und jede konsistente Messung zu einer Kante. Bei dem fertigen Graphen ist nun zu beobachten, dass \Gls{outlier} weniger stark untereinander verbunden sind als \Gls{inlier}. Diese durchschnittliche Konnektivität der \Gls{inlier} wir als Metrik für den Partitionierungsalogorithmus verwendet um die Messdaten zu filtern.
+Bevor jedoch die Laufzeitmessungen verwendet werden können, müssen diese um Ausreißer (engl. \Gls{outlier}) bereinigt werden. Diese entstehen z.B. durch unterschiedliche Ausbreitungsgeschwindigkeiten der Schallwellen im Wasser, durch Reflektionen am Meeresgrund (engl. \Gls{multipath}) oder durch Interferenzen der Nutzlast (engl. \Gls{payload}) mit den Sensoren. Die Bereinigung der Messdaten erfolgt hierbei über das \textit{Spectral Graph Partitioning} Verfahren. Hierbei wird jede Messung als Kreis dargestellt. Überschneiden sich zwei Kreise gelten diese beiden Messungen als konsistent. Jede der Messungen wird in einem Graphen zu einem Vertex und jede konsistente Messung zu einer Kante. Bei dem fertigen Graphen ist nun zu beobachten, dass \Gls{outlier} weniger stark untereinander verbunden sind als \Gls{inlier}. Diese durchschnittliche Konnektivität der \Gls{inlier} wir als Metrik für den Partitionierungsalogorithmus verwendet um die Messdaten zu filtern.
 
 Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messwerte von zwei verschiedenen \Glspl{beacon} wieder mit einandern überschnitten. Hieraus entstehen zwei mögliche Positionen des \gls{auv}. In einem Grid erhöhen diese beiden Positionen dann den Ihnen zugeordneten Zähler. Dieser Vorgang wird für weiter Messwerte wiederholt. Durch das daraus resultierende Voting-System entstehen zwei Gipfel (engl. Peak) die die mögliche Position des \gls{auv} approximieren. Ist der Höhenunterschied zwischen den Gipfeln ausreichend groß, wird die \gls{auv}-Position mit dem höchsten Gipfel an einen EKF-SLAM übergeben.
 
@@ -147,7 +161,7 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 %		- Tracking moving devices with the cricket location system (547)
 %
 %%%%%%%%%%
-%\section{Tracking moving devices with the cricket location system [todo]}
+%\section{Tracking moving devices with the cricket location system}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,7 +173,7 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 
 Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}-Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure} \cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}-Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein rein probabilistisches Verfahren genutzt.
 
-Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades von der Karte mit den Landmarken entkoppelt \cite{murphy2001rao, montemerlo2002fastslam}. Jeder Partikel des \Gls{rbpf} beschreibt dabei pro \textit{Beacon} die Verteilung die am besten zu seiner Positionsschätzung passt. Die Verteilung wird dabei zuerst von einem Hilfspartikelfilter (engl. Auxiliary Particle Filter) modelliert. Seine Partikel besitzen dabei eine ringförmige Verteilung mit dem Abstand des \textit{Beacon}, siehe \figurename~\ref{fig:blanco2008pure_fig3e}. Partikel mit einer geringen Wahrscheinlichkeit werden über eine Gewichtung aussortiert, siehe \figurename~\ref{fig:blanco2008pure_fig3f}. Sobald der Hilfspartikelfilter gegen eine bestimmte \textit{Beacon}-Position konvergiert ist, wird dieser in einen Normalverteilung umgewandelt und über einen \Gls{ekf} modelliert, siehe \figurename~\ref{fig:blanco2008pure_fig3g}.
+Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades von der Karte mit den Landmarken entkoppelt \cite{murphy2001rao, montemerlo2002fastslam}. Jeder Partikel des \Gls{rbpf} beschreibt dabei pro \textit{Beacon} die Verteilung die am besten zu seiner Positionsschätzung passt. Die Verteilung wird dabei zuerst von einem Hilfspartikelfilter (engl. Auxiliary Particle Filter) modelliert. Seine Partikel besitzen dabei eine ringförmige Verteilung mit dem Abstand des \textit{Beacon}, siehe \autoref{fig:blanco2008pure_fig3e}. Partikel mit einer geringen Wahrscheinlichkeit werden über eine Gewichtung aussortiert, siehe \autoref{fig:blanco2008pure_fig3f}. Sobald der Hilfspartikelfilter gegen eine bestimmte \textit{Beacon}-Position konvergiert ist, wird dieser in einen Normalverteilung umgewandelt und über einen \Gls{ekf} modelliert, siehe \autoref{fig:blanco2008pure_fig3g}.
 
 \begin{figure}
 	\begin{subfigure}[t]{0.3\linewidth}
@@ -179,9 +193,8 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 		\caption{}
 		\label{fig:blanco2008pure_fig3g}
 	\end{subfigure}
-	\caption{Entwicklung eines Hilfspartikelfilters zu einem \Gls{ekf}.}
+	\captionwithcite{Entwicklung eines Hilfspartikelfilters zu einem \Gls{ekf}.}{\cite{blanco2008pure}}
 	\label{fig:blanco2008pure_fig3}
-	\source{\cite{blanco2008pure}}
 \end{figure}
 
 
@@ -193,11 +206,11 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 %%%%%%%%%%
 \section{Efficient probabilistic range-only SLAM}\label{sec:blanco2008efficient}
 
-Aufbauend auf der vorherigen Arbeit im Abschnitt~\ref{sec:blanco2008pure} wird in \citetitle{blanco2008efficient} \cite{blanco2008efficient} nicht mehr ein Hilfspartikelfilter verwendet, der ab einer gewissen Sicherheit in einen \Gls{ekf} umgewandelt wird. Stattdessen wird die ringförmiger Verteilung über radial angeordnete Normalverteilungen angenähert deren Nachbarschaftsabstand über den Parameter \textit{K} bestimmt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig17a}~--~\ref{fig:blanco2008efficient_fig17b}. Die Gesamtverteilung ergibt sich dabei über eine gewichtete Summe der Normalverteilungen (engl. \gls{sog}). Über die Gewichte lässt sich dabei steuern, ob eine der Normalverteilungen in dem Ring für die \textit{Beacon}-Position noch relevant ist oder entfernt werden kann, siehe \figurename~\ref{fig:blanco2008efficient_fig10a}~--~\ref{fig:blanco2008efficient_fig10b}.
+Aufbauend auf der vorherigen Arbeit im Abschnitt~\ref{sec:blanco2008pure} wird in \citetitle{blanco2008efficient} \cite{blanco2008efficient} nicht mehr ein Hilfspartikelfilter verwendet, der ab einer gewissen Sicherheit in einen \Gls{ekf} umgewandelt wird. Stattdessen wird die ringförmiger Verteilung über radial angeordnete Normalverteilungen angenähert deren Nachbarschaftsabstand über den Parameter \textit{K} bestimmt werden kann, siehe \autoref{fig:blanco2008efficient_fig17a}~--~\ref{fig:blanco2008efficient_fig17b}. Die Gesamtverteilung ergibt sich dabei über eine gewichtete Summe der Normalverteilungen (engl. \gls{sog}). Über die Gewichte lässt sich dabei steuern, ob eine der Normalverteilungen in dem Ring für die \textit{Beacon}-Position noch relevant ist oder entfernt werden kann, siehe \autoref{fig:blanco2008efficient_fig10a}~--~\ref{fig:blanco2008efficient_fig10b}.
 
 Sowohl das Verfahren aus dem Abschnitt~\ref{sec:blanco2008pure} als auch dieses sind in dem \Gls{mrpt}-Framework vorhanden und werden im Kapitel~\ref{ch:ro_slam} verwendet.
 
-\begin{figure}[!ht]
+\begin{figure}
 	\begin{subfigure}[t]{0.24\linewidth}
 		\includegraphics[width=\linewidth]{blanco2008efficient_fig17a}
 		\caption{}
@@ -221,9 +234,8 @@ Sowohl das Verfahren aus dem Abschnitt~\ref{sec:blanco2008pure} als auch dieses 
 		\caption{}
 		\label{fig:blanco2008efficient_fig10b}
 	\end{subfigure}
-	\caption{Modellierung der ringförmigen Verteilung über radial angeordnete Normalverteilungen.}
+	\captionwithcite{Modellierung der ringförmigen Verteilung über radial angeordnete Normalverteilungen.}{\cite{blanco2008efficientppt}}
 	\label{fig:blanco2008efficient}
-	\source{\cite{blanco2008efficientppt}}
 \end{figure}
 
 
@@ -259,7 +271,7 @@ Die Abbildungen~\ref{fig:djugash2009robust_fig1} verdeutlichen zum einen, wie di
 
 Nachdem zwei Messungen von verschiedenen Positionen aus durchgeführt wurden, ergibt sich die tatsächliche Verteilung aus den beiden Schnittpunkten der Ringe, siehe \autoref{fig:djugash2009robust_fig1d}. Die Multimodalität der Verteilung kann über einen \Gls{ekf} nicht mehr abgebildet werden, daher wird zu diesem Zeitpunkt pro Verteilung ein eigener \Gls{ekf} angelegt. \autoref{fig:djugash2009robust_fig1e} beschreibt wie im vorherigen Abschnitt die tatsächlichen und angenäherten Verteilungen in Polarkoordinaten und \autoref{fig:djugash2009robust_fig1f} die Verteilung die sich aus der Annäherung der Verteilung ergibt.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\begin{subfigure}[b]{0.32\textwidth}
 		\centering
@@ -302,9 +314,8 @@ Nachdem zwei Messungen von verschiedenen Positionen aus durchgeführt wurden, er
 		\caption{}
 		\label{fig:djugash2009robust_fig1f}
 	\end{subfigure}
-	\caption{Darstellung der tatsächlichen und angenäherten Verteilung in Kartesischen und Polarkoordinaten.}
+	\captionwithcite{Darstellung der tatsächlichen und angenäherten Verteilung in Kartesischen und Polarkoordinaten.}{\cite{djugash2009robust}}
 	\label{fig:djugash2009robust_fig1}
-	\source{\cite{djugash2009robust}}
 \end{figure}
 
 
