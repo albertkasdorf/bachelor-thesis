@@ -59,3 +59,29 @@ Record_2018-02-08-12-33-53_filtered_7
 	- MC_maxStdToGauss=0.07
 - msg.sensor_std_range = 0.02
 - correction = {177:0, 178:0, 179:0, 180:0}
+
+Record_2018-02-08-12-33-53_filtered_8
+- sampleSize=50
+- BETA=0.25
+- localizeLinDistance = 0.01
+- localizeAngDistance_deg = 01.0
+- insertAsMonteCarlo=0
+- msg.sensor_std_range = 0.02
+- fake_beacons
+	- range1, 1.98,  0.88
+	- range2, 1.98,  1.20
+	- range3, 4.00, -0.12
+	- range4, 5.04,  1.88
+
+Record_2018-02-08-12-33-53_filtered_9
+- sampleSize=50
+- BETA=0.25
+- localizeLinDistance = 0.01
+- localizeAngDistance_deg = 01.0
+- insertAsMonteCarlo=0
+- msg.sensor_std_range = 0.02
+- fake_beacons
+	- range1, 1.98,  0.88
+	- range2, 1.98,  1.20
+	- range3, 4.00, -0.12
+	- range4, 5.04,  1.88
