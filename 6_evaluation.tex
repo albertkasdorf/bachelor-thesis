@@ -422,7 +422,9 @@ Das führt zu der Vermutung, dass die Qualität der Entfernungsmessung einen ent
 
 Mit den gleichen Datensätzen wie in \autoref{fig:Record_2018-02-08-12-33-53_filtered_trajectory_pf} wurden nun in der \autoref{fig:Record_2018-02-08-12-33-53_filtered_beacon_error} die Fehlerellipsen für die \glspl{uwbm} eingezeichnet. Um die Fehlerellipsen darstellen zu können, wurde diese mit einem Faktor von 10 skaliert. Die Ground Truth Position der \gls{uwbm} ist an dem schwarzen Kreuz erkennbar. Die Roboterplattform wird durch einen blauen Stern symbolisiert, der sich zu unterschiedlichen Zeitpunkten auf der Trajektorie befindet. Die gepunkteten Linien ordnen der Roboterplattform, zu einem bestimmten Zeitpunkt, die Positionsschätzung der \glspl{uwbm} zu.
 
-Sowohl mit den realen als auch mit den virtuellen \glsuseri{uwbm} verringert sich die Unsicherheit der Positionsschätzung der \glspl{uwbm} kontinuiertlich über die Zeit. Durch die ungenaue Positionsschätzung der Roboterplattform durch die realen \glspl{uwbm} sind auch die Positionsschätzungen der \gls{uwbm} entsprechend verschoben im Bezug zu ihren Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_3_beacon_error} und \autoref{fig:Record_2018-02-08-12-33-53_filtered_1_beacon_error}. Besser verhält es sich bei den virtuellen \glsuseri{uwbm}, hier entspricht die Positionsschätzung der \glspl{uwbm} dem der Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_5_beacon_error}. Der Winkelfehler in der Positionsschätzung aus der \autoref{fig:Record_2018-02-08-12-33-53_filtered_4_trajectory_pf} spiegelt sich ebenfalls in der Positionsschätzung der \glspl{uwbm} wieder, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_beacon_error}.
+Sowohl mit den realen als auch mit den virtuellen \glsuseri{uwbm} verringert sich die Unsicherheit der Positionsschätzung der \glspl{uwbm} kontinuierlich über die Zeit. Durch die ungenaue Positionsschätzung der Roboterplattform durch die realen \glspl{uwbm} sind auch die Positionsschätzungen der \gls{uwbm} entsprechend verschoben im Bezug zu ihren Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_3_beacon_error} und \autoref{fig:Record_2018-02-08-12-33-53_filtered_1_beacon_error}. Besser verhält es sich bei den virtuellen \glsuseri{uwbm}, hier entspricht die Positionsschätzung der \glspl{uwbm} dem der Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_5_beacon_error}. Der Winkelfehler in der Positionsschätzung aus der \autoref{fig:Record_2018-02-08-12-33-53_filtered_4_trajectory_pf} spiegelt sich ebenfalls in der Positionsschätzung der \glspl{uwbm} wieder, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_beacon_error}.
+
+Anzumerken ist, dass das \gls{roslam}-Verfahren von der Annahme ausgeht das die Position der \glspl{uwbm} sich über die Zeit nicht ändert. Während der Auswertung der Daten konnte jedoch mehrfach beobachtet werden, dass sich die Positionen der \glspl{uwbm} über die Zeit änderten konnte. Somit ist nicht ausgeschlossen, dass die Positionsänderungen der \glspl{uwbm} verfolgt werden kann, sobald die \gls{wdf} durch das \gls{ekf}-Verfahren repräsentiert wird.
 
 % viz_bor_mean_cov, cov=cov*10
 \begin{figure}
@@ -459,12 +461,11 @@ Sowohl mit den realen als auch mit den virtuellen \glsuseri{uwbm} verringert sic
 	\label{fig:Record_2018-02-08-12-33-53_filtered_beacon_error}
 \end{figure}
 
-In den \autoref{tab:distance_between_real_uwb_and_gt} und \autoref{tab:distance_between_virtual_uwb_and_gt} sind die Entfernungen der Positionsschätzung der uwbm zu den Ground Truth Positionen zu bestimten Zeitpunkten aufgelistet. 
+In den \autoref{tab:distance_between_real_uwb_and_gt} und \autoref{tab:distance_between_virtual_uwb_and_gt} sind die Entfernungen der Positionsschätzung der \glspl{uwbm} zu den Ground Truth Positionen an ausgewählten Zeitpunkten aufgelistet. Wie bereits zu erwarten schneiden die virtuellen \glspl{uwbm} deutlich besser ab als ihre realen Vertreter. Neben einer Verbesserung der Positionsschätzung der \glspl{uwbm} ist eine Verschlechterung ebenfalls möglich, siehe linke Spalte 179  und rechte Spalte 4. Die Verschlechterung tritt sowohl die virtuellen als auch die realen \glspl{uwbm} gleichermaßen.
 
-Neben einer verbesserung der Positionsschätzung der uwbm ist ebenfalls eine verschlechterung möglich, siehe die Spalten 179 der \autoref{tab:distance_between_real_uwb_and_gt} und Spalte 4 der \autoref{tab:distance_between_virtual_uwb_and_gt}.
+Einige Entfernungen kommen pro Spalte doppelt bzw. dreifach hintereinander vor. Das liegt daran, das zu großen Zeiträumen keine Positionsschätzungen zu diesen \glsuseri{uwbm} durch das \gls{mrpt}-\gls{rosm} bereitgestellt wurden. Aus diesem Grund wurde die letzte bekannte Entfernung angegeben. Die Ursache für dieses Phänomen konnte bis zum Schluss nicht geklärt werden.
 
-Anzumerken ist noch folgendes, das roslam-Verfahren geht von der Annahme aus das die Position der uwbm sich über die Zeit nicht ändert. Während der Auswertung der Daten konnte aber mehrfach beobachtet werden, das sich die positionen der uwbm über die Zeit änderten. Somit ist nicht ausgeschlossen, dass die positionsänderungen der uwbm verfolgt werden kann, sobald die wdf durch das ekf-Verfahren repräsentiert wird.
-
+% viz_bor_mean_cov, cov=cov*10
 \begin{table}
 	\centering
 	\begin{tabular}{||r||c|c|c|c||c|c|c|c||}
@@ -478,10 +479,11 @@ Anzumerken ist noch folgendes, das roslam-Verfahren geht von der Annahme aus das
 \SI{135}{\second} & \SI{0.567}{\meter} & \SI{0.490}{\meter} & \SI{0.975}{\meter} & \SI{0.396}{\meter} & \SI{0.281}{\meter} & \SI{0.170}{\meter} & \SI{1.036}{\meter} & \SI{0.709}{\meter} \\
 \hline
 	\end{tabular}
-	\caption{Entfernung der Positionsschätzung der realen \glsentrytext{uwbm} zu den Ground Truth Positionen.}
+	\caption{Entfernung der Positionsschätzung der realen \glsentrytext{uwbm}e zu den Ground Truth Positionen.}
 	\label{tab:distance_between_real_uwb_and_gt}
 \end{table}
 
+% viz_bor_mean_cov, cov=cov*10
 \begin{table}
 	\centering
 	\begin{tabular}{||r||c|c|c|c||c|c|c|c||}
@@ -495,12 +497,10 @@ Anzumerken ist noch folgendes, das roslam-Verfahren geht von der Annahme aus das
 \SI{135}{\second} & \SI{0.051}{\meter} & \SI{0.177}{\meter} & \SI{0.228}{\meter} & \SI{0.159}{\meter} & \SI{0.154}{\meter} & \SI{0.861}{\meter} & \SI{0.976}{\meter} & \SI{0.529}{\meter} \\
 \hline
 	\end{tabular}
-	\caption{Entfernung der Positionsschätzung der virtuellen \glsentrytext{uwbm} zu den Ground Truth Positionen.}
+	\caption{Entfernung der Positionsschätzung der virtuellen \glsentrytext{uwbm}e zu den Ground Truth Positionen.}
 	\label{tab:distance_between_virtual_uwb_and_gt}
 \end{table}
 
-% Wandernde Beacon
-% Tabelle mit den Beaconschätzungen (Zeit{0-100%}, Entfernung, usw.)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
