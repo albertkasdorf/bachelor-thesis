@@ -8,7 +8,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%	- TODO: Stimmen die 10Hz?
 %	- Start 13:50-23:50, 12:50-20:00 => 10+7 => 17 Stunden
 %
 %%%%%%%%%%
@@ -31,7 +30,7 @@ Der \Gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig 
 
 Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervorgänge durchgeführt. Der erste Kalibriervorgang orientiert sich an den Herstellervorgaben aus \cite{decawave2014calibration}. Dazu werden drei \Glspl{uwbm} an die Spitzen eines gleichseitigen Dreieckes positioniert. Um das Dreieck zu konstruieren, wird in der Mitte des Dreiecks eine ausgemessene Maurerschnur befestigt, darüber wird eine Winkelschablone gelegt und dann reihum die Spitzen es Dreiecks auf dem Boden eingezeichnet, siehe \autoref{fig:calibration_triangle2}. Die Seitenlänge $a \approx \SI{1.73}{\meter}$ wird dabei aus dem Umkreisradius $r_u = \SI{1}{\meter}$ mit der \autoref{eq:dreieck_seitenlaenge_aus_umkreis} berechnet.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{calibration_triangle2}
 	\caption{Versuchsaufbau für die Kalibierung von drei \Glsuseri{uwbm}.}
@@ -42,7 +41,7 @@ Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt
 
 Das \textit{LGS}-Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzierbare Ergebnisse. Da jedes \Gls{uwbm} herstellungsbedingte Unterschiede aufweist, ist es Plausibel das alle Antennenverzögerungen in einem ähnlichen Wertebereich liegen. Anders sieht es bei dem \textit{DecaWave}-Kalibrierungsverfahren aus. Hier ergeben sich für jeden Durchlauf andere Wertekombinationen, bedingt durch die Zufallskomponente bei der Erstellung der Kandidatenliste. Diese Verhalten von Genetischen-Algorithmen ist bekannt und muss daher bei der Auswahl der Wertekombinationen berücksichtigt werden. Am Beispiel der Spalte \textit{DecaWave 1} wird es sehr deutlich. Hier beträgt der Unterschied zwischen dem größten und kleinsten Wert \approx\SI{23}{\ns} und entspricht damit einer Abweichung von \approx\SI{6}{\meter} zwischen diesen beiden \Glsuseri{uwbm}.
 
-\begin{table}[h]
+\begin{table}
 	\centering
 	\begin{tabular}{||c||c||ccc||}
 \hline
@@ -69,7 +68,7 @@ Mit einer initalen Antennenverzögerung von null beträgt die gemessene Entfernu
 
 Werden die Antennenverzögerung aus der \textit{LGS}-Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen der tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}-Ka\-li\-brierungs\-ver\-fahren.
 
-\begin{table}[h]
+\begin{table}
 	\centering
 	\begin{tabular}{||c||cc||ccc|cc||}
 \hline
@@ -107,7 +106,7 @@ DecaWave & 178 & 177 & \num{1.732} & \num{7.458} & \num{0.019} & \num{7.390} & \
 
 In der \autoref{fig:calibration_histograms} wurden die gemessenen Entfernungen als Histogramm dargestellt. Gut zu erkennen ist die Normalverteilung der Messwerte um den Mittelwert.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\begin{subfigure}[b]{0.32\linewidth}
 		\centering
@@ -145,7 +144,7 @@ In der \autoref{fig:calibration_histograms} wurden die gemessenen Entfernungen a
 
 Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt reicht ein Dreieck nicht mehr aus, statt dessen wird ein regelmäßiges Fünfeck/Pentagramm verwendet, siehe \autoref{fig:calibration_pentagram2}. Dieses lässt sich mathematisch ähnlich gut beschreiben wie das Dreieck. Aus der Seitenlänge $a = \SI{4.5}{\meter}$, zwischen zwei benachbarten Spitzen, wird über die \autoref{eq:fuenfeck_diagonale} die Entfernung $d$, zwischen den diagonalen Spitzen, berechnet. Der Umkreisradius $r_u$ ergibt sich aus der \autoref{eq:fuenfeck_umkreisradius}.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{calibration_pentagram2}
 	\caption{Versuchsaufbau für die Kalibierung von fünf \glsuseri{uwbm}.}
@@ -154,7 +153,7 @@ Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt
 
 Für das regelmäßige Fünfeck/Pentagramm wurde nur noch das \textit{LGS}-Ka\-li\-brie\-rungs\-ver\-fahren verwendet, die Antennenverzögerungen pro \Gls{uwbm} sind dabei in der \autoref{tab:calibration_pentagramm_antenna_delay_results} aufgeführt.
 
-\begin{table}[h]
+\begin{table}
 	\centering
 	\begin{tabular}{||c||c||}
 \hline
@@ -197,7 +196,7 @@ Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}- 
 Bei der ersten \Gls{nlos}-Messreihe wird ein \SI{19x12x10}{\centi\meter} großer, mit Wasser gefüllter Kunststoffbehälter in einem Abstand von \SI{2}{\centi\meter} vor der \Gls{uwb}-Antenne platziert, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_133013}. Bei den letzten zwei \Gls{nlos}-Messreihen wird ein \SI{44x25}{\centi\meter} großes Aluminiumblech mit einer Dicke von \SI{0.5}{\milli\meter} vor die \Gls{uwb}-Antenne platziert, jeweils in einem Abstand von \SI{5}{\centi\meter} und \SI{50}{\centi\meter}, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_140118} und \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
 
 
-\begin{figure}[ht]
+\begin{figure}
 	\begin{minipage}{0.49\linewidth}
 		\begin{subfigure}{\linewidth}
 			\includegraphics[width=\linewidth]{entfernungsmessung_versuchsaufbau_20180120_122434_2}
@@ -240,7 +239,7 @@ In der \autoref{fig:entfernungsmessung_2018_01_20_nlos_water} ist deutlich zu er
 Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer Entfernung von \SI{50}{\centi\meter} befindet, siehe \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal}. Die Werte der Standardabweichung ähneln der \Gls{los}-Messreihe. Nur im Bereich zwischen achteinhalb und neun Meter steigt die Standardabweichung auf einen Wert von ca. \SI{30}{\centi\meter} an. Dies könnte darauf zurückzuführen sein, das im hinteren Bereich des Raums Metallstühle auf den Tischen standen, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
 
 
-\begin{figure}[ht]
+\begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.49\linewidth}
 		\centering

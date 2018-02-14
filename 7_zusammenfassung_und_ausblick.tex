@@ -14,44 +14,23 @@
 %%%%%%%%%%
 \chapter{Zusammenfassung und Ausblick}
 
-% Grundlagen
-%- Entfernungsbestimmung
-%	- Triangulation (AOA, DOA)
-%	- Trilateration (ToA, TDoA)
-%	- Nachrichten austausch, Delay Send
-%	- Double-sided Two-way Ranging
-%- Geometrie
-%	- Gleichseitiges Dreieck, Regelmäßiges Fünfeck
-%- Wahrscheinlichkeitstheorie
-%	- def. gaußen Normalverteilung (Skalar und Mehr-D)
-%	- Bedingten Wahrscheinlichkeit
-%	- Satz von Bayes
-%- Zustandsschätzer
-%	- Was ist ein Zustand
-%	- Wahrnehmungen / Steuerbefehle
-%	- Belief
-%	- Bayes Filter
-%		- abstrakte rekursive zustandsschätzung
-%		- Prognose (Steuerbefehle) / Korrektur (Wahrnehmung)
-%	- Kalman Filter
-%		- Repräsentiert den Belief über eine mehrdimensionale Normalverteilung
-%		- Kalman Gain (entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert)
-%	- EKF
-%		- Linearisierung von nicht liniearen Funktionen
-%	- PF
-%		- multimodale Verteilung
-%		- Menge von Stichproben
-%		- Gewicht
-%		- Resampling
-%- SLAM
-%	- Pose und Karte gleichzeitig bestimmen
-%	- EKF-SLAM
-%		- Aufbau Zustandsvektor
-%	- FastSLAM
-%		- pf problem mit großen Zustandsraum
-%		- pf für pfad, pro Partikel eine menge von landmarken
-%- ROS
-%	- Master, Knoten, Nachrichten, Datenbusse, Dienste
+Im Grundlagen-Kapitel wurden zu erste der Unterschied zwischen der Entfernungsmessung mittels Triangulation und der Trilateration beschrieben. Die Triangulation bestimmt die Entfernung durch das Messen der Winkel zwischen mehreren Referenzpunkten, während die Trilateration die Entfernungen anhand der Signallaufzeit bestimmt. Die Trilateration wird von den \glsuseri{uwbm} verwendet um Nachrichten auszutauschen. Durch den Nachrichtenaustausch ist es auch möglich die Entfernung zwischen zwei \glspl{uwbm} zu bestimmen. Dazu wird der Nachrichtenversand zu einem zukünftigen Zeitpunkt geplant, um den Zeitstempel des Sendevorgangs in die Nachricht einzubetten. Das empfangende \gls{uwbm} ist nun im Besitz aller Informationen um die Entfernung zu errechnen. Dies ist unter dem Namen \gls{sstwr}-Verfahren bekannt. Eine Verbesserung stellt das \gls{dstwr}-Verfahren dar, das für die Entfernungsmessung verwendet wird, da es den Fehler der lokalen Zeitgeber minimiert.
+
+Im Geometrie-Abschnitt wurden die mathematischen Gleichungen für das Konstruieren und Berechnen der relevanten Längen des gleichseitigen Dreiecks und eines regelmäßigen Fünfecks beschrieben.
+
+Die Wahrscheinlichkeitstheorie legt den Grundstein um die Funktionsweise der verschieden \gls{slam}-Varianten zu verstehen. Dabei wurden die Konzepte der Zufallsvariablen, der einfachen und mehrdimensionalen Normalverteilung und deren Gesetzmäßigkeiten wie die bedingte Wahrscheinlichkeit, die Abhängigkeiten zwischen Zufallsvariablen und der Satz von Bayes vorgestellt.
+
+Mit einem Zustandschätzer ist es möglich, Abschätzungen über den zukünftigen Zustand eines Systems zu erstellen. Der Zustand beschreibt dabei alle Aspekte eines Roboters und seiner Umwelt die einen Einfluss auf die Zukunft haben können. Die Abschätzungen werden dabei durch die Steuerbefehle, die der Roboter an die Aktorik sendet, und die Wahrnehmungen der Umwelt gesteuert. Das interne Wissen des Roboters über den Zustand seiner Umwelt wird dabei als Belief bezeichnet. Die Basis aller Zustandschätzer bildet dabei der rekursive Bayes Filter, der jeden Zustand in zwei Schritten schätzt. Im Prognose-Schritt wird der nächste Zustand mit den Steuerbefehlen vorhergesagt und dann im Korrektur-Schritt mit den Wahrnehmungen korrigiert. Bei dem Bayes Filter handelt es sich um eine sehr abstrakten Algorithmus, der durch den Kalman Filter konkret umgesetzt wird. Der Kalman Filter nutzt dabei eine mehrdimensionale Normalverteilung um den Belief zu repräsentieren. Dadurch entstehen bei der Nutzung von nicht linearen Funktionen, die bei Rotationsbewegungen auftreten, aber auch Probleme. Diese werden durch den \gls{ekf} mittels einer Linearisierung der nicht linearen Funktion gelöst.
+
+Bedingt durch die Verwendung einer Normalverteilung, können sowohl der Kalman Filter als auch der \gls{ekf} keine multimodalen Verteilungen darstellen. Diese Einschränkungen können durch den \gls{pf} umgangen werden. Dieser nutzt eine Menge von Partikeln um den Belief darzustellen. Dadurch ist es möglich eine beliebige Verteilung abzubilden. Jedes Partikel wird mit einem Gewicht versehen, um die Relevanz zu beschreiben. Im Resampling-Schritt werden die Partikel aussortiert, bei denen die Gewichtung unter einen festgelegten Grenzwert fällt, und durch neue Partikel ersetzt.
+
+Wenn es notwendig wird, das nicht nur der Zustand des Roboters geschätzt, sondern auch gleichzeitig eine Karte der Umwelt erstellt wird, spricht man von einem \gls{slam}-Verfahren. Der \gls{ekf}-\gls{slam} gehört dabei zu den Standardverfahren der Robotik. Hierbei wird der Zustand des Roboters, als auch der der Umwelt mittels eines kombinierten Zustandsvektors modelliert. Das \gls{slam}-Verfahren kann auch mithilfe eines \gls{pf} gelöst werden, dazu muss der Zustandsvektor aufgespalten werden da \gls{pf} in großen Zustandsräumen nicht praktikabel sind. Der \gls{pf} stellt somit durch seine Partikel eine Hypothese des Pfades dar und jedem Partikel wird dann eine Menge von Landmarken zugewiesen.
+
+Das Grundlagen-Kapitel schließt mit einer kurzen Betrachtung der \gls{ros}-Begrifflichkeiten ab. Hierzu gehört der \gls{ros}-Master, der die Verbindung zwischen verschieden Verarbeitungseinheiten, auch als Knoten bezeichnet, bereitstellt. Damit eine Kommunikation zwischen den Knoten stattfinden kann, werden Nachrichten über Datenbusse übertragen.
+
+
+
+
 	
 % Stand der Forschung und Technik
 %- Probability Grids werden mit einander kombiniert
@@ -132,14 +111,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
-%
-%%%%%%%%%%
-\section{Zusammenfassung}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
 %	- UWB-Module
 %		- Stärker Prozessor um den DWM mit maximaler SPI-Geschwindigkeit anzusteuern (20 Mhz)
 %		- Identifier über DIP Schalter einstellbar
@@ -153,5 +124,10 @@
 \section{Ausblick}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Wurden alle Fragen aus dem Expose geklärt/beantwortet?
+%
+%%%%%%%%%%
 \section{Fazit}
 
