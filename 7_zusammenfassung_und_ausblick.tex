@@ -28,22 +28,14 @@ Wenn es notwendig wird, das nicht nur der Zustand des Roboters geschätzt, sonde
 
 Das Grundlagen-Kapitel schließt mit einer kurzen Betrachtung der \gls{ros}-Begrifflichkeiten ab. Hierzu gehört der \gls{ros}-Master, der die Verbindung zwischen verschieden Verarbeitungseinheiten, auch als Knoten bezeichnet, bereitstellt. Damit eine Kommunikation zwischen den Knoten stattfinden kann, werden Nachrichten über Datenbusse übertragen.
 
+Die ersten beiden Veröffentlichungen im Kapitel Stand der Forschung und Technik werden die Positionen der \glspl{beacon} zuerst solange beobachtet, bis die Unsicherheit so gering ist, dass diese problemlos mit einem \gls{ekf}-\gls{slam} verarbeitet werden können. In der ersten Veröffentlichung werden die ungefähren \gls{beacon}-Positionen durch die Kombination von \gls{propgrid} angenähert. Anders geht die zweite Veröffentlichung vor, hier werden die beobachteten Entfernungen in einem Gitter eingetragen. Sobald sich ein Gipfel gebildet hat, wird die Positionsschätzung an den \gls{ekf}-\gls{slam} übergeben.
+
+Die nächsten zwei Veröffentlichungen nutzen den \gls{pf}-\gls{slam}. Beim ersten wird für jedes Partikel ein Hilfspartikel Filter eingesetzt, um die radiale Verteilung zu modellieren. Der Zweite verwendet anstatt einem Hilfspartikel Filter eine Menge von Normalverteilungen die ebenfalls radial angeordnet und mit Gewichten versehen sind. Sobald beide Verfahren gegen eine \gls{beacon}-Positionen konvergiert sind, wird der Hilfspartikel Filter und die Menge von Normalverteilungen durch einen \gls{ekf} ersetzt.
+
+Einen vollkommen anderen Weg beschreibt die letzte Veröffentlichung, hier werden die \gls{beacon}-Positionen nicht in Kartesische Koordinaten, sondern in Polarkoordinaten beschrieben.
 
 
 
-	
-% Stand der Forschung und Technik
-%- Probability Grids werden mit einander kombiniert
-%- AUV
-%	- Bereinigen der Daten über das Spectral Graph Partitioning Verfahren
-%	- Eintragen der
-%	- Voting-System
-%	- EKF-SALM
-%- PF mit Radialen Hilfspartikel filter.
-%	-  Nach dem konvergierne wird ein ekf draus.
-%- PF mit SOG
-%	-  Nach dem konvergierne wird ein ekf draus.
-%- Ringförmige Verteilung im Polarkoordinaten system
 
 % Ulta-Wideband
 %- Signale werden nicht auf eine sinusförmige Trägerfrequenz auf moduliert sondern im Basisband durch kurze Impulse
