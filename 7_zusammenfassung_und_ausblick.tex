@@ -14,9 +14,9 @@
 %%%%%%%%%%
 \chapter{Zusammenfassung und Ausblick}
 
-Im Grundlagen-Kapitel wurden zu erste der Unterschied zwischen der Entfernungsmessung mittels Triangulation und der Trilateration beschrieben. Die Triangulation bestimmt die Entfernung durch das Messen der Winkel zwischen mehreren Referenzpunkten, während die Trilateration die Entfernungen anhand der Signallaufzeit bestimmt. Die Trilateration wird von den \glsuseri{uwbm} verwendet um Nachrichten auszutauschen. Durch den Nachrichtenaustausch ist es auch möglich die Entfernung zwischen zwei \glsuseri{uwbm} zu bestimmen. Dazu wird der Nachrichtenversand zu einem zukünftigen Zeitpunkt geplant, um den Zeitstempel des Sendevorgangs in die Nachricht einzubetten. Das empfangende \gls{uwbm} ist nun im Besitz aller Informationen um die Entfernung zu errechnen. Dies ist unter dem Namen \gls{sstwr}-Verfahren bekannt. Eine Verbesserung stellt das \gls{dstwr}-Verfahren dar, das für die Entfernungsmessung verwendet wird, da es den Fehler der lokalen Zeitgeber minimiert.
+Im Grundlagen Kapitel wurden zu erste der Unterschied zwischen der Entfernungsmessung mittels Triangulation und der Trilateration beschrieben. Die Triangulation bestimmt die Entfernung durch das Messen der Winkel zwischen mehreren Referenzpunkten, während die Trilateration die Entfernungen anhand der Signallaufzeit bestimmt. Die Trilateration wird von den \glsuseri{uwbm} verwendet um Nachrichten auszutauschen. Durch den Nachrichtenaustausch ist es auch möglich die Entfernung zwischen zwei \glsuseri{uwbm} zu bestimmen. Dazu wird der Nachrichtenversand zu einem zukünftigen Zeitpunkt geplant, um den Zeitstempel des Sendevorgangs in die Nachricht einzubetten. Das empfangende \gls{uwbm} ist nun im Besitz aller Informationen um die Entfernung zu errechnen. Dies ist unter dem Namen \gls{sstwr}-Verfahren bekannt. Eine Verbesserung stellt das \gls{dstwr}-Verfahren dar, das für die Entfernungsmessung verwendet wird, da es den Fehler der lokalen Zeitgeber minimiert.
 
-Im Geometrie-Abschnitt wurden die mathematischen Gleichungen für das Konstruieren und Berechnen der relevanten Längen des gleichseitigen Dreiecks und eines regelmäßigen Fünfecks beschrieben.
+Im Geometrie Abschnitt wurden die mathematischen Gleichungen für das Konstruieren und Berechnen der relevanten Längen des gleichseitigen Dreiecks und eines regelmäßigen Fünfecks beschrieben.
 
 Die Wahrscheinlichkeitstheorie legt den Grundstein um die Funktionsweise der verschieden \gls{slam}-Varianten zu verstehen. Dabei wurden die Konzepte der Zufallsvariablen, der einfachen und mehrdimensionalen Normalverteilung und deren Gesetzmäßigkeiten wie die bedingte Wahrscheinlichkeit, die Abhängigkeiten zwischen Zufallsvariablen und der Satz von Bayes vorgestellt.
 
@@ -26,7 +26,7 @@ Bedingt durch die Verwendung einer Normalverteilung, können sowohl der Kalman F
 
 Wenn es notwendig wird, das nicht nur der Zustand des Roboters geschätzt, sondern auch gleichzeitig eine Karte der Umwelt erstellt wird, spricht man von einem \gls{slam}-Verfahren. Der \gls{ekf}-\gls{slam} gehört dabei zu den Standardverfahren der Robotik. Hierbei wird der Zustand des Roboters, als auch der der Umwelt mittels eines kombinierten Zustandsvektors modelliert. Das \gls{slam}-Verfahren kann auch mithilfe eines \gls{pf} gelöst werden, dazu muss der Zustandsvektor aufgespalten werden da \gls{pf} in großen Zustandsräumen nicht praktikabel sind. Der \gls{pf} stellt somit durch seine Partikel eine Hypothese des Pfades dar und jedem Partikel wird dann eine Menge von Landmarken zugewiesen.
 
-Das Grundlagen-Kapitel schließt mit einer kurzen Betrachtung der \gls{ros}-Begrifflichkeiten ab. Hierzu gehört der \gls{ros}-Master, der die Verbindung zwischen verschieden Verarbeitungseinheiten, auch als Knoten bezeichnet, bereitstellt. Damit eine Kommunikation zwischen den Knoten stattfinden kann, werden Nachrichten über Datenbusse übertragen.
+Das Grundlagen Kapitel schließt mit einer kurzen Betrachtung der \gls{ros}-Begrifflichkeiten ab. Hierzu gehört der \gls{ros}-Master, der die Verbindung zwischen verschieden Verarbeitungseinheiten, auch als Knoten bezeichnet, bereitstellt. Damit eine Kommunikation zwischen den Knoten stattfinden kann, werden Nachrichten über Datenbusse übertragen.
 
 In den ersten beiden Veröffentlichungen im Kapitel Stand der Forschung und Technik werden die Positionen der \glspl{beacon} zuerst solange beobachtet, bis die Unsicherheit so gering ist, dass diese problemlos mit einem \gls{ekf}-\gls{slam} verarbeitet werden können. In der ersten Veröffentlichung werden die ungefähren \gls{beacon}-Positionen durch die Kombination von \gls{propgrid} angenähert. Anders geht die zweite Veröffentlichung vor, hier werden die beobachteten Entfernungen in einem Gitter eingetragen. Sobald sich ein Gipfel gebildet hat, wird die Positionsschätzung an den \gls{ekf}-\gls{slam} übergeben.
 
@@ -34,7 +34,7 @@ Die nächsten zwei Veröffentlichungen nutzen den \gls{pf}-\gls{slam}. Beim erst
 
 Einen vollkommen anderen Weg beschreibt die letzte Veröffentlichung, hier werden die \gls{beacon}-Positionen nicht in Kartesische Koordinaten, sondern in Polarkoordinaten beschrieben.
 
-Das Ultra-Wideband-Kapitel beginnt mit der Beschreibung der Unterschiede zwischen der Übertragung von Informationen durch das Aufmodulieren auf eine sinusförmige Trägerfrequenz und der Übertragung von Informationen im Basisband durch das Erzeugen von kurzen Impulsen im Nanosekundenbereich. Die Ultra-Wideband Technologie verwendet das letzte Verfahren und kann dank der hohen Bandbreite auch entsprechend hohe Datenmengen übertragen.
+Das Ultra-Wideband Kapitel beginnt mit der Beschreibung der Unterschiede zwischen der Übertragung von Informationen durch das Aufmodulieren auf eine sinusförmige Trägerfrequenz und der Übertragung von Informationen im Basisband durch das Erzeugen von kurzen Impulsen im Nanosekundenbereich. Die Ultra-Wideband Technologie verwendet das letzte Verfahren und kann dank der hohen Bandbreite auch entsprechend hohe Datenmengen übertragen.
 
 Danach geht es an die Erstellung der Hardware, sprich der \glspl{uwbm}. Zu den Hauptanforderungen gehört die gemeinsame Hardwareplattform, eine separate Stromversorgung und eine optionale Kommunikationsschnittstelle. Das Herzstück der \glspl{uwbm} ist dabei der \gls{uwbt} von \textit{DecaWave}. Dieser \gls{ic} sorgt für die komplette Verarbeitung und Auswertung der \gls{uwb}-Signale. Gesteuert wird dieser über die \gls{spi}-Schnittstelle durch einen Arduino kompatiblen Mikrocontroller, dem Pro Trinket. Da der Mikrocontroller über keine eigene Kommunikationsschnittstelle zur Verarbeitungseinheit verfügt, wird diese über eine separate Kommunikationsschnittstelle gelöst. Im Vorfeld wurden zwei Prototypen der \gls{uwbm} aufgebaut. Zum einen um die Beschaltung der elektrischen Komponenten zu testen und zum anderen um den Nachrichtenaustausch mit gleichzeitiger Entfernungsmessung auszuprobieren. Nach der erfolgreichen Prototypenphase wurde ein Platinendesign erstellt und durch einen entsprechenden Dienstleister gefertigt.
 
@@ -50,47 +50,15 @@ Die \glspl{rosm} wurden dabei in zwei Kategorien unterteilt, Haupt- und Hilfsmod
 
 Das \gls{roslam}-Verfahren wird durch das \gls{mrpt}-Framework bereitgestellt. Hierbei handelt es sich um eine Bibliothek die Datenstrukturen und Algorithmen aus dem aktiven Forschungsbereich der Robotik bereitstellt. Zusätzlich zu der Bibliothek werden auch fertige \glspl{rosm} bereitgestellt. Diese beinhalten sowohl den  \gls{roslam} auf Basis eines Hilfspartikel Filter, als auch den mit der Menge von radial angeordneten Normalverteilungen.
 
-%----
+Das Kapitel Evaluation bezieht sich zuerst auf die Auswertung der Tauglichkeit der erstellten \glspl{uwbm} und in dem letzten Abschnitt findet eine Auswertung des \gls{roslam}-Verfahrens statt. Es gibt zwei Arten von \glsuseri{uwbm}, der \gls{tag} wird auf der Roboterplattform befestigt und von dieser mit Energie versorgt, die \gls{anchor} werden auf der Messstrecke verteilt und erhalten ihre Energie aus einem Lithium-Ion Akku. Daher findet die erste Auswertung im Rahmen der Bewertung der Laufzeit statt.
 
+Danach wird die Kalibrierung der Antennenverzögerung durchgeführt. Dazu werden die \glspl{uwbm} an die Spitzen eines gleichseitigen Dreiecks positioniert und von jedem \gls{uwbm} die Entfernungen zu den beiden anderen \glsuseri{uwbm} gemessen. Die Daten wurden danach von den beiden Kalibrierungsverfahren ausgewertet, die neuen Antennenverzögerungen in die \glspl{uwbm} einprogrammiert und die Resultate miteinander verglichen. Danach wurden alle \glspl{uwbm} an die  Spitzen eines regelmäßigen Fünfecks positioniert und erneut die Entfernungen zu den vier anderen \glsuseri{uwbm} gemessen. Somit konnten die Antennenverzögerungen für alle fünf \glspl{uwbm} bestimmt werden.
 
+Nach der Kalibrierung wurden Entfernungsmessung mit \gls{los} und \gls{nlos} durchgeführt. Hierfür wurde die Entfernung zwischen den \glsuseri{uwbm} sukzessive von \SI{1}{\meter} auf \SI{9}{\meter} erhöht. Die \gls{nlos} Versuche wurden mit einem wassergefüllten Behälter und einem Aluminiumblech als Hindernis durchgeführt.
 
+Da die Inkrementalgeber als Odometriequelle verfälschte Informationen liefern, wurden die 2D-Laser-Entfernungsmessungen aufgezeichnet und mit den laserbasierten Odometriequellen verarbeitet. Die Trajektorien aller drei Verfahren wurde im Nachgang mit einer Ground Truth Trajektorie verglichen.
 
-% Evaluation
-%- Batterielaufzeit
-%- Kalibierung
-%	- LGS
-%	- DecaWave
-%	- Normalverteilung der Messwerte
-%	- Fünfeck
-%- Entfernungsmessung
-%	- LOS/NLOS
-%	- 1-9m in 0.5 schritten
-%	- Blech/Wasser
-%- Trajektorie
-%	- Testen der verschieden Odometriequellen
-%	- Inkrementalgeber + laserbasierte
-%- Positionsschätzung
-%	- RF2O
-%	- virtuelle + reale uwbm
-%- Positionsschätzung der UWB-Module
-%	- virtuelle werden auf ca. 0.15-0.97m geschätzt
-%	- reale werden von ca 0.49-1,03m geschätzt
-%- Konvergenz der WDF
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%	- UWB-Module
-%		- Stärker Prozessor um den DWM mit maximaler SPI-Geschwindigkeit anzusteuern (20 Mhz)
-%		- Identifier über DIP Schalter einstellbar
-%		- Größerer Speicher um mehr Anchor/Tags verwalten zu können.
-%		- Stromsparfunktionen
-%		- vergleich mit dem kommerziellen Produkt
-%	- RO-SLAM
-%		- 
-%
-%%%%%%%%%%
-\section{Ausblick}
+Nachdem die beste Odometriequelle bestimmt wurde, fand die Untersuchung für die Positionsschätzung der Roboterplattform und der \glspl{uwbm} durch das \gls{roslam}-Verfahren statt. Hierfür wurden sowohl reale als auch virtuelle \glspl{uwbm} verwendet. Es wurde dabei die gleiche Trajektorie verfahren wie in dem vorherigen Versuch. Der Abschluss der Untersuchung des \gls{roslam}-Verfahrens bildete die Bestimmung der Konvergenzdauer der Hilfspartikel Filter bzw. der Menge von Normalverteilungen hin zu einem \gls{ekf}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -127,3 +95,17 @@ Hypothen:
 	\item Mit dem RO--SLAM ist es möglich sowohl die eigene Position als auch die der Basisstation mit einer Genauigkeit von \SI{10}{\cm} zu schätzen.
 \end{itemize}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- UWB-Module
+%		- Stärker Prozessor um den DWM mit maximaler SPI-Geschwindigkeit anzusteuern (20 Mhz)
+%		- Identifier über DIP Schalter einstellbar
+%		- Größerer Speicher um mehr Anchor/Tags verwalten zu können.
+%		- Stromsparfunktionen
+%		- vergleich mit dem kommerziellen Produkt
+%	- RO-SLAM
+%		- 
+%
+%%%%%%%%%%
+\section{Ausblick}
