@@ -13,7 +13,7 @@
 %%%%%%%%%%
 \chapter{Grundlagen}
 
-Die Abschnitte mit der \nameref{sec:probability_theory}, der \nameref{sec:state_estimator}, des \nameref{sec:particle_filter} und dem \nameref{sec:slam} orientieren sich an dem Buch \citetitle{thrun2005probabilistic} \cite{thrun2005probabilistic} ohne dieses in jedem Absatz zu zitieren.
+Die Abschnitte mit der \nameref{sec:probability_theory}, dem \nameref{sec:state_estimator}, dem \nameref{sec:particle_filter} und der \nameref{sec:slam} orientieren sich an dem Buch \citetitle{thrun2005probabilistic} \cite{thrun2005probabilistic} ohne dieses in jedem Absatz zu zitieren.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -23,15 +23,15 @@ Die Abschnitte mit der \nameref{sec:probability_theory}, der \nameref{sec:state_
 %%%%%%%%%%
 \section{Verfahren für die Entfernungsbestimmung}
 
-Bei der \textit{Triangulation} werden die Winkel zwischen mehreren Referenzpunkten bestimmt und dann die dazu gehörige Entfernung mittels trigonometrischer Funktionen berechnet. Dieses Verfahren ist auch unter den Namen \Gls{aoa} bzw. \Gls{doa} bekannt. Um eine genau Ortsbestimmung durchzuführen müssen die Winkel sehr genau bestimmt werden. Um das zu bewerkstelligen werden im Empfänger mehrere Antennen zu einem Feld (engl. Antenna Array) zusammengefasst. Jedoch ist diese Konstruktion sehr teuer und empfindlich für Mehrwegeempfang (engl. Multipath) bzw. Signalabschattungen. \cite{gezici2005localization, liu2007survey, decawave2014rtls}
+Bei der Triangulation werden die Winkel zwischen mehreren Referenzpunkten bestimmt und dann die dazu gehörige Entfernung mittels trigonometrischer Funktionen berechnet. Dieses Verfahren ist auch unter den Namen \Gls{aoa} bzw. \Gls{doa} bekannt. Um eine genau Ortsbestimmung durchzuführen müssen die Winkel sehr genau bestimmt werden. Um das zu bewerkstelligen werden im Empfänger mehrere Antennen zu einem Feld (engl. Antenna Array) zusammengefasst. Jedoch ist diese Konstruktion sehr teuer und empfindlich für Mehrwegeempfang (engl. Multipath) bzw. Signalabschattungen. \cite{gezici2005localization, liu2007survey, decawave2014rtls}
 
-Im Gegensatz dazu werden bei der \textit{Trilateration} die Entfernungen zwischen mehreren Referenzpunkten betrachtet. Es werden dabei die Verfahren \Gls{toa} und \Gls{tdoa} unterschieden.
+Im Gegensatz dazu werden bei der Trilateration die Entfernungen zwischen mehreren Referenzpunkten betrachtet. Es werden dabei die Verfahren \Gls{toa} und \Gls{tdoa} unterschieden.
 Bei dem \Gls{toa}-Verfahren wird zuerst die Zeitdifferenz zwischen dem Senden und Empfangen eines Funksignals berechnet. Mittels der Signallaufzeit (engl. \glsreset{tof}\gls{tof}) und der Ausbreitungsgeschwindigkeit des Funksignals kann die Entfernung berechnet werden. Die Ortsbestimmung erfolgt dann über die Schnittpunkte von drei Kreisen (2D) bzw. vier Kugeln (3D) miteinander. Um dieses Verfahren anwenden zu können, ist es erforderlich das das Funksignal mit einem Zeitstempel des Startzeitpunktes versehen ist. Daraus folgt aber auch, das die Zeit zwischen Sender und Empfänger sehr genau synchronisiert werden müssen um den Fehler möglich klein zu halten.
 Bei dem \Gls{tdoa}-Verfahren werden die Zeitdifferenz zwischen dem Empfang des Funksignals an mehreren Empfängern ausgewertet. Dies hat den großen Vorteil das nur noch die Zeit zwischen den Empfängern synchronisiert werden muss. \cite{zekavat2011handbook, decawave2014rtls}
 
-Neben der \textit{Triangulation} und \textit{Trilateration} besteht auch die Möglichkeit auf Grund der empfangenen Signalstärke (engl. \acrfull{ss_radio}, \acrfull{rss} oder auch \acrfull{rssi}) Rückschlüsse über die Entfernung zu ziehen. Dazu muss die ursprüngliche Signalstärke und die Ausbreitungscharakteristik der elektromagnetischen Welle in der spezifischen Umgebung bekannt sein. \cite{gezici2005localization, decawave2014rtls}
+Neben der Triangulation und Trilateration besteht auch die Möglichkeit auf Grund der empfangenen Signalstärke (engl. \acrfull{ss_radio}, \acrfull{rss} oder auch \acrfull{rssi}) Rückschlüsse über die Entfernung zu ziehen. Dazu muss die ursprüngliche Signalstärke und die Ausbreitungscharakteristik der elektromagnetischen Welle in der spezifischen Umgebung bekannt sein. \cite{gezici2005localization, decawave2014rtls}
 
-In den nächsten zwei Abschnitten werden die \textit{DecaWave} Entfernungsmessverfahren vorgestellt. Diese haben den Vorteil, dass keine Synchronisierung der Zeit zwischen Sender und Empfänger notwendig ist. Weiterhin besitzen die \textit{DecaWave} \Gls{uwbt} zwei Eigenschaften die die Entfernungsmessung ideal ergänzt. Zum einen wird jede erhaltene Nachricht mit einem lokalen Zeitstempel versehen, der über eine minimale Auflösung von ungefähr \SI{15.65}{\pico\second} verfügt. Hiermit wäre eine theoretische Ortsauflösung von ungefähr \SI{5}{\milli\metre} möglich. Des Weiteren ist es möglich, den Sendezeitpunkt einer Nachricht in die Zukunft zu legen. Damit lässt sich die Zeitspanne zwischen dem Empfang und der Antwort auf eine Nachricht im Voraus berechnen. Die Zeitspanne kann dann der Antwortnachricht als Nutzlast mitgegeben werden, um beim Empfänger die Umlaufzeit zu berechnen.
+In den nächsten zwei Abschnitten werden die DecaWave Entfernungsmessverfahren vorgestellt. Diese haben den Vorteil, dass keine Synchronisierung der Zeit zwischen Sender und Empfänger notwendig ist. Weiterhin besitzen die DecaWave \Gls{uwbt} zwei Eigenschaften, die die Entfernungsmessung ideal ergänzt. Zum einen wird jede erhaltene Nachricht mit einem lokalen Zeitstempel versehen, der über eine minimale Auflösung von ungefähr \SI{15.65}{\pico\second} verfügt. Hiermit wäre eine theoretische Ortsauflösung von ungefähr \SI{5}{\milli\metre} möglich. Des Weiteren ist es möglich, den Sendezeitpunkt einer Nachricht in die Zukunft zu legen. Damit lässt sich die Zeitspanne zwischen dem Empfang und der Antwort auf eine Nachricht im Voraus berechnen. Die Zeitspanne kann dann der Antwortnachricht als Nutzlast mitgegeben werden, um beim Empfänger die Umlaufzeit zu berechnen.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -48,25 +48,25 @@ In den nächsten zwei Abschnitten werden die \textit{DecaWave} Entfernungsmessve
 %%%%%%%%%%
 \subsection{Single-sided Two-way Ranging}
 
-Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr}-Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \autoref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
+Das einfachste Verfahren, um aus der Umlaufzeit die Entfernung abzuschätzen, ist das \Gls{sstwr} Verfahren. Dabei sendet der \Gls{tag} eine Nachricht an den \Gls{anchor} und wartet ab, bis eine entsprechende Antwortnachricht eintrifft. Beide Module erhalten einen Zeitstempel für den Versand und Empfang von Nachrichten. Aus diesen kann dann die Antwort- ($T_{reply}$) und Umlaufzeit ($T_{round}$) berechnet werden, siehe \autoref{fig:single_sided_two_way_ranging}. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
 %\begin{figure}[ht]
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{single_sided_two_way_ranging}
-	\captionwithcite{Der Ablauf des \glsentrylong{sstwr}-Verfahren.}{\cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf des \glsentrylong{sstwr} Verfahrens.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:single_sided_two_way_ranging}
 \end{figure}
 
-Die ungefähre \Gls{tof}-Zeitspanne ergibt sich aus der folgenden Gleichung:
+Die ungefähre \Gls{tof} Zeitspanne ergibt sich aus der folgenden Gleichung:
 
 \begin{equation}
 T_{prop}=\frac{1}{2}\left(T_{round}-T_{reply}\right)
 \end{equation}
 
-Damit der \Gls{tag} die \Gls{tof}-Zeitspanne berechnen kann, benötigt er die $T_{reply}$-Zeitspanne. Zu diesem Problem gibt es mehrere Lösungen. Die einfachste Lösung ist eine feste Antwortzeit die jedem Modul bekannt ist. Alternativ kann der \Gls{anchor} in der Antwortnachricht seine individuelle Antwortzeit übermitteln. Oder der \Gls{tag} übermittelt dem \Gls{anchor} mit der initialen Nachricht wie lange der \Gls{anchor} warten muss bis er die Antwortnachricht verschickt. Hierbei muss die Zeitspanne groß genug gewählt sein, um den \Gls{anchor} die Möglichkeit zur Antwort zu lassen. Je nach Anforderung wird eine der vorherigen Methoden verwendet.
+Damit der \Gls{tag} die \Gls{tof} Zeitspanne berechnen kann, benötigt er die $T_{reply}$ Zeitspanne. Zu diesem Problem gibt es mehrere Lösungen. Die einfachste Lösung ist eine feste Antwortzeit die jedem Modul bekannt ist. Alternativ kann der \Gls{anchor} in der Antwortnachricht seine individuelle Antwortzeit übermitteln. Oder der \Gls{tag} übermittelt dem \Gls{anchor} mit der initialen Nachricht wie lange der \Gls{anchor} warten muss bis er die Antwortnachricht verschickt. Hierbei muss die Zeitspanne groß genug gewählt sein, um den \Gls{anchor} die Möglichkeit zur Antwort zu lassen. Je nach Anforderung wird eine der vorherigen Methoden verwendet.
 
-Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit abhängt. Bei Module verwenden zur Berechnung von $T_{round}$ und $T_{reply}$ ihre lokalen Zeitgeber. Beide Zeitgeber haben einen Offsetfehler $e_{A}$ und $e_{B}$ der von der Nennfrequenz abweicht. Die daraus abgeleitete \Gls{tof}-Zeitschätzung hat damit einen Fehler der mit der Antwortzeit wächst:
+Der Nachteil bei diesem Verfahren besteht in dem Fehler der von der Antwortzeit abhängt. Bei Module verwenden zur Berechnung von $T_{round}$ und $T_{reply}$ ihre lokalen Zeitgeber. Beide Zeitgeber haben einen Offsetfehler $e_{A}$ und $e_{B}$ der von der Nennfrequenz abweicht. Die daraus abgeleitete \Gls{tof} Zeitschätzung hat damit einen Fehler der mit der Antwortzeit wächst:
 
 \begin{equation}
 error\approx\frac{1}{2}\left(e_B-e_A\right)\times T_{reply}
@@ -84,18 +84,18 @@ error\approx\frac{1}{2}\left(e_B-e_A\right)\times T_{reply}
 \subsection{Double-sided Two-way Ranging}
 \label{subsec:double_sided_two_way_ranging}
 
-Das \Gls{dstwr}-Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr}-Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \autoref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
+Das \Gls{dstwr} Verfahren stellt eine Verbesserung gegenüber dem \Gls{sstwr} Verfahren dar. Hierbei werden nun drei Nachrichten verwendet um jeweils die Umlaufzeiten zwischen \Gls{tag} und \Gls{anchor}, und \Gls{anchor} und \Gls{tag} zu berechnen, siehe \autoref{fig:double_sided_two_way_ranging}. Wenn die Umlaufzeit beim \Gls{tag} berechnet werden soll, müssen die Zeitspannen $T_{reply1}$ und $T_{round2}$ zum \Gls{tag} übermittelt werden. Für die letzte Zeitspanne erfolgt das mit einer vierten Nachricht die in dem Schaubild nicht abgebildet ist. \cite{decawave2015twr, decawave2016dw1kusermanual}
 
 %\begin{figure}[ht]
 \begin{figure}
 	\centering
 %	\includegraphics[width=0.7\linewidth]{double_sided_two_way_ranging}
 	\includegraphics[width=0.8\linewidth]{double_sided_two_way_ranging}
-	\captionwithcite{Der Ablauf des \glsentrylong{dstwr}-Verfahren.}{\cite{decawave2016dw1kusermanual}} 
+	\captionwithcite{Ablauf des \glsentrylong{dstwr} Verfahrens.}{\cite{decawave2016dw1kusermanual}} 
 	\label{fig:double_sided_two_way_ranging}
 \end{figure}
 
-Die ungefähre \Gls{tof}-Zeitspanne ergibt sich aus der folgenden Gleichung:
+Die ungefähre \Gls{tof} Zeitspanne ergibt sich aus der folgenden Gleichung:
 
 \begin{equation}
 T_{prop} = \frac{\left(T_{round1}\times T_{round2}-T_{reply1}\times T_{reply2}\right)}{\left(T_{round1}+T_{round2}+T_{reply1}+T_{reply2}\right)}
@@ -109,16 +109,16 @@ error=T_{prop}\times\left(1-\frac{k_a+k_b}{2}\right)
 
 Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber von der Nennfrequenz und liegen beide sehr nahe bei eins.
 
-Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \autoref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bis alle Antwortnachrichten angekommen sind um im der letzten Nachricht jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}-Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
+Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \autoref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bis alle Antwortnachrichten angekommen sind um im der letzten Nachricht jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof} Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{double_sided_two_way_ranging_with_three_anchor}
-	\captionwithcite{Der Ablauf des \glsentrylong{dstwr}-Verfahren mit einem \glsentrytext{tag} und drei \glsentrytext{anchor}.}{\cite{decawave2016dw1kusermanual}}
+	\captionwithcite{Ablauf des \glsentrylong{dstwr} Verfahren mit einem \glsentrytext{tag} und drei \glsentrytext{anchor}n.}{\cite{decawave2016dw1kusermanual}}
 	\label{fig:double_sided_two_way_ranging_with_three_anchor}
 \end{figure}
 
-In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der \Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner \mbox{Identifikationsnummer} an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
+In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der \Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der Discovery Phase schickt der \Gls{tag} periodisch Blink Nachrichten mit seiner \mbox{Identifikationsnummer} an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine Ranging Init Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die Ranging Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -274,12 +274,12 @@ Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschre
 			$bel(x_t) = \eta \, p(z_t \mid x_t) \, \overline{bel}(x_t)$\;
 		}
 	}
-\caption{Bayes Filter Algorithmus}
+\captionwithcite{Bayes Filter Algorithmus}{\cite{thrun2005probabilistic}}
 \label{alg:algorithm_bayes_filter}
 \end{onehalfspacing}
 \end{algorithm}
 
-Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Prognose (engl. Prediction) für den neuen Zustand erstellt, siehe Zeile 3. Der neue Zustand wird dabei aus dem vorherigen Zustand und dem aktuellen Steuerbefehl gebildet, siehe $p(x_t \mid, u_t, x_{t-1})$. Die daraus resultierende Verteilung wird mit der vorherige Belief Verteilung $bel(x_{t-1})$ multipliziert und ergibt die Prognose $\overline{bel}(x_t)$ für den neuen Zustand. Im zweite Schritt wird die erstellt Prognose mit der aktuellen Wahrnehmung korrigiert (engl. Correction), siehe Zeile 4. Hierbei ist zu beachten, das für jede Zustandshypothese $x_t$ die erstelle Prognose $\overline{bel}(x_t)$ mit der Wahrscheinlichkeit multiplilziert wird, das die Wahrnehmung zu der Zustandprognose $p(z_t \mid x_t)$ zutrifft.
+Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Prognose (engl. Prediction) für den neuen Zustand erstellt, siehe Zeile 3. Der neue Zustand wird dabei aus dem vorherigen Zustand und dem aktuellen Steuerbefehl gebildet, siehe $p(x_t \mid, u_t, x_{t-1})$. Die daraus resultierende Verteilung wird mit der vorherige Belief Verteilung $bel(x_{t-1})$ multipliziert und ergibt die Prognose $\overline{bel}(x_t)$ für den neuen Zustand. Im zweite Schritt wird die erstellt Prognose mit der aktuellen Wahrnehmung korrigiert (engl. Correction), siehe Zeile 4. Hierbei ist zu beachten, das für jede Zustandshypothese $x_t$ die erstelle Prognose $\overline{bel}(x_t)$ mit der Wahrscheinlichkeit multiplilziert wird, das die Wahrnehmung zu der Zustandprognose \mbox{$p(z_t \mid x_t)$} zutrifft.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -298,7 +298,7 @@ Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Pro
 
 Die Familie der Gauß Filter, zu denen auch der Kalman Filter gehört, ist eine der frühsten konkreten Implementierungen des Bayes Filters. Die Idee hinter jedem Gauß Filter liegt dabei, das der Belief durch eine mehrdimensionale Normalverteilung repräsentiert wird, die eindeutig durch die ersten beiden Momente Mittelwert $\mu$ und Kovarianz $\Sigma$ beschrieben wird. Der große Vorteil einer normalverteilten Zufallsvariable ist, dass das Ergebnis einer Lineartransformation mit einer anderen normalverteilten Zufallsvariable wieder zu einer normalverteilten Zufallsvariable führt. Zu den Nachteilen zählt, dass der Gauß Filter nur im kontinuierlichen Zustandsraum angewendet werden kann und durch die unimodale Verteilung nur für die Positionsverfolgung (engl. Position Tracking Problem) in Frage kommt.
 
-Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, siehe \autoref{alg:algorithm_kalman_filter}. Im ersten Schritt wird aus dem vorherigen Zustand $\mu_{t-1}$ und $\Sigma_{t-1}$ und den aktuellen Steuerbefehlen $u_t$ die Prognose für den neuen Zustand berechnet, siehe Zeile 2--3. Über die Matrix $A_t$ wird festgelegt, wie sich der Zustand von $t-1$ nach $t$ entwickelt, ohne die Einwirkungen der Steuerbefehle oder von Rauschen. Die Matrix $B_t$ beschreibt wie die Steuerbefehle die Zustandsänderung von $t-1$ nach $t$ beeinflussen. Im zweiten Schritt wird zuerst der Kalman Gain $K_t$ berechnet, siehe Zeile 4. Bei dem Kalman Gain handelt es sich um ein Gewicht, das entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert wird, siehe Zeile 5--6. Bei der Matrix $C_t$ wird definiert wir die Wahrnehmungen auf den Zustand abgebildet werden. Die beiden Matrizen $R_t$ und $Q_t$ bilden dabei das unabhängige und zufällig normalverteilte Rauschen ab.
+Genauso wie der Bayes Filter geht auch der Kalman Filter in zwei Schritten vor, siehe \autoref{alg:algorithm_kalman_filter}. Im ersten Schritt wird aus dem vorherigen Zustand $\mu_{t-1}$ und $\Sigma_{t-1}$ und den aktuellen Steuerbefehlen $u_t$ die Prognose für den neuen Zustand berechnet, siehe Zeile 2--3. Über die Matrix $A_t$ wird festgelegt, wie sich der Zustand von $t-1$ nach $t$ entwickelt, ohne die Einwirkungen der Steuerbefehle oder von Rauschen. Die Matrix $B_t$ beschreibt wie die Steuerbefehle die Zustandsänderung von $t-1$ nach $t$ beeinflussen. Im zweiten Schritt wird zuerst der Kalman Gain $K_t$ berechnet, siehe Zeile 4. Bei dem Kalman Gain handelt es sich um ein Gewicht, das entscheidet wie stark die Prognose mit der Wahrnehmung korrigiert wird, siehe Zeile 5--6. Mit der Matrix $C_t$ wird definiert wir die Wahrnehmungen auf den Zustand abgebildet werden. Die beiden Matrizen $R_t$ und $Q_t$ bilden dabei das unabhängige und zufällig normalverteilte Rauschen ab.
 
 %\begin{figure}
 %	\centering
@@ -399,7 +399,7 @@ Die Stichproben aus der a posteriori Verteilung werden als Partikel (engl. Parti
 \mathcal{X}_t := x^{\lbrack 1 \rbrack}_t, x^{\lbrack 2 \rbrack}_t, \ldots, x^{\lbrack M \rbrack}_t \label{eq:particle_filter_particle_set}
 \end{equation}
 
-Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen rekursiven Algorithmus, dem das vorherige Partikel-Set $\mathcal{X}_{t-1}$, die aktuellen Steuerbefehle $u_t$ und Wahrnehmungen $z_t$ übergeben werden, siehe \autoref{alg:algorithm_particle_filter}. Dabei wird im ersten Schritt auf jedem Partikel, aus dem vorherigen Set, die aktuellen Steuerbefehle angewendet und somit eine neue Prognose für den aktuellen Zustand gebildet, siehe Zeile 4. Weiterhin wird mit der neuen Zustandsprognose und den aktuellen Wahrnehmungen das Gewicht des Partikels bestimmt, siehe Zeile 5. Die aktuelle Zustandsprognose sowie das Gewicht werden danach in dem temporären Set $\overline{\mathcal{X}}_t$ gesammelt, siehe Zeile 6. Im zweiten Schritt findet das sogenannte \textit{Resampling} oder \textit{Importance Sampling} statt, siehe Zeile 9. Hierbei werden die Partikel mit einem hohen Gewicht beibehalten und die mit einem geringen durch neue ersetzt, die im Bereich der Partikel mit den hohen Gewichten liegen. Dadurch ist gewährleistet, dass sich die Partikel nicht in Bereichen mit einer geringen a posteriori Wahrscheinlichkeit aufhalten. Das Ergebnis aus dem letzten Schritt wird in dem Partikel-Set $\mathcal{X}_t$ gespeichert und dem Aufrufer zurückgegeben.
+Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen rekursiven Algorithmus, dem das vorherige Partikel-Set $\mathcal{X}_{t-1}$, die aktuellen Steuerbefehle $u_t$ und Wahrnehmungen $z_t$ übergeben werden, siehe \autoref{alg:algorithm_particle_filter}. Dabei wird im ersten Schritt auf jedem Partikel, aus dem vorherigen Set, die aktuellen Steuerbefehle angewendet und somit eine neue Prognose für den aktuellen Zustand gebildet, siehe Zeile 4. Weiterhin wird mit der neuen Zustandsprognose und den aktuellen Wahrnehmungen das Gewicht des Partikels bestimmt, siehe Zeile 5. Die aktuelle Zustandsprognose sowie das Gewicht werden danach in dem temporären Set $\overline{\mathcal{X}}_t$ gesammelt, siehe Zeile 6. Im zweiten Schritt findet das sogenannte Resampling oder Importance Sampling statt, siehe Zeile 9. Hierbei werden die Partikel mit einem hohen Gewicht beibehalten und die mit einem geringen durch neue ersetzt, die im Bereich der Partikel mit den hohen Gewichten liegen. Dadurch ist gewährleistet, dass sich die Partikel nicht in Bereichen mit einer geringen a posteriori Wahrscheinlichkeit aufhalten. Das Ergebnis aus dem letzten Schritt wird in dem Partikel-Set $\mathcal{X}_t$ gespeichert und dem Aufrufer zurückgegeben.
 
 %\begin{figure}
 %	\centering
@@ -449,7 +449,7 @@ Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen r
 
 Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegelt und damit ideal durch einen \gls{pf} abgebildet werden kann. Bei der \gls{mcl} handelt es sich um genau so einen \gls{pf}, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
 
-Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein einer sehr genauen Karte der Umwelt. Die Kartendaten $m$ werden bei der Berechnung der Gewichte für die Zustandsprognosen eingesetzt. Somit unterscheidet sich der Monte Carlo Algorithmus nur in der fünften Zeile von dem generische \gls{pf} Algorithmus, siehe \autoref{eq:monte_carlo_measurement_model}. 
+Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein einer sehr genauen Karte der Umwelt. Die Kartendaten $m$ werden bei der Berechnung der Gewichte für die Zustandsprognosen eingesetzt. Somit unterscheidet sich der Monte Carlo Algorithmus nur in der fünften Zeile von dem generischen \gls{pf} Algorithmus, siehe \autoref{eq:monte_carlo_measurement_model}. 
 
 \begin{equation}
 w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte_carlo_measurement_model}
@@ -650,7 +650,7 @@ Eine weitere Einschränkt betrifft die maximale Anzahl der Landmarken, da die La
 \subsection{FastSLAM}
 
 % Wie könnte das SLAM Problem mit einem PF gelöst werden? Wie sieht die Partikel repräsentation aus?
-Bei dem \textit{FastSLAM} Verfahren handelt es sich um eine Lösung für das \gls{slam} Problem mithilfe eines \gls{pf}. Bei einem \gls{pf} repräsentiert jedes Partikel eine eigene Hypothese  des jeweiligen Zustandes des Roboters. Um das \gls{slam} Problem zu lösen muss der Zustandsvektor, wie beim EKF-SLAM, um die Landmarken erweitert werden, siehe \autoref{eq:ekf_slam_state_vector}.
+Bei dem FastSLAM Verfahren handelt es sich um eine Lösung für das \gls{slam} Problem mithilfe eines \gls{pf}. Bei einem \gls{pf} repräsentiert jedes Partikel eine eigene Hypothese  des jeweiligen Zustandes des Roboters. Um das \gls{slam} Problem zu lösen muss der Zustandsvektor, wie beim EKF-SLAM, um die Landmarken erweitert werden, siehe \autoref{eq:ekf_slam_state_vector}.
 
 % Was ist das Problem eines Partikel Filter mit dem SLAM Problem?
 \gls{pf} haben jedoch die Eigenschaft, nur mit einem kleinen Zustandsraum gut zu funktionieren. Bei einem großen Zustandsraum werden deutlich mehr Stichproben benötigt, um diesen möglichst gut abzudecken. Der Aufwand skaliert dabei exponentiell mit der Anzahl der Dimensionen des Zustandsraumes, sodass eine praktikable Anwendung eines \gls{pf} nicht mehr gegeben ist.
@@ -659,7 +659,7 @@ Bei dem \textit{FastSLAM} Verfahren handelt es sich um eine Lösung für das \gl
 Die Lösung des Problems besteht darin, mit dem \gls{pf} nur den Pfad des Roboters zu modellieren und dann für jede Pfadhypothese eine separate Karte der Umwelt mit ihren Landmarken zu berechnen.
 
 % Was ist der RBPF?
-Um die Berechnung der Karte von dem Pfad des Roboters zu trennen, wird der Umstand ausgenutzt, das beide Zufallsvariablen ein Wissen über einander besitzt. Dazu wird die \autoref{eq:conditional_probability}, für die bedingte Wahrscheinlichkeit, nach der multivariaten Verteilung umgestellt, siehe \autoref{eq:pf_slam_conditional_probability}. Anstatt nun die Verteilung sowohl für den Pfad des Roboters als auch den der Karte $p(x, y)$ zu bestimmen, wird die Verteilung nur für den Pfad des Roboters $p(x)$ bestimmt und dann für jede Pfadhypothese die sich daraus ergebende Karte $p(y \mid x)$ berechnet. Dieses Verfahren wird auch als \textit{Rao-Blackwellisierung} bezeichnet.
+Um die Berechnung der Karte von dem Pfad des Roboters zu trennen, wird der Umstand ausgenutzt, das beide Zufallsvariablen ein Wissen über einander besitzt. Dazu wird die \autoref{eq:conditional_probability}, für die bedingte Wahrscheinlichkeit, nach der multivariaten Verteilung umgestellt, siehe \autoref{eq:pf_slam_conditional_probability}. Anstatt nun die Verteilung sowohl für den Pfad des Roboters als auch den der Karte $p(x, y)$ zu bestimmen, wird die Verteilung nur für den Pfad des Roboters $p(x)$ bestimmt und dann für jede Pfadhypothese die sich daraus ergebende Karte \mbox{$p(y \mid x)$} berechnet. Dieses Verfahren wird auch als Rao-Blackwellisierung bezeichnet.
 
 \begin{equation}
 p(x, y) = p(y \mid x) \, p(x) \label{eq:pf_slam_conditional_probability}
@@ -691,9 +691,9 @@ p(x_{0:t}, m_{1:M} \mid z_{1:t}, u_{1:t}) = p(x_{0:t} \mid z_{1:t}, u_{1:t}) \, 
 	\label{fig:fast_slam_particle_representation}
 \end{figure}
 
-Die Gewichte eines Partikels spielen eine große Rolle im \textit{Resampling} Prozess. Beim \textit{FastSLAM} entsteht die Gewichtung dabei aus der Erkenntnis, wie gut die Landmarken einer Pfadhypothese mit den Wahrnehmungen übereinstimmen.
+Die Gewichte eines Partikels spielen eine große Rolle im Resampling Prozess. Beim \mbox{FastSLAM} entsteht die Gewichtung dabei aus der Erkenntnis, wie gut die Landmarken einer Pfadhypothese mit den Wahrnehmungen übereinstimmen.
 
-Für den EKF-SLAM ist es entscheiden, die Zuordnung zwischen den Landmarken und den Wahrnehmungen zu kennen. Das ist beim \textit{FastSLAM} nicht mehr notwendig, da jede Pfadhypothese über eine eigene Zuordnung verfügt, siehe \autoref{fig:fast_slam_data_association_problemn}. In Kombination mit den Gewichten pro Partikel, werden die Partikel mit der \textit{richtigen} Zuordnung eher im \textit{Resampling} Prozess ausgewählt als die mit einer \textit{falschen} Zuordnung.
+Für den EKF-SLAM ist es entscheiden, die Zuordnung zwischen den Landmarken und den Wahrnehmungen zu kennen. Das ist beim FastSLAM nicht mehr notwendig, da jede Pfadhypothese über eine eigene Zuordnung verfügt, siehe \autoref{fig:fast_slam_data_association_problemn}. In Kombination mit den Gewichten pro Partikel, werden die Partikel mit der richtigen Zuordnung eher im Resampling Prozess ausgewählt als die mit einer falschen Zuordnung.
 
 \begin{figure}
 	\centering
@@ -702,7 +702,7 @@ Für den EKF-SLAM ist es entscheiden, die Zuordnung zwischen den Landmarken und 
 	\label{fig:fast_slam_data_association_problemn}
 \end{figure}
 
-Der \textit{FastSLAM} Algorithmus bildet die Grundlage für die beiden \gls{roslam} Verfahren die zum einen in den Abschnitten \ref{sec:blanco2008pure} und \ref{sec:blanco2008efficient} vorgestellt und zum anderen im der Evaluation ausgewertet werden.
+Der FastSLAM Algorithmus bildet die Grundlage für die beiden \gls{roslam} Verfahren die zum einen in den Abschnitten \ref{sec:blanco2008pure} und \ref{sec:blanco2008efficient} vorgestellt und zum anderen im der Evaluation ausgewertet werden.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -725,21 +725,21 @@ Der \textit{FastSLAM} Algorithmus bildet die Grundlage für die beiden \gls{rosl
 %%%%%%%%%%
 \section{Robot Operating System}
 
-Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssystem, sondern vielmehr um ein Framework das die Kommunikation zwischen verschiedenen Verarbeitungseinheiten regelt. Im Jahre 2007 begann die Entwicklung von \Gls{ros} an der Stanford University. Ab 2009 wurde dieses dann hauptsächlich an dem Robotik Institut Willow Garage weiterentwickelt. Durch die BSD Lizenz steht \Gls{ros} als Open-Source-Projekt sowohl der nicht-kommerziellen auch der kommerziellen Weiterentwicklung zur Verfügung. \cite{quigley2009ros}
+Bei dem \Gls{ros} handelt es sich nicht im eigentlichen Sinne um ein Betriebssystem, sondern vielmehr um ein Framework das die Kommunikation zwischen verschiedenen Verarbeitungseinheiten regelt. Im Jahre 2007 begann die Entwicklung von \Gls{ros} an der Stanford University. Ab 2009 wurde dieses dann hauptsächlich an dem Robotik Institut Willow Garage weiterentwickelt. Durch die BSD Lizenz steht \Gls{ros}, als Open-Source-Projekt, sowohl der nicht-kommerziellen als auch der kommerziellen Weiterentwicklung zur Verfügung. \cite{quigley2009ros}
 
-Jedes \Gls{ros}-System muss über einen \Gls{ros}-Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von Knoten (engl. Nodes), Datenbusse (engl. Topics) und Dienste (engl. Services) zur Verfügung.
+Jedes \Gls{ros} System muss über einen \Gls{ros} Master verfügen. Dieser stellt den zentralen Punkt für die Registrierung von Knoten (engl. Nodes), Datenbusse (engl. Topics) und Dienste (engl. Services) zur Verfügung.
 
 Jeder Verarbeitungseinheit in \Gls{ros} wird durch einen Knoten repräsentiert. Ziel ist es möglichst kleine, wiederverwendbare und miteinander kombinierbare Einheiten zu bilden. Die Programmierung eines Knoten erfolgt dabei in den Programmiersprachen C++, Python oder Lisp.
 
-Die Kommunikation zwischen den Knoten erfolgt dabei über ein \Gls{p2p}-Kanal auf der Basis von Nachrichten (engl. Messages). Bei einer Nachricht handelt es sich um eine Datenstruktur die primitive Datentypen, die Datentypstruktur anderer Nachrichten und Felder enthalten kann. Eine Nachricht wird dabei über das \textit{Publish-Subscribe} Muster in einem Datenbus veröffentlicht und kann von jedem Knoten empfangen werden der Nachrichten von diesem Datenbus abonniert hat. Der typische Anwendungsfall für dieses Verfahren ist die Bereitstellung von Sensordaten und Rückmeldungen über Statusänderungen.
+Die Kommunikation zwischen den Knoten erfolgt dabei über ein \Gls{p2p} Kanal auf der Basis von Nachrichten (engl. Messages). Bei einer Nachricht handelt es sich um eine Datenstruktur die primitive Datentypen, die Datentypstruktur anderer Nachrichten und Felder enthalten kann. Eine Nachricht wird dabei über das Publish-Subscribe Muster in einem Datenbus veröffentlicht und kann von jedem Knoten empfangen werden der Nachrichten von diesem Datenbus abonniert hat. Der typische Anwendungsfall für dieses Verfahren ist die Bereitstellung von Sensordaten und Rückmeldungen über Statusänderungen.
 
-Das zuvor vorgestellte \textit{Publish-Subscribe} Muster stellt eine asynchrone Kommunikation bereit. Mit Hilfe von Diensten ist auch ein synchroner Nachrichtenaustausch möglich. Hierfür wird eine Anfrage von dem \textit{Client} an den \textit{Server} gestellt, der seinerseits mit einem Ergebnis antwortet. Dieses Verfahren entspricht dem \textit{Request-Response} Muster. Die Erstellung einer inversen Transformation ist ein typischer Anwendungsfall hierfür.
+Das zuvor vorgestellte Publish-Subscribe Muster stellt eine asynchrone Kommunikation bereit. Mit Hilfe von Diensten ist auch ein synchroner Nachrichtenaustausch möglich. Hierfür wird eine Anfrage von dem Client an den Server gestellt, der seinerseits mit einem Ergebnis antwortet. Dieses Verfahren entspricht dem Request-Response Muster. Die Erstellung einer inversen Transformation ist ein typischer Anwendungsfall hierfür.
 
-Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der \textit{Bag}-Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
+Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der Bag Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
 
-Um die Wiederverwendbarkeit von Knoten, Nachrichten und Diensten zu fördern, wurde das Konzept der Pakete (engl. Packages) eingeführt. Ein Paket stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode-, Konfigurationsdateien, Drittanbieter Bibliothek, Abhängigkeitslisten usw.
+Um die Wiederverwendbarkeit von Knoten, Nachrichten und Diensten zu fördern, wurde das Konzept der Pakete (engl. Packages) eingeführt. Ein Paket stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode-, Konfigurationsdateien, Drittanbieter-Bibliothek, Abhängigkeitslisten usw.
 
 Eine Roboterplattform besteht aus vielen Sensoren und Aktuatoren die abgefragt und gesteuert werden müssen. Dementsprechend viele Knoten müssen gestartet werden. Diese Aufgabe erfüllen die Startdateien (engl. Launch-Files). Neben der Definition der Knoten die gestartet werden sollen, können Einzelne oder eine Gruppe von Knoten parametrisiert werden. Mittels der Verschachtelung von Startdateien ist eine Wiederverwendung von knotenspezifischen Startdateien möglich.
 
-Zu den häufigsten Operationen der Verarbeitungseinheit einer Roboterplattform ist das Transformieren der Sensordaten aus dem Sensorkoordinatensystem in das Koordinatensystem des Robotermittelpunktes. In \Gls{ros} wird hier für ein Transformationsbaum (engl. TF-Tree) verwendet, der aus statischen und dynamischen Transformationen besteht. Statische Transformationen werden dort eingesetzt, wo sich die Pose zweier Koordinatensysteme zur Laufzeit nicht ändert, z.B. zwischen dem Robotermittelpunkt und einem fest montierten Sensor. Dynamische hingegen bei Koordinatensystemen die sich zur Laufzeit ändern, z.B. zwischen dem Robotermittelpunkt und den Inkrementalgebern der Antriebseinheit. Statische Transformationen können mittels einer \Gls{urdf}-Datei modelliert und allen Knoten bereitgestellt werden.
+Zu den häufigsten Operationen der Verarbeitungseinheit einer Roboterplattform ist das Transformieren der Sensordaten aus dem Sensorkoordinatensystem in das Koordinatensystem des Robotermittelpunktes. In \Gls{ros} wird hier für ein Transformationsbaum (engl. TF-Tree) verwendet, der aus statischen und dynamischen Transformationen besteht. Statische Transformationen werden dort eingesetzt, wo sich die Pose zweier Koordinatensysteme zur Laufzeit nicht ändert, z.B. zwischen dem Robotermittelpunkt und einem fest montierten Sensor. Dynamische hingegen bei Koordinatensystemen die sich zur Laufzeit ändern, z.B. zwischen dem Robotermittelpunkt und den Inkrementalgebern der Antriebseinheit. Statische Transformationen können mittels einer \Gls{urdf} Datei modelliert und allen Knoten bereitgestellt werden.
 

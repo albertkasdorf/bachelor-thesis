@@ -13,7 +13,7 @@
 %%%%%%%%%%
 \section{Batterielaufzeit}
 
-Beim Test der Batterielaufzeit wurden zwei \gls{uwbm} in einem Abstand von \SI{4.7}{\metre} aufgestellt. Beide \gls{uwbm} hatten eine direkte \gls{los} zu einandern. Über den kompletten Zeitraum wurden Entfernungsmessungen mit einer Rate von \SI{10}{\hertz} durchgeführt. Als Testprogramme wurden dabei \textit{DW1000Ranging\_ANCHOR} und \textit{DW1000Ranging\_TAG} aus dem GitHub-Projekt \cite{Trojer2015} verwendet.
+Beim Test der Batterielaufzeit wurden zwei \gls{uwbm} in einem Abstand von \SI{4.7}{\metre} aufgestellt. Beide \gls{uwbm} hatten eine direkte \gls{los} zu einandern. Über den kompletten Zeitraum wurden Entfernungsmessungen mit einer Rate von \SI{10}{\hertz} durchgeführt. Als Testprogramme wurden dabei DW1000Ranging\_ANCHOR und DW1000Ranging\_TAG aus dem GitHub Projekt \cite{Trojer2015} verwendet.
 
 Der \Gls{anchor} hatte nach ca. \SI{17}{\hour} seinen Dienst eingestellt, wenig später folgte Ihm der \Gls{tag}. Deutlich höhere Batterielaufzeiten können dadurch erzielt werden, dass die Senderate reduziert wird und die Stromsparfunktionen sowohl des DWM1000 als auch des ATmega328/P genutzt werden.
 
@@ -37,9 +37,9 @@ Um die Antennenverzögerung pro \Gls{uwbm} zu bestimmen, werden zwei Kalibriervo
 	\label{fig:calibration_triangle2}
 \end{figure}
 
-Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt und danach reihum von jedem \Gls{uwbm} eintausend Entfernungsmessungen zu den beiden benachbarten \Glsuseri{uwbm} durchgeführt. Insgesamt entstehen dabei sechstausend Datensätze, die mittels dem \textit{LGS}- bzw. des \textit{DecaWave}-Kalibrierungsverfahren ausgewertet werden, siehe \autoref{tab:calibration_antenna_delay_results}
+Initial wird die Antennenverzögerung bei allen \Glsuseri{uwbm} auf null gesetzt und danach reihum von jedem \Gls{uwbm} eintausend Entfernungsmessungen zu den beiden benachbarten \Glsuseri{uwbm} durchgeführt. Insgesamt entstehen dabei sechstausend Datensätze, die mittels dem LGS- bzw. des DecaWave Kalibrierungsverfahren ausgewertet werden, siehe \autoref{tab:calibration_antenna_delay_results}
 
-Das \textit{LGS}-Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzierbare Ergebnisse. Da jedes \Gls{uwbm} herstellungsbedingte Unterschiede aufweist, ist es Plausibel das alle Antennenverzögerungen in einem ähnlichen Wertebereich liegen. Anders sieht es bei dem \textit{DecaWave}-Kalibrierungsverfahren aus. Hier ergeben sich für jeden Durchlauf andere Wertekombinationen, bedingt durch die Zufallskomponente bei der Erstellung der Kandidatenliste. Diese Verhalten von Genetischen-Algorithmen ist bekannt und muss daher bei der Auswahl der Wertekombinationen berücksichtigt werden. Am Beispiel der Spalte \textit{DecaWave 1} wird es sehr deutlich. Hier beträgt der Unterschied zwischen dem größten und kleinsten Wert \approx\SI{23}{\ns} und entspricht damit einer Abweichung von \approx\SI{6}{\meter} zwischen diesen beiden \Glsuseri{uwbm}.
+Das LGS Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzierbare Ergebnisse. Da jedes \Gls{uwbm} herstellungsbedingte Unterschiede aufweist, ist es Plausibel das alle Antennenverzögerungen in einem ähnlichen Wertebereich liegen. Anders sieht es bei dem DecaWave Kalibrierungsverfahren aus. Hier ergeben sich für jeden Durchlauf andere Wertekombinationen, bedingt durch die Zufallskomponente bei der Erstellung der Kandidatenliste. Diese Verhalten von Genetischen Algorithmen ist bekannt und muss daher bei der Auswahl der Wertekombinationen berücksichtigt werden. Am Beispiel der Spalte DecaWave 1 wird es sehr deutlich. Hier beträgt der Unterschied zwischen dem größten und kleinsten Wert ca. \SI{23}{\ns} und entspricht damit einer Abweichung von ca. \SI{6}{\meter} zwischen diesen beiden \Glsuseri{uwbm}.
 
 \begin{table}
 	\centering
@@ -62,7 +62,7 @@ Das \textit{LGS}-Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzie
 	\label{tab:calibration_antenna_delay_results}
 \end{table}
 
-Die Wertekombinationen aus den Spalten \textit{LGS} und \textit{DecaWave} werden abwechselnd als Antennenverzögerungen in die \Glspl{uwbm} eingetragen und für jede Spalte jeweils eine weitere Messreihe, wie oben beschrieben, aufgezeichnet. Die Ergebnisse sind in der \autoref{tab:calibration_range_results}\footnotemark{} aufgeführt.
+Die Wertekombinationen aus den Spalten LGS und DecaWave werden abwechselnd als Antennenverzögerungen in die \Glspl{uwbm} eingetragen und für jede Spalte jeweils eine weitere Messreihe, wie oben beschrieben, aufgezeichnet. Die Ergebnisse sind in der \autoref{tab:calibration_range_results}\footnotemark{} aufgeführt.
 
 \begin{table}
 	\centering
@@ -100,9 +100,9 @@ DecaWave & 178 & 177 & \num{1.732} & \num{7.458} & \num{0.019} & \num{7.390} & \
 
 \footnotetext{Bei der Standardabweichung von über einem Meter handelt es sich um einen einzelnen Messfehler in der Messreihe.}
 
-Mit einer initalen Antennenverzögerung von null beträgt die gemessene Entfernung zwischen zwei \Glsuseri{uwbm} \approx \SI{156}{\meter} bei einer tatsächenlichen Entfernung von \approx \SI{1.73}{\meter}. Eine Standardabweichung von \approx \SI{2}{\centi\meter} entspricht dabei den Produkteigenschaften mit denen \textit{DecaWave} wirbt.
+Mit einer initalen Antennenverzögerung von null beträgt die gemessene Entfernung zwischen zwei \Glsuseri{uwbm} ca. \SI{156}{\meter} bei einer tatsächenlichen Entfernung von ca. \SI{1.73}{\meter}. Eine Standardabweichung von ca. \SI{2}{\centi\meter} entspricht dabei den Produkteigenschaften mit denen DecaWave wirbt.
 
-Werden die Antennenverzögerung aus der \textit{LGS}-Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen der tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}-Ka\-li\-brierungs\-ver\-fahren.
+Werden die Antennenverzögerung aus der LGS Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen der tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem DecaWave Kalibrierungsverfahren.
 
 
 In der \autoref{fig:calibration_histograms} wurden die gemessenen Entfernungen als Histogramm dargestellt. Gut zu erkennen ist die Normalverteilung der Messwerte um den Mittelwert.
@@ -143,7 +143,7 @@ In der \autoref{fig:calibration_histograms} wurden die gemessenen Entfernungen a
 	\label{fig:calibration_histograms}
 \end{figure}
 
-Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt reicht ein Dreieck nicht mehr aus, statt dessen wird ein regelmäßiges Fünfeck/Pentagramm verwendet, siehe \autoref{fig:calibration_pentagram2}. Dieses lässt sich mathematisch ähnlich gut beschreiben wie das Dreieck. Aus der Seitenlänge $a = \SI{4.5}{\meter}$, zwischen zwei benachbarten Spitzen, wird über die \autoref{eq:fuenfeck_diagonale} die Entfernung $d$, zwischen den diagonalen Spitzen, berechnet. Der Umkreisradius $r_u$ ergibt sich aus der \autoref{eq:fuenfeck_umkreisradius}.
+Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt reicht ein Dreieck nicht mehr aus, statt dessen wird ein regelmäßiges Fünfeck verwendet, siehe \autoref{fig:calibration_pentagram2}. Dieses lässt sich mathematisch ähnlich gut beschreiben wie das Dreieck. Aus der Seitenlänge $a = \SI{4.5}{\meter}$, zwischen zwei benachbarten Spitzen, wird über die \autoref{eq:fuenfeck_diagonale} die Entfernung $d$, zwischen den diagonalen Spitzen, berechnet. Der Umkreisradius $r_u$ ergibt sich aus der \autoref{eq:fuenfeck_umkreisradius}.
 
 \begin{figure}
 	\centering
@@ -152,7 +152,7 @@ Im zweiten Kalibriervorgang werden alle fünf \Glspl{uwbm} eingeschlossen. Jetzt
 	\label{fig:calibration_pentagram2}
 \end{figure}
 
-Für das regelmäßige Fünfeck/Pentagramm wurde nur noch das \textit{LGS}-Ka\-li\-brie\-rungs\-ver\-fahren verwendet, die Antennenverzögerungen pro \Gls{uwbm} sind dabei in der \autoref{tab:calibration_pentagramm_antenna_delay_results} aufgeführt.
+Für das regelmäßige Fünfeck wurde nur noch das LGS Kalibrierungsverfahren verwendet, die Antennenverzögerungen pro \Gls{uwbm} sind dabei in der \autoref{tab:calibration_pentagramm_antenna_delay_results} aufgeführt.
 
 \begin{table}
 	\centering
@@ -175,7 +175,7 @@ Für das regelmäßige Fünfeck/Pentagramm wurde nur noch das \textit{LGS}-Ka\-l
 %180 & 16435 \\
 \hline
 	\end{tabular}
-	\caption{Berechnete Werte für die Antennenverzögerung pro \glsentryshort{uwbm} für das regelmäßige Fünfeck/Pentagramm.}
+	\caption{Berechnete Werte für die Antennenverzögerung pro \glsentryshort{uwbm} für das regelmäßige Fünfeck.}
 	\label{tab:calibration_pentagramm_antenna_delay_results}
 \end{table}
 
@@ -192,20 +192,20 @@ Für das regelmäßige Fünfeck/Pentagramm wurde nur noch das \textit{LGS}-Ka\-l
 %%%%%%%%%%
 \section{Entfernungsmessung}
 
-Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}- und drei \Gls{nlos}-Messreihen aufgezeichnet. Jede Messreihe beginnt bei einer Entfernung von einem Meter zwischen \Gls{tag} und \Gls{anchor}. Pro Entfernung werden jeweils fünfhundert Messwerte aufgezeichnet. Danach wird die Entfernung um einen halben Meter erhöht, indem der \Gls{anchor} verschoben wird. Dies erfolgt solange bis eine Entfernung von neun Meter erreicht ist. Somit enthält jede Messreihe siebzehn Entfernungen mit achttausendfünfhundert Entfernungsmessungen.
+Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}- und drei \Gls{nlos} Messreihen aufgezeichnet. Jede Messreihe beginnt bei einer Entfernung von einem Meter zwischen \Gls{tag} und \Gls{anchor}. Pro Entfernung werden jeweils fünfhundert Messwerte aufgezeichnet. Danach wird die Entfernung um einen halben Meter erhöht, indem der \Gls{anchor} verschoben wird. Dies erfolgt solange bis eine Entfernung von neun Meter erreicht ist. Somit enthält jede Messreihe siebzehn Entfernungen mit achttausendfünfhundert Entfernungsmessungen.
 
-Bei der ersten \Gls{nlos}-Messreihe wird ein \SI{19x12x10}{\centi\meter} großer, mit Wasser gefüllter Kunststoffbehälter in einem Abstand von \SI{2}{\centi\meter} vor der \Gls{uwb}-Antenne platziert, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_133013}. Bei den letzten zwei \Gls{nlos}-Messreihen wird ein \SI{44x25}{\centi\meter} großes Aluminiumblech mit einer Dicke von \SI{0.5}{\milli\meter} vor die \Gls{uwb}-Antenne platziert, jeweils in einem Abstand von \SI{5}{\centi\meter} und \SI{50}{\centi\meter}, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_140118} und \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
+Bei der ersten \Gls{nlos} Messreihe wird ein \SI{19x12x10}{\centi\meter} großer, mit Wasser gefüllter Kunststoffbehälter in einem Abstand von \SI{2}{\centi\meter} vor der \Gls{uwb} Antenne platziert, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_133013}. Bei den letzten zwei \Gls{nlos} Messreihen wird ein \SI{44x25}{\centi\meter} großes Aluminiumblech mit einer Dicke von \SI{0.5}{\milli\meter} vor die \Gls{uwb} Antenne platziert, jeweils in einem Abstand von \SI{5}{\centi\meter} und \SI{50}{\centi\meter}, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_140118} und \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
 
 
-Das auffälligste Merkmal der \Gls{los}- als auch der \Gls{nlos}-Entfernungsmessungen ist die systematische Verschiebung aller Messwerte um ca. \SI{20}{\centi\meter} deren Ursache ungeklärt bleibt, siehe \autoref{fig:entfernungsmessung_2018_01_20}.
+Das auffälligste Merkmal der \Gls{los}- als auch der \Gls{nlos} Entfernungsmessungen ist die systematische Verschiebung aller Messwerte um ca. \SI{20}{\centi\meter} deren Ursache ungeklärt bleibt, siehe \autoref{fig:entfernungsmessung_2018_01_20}.
 
-Bei der \Gls{los}-Messreihe beträgt die Standardabweichung, wie bereits bei der Kalibrierung, ca. \SI{2}{\centi\meter}. Mit steigender Entfernung steigt auch die Standardabweichung von ca. \SI{1.8}{\centi\meter} bei einem Meter auf ca. \SI{2.3}{\centi\meter} bei neun Meter an. Größere Ausreißer sind bei den Messwerten nicht vorhanden, siehe \autoref{fig:entfernungsmessung_2018_01_20_los} und \autoref{tab:entfernungsmessung_2018_01_20_los}.
+Bei der \Gls{los} Messreihe beträgt die Standardabweichung, wie bereits bei der Kalibrierung, ca. \SI{2}{\centi\meter}. Mit steigender Entfernung steigt auch die Standardabweichung von ca. \SI{1.8}{\centi\meter} bei einem Meter auf ca. \SI{2.3}{\centi\meter} bei neun Meter an. Größere Ausreißer sind bei den Messwerten nicht vorhanden, siehe \autoref{fig:entfernungsmessung_2018_01_20_los} und \autoref{tab:entfernungsmessung_2018_01_20_los}.
 
 In der \autoref{fig:entfernungsmessung_2018_01_20_nlos_water} ist deutlich zu erkennen, das Wasser einen sehr störenden Einfluss auf die Entfernungsmessung ausübt. Die Messwerte streuen über einen sehr großen Bereich, das spiegelt sich auch in der Standardabweichung, die im besten Fall ca. \SI{5}{\centi\meter} und im schlimmsten Fall ca. \SI{34}{\centi\meter} beträgt, siehe \autoref{tab:entfernungsmessung_2018_01_20_nlos_water}.
 
-Ähnlich verhält es sich bei der \Gls{nlos}-Messreihe mit einem Aluminiumblech, das sehr nah vor der \Gls{uwb}-Antenne platziert wurde, siehe \autoref{fig:entfernungsmessung_2018_01_20_nlos_metal2} und \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal2}. Einzig im Bereich von zwei bis fünf Meter beträgt die Standardabweichung ca. \SI{2}{\centi\meter}.
+Ähnlich verhält es sich bei der \Gls{nlos} Messreihe mit einem Aluminiumblech, das sehr nah vor der \Gls{uwb} Antenne platziert wurde, siehe \autoref{fig:entfernungsmessung_2018_01_20_nlos_metal2} und \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal2}. Einzig im Bereich von zwei bis fünf Meter beträgt die Standardabweichung ca. \SI{2}{\centi\meter}.
 
-Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer Entfernung von \SI{50}{\centi\meter} befindet, siehe \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal}. Die Werte der Standardabweichung ähneln der \Gls{los}-Messreihe. Nur im Bereich zwischen achteinhalb und neun Meter steigt die Standardabweichung auf einen Wert von ca. \SI{30}{\centi\meter} an. Dies könnte darauf zurückzuführen sein, das im hinteren Bereich des Raums Metallstühle auf den Tischen standen, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
+Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer Entfernung von \SI{50}{\centi\meter} befindet, siehe \autoref{tab:entfernungsmessung_2018_01_20_nlos_metal}. Die Werte der Standardabweichung ähneln der \Gls{los} Messreihe. Nur im Bereich zwischen achteinhalb und neun Meter steigt die Standardabweichung auf einen Wert von ca. \SI{30}{\centi\meter} an. Dies könnte darauf zurückzuführen sein, das im hinteren Bereich des Raums Metallstühle auf den Tischen standen, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
 
 
 \begin{figure}
@@ -238,7 +238,7 @@ Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer 
 		\caption{\glsentryshort{nlos} mit einem Aluminiumblech in einer Entfernung von \SI{5}{\centi\meter}.}
 		\label{fig:entfernungsmessung_2018_01_20_nlos_metal2}
 	\end{subfigure}
-	\caption{Tatsächliche und gemessene \glsentryshort{los}- und \glsentryshort{nlos}-Entfernungen.}
+	\caption{Tatsächliche und gemessene \glsentryshort{los}- und \glsentryshort{nlos} Entfernungen.}
 	\label{fig:entfernungsmessung_2018_01_20}
 \end{figure}
 
@@ -254,15 +254,15 @@ Der Softwarearchitektur, siehe \autoref{fig:architektur_grouped}, ist zu entnehm
 
 Für die Untersuchung werden zwei Messfahrten durchgeführt. Bei der ersten Messfahrt entspricht die Trajektorie einem abgerundeten Rechteckt und bei der zweiten wird das abgerundete Rechteck um mehrere Kreisbahnen erweitert. In beiden Fällen kehrte die Roboterplattform zu der Startposition zurück um den Versatz berechnen zu können. Im Folgenden wird nur noch die zweite Messfahrt betrachtet, da bei der ersten alle Verfahren in etwa gleich abgeschnitten haben, siehe \autoref{fig:Record_2018-02-08-12-30-43_trajectory}.
 
-Alle \gls{ros}-Nachrichten, der beiden Messfahrten, wurden aufgezeichnet und in separaten Bag-Dateien abgespeichert. Bevor die Bag-Dateien mit den laserbasierten Odometriequellen untersucht werden können, müssen die Odometriedaten der Inkrementalgeber entfernt werden, um widersprüchliche Informationen aus mehreren Odometriequellen zu verhindern. Für die Filterung der Bag-Dateien ist das Kommandozeilenprogramm \textit{rosbag} zuständig. Über den Parameter \textit{filter} und einem Python-Ausdruck werden alle Transformationsnachrichten zwischen dem Roboterplattform- und dem Odometrie-Koordinatensystem entfernt.
+Alle \gls{ros} Nachrichten, der beiden Messfahrten, wurden aufgezeichnet und in separaten Bag Dateien abgespeichert. Bevor die Bag Dateien mit den laserbasierten Odometriequellen untersucht werden können, müssen die Odometriedaten der Inkrementalgeber entfernt werden, um widersprüchliche Informationen aus mehreren Odometriequellen zu verhindern. Für die Filterung der Bag Dateien ist das Kommandozeilenprogramm rosbag zuständig. Über den Parameter filter und einem Python-Ausdruck werden alle Transformationsnachrichten zwischen dem Roboterplattform- und dem Odometrie-Koordinatensystem entfernt.
 
-Mit dem \gls{rosm} \textit{hector\_trajectory\_server} und dem Skript \textit{trajectory\_to\_csv.py} wurden die Trajektorien der drei Odometriequellen in eine CSV-Datei gespeichert, um diese auswerten zu können. Dabei wurden aus den ungefilterten Aufzeichnungen die Trajektorie der Inkrementalgeber extrahiert. Mit den \glsuseri{rosm} für die laserbasierten Odometrieen und den gefilterten Aufzeichnungen wurden die laserbasierten Trajektorien extrahiert.
+Mit dem \gls{rosm} hector\_trajectory\_server und dem Skript trajectory\_to\_csv.py wurden die Trajektorien der drei Odometriequellen in eine CSV Datei gespeichert, um diese auswerten zu können. Dabei wurden aus den ungefilterten Aufzeichnungen die Trajektorie der Inkrementalgeber extrahiert. Mit den \glsuseri{rosm} für die laserbasierten Odometrieen und den gefilterten Aufzeichnungen wurden die laserbasierten Trajektorien extrahiert.
 
-Das \gls{rosm} \textit{hector\_trajectory\_server} hat die Möglichkeit, die Trajektorie im Odometrie- und im Karten-Koordinatensystem aufzunehmen. Die Transformation zwischen dem Karten- und dem Roboterplattform-Koordinatensystem wird durch das \gls{rosm} \textit{hector\_mapping} anhand der 2D-Laser-Entfernungsmessung bestimmt. Dadurch eignet es sich ideal, um als Ground Truth Trajektorie verwendet zu werden. Diese Ground Truth Trajektorie wird dann mit den Trajektorien verglichen, die im Odometrie-Koordinatensystem der jeweiligen Odometriequelle aufgezeichnet wurde.
+Das \gls{rosm} hector\_trajectory\_server hat die Möglichkeit, die Trajektorie im Odometrie- und im Karten-Koordinatensystem aufzunehmen. Die Transformation zwischen dem Karten- und dem Roboterplattform-Koordinatensystem wird durch das \gls{rosm} hector\_mapping anhand der 2D-Laser-Entfernungsmessung bestimmt. Dadurch eignet es sich ideal, um als Ground Truth Trajektorie verwendet zu werden. Diese Ground Truth Trajektorie wird dann mit den Trajektorien verglichen, die im Odometrie-Koordinatensystem der jeweiligen Odometriequelle aufgezeichnet wurde.
 
 % Um die Trajektorie in einer Karte der Umwelt darzustellen, wird die Belegtheitskarte aus dem \gls{rosm} \textit{hector\_mapping} extrahiert. Das erfolgt mit dem Befehl \textit{rosrun map\_server map\_saver -f file\_name}.
 
-Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory} dargestellt. Die Ground Truth Trajektorie, mit der die anderen Trajektorien verglichen werden, ist in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory1} zu sehen. Deutlich zu erkennen ist, dass die Trajektorie der Inkrementalgeber sowohl in der X- als auch in der Y-Achse gestaucht ist, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory2}. Die laserbasierte Odometrie des LSM-Verfahrens hat große Problem mit den gefahrenen Kreisbahnen und driftet zum Ende hin sehr stark von der Startposition ab, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory3}. Einzig die laserbasierte Odometrie des \gls{rf2o}-Verfahrens bildet die gefahrene Trajektorie gegenüber dem Ground Turth gut ab, auch wenn die Start- und Zielpositionen voneinander abweichen, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory4}.
+Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory} dargestellt. Die Ground Truth Trajektorie, mit der die anderen Trajektorien verglichen werden, ist in der \autoref{fig:Record_2018-02-08-12-33-53_trajectory1} zu sehen. Deutlich zu erkennen ist, dass die Trajektorie der Inkrementalgeber sowohl in der X- als auch in der Y-Achse gestaucht ist, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory2}. Die laserbasierte Odometrie des LSM Verfahrens hat große Problem mit den gefahrenen Kreisbahnen und driftet zum Ende hin sehr stark von der Startposition ab, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory3}. Einzig die laserbasierte Odometrie des \gls{rf2o} Verfahrens bildet die gefahrene Trajektorie gegenüber dem Ground Turth gut ab, auch wenn die Start- und Zielpositionen voneinander abweichen, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory4}.
 
 \begin{figure}
 	\centering
@@ -300,7 +300,7 @@ Sowohl die Karte der Umwelt als auch die verfahrenen Trajektorien sind in der \a
 
 Bei der stochastischen Auswertung war eine direkte zeitliche Zuordnung der Messwerte aller drei Verfahren zum Ground Truth nicht möglich, da jede Odometriequelle eine spezifische Verarbeitungsdauer besitzt. Deshalb wird pro Sekunde der Mittelwert der verfügbaren Positionen gebildet und aus dieser dann die Entfernung zur Ground Truth Position berechnet, siehe \autoref{tab:stochastik_odometrie_quellen}.
 
-Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen der Entfernung der Position zur Ground Truth Position, siehe \autoref{tab:stochastik_odometrie_quellen}. Das LSM-Verfahren weicht im Mittelwert und bei der Standardabweichung deutlich von dem Inkrementalgebern und dem \gls{rf2o}-Verfahren ab. Das der Mittelwert und die Standardabweichung zwischen den Inkrementalgebern und dem \gls{rf2o}-Verfahren nur sehr geringe Unterschiede aufweisen, jedoch große Unterschiede in der visuellen Trajektorie festzustellen sind, kann nur damit erklärt werden, das sich die aufsummierten Fehler der Inkrementalgebern bei der Rückfahrt wieder aufheben.
+Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen der Entfernung der Position zur Ground Truth Position, siehe \autoref{tab:stochastik_odometrie_quellen}. Das LSM Verfahren weicht im Mittelwert und bei der Standardabweichung deutlich von dem Inkrementalgebern und dem \gls{rf2o} Verfahren ab. Das der Mittelwert und die Standardabweichung zwischen den Inkrementalgebern und dem \gls{rf2o} Verfahren nur sehr geringe Unterschiede aufweisen, jedoch große Unterschiede in der visuellen Trajektorie festzustellen sind, kann nur damit erklärt werden, das sich die aufsummierten Fehler der Inkrementalgebern bei der Rückfahrt wieder aufheben.
 
 \begin{table}
 	\centering
@@ -319,7 +319,7 @@ Bestätigt wird die visuelle Einschätzung durch die stochastischen Auswertungen
 	\label{tab:stochastik_odometrie_quellen}
 \end{table}
 
-Da die Trajektorie des laserbasierten \gls{rf2o}-Verfahren am besten der Ground Truth Trajektorie entspricht, wird diese als Odometriequelle für das \gls{roslam}-Verfahren verwendet.
+Da die Trajektorie des laserbasierten \gls{rf2o} Verfahren am besten der Ground Truth Trajektorie entspricht, wird diese als Odometriequelle für das \gls{roslam} Verfahren verwendet.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -340,11 +340,11 @@ Da die Trajektorie des laserbasierten \gls{rf2o}-Verfahren am besten der Ground 
 %%%%%%%%%%
 \subsection{Positionsschätzung}
 
-Im vorherigen Abschnitt wurde bereits die Trajektorie der verschiedenen Odometriequellen untersucht. Die Entscheidung fiel auf das \gls{rf2o}-Verfahren, mit dem nun die Positionsschätzung des \gls{roslam}-Verfahren untersucht wird. Es wird dabei die Trajektorie mit dem abgerundeten Rechteck mit mehrere Kreisbahnen verwendet, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory}. Da auch die Entfernungsmessungen der \glspl{uwbm} einen Einfluss auf die Positionsschätzung haben, werden neben den realen auch virtuelle \glsuseri{uwbm} verwendet. Die virtuellen \glspl{uwbm} zeichnen sich dadurch aus, dass ihre Entfernungsmessungen keine Fehler aufweisen und daher als perfekt angesehen werden können.
+Im vorherigen Abschnitt wurde bereits die Trajektorie der verschiedenen Odometriequellen untersucht. Die Entscheidung fiel auf das \gls{rf2o} Verfahren, mit dem nun die Positionsschätzung des \gls{roslam} Verfahren untersucht wird. Es wird dabei die Trajektorie mit dem abgerundeten Rechteck mit mehrere Kreisbahnen verwendet, siehe \autoref{fig:Record_2018-02-08-12-33-53_trajectory}. Da auch die Entfernungsmessungen der \glspl{uwbm} einen Einfluss auf die Positionsschätzung haben, werden neben den realen auch virtuelle \glsuseri{uwbm} verwendet. Die virtuellen \glspl{uwbm} zeichnen sich dadurch aus, dass ihre Entfernungsmessungen keine Fehler aufweisen und daher als perfekt angesehen werden können.
 
 In der \autoref{fig:Record_2018-02-08-12-33-53_filtered_trajectory_pf} ist die tatsächliche Trajektorie und die des \gls{roslam} Partikel Filters abgebildet. Die oberen zwei Abbildungen verwenden die Entfernungsmessungen der realen \glspl{uwbm} und die unteren zwei Abbildungen die Entfernungsmessung von virtuellen \glspl{uwbm}. Auf der linken Seite befinden sich die Positionsschätzungen die die Ground Truth Trajektorie gut abbilden und auf der rechten Seite die die sie schlecht abbilden. Während bei den realen \glsuseri{uwbm} die Positionsschätzung sehr große Abweichungen von der Ground Truth Trajektorie besitzt, bildet die Positionsschätzung der virtuellen \glspl{uwbm} die Ground Truth Trajektorie deutlich besser ab, selbst bei der schlechten Abbildung weist die Positionsschätzung nur einen leichten Winkelfehler auf.
 
-Das führt zu der Vermutung, dass die Qualität der Entfernungsmessung einen entscheidenden Einfluss auf die Positionsschätzung des \gls{roslam}-Verfahrens besitzt. Je geringe die Abweichungen der Entfernungsmessung von der tatsächlichen Entfernung desto besser. Bemerkenswert ist es auch, dass die Reproduzierbarkeit der Ergebnisse mit den virtuellen \glsuseri{uwbm} deutlich eher gegeben war, als mit den realen \glsuseri{uwbm}.
+Das führt zu der Vermutung, dass die Qualität der Entfernungsmessung einen entscheidenden Einfluss auf die Positionsschätzung des \gls{roslam} Verfahrens besitzt. Je geringe die Abweichungen der Entfernungsmessung von der tatsächlichen Entfernung desto besser. Bemerkenswert ist es auch, dass die Reproduzierbarkeit der Ergebnisse mit den virtuellen \glsuseri{uwbm} deutlich eher gegeben war, als mit den realen \glsuseri{uwbm}.
 
 % pose_diff.m -> viz_trajectory(...)
 \begin{figure}
@@ -352,14 +352,14 @@ Das führt zu der Vermutung, dass die Qualität der Entfernungsmessung einen ent
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
-		\caption{\textit{Gute} Trajektorie mit den realen \glsuseri{uwbm}.}
+		\caption{Gute Trajektorie mit den realen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
-		\caption{\textit{Schlechte} Trajektorie mit den realen \glsuseri{uwbm}.}
+		\caption{Schlechte Trajektorie mit den realen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
 	\end{subfigure}
 	\par
@@ -367,14 +367,14 @@ Das führt zu der Vermutung, dass die Qualität der Entfernungsmessung einen ent
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
-		\caption{\textit{Gute} Trajektorie mit den virtuellen \glsuseri{uwbm}.}
+		\caption{Gute Trajektorie mit den virtuellen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
-		\caption{\textit{Schlechte} Trajektorie mit den virtuellen \glsuseri{uwbm}.}
+		\caption{Schlechte Trajektorie mit den virtuellen \glsuseri{uwbm}.}
 		\label{fig:Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
 	\end{subfigure}
 	\caption{Resultierende Trajektorie aus der Positionsschätzung des \glsentryshort{roslam} mit realen und virtuellen \glsuseri{uwbm}.}
@@ -393,7 +393,7 @@ Mit den gleichen Datensätzen wie in \autoref{fig:Record_2018-02-08-12-33-53_fil
 
 Sowohl mit den realen als auch mit den virtuellen \glsuseri{uwbm} verringert sich die Unsicherheit der Positionsschätzung der \glspl{uwbm} kontinuierlich über die Zeit. Durch die ungenaue Positionsschätzung der Roboterplattform durch die realen \glspl{uwbm} sind auch die Positionsschätzungen der \gls{uwbm} entsprechend verschoben im Bezug zu ihren Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_3_beacon_error} und \autoref{fig:Record_2018-02-08-12-33-53_filtered_1_beacon_error}. Besser verhält es sich bei den virtuellen \glsuseri{uwbm}, hier entspricht die Positionsschätzung der \glspl{uwbm} dem der Ground Truth Position, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_5_beacon_error}. Der Winkelfehler in der Positionsschätzung aus der \autoref{fig:Record_2018-02-08-12-33-53_filtered_4_trajectory_pf} spiegelt sich ebenfalls in der Positionsschätzung der \glspl{uwbm} wieder, siehe \autoref{fig:Record_2018-02-08-12-33-53_filtered_beacon_error}.
 
-Anzumerken ist, dass das \gls{roslam}-Verfahren von der Annahme ausgeht das die Position der \glspl{uwbm} sich über die Zeit nicht ändert. Während der Auswertung der Daten konnte jedoch mehrfach beobachtet werden, dass sich die Positionen der \glspl{uwbm} über die Zeit änderten konnte. Somit ist nicht ausgeschlossen, dass die Positionsänderungen der \glspl{uwbm} verfolgt werden kann, sobald die \gls{wdf} durch das \gls{ekf}-Verfahren repräsentiert wird.
+Anzumerken ist, dass das \gls{roslam} Verfahren von der Annahme ausgeht das die Position der \glspl{uwbm} sich über die Zeit nicht ändert. Während der Auswertung der Daten konnte jedoch mehrfach beobachtet werden, dass sich die Positionen der \glspl{uwbm} über die Zeit änderten konnte. Somit ist nicht ausgeschlossen, dass die Positionsänderungen der \glspl{uwbm} verfolgt werden kann, sobald die \gls{wdf} durch das \gls{ekf} Verfahren repräsentiert wird.
 
 % viz_bor_mean_cov, cov=cov*10
 \begin{figure}
@@ -430,9 +430,9 @@ Anzumerken ist, dass das \gls{roslam}-Verfahren von der Annahme ausgeht das die 
 	\label{fig:Record_2018-02-08-12-33-53_filtered_beacon_error}
 \end{figure}
 
-In den \autoref{tab:distance_between_real_uwb_and_gt} und \autoref{tab:distance_between_virtual_uwb_and_gt} sind die Entfernungen der Positionsschätzung der \glspl{uwbm} zu den Ground Truth Positionen an ausgewählten Zeitpunkten aufgelistet. Wie bereits zu erwarten schneiden die virtuellen \glspl{uwbm} deutlich besser ab als ihre realen Vertreter. Neben einer Verbesserung der Positionsschätzung der \glspl{uwbm} ist eine Verschlechterung ebenfalls möglich, siehe linke Spalte 179  und rechte Spalte 4. Die Verschlechterung tritt sowohl die virtuellen als auch die realen \glspl{uwbm} gleichermaßen.
+In den \autoref{tab:distance_between_real_uwb_and_gt} und \autoref{tab:distance_between_virtual_uwb_and_gt} sind die Entfernungen der Positionsschätzung der \glspl{uwbm} zu den Ground Truth Positionen an ausgewählten Zeitpunkten aufgelistet. Wie bereits zu erwarten schneiden die virtuellen \glspl{uwbm} deutlich besser ab als ihre realen Vertreter. Neben einer Verbesserung der Positionsschätzung der \glspl{uwbm} ist eine Verschlechterung ebenfalls möglich, siehe linke Spalte 179 und rechte Spalte 4. Die Verschlechterung tritt sowohl die virtuellen als auch die realen \glspl{uwbm} gleichermaßen.
 
-Einige Entfernungen kommen pro Spalte doppelt bzw. dreifach hintereinander vor. Das liegt daran, das zu großen Zeiträumen keine Positionsschätzungen zu diesen \glsuseri{uwbm} durch das \gls{mrpt}-\gls{rosm} bereitgestellt wurden. Aus diesem Grund wurde die letzte bekannte Entfernung angegeben. Die Ursache für dieses Phänomen konnte bis zum Schluss nicht geklärt werden.
+Einige Entfernungen kommen pro Spalte doppelt bzw. dreifach hintereinander vor. Das liegt daran, das zu großen Zeiträumen keine Positionsschätzungen zu diesen \glsuseri{uwbm} durch das \gls{mrpt} \gls{rosm} bereitgestellt wurden. Aus diesem Grund wurde die letzte bekannte Entfernung angegeben. Die Ursache für dieses Phänomen konnte bis zum Schluss nicht geklärt werden.
 
 % viz_bor_mean_cov, cov=cov*10
 \begin{table}
@@ -485,9 +485,9 @@ Einige Entfernungen kommen pro Spalte doppelt bzw. dreifach hintereinander vor. 
 %%%%%%%%%%
 \subsection{Konvergenz der \glsentryshort{wdf}}
 
-Solange die Positionsschätzung der \gls{uwbm} Mehrdeutigkeiten aufweist, werden als \gls{wdf} das \gls{sog}- oder das \gls{mc}-Verfahren eingesetzt. Liegen keine Mehrdeutigkeiten mehr vor, wird die \gls{wdf} mit dem \gls{ekf}-Verfahren abgebildet. Das bedeutet, das jedes \gls{uwbm} nur noch über die Parameter Mittelwert und Kovarianz beschrieben wird, was zu einer Reduktion der genutzten Ressourcen der Verarbeitungseinheit führt.
+Solange die Positionsschätzung der \gls{uwbm} Mehrdeutigkeiten aufweist, werden als \gls{wdf} das \gls{sog}- oder das \gls{mc} Verfahren eingesetzt. Liegen keine Mehrdeutigkeiten mehr vor, wird die \gls{wdf} mit dem \gls{ekf} Verfahren abgebildet. Das bedeutet, das jedes \gls{uwbm} nur noch über die Parameter Mittelwert und Kovarianz beschrieben wird, was zu einer Reduktion der genutzten Ressourcen der Verarbeitungseinheit führt.
 
-In der \autoref{tab:timespan_and_distance_to_switch_to_ekf} sind die Zeitspannen und die zurückgelegte Entfernung der Roboterplattform pro \gls{uwbm} aufgelistet, bis die \gls{wdf} durch das \gls{ekf}-Verfahren abgebildet wird. Sowohl mit den virtuellen als auch mit den realen \gls{uwbm} findet die Umwandlung bereits nach weniger als \SI{1}{\meter} bzw. weniger als \SI{10}{\second} statt. Einzig bei den virtuellen \glsuseri{uwbm} benötigte das \gls{sog}-Verfahren deutlich länger. Im Allgemeinen konvergieren sowohl das \gls{sog}- als auch das \gls{mc}-Verfahren gleich schnell.
+In der \autoref{tab:timespan_and_distance_to_switch_to_ekf} sind die Zeitspannen und die zurückgelegte Entfernung der Roboterplattform pro \gls{uwbm} aufgelistet, bis die \gls{wdf} durch das \gls{ekf} Verfahren abgebildet wird. Sowohl mit den virtuellen als auch mit den realen \gls{uwbm} findet die Umwandlung bereits nach weniger als \SI{1}{\meter} bzw. weniger als \SI{10}{\second} statt. Einzig bei den virtuellen \glsuseri{uwbm} benötigte das \gls{sog} Verfahren deutlich länger. Im Allgemeinen konvergieren sowohl das \gls{sog}- als auch das \gls{mc} Verfahren gleich schnell.
 
 % conversion_time.m
 \begin{table}
@@ -524,6 +524,7 @@ Virtuell & \num{3} & \gls{mc} & \num{1.0} & \num{0.047} \\
 Virtuell & \num{4} & \gls{mc} & \num{5.5} & \num{0.761} \\
 \hline
 	\end{tabular}
-	\caption{Die Zeitspanne und die zurückgelegte Entfernung der Roboterplattform bis die \glsentryshort{wdf} durch das \glsentryshort{ekf}-Verfahren abgebildet wird.}
+	\caption{Die Zeitspanne und die zurückgelegte Entfernung der Roboterplattform bis die \glsentryshort{wdf} durch das \glsentryshort{ekf} Verfahren abgebildet wird.}
 	\label{tab:timespan_and_distance_to_switch_to_ekf}
 \end{table}
+
