@@ -63,43 +63,8 @@ Nachdem die beste Odometriequelle bestimmt wurde, fand die Untersuchung für die
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Wurden alle Fragen aus dem Expose geklärt/beantwortet?
-%
-%%%%%%%%%%
-\section{Fazit}
-
-
-Fragestellung:
-\begin{itemize}
-	\item UWB
-	\begin{itemize}
-		\item Welche elektrische Beschaltung ist notwendig um das DWM1000 Modul von DecaWave in Betrieb nehmen zu können?
-		\item Wie erfolgt die Entfernungsmessung zwischen den einzelnen UWB--Modulen?
-		\item Wie erfolgt der Datenaustausch zwischen einem UWB--Modul und der Verarbeitungseinheit?
-		\item Kann über die Kalibrierung der Antennenverzögerung eine genauere Entfernungsmessung erreicht werden?
-		\item Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer direkten Sichtverbindung (engl. Line--of--sight (LOS)) und indirekten Sichtverbindung (engl. Non--line--of--sight (NLOS))?
-	\end{itemize}
-	\item RO--SLAM
-	\begin{itemize}
-		\item Ist ein RO--SLAM mit den selbstgebauten UWB--Modulen möglich?
-		\item Welche Hardware-- und Software--Konfiguration ist für ein RO--SLAM notwendig?
-		\item Wie genau kann der RO--SLAM die eigene Positionen und die der Basisstationen schätzen?
-	\end{itemize}
-\end{itemize}
-
-Hypothen:
-\begin{itemize}
-	\item Die Kalibrierung der Antennenverzögerung verbessert die Genauigkeit der Entfernungsmessung signifikant.
-	\item Indoor kann eine Lokalisierung mit einer Genauigkeit von \SI{10}{\cm} erreicht werden.
-	\item Das Mobile Robot Programming Toolkit (MRPT) verfügt über ein Robot Operating System (ROS)--Modul, das einen RO--SLAM implementiert.
-	\item Mit dem RO--SLAM ist es möglich sowohl die eigene Position als auch die der Basisstation mit einer Genauigkeit von \SI{10}{\cm} zu schätzen.
-\end{itemize}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
 %	- UWB-Module
-%		- Stärker Prozessor um den DWM mit maximaler SPI-Geschwindigkeit anzusteuern (20 Mhz)
+%		- Stärker Prozessor um den DWM mit maximaler SPI-Geschwindigkeit anzusteuern (20 Mhz), spart Energie.
 %		- Identifier über DIP Schalter einstellbar
 %		- Größerer Speicher um mehr Anchor/Tags verwalten zu können.
 %		- Stromsparfunktionen
@@ -109,3 +74,52 @@ Hypothen:
 %
 %%%%%%%%%%
 \section{Ausblick}
+
+Für zukünftige Untersuchungen besteht ein großes Potential in dem Bereich der \glspl{uwbm}. Um eine längere Laufzeit zu erreichen ließe sich der Energieverbrauch durch verschiedene Maßnahmen deutlich reduzieren. Dazu zählt die Verwendung von oberflächenmontierten Bauelementen (engl. \gls{smd}), verzicht auf die Ansteuerung der Status-\gls{led}s, einen schnellere Prozessor der die volle Geschwindigkeit der \gls{spi}-Schnittstelle ausnutzen kann um sich und den \gls{uwbt} nach dem Datenaustausch wieder in einen Energiesparmodus zu versetzen und einen Prozessor der über deutlich mehr Speicher verfügt, um sowohl die \gls{ros}-Bibliothek verwenden zu können als auch die Anzahl der Unterstützten \gls{uwbm} zu erhöhen. Als Komfortfunktion wäre es sinnvoll, wenn die Identifikationsnummern der \gls{uwbm} nicht per Software, sondern über Hardwareschalter geändert werden könnten.
+
+Grundsätzlich sollte aber vorher geklärt werden, in wie weit sich diese Investionen lohnen. Der Hersteller der \gls{uwbt} stellt eigene \glspl{uwbm} her, die wahrscheinlich bereits alle verfügbaren Optimierungen nutzen um eine möglichst genaue Entfernungsmessung zu erlangen. Hier wäre ein Vergleich der Eigenschaften beider \gls{uwbm} interessant.
+
+Im Bereich der \gls{roslam}-Verfahren wäre es eine sinnvolle Untersuchung, in wie weit sich das Ergebnis, durch die Verwendung des Polarkoordindatensytems für die Positionsbestimmung der \glspl{uwbm}, verbessert.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Wurden alle Fragen aus dem Expose geklärt/beantwortet?
+%
+%	+ Fragestellung:
+%	+ UWB
+%		+ Welche elektrische Beschaltung ist notwendig um das DWM1000 Modul von DecaWave in Betrieb nehmen zu können?
+%		+ Wie erfolgt die Entfernungsmessung zwischen den einzelnen UWB-Modulen?
+%		+ Wie erfolgt der Datenaustausch zwischen einem UWB-Modul und der Verarbeitungseinheit?
+%		+ Kann über die Kalibrierung der Antennenverzögerung eine genauere Entfernungsmessung erreicht werden?
+%		+ Wie verändert sich die Genauigkeit der Entfernungsmessung bei einer LOS und NLOS?
+%	- RO-SLAM
+%		- Welche Hardware- und Software-Konfiguration ist für ein RO-SLAM notwendig?
+%		- Ist ein RO-SLAM mit den selbstgebauten UWB-Modulen möglich?
+%		- Wie genau kann der RO-SLAM die eigene Positionen und die der Basisstationen schätzen?
+%		
+%	- Hypothen:
+%		+ Die Kalibrierung der Antennenverzögerung verbessert die Genauigkeit der Entfernungsmessung signifikant.
+%		- Das MRPT verfügt über ein ROS-Modul, das einen RO-SLAM implementiert.
+%		- Indoor kann eine Lokalisierung mit einer Genauigkeit von \SI{10}{\cm} erreicht werden.
+%		- Mit dem RO-SLAM ist es möglich sowohl die eigene Position als auch die der Basisstation mit einer Genauigkeit von \SI{10}{\cm} zu schätzen.
+%
+%%%%%%%%%%
+\section{Fazit}
+
+Der Aufbau der \glspl{uwbm} verlief, dank der guten Spezifikation des Herstellers und den vielen Erfahrungsberichten aus diversen Internetforen, problemlos. Bereits mit den ersten beiden Prototypen konnte ein Nachrichtenaustausch und eine Entfernungsmessung durchgeführt werden. Der Datenaustausch des \gls{uwbm} mit der Verarbeitungseinheit gestaltet sich schwieriger als erwartet. Der erste Versuch sowohl die Bibliothek für die Ansteuerung des \gls{uwbt} als auch die Bibliothek für \gls{ros} überstiegen den verfügbaren Speicherplatz des \gls{atmega}. Daher wurde eine Kommunikationsschnittstelle erstellt, die die Entfernungsdaten ins \gls{json}-Format kodiert und über die serielle Schnittstelle an die Verarbeitungseinheit versendet.
+
+Mit der Standardeinstellung für die Antennenverzögerung lieferte die Entfernungsmessungen, zwischen zwei \glsuseri{uwbm}, deutlich höhere Entfernungen zurück, als diese in der Realität gewesen sind. Daher führte kein Weg an einer Kalibrierung vorbei. Dabei wurde das durch den Hersteller empfohlene, jedoch unzureichend beschriebene, Verfahren implementiert. Der Kern des Verfahrens wird durch einen genetischen Algorithmus umgesetzt. Das führte dazu, das mit jeder Ausführung des Verfahrens komplett unterschiedliche Ergebnisse generiert wurden die auch nicht plausibel erschienen. Aus diesem Grund wurde ein alternatives Verfahren auf Basis eines linearen Gleichungssystems implementiert, welches mit jedem Durchlauf reproduzierbare Ergebnisse lieferte und die auch plausibel waren.
+
+Nach der Kalibrierung wurden die Entfernungen sowohl mit einer \gls{los} als auch mit einer \gls{nlos} gemessen. Im \gls{los} Fall betrug die Standardabweichung im Mittel \SI{0.02}{\meter}. Dieser Wert entspricht vollkommen den Herstellerangaben. Im \gls{nlos} Fall stieg die Standardabweichung im Mittel auf \SI{0.15}{\meter} an. Jedoch sollte berücksichtigt werden, das Materialien verwendet wurden die eine starke abschirmende bzw. hemmende Wirkung auf die \gls{uwb}-Signale besitzen. Erstaunlich war jedoch, dass trotz der Kalibrierung weiterhin ein systematischer Fehler in den Ergebnissen vorlag. Die Ursachen können vielfältiger Natur sein, zum einen wertet die verwendet Steuersoftware, für die \gls{uwbt}, die Umgebungstemperatur nicht aus, um gegebenenfalls Korrekturen an der Entfernung durchzuführen, die laut Herstellerangaben die Entfernungsmessung jedoch beeinträchtigen können. Zum anderen stellt der Hersteller für diese Hardwareplattform keine eigne Steuersoftware bereit, die diese Optimierungen durchführt. Daher ist man auf die Version einer freien Software angewiesen, die nur eine Kommunikationsschnittstelle zu dem \gls{uwbt} anbietet aber keine Optimierung enthält.
+
+Das \gls{roslam}-Verfahren ist trotz der Verwendung eines \gls{pf} ein sehr ressourcenschonendes Verfahren. Bereits eine sehr geringe Anzahl an Partikeln in dem Hauptpartikel Filter führt zu einer brauchbaren Positionsschätzung der Roboterplattform. Jedoch unterscheidet sich die Güte der Positionsschätzung stark zwischen der Verwendung der realen und virtuellen \glspl{uwbm}. Während die Positionsschätzung der virtuellen \glspl{uwbm} zu reproduzierbaren Ergebnissen führte, verhielt es sich bei den realen \glsuseri{uwbm} komplett anders. Mit jedem Durchlauf ergab sich eine komplett neue Positionsschätzung, die oftmals auch große Rotationsfehler aufwiese. Ähnlich verhielt es sich bei der Positionsschätzung der \glspl{uwbm}, auch hier schnitten die virtuellen \glspl{uwbm} deutlich besser ab als die realen \glspl{uwbm}. Der mittlere Positionsfehler der realen \glspl{uwbm} betrug dabei \SI{0.58}{\meter} und bei den virtuellen \SI{0.39}{\meter}. Aufgrund dieser Feststellung, bleibt nur die Vermutung übrig das die Güte der Entfernungsmessung mit den realen \gls{uwbm} nicht ausreichend ist, um eine Positionsgenauigkeit von \SI{0.10}{\meter} zu erreichen.
+
+Zusammenfassend kann gesagt werden, das eine Entfernungsmessung mittels selbstgebauter \glspl{uwbm} möglich ist. Die Daten dieser \glspl{uwbm} können in einem bereits vorhanden \gls{roslam}-Softwaremodule ausgewertet werden. Jedoch, und das gilt für jeden Bereich der Robotik, muss der Algorithmus je nach Anwendungsfall entsprechend der Anforderungen angepasst werden.
+
+
+
+
+
+
+
