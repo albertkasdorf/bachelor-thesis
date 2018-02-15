@@ -111,7 +111,6 @@ Die Variablen $k_a$ und $k_b$ entsprechen hierbei den Offsetfehler der Zeitgeber
 
 Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr als einem \Gls{anchor} zu bestimmen, siehe \autoref{fig:double_sided_two_way_ranging_with_three_anchor}. Hierbei weist der \Gls{tag} in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zu. Danach wartet er bis alle Antwortnachrichten angekommen sind um im der letzten Nachricht jedem \Gls{anchor} seine Umlauf- und Antwortzeiten zu übermitteln. Jeder \Gls{anchor} kann nun individuell die \Gls{tof}-Zeitspanne für sich berechnen und dann dem \Gls{tag} übermitteln. Diese letzte Nachricht ist auf der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} nicht aufgeführt.
 
-% todo: In den Anhang verschieben.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{double_sided_two_way_ranging_with_three_anchor}
@@ -119,15 +118,7 @@ Mit diesem Verfahren ist es auch möglich, gleichzeitig die Entfernungen zu mehr
 	\label{fig:double_sided_two_way_ranging_with_three_anchor}
 \end{figure}
 
-In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der \Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner Identifikationsnummer an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
-
-% todo: In den Anhang verschieben.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.3\linewidth]{discovery_and_ranging_phase2}
-	\captionwithcite{Der Ablauf der \textit{Discovery} und \textit{Range Phase} zwischen einem \glsentrytext{tag} und mehreren \glsentrytext{anchor}n.}{\cite{decawave2016dw1kusermanual}}
-	\label{fig:discovery_and_ranging_phase}
-\end{figure}
+In der \autoref{fig:double_sided_two_way_ranging_with_three_anchor} wurde in der initialen Nachricht jedem \Gls{anchor} eine individuelle Antwortzeit zugeordnet. Woher wusste der \Gls{tag} welche \Gls{anchor} vorhanden sind? Die Kommunikation zwischen \Gls{tag} und \Gls{anchor} kann in zwei Phasen unterteilt werden, siehe \autoref{fig:discovery_and_ranging_phase}. In der \textit{Discovery} Phase schickt der \Gls{tag} periodisch \textit{Blink} Nachrichten mit seiner \mbox{Identifikationsnummer} an alle Module in der Umgebung. Empfängt ein \Gls{anchor} diese Nachricht, nimmt er den \Gls{tag} in seiner Liste auf und übermittelt dem \Gls{tag} eine \textit{Ranging Init} Nachricht mit seiner Identifikationsnummer. Das \Gls{tag} seinerseits nimmt den \Gls{anchor} in seiner Liste auf und weiß nun auch welche \Gls{anchor} er in der nächsten Entfernungsmessung berücksichtigen muss. Die \textit{Ranging} Phase entspricht hierbei der bereits zuvor besprochenen Entfernungsmessung.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -261,7 +252,7 @@ Der Zustand der Umwelt kann nicht direkt gemessen werden, stattdessen muss diese
 %%%%%%%%%%
 \subsection{Bayes Filter}
 
-Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschreibung eines rekursiven Zustandsschätzer, siehe \autoref{alg:algorithm_bayes_filter}. Das heißt, aufbauend  auf der aktuellen Zustandsschätzung wird mit dem eintreffen neuer Wahrnehmungs- oder Steuerbefehls-Daten eine neue Zustandschätzung generiert. Abhängig vom Vorwissen des initialen Zustandes~$bel(x_0)$ liefert diese entweder eine punktförmige Verteilung durch den initialen Zustand zurück oder eine stetige Gleichverteilung über den kompletten Zustandsraum. 
+Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschreibung eines rekursiven Zustandsschätzer, siehe \autoref{alg:algorithm_bayes_filter}. Das heißt, aufbauend  auf der aktuellen Zustandsschätzung wird mit dem eintreffen neuer Wahrnehmungs- oder Steuerbefehls-Daten eine neue Zustandschätzung generiert. Abhängig vom Vorwissen des initialen \mbox{Zustandes~$bel(x_0)$} liefert diese entweder eine punktförmige Verteilung durch den initialen Zustand zurück oder eine stetige Gleichverteilung über den kompletten Zustandsraum. 
 
 %\begin{figure}
 %	\centering
@@ -390,7 +381,7 @@ Der \Gls{ekf} löst das Problem in dem eine Linearisierung der nicht linearen Fu
 % nonlinear transformations of random variables:
 %
 %%%%%%%%%%
-\section{\glsentrylong{pf}}
+\section{\glsentrytext{pf}}
 \label{sec:particle_filter}
 
 Bisherige Filter haben eine parametrisierte Form genutzt, um die Verteilung zu modellieren. Der \Gls{pf} geht einen anderen Weg und verwendet stattdessen eine Menge von Stichproben (engl. Samples) aus der gewünschten Verteilung. Dadurch ist es möglich multimodale Verteilungen abzubilden, die jedoch nur einer Annäherung entsprechen. Weiterhin ist es möglich Zufallsvariablen durch eine nicht lineare Funktion abzubilden, siehe \autoref {fig:particle_filter_with_non_linear_function}. Im unteren rechten Bild wird eine Menge von Stichproben aus einer Normalverteilung dargestellt. Diese werden dann durch die nicht lineare Funktion $g(x)$ auf eine multimodale Verteilung abgebildet. Je dichter die Stichproben an einander liegen desto höher ist an dieser Stelle auch die Wahrscheinlichkeit.
@@ -398,7 +389,7 @@ Bisherige Filter haben eine parametrisierte Form genutzt, um die Verteilung zu m
 \begin{figure}
 	\centering
 	\includegraphics[width=0.6\linewidth]{particle_filter_with_non_linear_function}
-	\captionwithcite{Darstellung einer Zufallsvariable vor und nach der Abbildung, durch eine nicht lineare Funktion, mittels einem \glsentrylong{pf}.}{\cite{thrun2005probabilistic}}
+	\captionwithcite{Darstellung einer Zufallsvariable vor und nach der Abbildung, durch eine nicht lineare Funktion, mittels einem \glsentrytext{pf}.}{\cite{thrun2005probabilistic}}
 	\label{fig:particle_filter_with_non_linear_function}
 \end{figure}
 
@@ -441,7 +432,7 @@ Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen r
 			\KwAdd $x^{\lbrack i \rbrack}_t$ \KwTo $\mathcal{X}_t$\;
 		}
 	}
-\captionwithcite{\glsentrylong{pf} Algorithmus}{\cite{thrun2005probabilistic}}
+\captionwithcite{\glsentrytext{pf} Algorithmus}{\cite{thrun2005probabilistic}}
 \label{alg:algorithm_particle_filter}
 \end{onehalfspacing}
 \end{algorithm}
@@ -456,9 +447,9 @@ Bei dem \Gls{pf} handelt es sich, wie bei dem Bayes Filter, ebenfalls um einen r
 %%%%%%%%%%
 \subsection{\glsentrylong{mcl}}
 
-Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegelt und damit ideal durch einen \Gls{pf} abgebildet werden kann. Bei der \Gls{mcl} handelt es sich um genau so einen \Gls{pf}, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
+Das Bestimmen der Pose eines Roboters relativ zu einer gegebenen Karte der Umwelt wird als Lokalisierung bezeichnet. Die Lokalisierung bestimmt dabei die Transformation zwischen dem lokalen Koordinatensystem des Roboters und dem globalen Koordinatensystem der Karte. Ist die initiale Pose des Roboters nicht gegeben, wird dieses Problem als globale Lokalisierung bezeichnet. Je größer die Karte der Umwelt ist, desto wahrscheinlicher wird es, dass die Wahrnehmung, Mehrdeutigkeiten in Bezug zu der Karte aufweist, die sich in einer multimodalen Verteilung wiederspiegelt und damit ideal durch einen \gls{pf} abgebildet werden kann. Bei der \gls{mcl} handelt es sich um genau so einen \gls{pf}, der mittlerweile zu den Standardalgorithmen der Robotik gehört.
 
-Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein einer sehr genauen Karte der Umwelt. Die Kartendaten $m$ werden bei der Berechnung der Gewichte für die Zustandsprognosen eingesetzt. Somit unterscheidet sich der Monte Carlo Algorithmus nur in der fünften Zeile von dem generische Partikel Filter Algorithmus, siehe \autoref{eq:monte_carlo_measurement_model}. 
+Die zwingende Voraussetzung, für die Lokalisierung, ist das vorhanden sein einer sehr genauen Karte der Umwelt. Die Kartendaten $m$ werden bei der Berechnung der Gewichte für die Zustandsprognosen eingesetzt. Somit unterscheidet sich der Monte Carlo Algorithmus nur in der fünften Zeile von dem generische \gls{pf} Algorithmus, siehe \autoref{eq:monte_carlo_measurement_model}. 
 
 \begin{equation}
 w^{\lbrack m \rbrack}_t = p(z_t \mid x^{\lbrack m \rbrack}_t, m) \label{eq:monte_carlo_measurement_model}

@@ -173,7 +173,7 @@ Nach dem die Messwerte pro \Gls{beacon} gefiltert worden sind, werden zwei Messw
 
 Alle zuvor vorgestellten Verfahren hatten den Nachteil, dass sie probabilistische und nicht probabilistische Verfahren gemeinsam verwendeten um eine initiale Schätzung der \textit{Beacon}-Positionen zu erlangen. In dieser Initialisierungsphase waren alle Positionsinformationen für die Positionsschätzung des Roboters verloren. In der Arbeit \citetitle{blanco2008pure} \cite{blanco2008pure} wird zu jedem Zeitpunkt die beste \textit{Beacon}-Schätzung genutzt um die Roboterposition zu verbessern. Um das zu bewerkstelligen, wird ein rein probabilistisches Verfahren genutzt.
 
-Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades von der Karte mit den Landmarken entkoppelt \cite{murphy2001rao, montemerlo2002fastslam}. Jeder Partikel des \Gls{rbpf} beschreibt dabei pro \textit{Beacon} die Verteilung die am besten zu seiner Positionsschätzung passt. Die Verteilung wird dabei zuerst von einem Hilfspartikelfilter (engl. Auxiliary Particle Filter) modelliert. Seine Partikel besitzen dabei eine ringförmige Verteilung mit dem Abstand des \textit{Beacon}, siehe \autoref{fig:blanco2008pure_fig3e}. Partikel mit einer geringen Wahrscheinlichkeit werden über eine Gewichtung aussortiert, siehe \autoref{fig:blanco2008pure_fig3f}. Sobald der Hilfspartikelfilter gegen eine bestimmte \textit{Beacon}-Position konvergiert ist, wird dieser in einen Normalverteilung umgewandelt und über einen \Gls{ekf} modelliert, siehe \autoref{fig:blanco2008pure_fig3g}.
+Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades von der Karte mit den Landmarken entkoppelt \cite{murphy2001rao, montemerlo2002fastslam}. Jeder Partikel des \Gls{rbpf} beschreibt dabei pro \textit{Beacon} die Verteilung die am besten zu seiner Positionsschätzung passt. Die Verteilung wird dabei zuerst von einem Hilfspartikel Filter (engl. Auxiliary Particle Filter) modelliert. Seine Partikel besitzen dabei eine ringförmige Verteilung mit dem Abstand des \textit{Beacon}, siehe \autoref{fig:blanco2008pure_fig3e}. Partikel mit einer geringen Wahrscheinlichkeit werden über eine Gewichtung aussortiert, siehe \autoref{fig:blanco2008pure_fig3f}. Sobald der Hilfspartikel Filter gegen eine bestimmte \textit{Beacon}-Position konvergiert ist, wird dieser in einen Normalverteilung umgewandelt und über einen \Gls{ekf} modelliert, siehe \autoref{fig:blanco2008pure_fig3g}.
 
 \begin{figure}
 	\begin{subfigure}[t]{0.3\linewidth}
@@ -193,7 +193,7 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 		\caption{}
 		\label{fig:blanco2008pure_fig3g}
 	\end{subfigure}
-	\captionwithcite{Entwicklung eines Hilfspartikelfilters zu einem \Gls{ekf}.}{\cite{blanco2008pure}}
+	\captionwithcite{Entwicklung eines Hilfspartikel Filters zu einem \glsentryshort{ekf}.}{\cite{blanco2008pure}}
 	\label{fig:blanco2008pure_fig3}
 \end{figure}
 
@@ -206,7 +206,7 @@ Verwendung findet hierbei der \Gls{rbpf}, der die Berechnung des Roboterpfades v
 %%%%%%%%%%
 \section{Efficient probabilistic range-only SLAM}\label{sec:blanco2008efficient}
 
-Aufbauend auf der vorherigen Arbeit im Abschnitt~\ref{sec:blanco2008pure} wird in \citetitle{blanco2008efficient} \cite{blanco2008efficient} nicht mehr ein Hilfspartikelfilter verwendet, der ab einer gewissen Sicherheit in einen \Gls{ekf} umgewandelt wird. Stattdessen wird die ringförmiger Verteilung über radial angeordnete Normalverteilungen angenähert deren Nachbarschaftsabstand über den Parameter \textit{K} bestimmt werden kann, siehe \autoref{fig:blanco2008efficient_fig17a}~--~\ref{fig:blanco2008efficient_fig17b}. Die Gesamtverteilung ergibt sich dabei über eine gewichtete Summe der Normalverteilungen (engl. \gls{sog}). Über die Gewichte lässt sich dabei steuern, ob eine der Normalverteilungen in dem Ring für die \textit{Beacon}-Position noch relevant ist oder entfernt werden kann, siehe \autoref{fig:blanco2008efficient_fig10a}~--~\ref{fig:blanco2008efficient_fig10b}.
+Aufbauend auf der vorherigen Arbeit im Abschnitt~\ref{sec:blanco2008pure} wird in \citetitle{blanco2008efficient} \cite{blanco2008efficient} nicht mehr ein Hilfspartikel Filter verwendet, der ab einer gewissen Sicherheit in einen \Gls{ekf} umgewandelt wird. Stattdessen wird die ringförmiger Verteilung über radial angeordnete Normalverteilungen angenähert deren Nachbarschaftsabstand über den Parameter \textit{K} bestimmt werden kann, siehe \autoref{fig:blanco2008efficient_fig17a}~--~\ref{fig:blanco2008efficient_fig17b}. Die Gesamtverteilung ergibt sich dabei über eine gewichtete Summe der Normalverteilungen (engl. \gls{sog}). Über die Gewichte lässt sich dabei steuern, ob eine der Normalverteilungen in dem Ring für die \textit{Beacon}-Position noch relevant ist oder entfernt werden kann, siehe \autoref{fig:blanco2008efficient_fig10a}~--~\ref{fig:blanco2008efficient_fig10b}.
 
 Sowohl das Verfahren aus dem Abschnitt~\ref{sec:blanco2008pure} als auch dieses sind in dem \Gls{mrpt}-Framework vorhanden und werden im Kapitel~\ref{ch:ro_slam} verwendet.
 
@@ -269,7 +269,7 @@ Die Abbildungen~\ref{fig:djugash2009robust_fig1} verdeutlichen zum einen, wie di
 
 \autoref{fig:djugash2009robust_fig1a} beschreibt die tatsächliche Verteilung einer Einzelmessung. Das blaue Rechteck repräsentiert die Roboterposition und der rote Diamant die tatsächliche Tagposition. Die tatsächliche Verteilung einer Einzelmessung wird in Polarkoordinaten als grüne Fläche modelliert, siehe \autoref{fig:djugash2009robust_fig1b}. Über die blaue Ellipse wird die tatsächliche Verteilung mittels einer Normalverteilung angenähert und ergibt dabei die ringförmige Verteilung in der \autoref{fig:djugash2009robust_fig1c}.
 
-Nachdem zwei Messungen von verschiedenen Positionen aus durchgeführt wurden, ergibt sich die tatsächliche Verteilung aus den beiden Schnittpunkten der Ringe, siehe \autoref{fig:djugash2009robust_fig1d}. Die Multimodalität der Verteilung kann über einen \Gls{ekf} nicht mehr abgebildet werden, daher wird zu diesem Zeitpunkt pro Verteilung ein eigener \Gls{ekf} angelegt. \autoref{fig:djugash2009robust_fig1e} beschreibt wie im vorherigen Abschnitt die tatsächlichen und angenäherten Verteilungen in Polarkoordinaten und \autoref{fig:djugash2009robust_fig1f} die Verteilung die sich aus der Annäherung der Verteilung ergibt.
+Nachdem zwei Messungen von verschiedenen Positionen aus durchgeführt wurden, ergibt sich die tatsächliche Verteilung aus den beiden Schnittpunkten der Ringe, siehe \mbox{\autoref{fig:djugash2009robust_fig1d}}. Die Multimodalität der Verteilung kann über einen \Gls{ekf} nicht mehr abgebildet werden, daher wird zu diesem Zeitpunkt pro Verteilung ein eigener \Gls{ekf} angelegt. \autoref{fig:djugash2009robust_fig1e} beschreibt wie im vorherigen Abschnitt die tatsächlichen und angenäherten Verteilungen in Polarkoordinaten und \autoref{fig:djugash2009robust_fig1f} die Verteilung die sich aus der Annäherung der Verteilung ergibt.
 
 \begin{figure}
 	\centering

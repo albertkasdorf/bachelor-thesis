@@ -58,15 +58,11 @@ Das \textit{LGS}-Kalibrierungsverfahren lieferte für jeden Durchlauf reproduzie
 %177 & 16453 & 15238 & 15935 & 15805 & 16277 \\
 %178 & 16429 & 16433 & 16317 & 15131 & 13743 \\
 	\end{tabular}
-	\caption{Berechnete Werte für die Antennenverzögerung pro \glsentryshort{uwbm}.}
+	\caption{Berechnete Werte für die Antennenverzögerung pro \glsentrytext{uwbm}.}
 	\label{tab:calibration_antenna_delay_results}
 \end{table}
 
-Die Wertekombinationen aus den Spalten \textit{LGS} und \textit{DecaWave} werden abwechselnd als Antennenverzögerungen in die \Glspl{uwbm} eingetragen und für jede Spalte jeweils eine weitere Messreihe, wie oben beschrieben, aufgezeichnet. Die Ergebnisse sind in der \autoref{tab:calibration_range_results} aufgeführt.
-
-Mit einer initalen Antennenverzögerung von null beträgt die gemessene Entfernung zwischen zwei \Glsuseri{uwbm} \approx \SI{156}{\meter} bei einer tatsächenlichen Entfernung von \approx \SI{1.73}{\meter}. Eine Standardabweichung von \approx \SI{2}{\centi\meter} entspricht dabei den Produkteigenschaften mit denen \textit{DecaWave} wirbt.
-
-Werden die Antennenverzögerung aus der \textit{LGS}-Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen der tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}-Ka\-li\-brierungs\-ver\-fahren.
+Die Wertekombinationen aus den Spalten \textit{LGS} und \textit{DecaWave} werden abwechselnd als Antennenverzögerungen in die \Glspl{uwbm} eingetragen und für jede Spalte jeweils eine weitere Messreihe, wie oben beschrieben, aufgezeichnet. Die Ergebnisse sind in der \autoref{tab:calibration_range_results}\footnotemark{} aufgeführt.
 
 \begin{table}
 	\centering
@@ -98,11 +94,16 @@ DecaWave & 178 & 176 & \num{1.732} & \num{6.182} & \num{0.025} & \num{6.100} & \
 DecaWave & 178 & 177 & \num{1.732} & \num{7.458} & \num{0.019} & \num{7.390} & \num{7.520} \\
 \hline
 	\end{tabular}
-	\caption[Stochastische Eigenschaften der \Glspl{uwbm} ohne und mit Antennenkalibrierung bei einem Abstand von \SI{1.73}{\meter}.]{Stochastische Eigenschaften der \Glspl{uwbm} ohne und mit Antennenkalibrierung bei einem Abstand von \SI{1.73}{\meter}.\footnotemark}
+	\caption[Stochastische Eigenschaften der \Glspl{uwbm} ohne und mit Antennenkalibrierung bei einem Abstand von \SI{1.73}{\meter}.]{Stochastische Eigenschaften der \Glspl{uwbm} ohne und mit Antennenkalibrierung bei einem Abstand von \SI{1.73}{\meter}.}
 	\label{tab:calibration_range_results}
 \end{table}
 
 \footnotetext{Bei der Standardabweichung von über einem Meter handelt es sich um einen einzelnen Messfehler in der Messreihe.}
+
+Mit einer initalen Antennenverzögerung von null beträgt die gemessene Entfernung zwischen zwei \Glsuseri{uwbm} \approx \SI{156}{\meter} bei einer tatsächenlichen Entfernung von \approx \SI{1.73}{\meter}. Eine Standardabweichung von \approx \SI{2}{\centi\meter} entspricht dabei den Produkteigenschaften mit denen \textit{DecaWave} wirbt.
+
+Werden die Antennenverzögerung aus der \textit{LGS}-Kalibrierungsverfahren benutzt, verbleibt die Standardabweichung in der gleichen Größenordnung wie im unkalibrierten Zustand. Jedoch nähert sich jetzt die gemessenen Entfernungen der tatsächlichen sehr stark an und bildet diesen sehr gut ab. Ganz im Gegensatz zu dem \textit{DecaWave}-Ka\-li\-brierungs\-ver\-fahren.
+
 
 In der \autoref{fig:calibration_histograms} wurden die gemessenen Entfernungen als Histogramm dargestellt. Gut zu erkennen ist die Normalverteilung der Messwerte um den Mittelwert.
 
@@ -196,38 +197,6 @@ Um die Charakteristik der Entfernungsmessung zu bestimmen, wird eine \Gls{los}- 
 Bei der ersten \Gls{nlos}-Messreihe wird ein \SI{19x12x10}{\centi\meter} großer, mit Wasser gefüllter Kunststoffbehälter in einem Abstand von \SI{2}{\centi\meter} vor der \Gls{uwb}-Antenne platziert, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_133013}. Bei den letzten zwei \Gls{nlos}-Messreihen wird ein \SI{44x25}{\centi\meter} großes Aluminiumblech mit einer Dicke von \SI{0.5}{\milli\meter} vor die \Gls{uwb}-Antenne platziert, jeweils in einem Abstand von \SI{5}{\centi\meter} und \SI{50}{\centi\meter}, siehe \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_140118} und \autoref{fig:entfernungsmessung_versuchsaufbau_20180120_122434}.
 
 
-\begin{figure}
-	\begin{minipage}{0.49\linewidth}
-		\begin{subfigure}{\linewidth}
-			\includegraphics[width=\linewidth]{entfernungsmessung_versuchsaufbau_20180120_122434_2}
-			\caption{ }
-			\label{fig:entfernungsmessung_versuchsaufbau_20180120_122434}
-		\end{subfigure}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.49\linewidth}
-			\begin{minipage}{\linewidth}
-				\begin{subfigure}{\linewidth}
-					\includegraphics[width=\linewidth]{entfernungsmessung_versuchsaufbau_20180120_133013_2}
-					\caption{ }
-					\label{fig:entfernungsmessung_versuchsaufbau_20180120_133013}
-				\end{subfigure}
-			\end{minipage}
-			\par
-			\bigskip
-			\begin{minipage}{\linewidth}
-				\begin{subfigure}{\linewidth}
-					\includegraphics[width=\linewidth]{entfernungsmessung_versuchsaufbau_20180120_140118_2}
-					\caption{ }
-					\label{fig:entfernungsmessung_versuchsaufbau_20180120_140118}
-				\end{subfigure}	
-			\end{minipage}
-	\end{minipage}
-	\caption{Versuchsaufbau für die \glsentryshort{nlos}-Entfernungsmessung.}
-	\label{fig:entfernungsmessung_versuchsaufbau_20180120}
-\end{figure}
-
-
 Das auffälligste Merkmal der \Gls{los}- als auch der \Gls{nlos}-Entfernungsmessungen ist die systematische Verschiebung aller Messwerte um ca. \SI{20}{\centi\meter} deren Ursache ungeklärt bleibt, siehe \autoref{fig:entfernungsmessung_2018_01_20}.
 
 Bei der \Gls{los}-Messreihe beträgt die Standardabweichung, wie bereits bei der Kalibrierung, ca. \SI{2}{\centi\meter}. Mit steigender Entfernung steigt auch die Standardabweichung von ca. \SI{1.8}{\centi\meter} bei einem Meter auf ca. \SI{2.3}{\centi\meter} bei neun Meter an. Größere Ausreißer sind bei den Messwerten nicht vorhanden, siehe \autoref{fig:entfernungsmessung_2018_01_20_los} und \autoref{tab:entfernungsmessung_2018_01_20_los}.
@@ -248,7 +217,7 @@ Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer 
 		\label{fig:entfernungsmessung_2018_01_20_los}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[b]{0.49\linewidth}
+	\begin{subfigure}[t]{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_water}
 		\caption{\glsentryshort{nlos} mit einem wassergefüllten Kunststoffbehälter.}
@@ -256,14 +225,14 @@ Keinen besonders großen Einfluss hat das Aluminiumblech, wenn es sich in einer 
 	\end{subfigure}
 	\par
 	\bigskip
-	\begin{subfigure}[b]{0.49\linewidth}
+	\begin{subfigure}[t]{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_metal}
 		\caption{\glsentryshort{nlos} mit einem Aluminiumblech in einer Entfernung von \SI{50}{\centi\meter}.}
 		\label{fig:entfernungsmessung_2018_01_20_nlos_metal}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[b]{0.49\linewidth}
+	\begin{subfigure}[t]{0.49\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_metal2}
 		\caption{\glsentryshort{nlos} mit einem Aluminiumblech in einer Entfernung von \SI{5}{\centi\meter}.}
@@ -555,6 +524,6 @@ Virtuell & \num{3} & \gls{mc} & \num{1.0} & \num{0.047} \\
 Virtuell & \num{4} & \gls{mc} & \num{5.5} & \num{0.761} \\
 \hline
 	\end{tabular}
-	\caption{Die Zeitspanne und die zurückgelegte Entfernung der Roboterplattform bis die \gls{wdf} durch das \gls{ekf}-Verfahren abgebildet wird.}
+	\caption{Die Zeitspanne und die zurückgelegte Entfernung der Roboterplattform bis die \glsentryshort{wdf} durch das \glsentryshort{ekf}-Verfahren abgebildet wird.}
 	\label{tab:timespan_and_distance_to_switch_to_ekf}
 \end{table}
