@@ -339,5 +339,4 @@ TSWLatexianTemp*
 # End of https://www.gitignore.io/api/tex,code,latex
 
 # Do not track the result pdf
-bachelorarbeit.pdf
-2018-01-07 bachelorarbeit_ro_slam_with_uwb.pdf
+# bachelorarbeit.pdf
