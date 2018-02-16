@@ -279,7 +279,7 @@ Bei dem Bayes Filter Algorithmus handelt es sich um einen sehr abstrakte Beschre
 \end{onehalfspacing}
 \end{algorithm}
 
-Der Bayes Filter geht dabei in zwei Schritt vor. Im ersten Schritt wird eine Prognose (engl. Prediction) für den neuen Zustand erstellt, siehe Zeile 3. Der neue Zustand wird dabei aus dem vorherigen Zustand und dem aktuellen Steuerbefehl gebildet, siehe $p(x_t \mid, u_t, x_{t-1})$. Die daraus resultierende Verteilung wird mit der vorherige Belief Verteilung $bel(x_{t-1})$ multipliziert und ergibt die Prognose $\overline{bel}(x_t)$ für den neuen Zustand. Im zweite Schritt wird die erstellt Prognose mit der aktuellen Wahrnehmung korrigiert (engl. Correction), siehe Zeile 4. Hierbei ist zu beachten, das für jede Zustandshypothese $x_t$ die erstelle Prognose $\overline{bel}(x_t)$ mit der Wahrscheinlichkeit multiplilziert wird, das die Wahrnehmung zu der Zustandprognose \mbox{$p(z_t \mid x_t)$} zutrifft.
+Der Bayes Filter geht dabei in zwei Schritten vor. Im ersten Schritt wird eine Prognose (engl. Prediction) für den neuen Zustand erstellt, siehe Zeile 3. Der neue Zustand wird dabei aus dem vorherigen Zustand und dem aktuellen Steuerbefehl gebildet, siehe $p(x_t \mid, u_t, x_{t-1})$. Die daraus resultierende Verteilung wird mit der vorherige Belief Verteilung $bel(x_{t-1})$ multipliziert und ergibt die Prognose $\overline{bel}(x_t)$ für den neuen Zustand. Im zweiten Schritt wird die erstellt Prognose mit der aktuellen Wahrnehmung korrigiert (engl. Correction), siehe Zeile 4. Hierbei ist zu beachten, das für jede Zustandshypothese $x_t$ die erstelle Prognose $\overline{bel}(x_t)$ mit der Wahrscheinlichkeit multiplilziert wird, das die Wahrnehmung zu der Zustandprognose \mbox{$p(z_t \mid x_t)$} zutrifft.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,7 +650,7 @@ Eine weitere Einschränkt betrifft die maximale Anzahl der Landmarken, da die La
 \subsection{FastSLAM}
 
 % Wie könnte das SLAM Problem mit einem PF gelöst werden? Wie sieht die Partikel repräsentation aus?
-Bei dem FastSLAM Verfahren handelt es sich um eine Lösung für das \gls{slam} Problem mithilfe eines \gls{pf}. Bei einem \gls{pf} repräsentiert jedes Partikel eine eigene Hypothese  des jeweiligen Zustandes des Roboters. Um das \gls{slam} Problem zu lösen muss der Zustandsvektor, wie beim EKF-SLAM, um die Landmarken erweitert werden, siehe \autoref{eq:ekf_slam_state_vector}.
+Bei dem FastSLAM Verfahren handelt es sich um eine Lösung für das \gls{slam} Problem mithilfe eines \glsuserii{pf}. Bei einem \gls{pf} repräsentiert jedes Partikel eine eigene Hypothese  des jeweiligen Zustandes des Roboters. Um das \gls{slam} Problem zu lösen muss der Zustandsvektor, wie beim EKF-SLAM, um die Landmarken erweitert werden, siehe \autoref{eq:ekf_slam_state_vector}.
 
 % Was ist das Problem eines Partikel Filter mit dem SLAM Problem?
 \gls{pf} haben jedoch die Eigenschaft, nur mit einem kleinen Zustandsraum gut zu funktionieren. Bei einem großen Zustandsraum werden deutlich mehr Stichproben benötigt, um diesen möglichst gut abzudecken. Der Aufwand skaliert dabei exponentiell mit der Anzahl der Dimensionen des Zustandsraumes, sodass eine praktikable Anwendung eines \gls{pf} nicht mehr gegeben ist.
@@ -735,7 +735,7 @@ Die Kommunikation zwischen den Knoten erfolgt dabei über ein \Gls{p2p} Kanal au
 
 Das zuvor vorgestellte Publish-Subscribe Muster stellt eine asynchrone Kommunikation bereit. Mit Hilfe von Diensten ist auch ein synchroner Nachrichtenaustausch möglich. Hierfür wird eine Anfrage von dem Client an den Server gestellt, der seinerseits mit einem Ergebnis antwortet. Dieses Verfahren entspricht dem Request-Response Muster. Die Erstellung einer inversen Transformation ist ein typischer Anwendungsfall hierfür.
 
-Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der Bag Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
+Nach der Entwicklung neuer Algorithmen ist ein Vergleich mit den bereits bestehenden Algorithmen von großem Interesse. Mit dem Konzept der Bag-Dateien können alle veröffentlichten Nachrichten aufgezeichnet werden und zu einem späteren Zeitpunkt wieder abgespielt werden.
 
 Um die Wiederverwendbarkeit von Knoten, Nachrichten und Diensten zu fördern, wurde das Konzept der Pakete (engl. Packages) eingeführt. Ein Paket stellt die kleinste erstellbare Einheit dar und beinhaltet alle Teile eines Softwarepaketes wie z.B. Quellcode-, Konfigurationsdateien, Drittanbieter-Bibliothek, Abhängigkeitslisten usw.
 

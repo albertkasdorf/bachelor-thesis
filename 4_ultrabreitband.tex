@@ -570,7 +570,7 @@ void transmitDATA(const Events event, const DW1000Device* device) {
 
 Nach dem die Daten an den Computer gesendet wurde, müssen diese entgegengenommen und in das \Gls{ros} System eingespeist werden. Dies geschieht über die \autoref{lst:json_to_ros}.
 
-Zuerst wird das \Gls{ros} System über rospy.init\_node initalisiert. Um Nachrichten versendet zu können, wird zusätzlich ein Publisher benötigt. Dieser wird über den Aufruf von rospy.Publisher erstellt. Die Verbindung zu dem \Gls{uwbm} wird über den Aufruf serial.Serial hergestellt.
+Zuerst wird das \Gls{ros} System über rospy.init\_node initalisiert. Um Nachrichten versenden zu können, wird zusätzlich ein Publisher benötigt. Dieser wird über den Aufruf von rospy.Publisher erstellt. Die Verbindung zu dem \Gls{uwbm} wird über den Aufruf serial.Serial hergestellt.
 
 Mittels der \Gls{ros} Nachricht ObservationRangeBeacon wird die Sensor-Charakteristik des \Glsuserii{uwbm} beschrieben. Hierzu gehören die minimal und maximal messbare Entfernung, das Sensorrauschen, eine oder mehrere Entfernungsmessungen und einige \Gls{ros} spezifische Angaben wie z.B. das Koordinatensystem in dem sich das \Gls{uwbm} befindet.
 

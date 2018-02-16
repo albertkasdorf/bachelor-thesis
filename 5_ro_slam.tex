@@ -52,7 +52,7 @@ Der Softwarearchitektur, siehe \autoref{fig:architektur_grouped}, lassen sich zw
 
 Als Datenquelle für den Transformationsbaum sind zuerst die statischen Transformationen zu nennen, dann die Belegtheitskarten für die Transformation von dem Odometrie- in das Kartenkoordinatensystem und zuletzt die zwei Arten der Odometrie. Die erste liefert die Daten anhand der Inkrementalgeber in der Antriebseinheit und die zweite eine Odometrie über das auswerten der 2D-Laser-Entfernungsmessers. Bei der Laser-Odometrie haben sich zwei unterschiedliche Verfahren etabliert und alle drei Verfahren sollen auf ihre Genauigkeit Untersucht werden.
 
-Der untere Bereich ist über keinen Datenbus mit den anderen \gls{rosm} verbunden. Jedoch wird dieser zum einen benötigt um die Kommunikation zwischen der Robotino Steuereinheit herzustellen und zum anderem um die Roboterplattform als Ganzes durch ein Eingabegerät zu steuern.
+Der untere Bereich, in der \autoref{fig:architektur_grouped}, ist über keinen Datenbus mit den anderen \gls{rosm} verbunden. Jedoch wird dieser zum einen benötigt um die Kommunikation zwischen der Robotino Steuereinheit herzustellen und zum anderem um die Roboterplattform als Ganzes durch ein Eingabegerät zu steuern.
 
 \begin{figure}
 	\centering
@@ -149,7 +149,7 @@ Der 2D-Laser-Entfernungsmesser gehört zu einem der am häufigsten verwendeten S
 %%%%%%%%%%
 \subsubsection{Belegtheitskarten}
 
-Das erste \Gls{rosm}, das von der 2D-Laser-Entfernungsmessung Gebrauch macht, ist das hector\_mapping aus dem Paket hector\_mapping. Mit diesem Modul können präzise Belegtheitskarten (engl. Occupancy Grid Map) erstellt werden, die für jede Koordinate der Karte festlegen ob diese durch ein Hindernis belegt (schwarz) oder frei (weiß) ist. Bereiche die von Hindernissen verdeckt sind oder außerhalb der Sensorreichweite liegen, werden als unbestimmt (grau) markiert, siehe \autoref{fig:rviz_occupancy_grid_map}. In \Gls{ros} werden Belegtheitskarten mit dem Nachrichtentyp nav\_msgs/OccupancyGrid repräsentiert.
+Das erste \Gls{rosm}, das von der 2D-Laser-Entfernungsmessung Gebrauch macht, ist das hector\_mapping aus dem gleichnamigen Paket. Mit diesem Modul können präzise Belegtheitskarten (engl. Occupancy Grid Map) erstellt werden, die für jede Koordinate der Karte festlegen ob diese durch ein Hindernis belegt (schwarz) oder frei (weiß) ist. Bereiche die von Hindernissen verdeckt sind oder außerhalb der Sensorreichweite liegen, werden als unbestimmt (grau) markiert, siehe \autoref{fig:rviz_occupancy_grid_map}. In \Gls{ros} werden Belegtheitskarten mit dem Nachrichtentyp nav\_msgs/OccupancyGrid repräsentiert.
 
 Über die minimale und maximale Sensorreichweite (laser\_min\_dist bzw. laser\_max\_dist) wird festgelegt, welche Messungen für die Kartenerstellung berücksichtigt werden. Es ist sinnvoll die Herstellerangaben von \SI{0.05}{\meter} und \SI{25.0}{\meter} zu verwenden.
 
@@ -171,7 +171,7 @@ Die Auflösung einer Zelle in der Karte wird über den Parameter (map\_resolutio
 %%%%%%%%%%
 \subsubsection{Trajektorie}
 
-Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Odometrie aus. Als Quelle für die Odometrie dienen dabei die Inkrementalgeber der Roboterplattform. Im nächsten Abschnitt werden weitere Quellen für die Odometrie vorgestellt. Um die Güte der Odometrie-Quellen zu vergleichen, wird die verfahrene Trajektorie jeder Quelle benötigt. Diese Informationen werden von dem \Gls{rosm} hector\_trajectory\_server aus dem Paket hector\_trajectory\_server bereitgestellt. Die Daten liegen dabei als Nachricht vom Typ nav\_msgs/Path bereit und können in die Belegtheitskarte integriert werden, siehe \autoref{fig:rviz_trajektorie}.
+Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Odometrie aus. Als Quelle für die Odometrie dienen dabei die Inkrementalgeber der Roboterplattform. Im nächsten Abschnitt werden weitere Quellen für die Odometrie vorgestellt. Um die Güte der Odometrie-Quellen zu vergleichen, wird die verfahrene Trajektorie jeder Quelle benötigt. Diese Informationen werden von dem \Gls{rosm} hector\_trajectory\_server aus dem gleichnamigen Paket bereitgestellt. Die Daten liegen dabei als Nachricht vom Typ nav\_msgs/Path bereit und können in die Belegtheitskarte integriert werden, siehe \autoref{fig:rviz_trajektorie}.
 
 \begin{figure}
 	\centering
@@ -189,7 +189,7 @@ Neben den Entfernungsinformationen wertet der \Gls{roslam} auch die Daten der Od
 %%%%%%%%%%
 \subsubsection{Laser-Odometrie}
 
-Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quelle für die Odometrie vorgestellt. Beide \Glspl{rosm} nutzen nur die Daten der 2D-Laser-Entfernungsmessung um eine Schätzung für die aktuelle Pose zu erstellen.
+Wie bereits im vorherigen Abschnitt erwähnt, werden hier zwei weitere Quellen für die Odometrie vorgestellt. Beide \Glspl{rosm} nutzen nur die Daten der 2D-Laser-Entfernungsmessung, um eine Schätzung für die aktuelle Pose zu erstellen.
 
 Bei dem ersten \gls{rosm} handelt es sich um den laser\_scan\_matcher\_node aus dem Paket laser\_scan\_matcher. Hierbei handelt es sich um eine Variante des \gls{icp} Verfahrens, welches versucht eine Transformation zwischen den Punkt einer Oberfläche aus den vorherigen und aktuellen Sensordaten zu finden. Jedoch wird anstatt einer Punkt-zu-Punkt- eine Punkt-zu-Linie-Metrik für die Minimierung verwendet. \cite{censi2008icp} Dieses Verfahren wird im Folgenden nur noch als LSM Verfahren bezeichnet.
 
@@ -216,7 +216,7 @@ Bei dem \Gls{mrpt} Framework handelt es sich um eine Bibliothek die Datenstruktu
 
 Aus dem Bereich der \Gls{roslam} Algorithmen sind die Verfahren aus den Veröffentlichungen \citetitle{blanco2008pure} und \citetitle{blanco2008efficient} implementiert, siehe \autoref{sec:blanco2008pure} und \ref{sec:blanco2008efficient}.
 
-Um die \Gls{roslam} Algorithmen aus dem \Gls{mrpt} Framework zu nutzen, wird das \Gls{rosm} mrpt\_rbpf\_slam aus dem Paket mrpt\_rbpf\_slam benötigt. Mit dem Parameter ini\_filename wird der Dateipfad zu der Konfigurationdatei für die \Gls{roslam} Algorithmen angegeben und über den sensor\_source Parameter werden die Datenquellen für den \Gls{roslam} definiert. Hierbei ist es möglich sowohl die Entfernungsmessungen der \Gls{uwbm} als auch die der 2D-Laser-Entfernungsmesser anzugeben. Von der letzten Datenquelle wird kein gebraucht gemacht, da dadurch Transformationen zwischen Koordinatensystemen veröffentlicht werden die mit den bereits bestehenden kollidieren. Über die Datenbusse particlecloud und particlecloud\_beacons werden die Positionsschätzungen für die Roboterplattform und die \Glspl{uwbm} veröffentlicht, siehe \autoref{fig:rviz_robot_and_beacon_estimate}.
+Um die \Gls{roslam} Algorithmen aus dem \Gls{mrpt} Framework zu nutzen, wird das \Gls{rosm} mrpt\_rbpf\_slam aus dem Paket mrpt\_rbpf\_slam benötigt. Mit dem Parameter \mbox{ini\_filename} wird der Dateipfad zu der Konfigurationdatei für die \Gls{roslam} Algorithmen angegeben und über den sensor\_source Parameter werden die Datenquellen für den \Gls{roslam} definiert. Hierbei ist es möglich sowohl die Entfernungsmessungen der \Gls{uwbm} als auch die der 2D-Laser-Entfernungsmesser anzugeben. Von der letzten Datenquelle wird kein gebrauch gemacht, da diese Transformationen veröffentlicht, die mit den bereits bestehenden Koordinatensystemen kollidiert. Über die Datenbusse particlecloud und \mbox{particlecloud\_beacons} werden die Positionsschätzungen für die Roboterplattform und die \Glspl{uwbm} veröffentlicht, siehe \autoref{fig:rviz_robot_and_beacon_estimate}.
 
 \begin{figure}
 	\centering
