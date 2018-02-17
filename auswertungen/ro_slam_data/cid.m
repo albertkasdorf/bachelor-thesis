@@ -27,5 +27,9 @@ classdef cid < double
 			% Beacon Information: time;sec;nsec;id;range
 			b_id(4)
 			b_range(5)
+			
+			beacon_tag_address(4)
+			beacon_anchor_address(5)
+			beacon_range(6)
    end
 end

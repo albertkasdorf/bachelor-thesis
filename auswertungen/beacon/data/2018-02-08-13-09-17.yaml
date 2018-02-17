@@ -1,0 +1,7 @@
+image: 2018-02-08-13-09-17.pgm
+resolution: 0.020000
+origin: [-10.250000, -10.250000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+
