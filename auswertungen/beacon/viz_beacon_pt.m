@@ -5,31 +5,48 @@ close all; clear; clc;
 format long; format compact;
 
 %
-file_name_index = 1;
+file_name_index = 16;
 file_name_sources = [
-	'2018-02-08-12-30-43';	% (1) Erste Beacon Position
-	'2018-02-08-12-33-53';
-	'2018-02-08-12-37-13';
-	'2018-02-08-13-09-17';	% (4) Zweite Beacon Position:
-	'2018-02-08-13-14-00';
-	'2018-02-08-13-11-41';
-	'2018-02-08-14-05-19';	% (7) NLOS Aufnahmen
-	'2018-02-08-14-08-02';
-	'2018-02-08-14-10-05';
-	'2018-02-08-14-11-11';
-	'2018-02-08-14-25-21';	% (11) Symmetrische Anordnung
-	'2018-02-08-14-27-57';
-	'2018-02-08-14-53-24';	% (13) Default Antenna delay
-	'2018-02-08-14-56-49';
-	'2018-02-08-14-59-13'];
+	"2018-02-08-12-30-43";	% (1) Erste Beacon Position
+	"2018-02-08-12-33-53";
+	"2018-02-08-12-37-13";
+	"2018-02-08-13-09-17";	% (4) Zweite Beacon Position:
+	"2018-02-08-13-14-00";
+	"2018-02-08-13-11-41";
+	"2018-02-08-14-05-19";	% (7) NLOS Aufnahmen
+	"2018-02-08-14-08-02";
+	"2018-02-08-14-10-05";
+	"2018-02-08-14-11-11";
+	"2018-02-08-14-25-21";	% (11) Symmetrische Anordnung
+	"2018-02-08-14-27-57";
+	"2018-02-08-14-53-24";	% (13) Default Antenna delay
+	"2018-02-08-14-56-49";
+	"2018-02-08-14-59-13";
+	"2017-12-18-11-53-54";	% (16) Old Data
+	"2017-12-18-11-50-57";
+	"2017-11-17-13-31-05";
+	"2017-11-17-13-33-13";
+	"2018-02-08-12-33-53_virtual";	% (20)
+	"2018-02-08-12-33-53_virtual2";
+];
 file_name_source = file_name_sources(file_name_index, :);
 file_name_pt = strcat('./data/', file_name_source, '_pt.csv');
 file_name_beacon = strcat('./data/', file_name_source, '_beacon.csv');
+file_name_orb = strcat('./data/', file_name_source, '_orb.csv');
 file_name_map = strcat('./data/', file_name_source, '.pgm');
 
 % Daten einlesen
 data_pt = dlmread(file_name_pt, ';', 1, 0);
-data_beacon = dlmread(file_name_beacon, ';', 1, 0);
+try
+	data_beacon = dlmread(file_name_beacon, ';', 1, 0);
+catch ex
+	data_beacon = [];
+end
+try
+	data_orb = dlmread(file_name_orb, ';', 1, 0);
+catch ex
+	data_orb = [];
+end
 
 if file_name_index >= 1 && file_name_index <= 3
 	data_gt = [177 12.22 11.12; 178 12.22 11.44; 179 15.24 12.00; 180 14.20 10.12];
@@ -37,20 +54,91 @@ elseif file_name_index >= 4 && file_name_index <= 10
 	data_gt = [177 12.22 11.12; 178 10.24 12.00; 179 15.24 12.00; 180 14.20 10.12];
 elseif file_name_index >= 11 && file_name_index <= 12
 	data_gt = [177 10.24 12.00; 178 14.20 12.00; 179 14.20 10.12; 180 10.24 10.12];
+elseif file_name_index >= 16 && file_name_index <= 19
+	data_gt = [177 10.42 11.28; 178 14.36 11.20; 179 14.36 9.34; 180 10.38 9.42];
+elseif file_name_index >= 20 && file_name_index <= 21
+	data_gt = [1 12.22 11.12; 2 12.22 11.44; 3 14.24 10.12; 4 15.28 12.12];
+	%data_gt = [1 11.24 10.24; 2 14.24 10.24; 3 14.24 12.24; 4 11.24 12.24];
 else
 	data_gt = [177 0.0 0.0; 178 0.0 0.0; 179 0.0 0.0; 180 0.0 0.0];
 end
 
 % Bild des OccupanyGrid laden, normalisieren und invertieren.
-data_map = imread(file_name_map);
+data_map = imread(char(file_name_map));
 data_map = 1 - (data_map / 255);
 occupancy_grid = robotics.OccupancyGrid(data_map, 1 / map.resolution);
 
 %
 %viz_beacon_pt_range_time(data_pt, data_beacon)
-viz_beacon_pt_error(data_pt, data_beacon, data_gt, occupancy_grid);
+if size(data_orb, 1) == 0
+	viz_beacon_pt_error(data_pt, data_beacon, data_gt, occupancy_grid);
+else
+	viz_beacon_pt_error2(data_pt, data_orb, data_gt, occupancy_grid);
+end
 
 
+
+function viz_beacon_pt_error2(pt, orb, gt, occupancy_grid)
+	
+	%
+	subplot_m = 3;
+	subplot_n = 2;
+	subplot_count = (subplot_m * subplot_n);
+
+	% Daten korrigieren
+	pt = pt + [-pt(1, cid.time) 0 0 map.center(1) map.center(2) 0 0 0 0 0];
+	orb = orb + [-orb(1, cid.time) 0 0 0 0];
+	gt = gt + [0 0 0];
+
+	% Trajektorie interpolieren
+	interp_trajektorie = interp1(pt(:, cid.time), pt(:, [cid.x cid.y]), orb(:, cid.time));
+	
+	%
+	uniq_bids = sortrows(unique(orb(:, cid.b_id)));
+	
+	%
+	for b = 1:size(uniq_bids, 1)
+		%
+		bid = uniq_bids(b);
+		
+		%
+		selector = orb(:, cid.b_id) == bid;
+		data_beacon_bid = orb(selector, :);
+		interp_trajektorie_bid = interp_trajektorie(selector, :);
+		data_gt_bid = ones(size(data_beacon_bid, 1), 2) .* gt(b, [2 3]);
+		
+		range_gt = sqrt((interp_trajektorie_bid(:, 1) - data_gt_bid(:, 1)) .^ 2 + (interp_trajektorie_bid(:, 2) - data_gt_bid(:, 2)) .^ 2);
+		range = [data_beacon_bid(:, [cid.time cid.b_range]) range_gt];
+		
+		subplot(subplot_m, subplot_n, b);
+		plot(range(:, 1), range(:, 3) - range(:, 2));
+		grid on; grid minor;
+		xlabel('time [s]'); ylabel('distance error [m]');
+		title(['Beacon: ' num2str(bid)]);
+		ylim([-1.5 1.5]);
+		
+	end
+	
+	subplot(subplot_m, subplot_n, 5);
+	show(occupancy_grid);
+	hold on; grid on; grid minor;
+	plot(pt(:, cid.x), pt(:, cid.y));
+	plot(gt(:, 2), gt(:, 3), '+');
+	%axis equal;
+	xlim([10 16]);
+	ylim([9 13]);
+	title('');
+	xlabel(''); ylabel('');
+	
+	%
+	times = 0:20:max(pt(:, cid.time));
+	robot_poses = interp1(pt(:, cid.time), pt(:, [cid.x cid.y]), times);
+	robot_text = strcat('T', num2str(times'));
+	plot(robot_poses(:, 1), robot_poses(:, 2), 'rp', 'MarkerSize', 12);
+	text(robot_poses(:, 1), robot_poses(:, 2)+0.2, robot_text);
+	
+	
+end
 
 
 function viz_beacon_pt_error(pt, beacon, gt, occupancy_grid)
@@ -104,6 +192,13 @@ function viz_beacon_pt_error(pt, beacon, gt, occupancy_grid)
 	ylim([9 13]);
 	title('');
 	xlabel(''); ylabel('');
+	
+	%
+	times = 0:20:max(pt(:, cid.time));
+	robot_poses = interp1(pt(:, cid.time), pt(:, [cid.x cid.y]), times);
+	robot_text = strcat('T', num2str(times'));
+	plot(robot_poses(:, 1), robot_poses(:, 2), 'rp', 'MarkerSize', 12);
+	text(robot_poses(:, 1), robot_poses(:, 2)+0.2, robot_text);
 	
 end
 

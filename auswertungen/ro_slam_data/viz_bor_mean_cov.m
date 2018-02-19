@@ -7,7 +7,7 @@ format long; format compact;
 	
 % Dateipfad
 file_name_source = 'Record_2018-02-08-12-33-53_filtered';
-file_name_number = '_1';
+file_name_number = '_5';
 file_name_source_number = strcat(file_name_source, file_name_number);
 file_name_pt = strcat(file_name_source, file_name_number, '_pt.csv');
 file_name_bor = strcat(file_name_source, file_name_number, '_bor.csv');
@@ -50,7 +50,7 @@ map_image = 1 - (map_image / 255);
 occupancy_grid = robotics.OccupancyGrid(map_image, 1 / map.resolution);
 show(occupancy_grid);
 hold on; grid on; grid minor;
-title('');
+title('Virtuelle UWB Module');
 xlabel('X [m]');
 ylabel('Y [m]');
 
@@ -148,10 +148,10 @@ ylim([8 13]);
 % ax.YAxis.MinorTick = 'on';
 % ax.YAxis.MinorTickValues = 9:0.1:13;
 
-% file_name = strcat(file_name_source, file_name_number);
-% [file_path, file_name, file_ext] = fileparts(file_name);
-% file_saveas = fullfile(file_path, [file_name '_beacon_error']);
-% saveas(gcf, file_saveas, 'png');
+file_name = strcat(file_name_source, file_name_number);
+[file_path, file_name, file_ext] = fileparts(file_name);
+file_saveas = fullfile(file_path, [file_name '_beacon_error']);
+saveas(gcf, file_saveas, 'png');
 
 
 

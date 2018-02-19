@@ -6,7 +6,7 @@ close all; clear; clc;
 format long; format compact;
 
 % Konstanten
-bid = 177;
+bid = 180;
 map_resolution = 0.02;
 map_size = [1024 1024];
 map_center = (map_size * map_resolution) / 2;

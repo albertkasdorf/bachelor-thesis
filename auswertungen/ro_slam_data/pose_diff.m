@@ -17,7 +17,7 @@ map_center = (map_size * map_resolution) / 2;
 %
 %file_name_source = 'Record_2017-12-18-11-53-54';
 file_name_source = 'Record_2018-02-08-12-33-53_filtered';
-file_name_number = '_9';
+file_name_number = '_3';
 file_name_pt = strcat(file_name_source, file_name_number, '_pt.csv');
 file_name_pe = strcat(file_name_source, file_name_number, '_pe.csv');
 file_name_map = strcat(file_name_source, '.pgm');
@@ -56,7 +56,7 @@ function viz_trajectory(pose_trajectory, pose_estimation, occupancy_grid)
 	%
 	show(occupancy_grid);
 	hold on; grid on; grid minor;
-	title('');
+	title('Reale UWB Module');
 	xlabel('X [m]');
 	ylabel('Y [m]');
 	

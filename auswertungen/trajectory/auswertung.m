@@ -72,22 +72,22 @@ for sp = 1:4
 	
 	% Trajektorien anzeigen
 	if sp == 1
-		%title('Trajektorie im Map-Koordindatenystem');
+		title('Ground Truth Trajektorie');
 		plot(map(:, cid_x), map(:, cid_y), 'k', 'DisplayName', 'Ground Truth');
 	elseif sp == 2
-		%title('Trajektorie der Robotino Odometrie');
+		title('Inkrementalgeber Trajektorie');
 		plot(robo(:, cid_x), robo(:, cid_y), 'r', 'DisplayName', 'Inkrementalgeber');
 	elseif sp == 3
-		%title('Trajektorie der LSM Odometrie');
+		title('Laser Scan Matcher Trajektorie');
 		plot(lsm(:, cid_x), lsm(:,cid_y), 'm', 'DisplayName', 'LSM');
 	elseif sp == 4
-		%title('Trajektorie der RF2O Odometrie');
+		title('Range Flow-based 2D Odometry Trajektorie');
 		plot(rf2o(:, cid_x), rf2o(:, cid_y), 'b', 'DisplayName', 'RF2O');
 	else
 	end
 	
 	% Format
-	title('');
+	%title('');
 	xlabel('X [m]');
 	ylabel('Y [m]');
 	
