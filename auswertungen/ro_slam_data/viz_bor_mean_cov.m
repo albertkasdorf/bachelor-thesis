@@ -6,28 +6,32 @@ format long; format compact;
 % Konstanten
 	
 % Dateipfad
-file_name_source = 'Record_2018-02-08-12-33-53_filtered';
-file_name_number = '_5';
+file_name_source = "Record_2018-02-08-12-33-53_filtered";
+file_name_number = "_21";
 file_name_source_number = strcat(file_name_source, file_name_number);
-file_name_pt = strcat(file_name_source, file_name_number, '_pt.csv');
-file_name_bor = strcat(file_name_source, file_name_number, '_bor.csv');
-file_name_map = strcat(file_name_source, '.pgm');
+file_name_pt = strcat(file_name_source, file_name_number, "_pt.csv");
+file_name_bor = strcat(file_name_source, file_name_number, "_bor.csv");
+file_name_map = strcat(file_name_source, ".pgm");
 
 % Ground Truth Beacon
 if ...
-	(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_1') | ...
-	(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_2') | ...
-	(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_3') | ...
-	(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_7')
-	
+	(file_name_source_number == "Record_2018-02-08-12-33-53_filtered_1") || ...
+	(file_name_source_number == "Record_2018-02-08-12-33-53_filtered_2") || ...
+	(file_name_source_number == "Record_2018-02-08-12-33-53_filtered_3") || ...
+	(file_name_source_number == "Record_2018-02-08-12-33-53_filtered_7")
 	data_bgt = [177 12.22 11.12; 178 12.22 11.44; 179 15.24 12.00; 180 14.20 10.12];
 	
 elseif ...
-		(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_4') | ...
-		(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_5') | ...
+		(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_4') || ...
+		(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_5') || ...
 		(file_name_source_number == 'Record_2018-02-08-12-33-53_filtered_6')
-	
 	data_bgt = [1 1 0; 2 4 0; 3 4 2; 4 1 2] + [0 map.center(1) map.center(2)];
+	
+elseif ...
+		(file_name_source_number == "Record_2018-02-08-12-33-53_filtered_20") || ...
+		(file_name_source_number == "Record_2018-02-08-12-33-53_filtered_21") || ...
+		(file_name_source_number == "Record_2018-02-08-12-33-53_filtered_22")
+	data_bgt = [1 12.22 11.12; 2 12.22 11.44; 3 15.24 12.00; 4 14.20 10.12];
 end
 
 % Daten einlesen
@@ -43,7 +47,7 @@ unique_times = unique(data_bor(:, cid.time));
 unique_bids = unique(data_bor(:, cid.bor_bid));
 
 % Bild des OccupanyGrid laden, normalisieren und invertieren.
-map_image = imread(file_name_map);
+map_image = imread(char(file_name_map));
 map_image = 1 - (map_image / 255);
 
 % Karte anzeigen
@@ -150,7 +154,7 @@ ylim([8 13]);
 
 file_name = strcat(file_name_source, file_name_number);
 [file_path, file_name, file_ext] = fileparts(file_name);
-file_saveas = fullfile(file_path, [file_name '_beacon_error']);
+file_saveas = fullfile(char(file_path), char(strcat(file_name, "_beacon_error")));
 saveas(gcf, file_saveas, 'png');
 
 

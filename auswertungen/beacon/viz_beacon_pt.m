@@ -28,6 +28,7 @@ file_name_sources = [
 	"2017-11-17-13-33-13";
 	"2018-02-08-12-33-53_virtual";	% (20)
 	"2018-02-08-12-33-53_virtual2";
+	"2018-02-08-12-33-53_virtual3";
 ];
 file_name_source = file_name_sources(file_name_index, :);
 file_name_pt = strcat('./data/', file_name_source, '_pt.csv');
@@ -54,9 +55,11 @@ elseif file_name_index >= 4 && file_name_index <= 10
 	data_gt = [177 12.22 11.12; 178 10.24 12.00; 179 15.24 12.00; 180 14.20 10.12];
 elseif file_name_index >= 11 && file_name_index <= 12
 	data_gt = [177 10.24 12.00; 178 14.20 12.00; 179 14.20 10.12; 180 10.24 10.12];
+%elseif file_name_index >= 13 && file_name_index <= 15
+%	data_gt = [177 10.42 11.28; 178 14.36 11.20; 179 14.36 9.34; 180 10.38 9.42];
 elseif file_name_index >= 16 && file_name_index <= 19
 	data_gt = [177 10.42 11.28; 178 14.36 11.20; 179 14.36 9.34; 180 10.38 9.42];
-elseif file_name_index >= 20 && file_name_index <= 21
+elseif file_name_index >= 20 && file_name_index <= 22
 	data_gt = [1 12.22 11.12; 2 12.22 11.44; 3 14.24 10.12; 4 15.28 12.12];
 	%data_gt = [1 11.24 10.24; 2 14.24 10.24; 3 14.24 12.24; 4 11.24 12.24];
 else
@@ -76,14 +79,20 @@ else
 	viz_beacon_pt_error2(data_pt, data_orb, data_gt, occupancy_grid);
 end
 
+file_name = file_name_source;
+[file_path, file_name, file_ext] = fileparts(file_name);
+file_saveas = fullfile(char(file_path), char(strcat(file_name, "_beacon_range_error")));
+saveas(gcf, file_saveas, 'png');
+
 
 
 function viz_beacon_pt_error2(pt, orb, gt, occupancy_grid)
 	
+	figure('Position', [50 50 1024 800], 'DefaultAxesFontSize', 12);
+
 	%
 	subplot_m = 3;
 	subplot_n = 2;
-	subplot_count = (subplot_m * subplot_n);
 
 	% Daten korrigieren
 	pt = pt + [-pt(1, cid.time) 0 0 map.center(1) map.center(2) 0 0 0 0 0];
@@ -97,8 +106,9 @@ function viz_beacon_pt_error2(pt, orb, gt, occupancy_grid)
 	uniq_bids = sortrows(unique(orb(:, cid.b_id)));
 	
 	%
-	for b = 1:size(uniq_bids, 1)
+%	for b = 1:size(uniq_bids, 1)
 		%
+		b = 4;
 		bid = uniq_bids(b);
 		
 		%
@@ -110,43 +120,49 @@ function viz_beacon_pt_error2(pt, orb, gt, occupancy_grid)
 		range_gt = sqrt((interp_trajektorie_bid(:, 1) - data_gt_bid(:, 1)) .^ 2 + (interp_trajektorie_bid(:, 2) - data_gt_bid(:, 2)) .^ 2);
 		range = [data_beacon_bid(:, [cid.time cid.b_range]) range_gt];
 		
-		subplot(subplot_m, subplot_n, b);
+		%subplot(subplot_m, subplot_n, b);
+		subplot(2,1,1);
 		plot(range(:, 1), range(:, 3) - range(:, 2));
 		grid on; grid minor;
-		xlabel('time [s]'); ylabel('distance error [m]');
-		title(['Beacon: ' num2str(bid)]);
-		ylim([-1.5 1.5]);
+		xlabel('Zeit [s]'); ylabel('Entfernungsfehler [m]');
+		title(['UWB Modul: ' num2str(bid)]);
+		ylim([-1 1]);
 		
-	end
+%	end
 	
-	subplot(subplot_m, subplot_n, 5);
+%	subplot(subplot_m, subplot_n, 5);
+	subplot(2,1,2);
 	show(occupancy_grid);
 	hold on; grid on; grid minor;
 	plot(pt(:, cid.x), pt(:, cid.y));
-	plot(gt(:, 2), gt(:, 3), '+');
-	%axis equal;
-	xlim([10 16]);
-	ylim([9 13]);
+	plot(gt(:, 2), gt(:, 3), 'k+', 'MarkerSize', 12, 'LineWidth', 1.5);
+	xlim([9 16]);
+	ylim([8 12]);
 	title('');
-	xlabel(''); ylabel('');
+	xlabel('X [m]'); ylabel('Y [m]');
 	
 	%
 	times = 0:20:max(pt(:, cid.time));
 	robot_poses = interp1(pt(:, cid.time), pt(:, [cid.x cid.y]), times);
-	robot_text = strcat('T', num2str(times'));
-	plot(robot_poses(:, 1), robot_poses(:, 2), 'rp', 'MarkerSize', 12);
+	robot_text = strcat('T=', num2str(times'), 's');
+	plot(robot_poses(:, 1), robot_poses(:, 2), 'bp', 'MarkerSize', 12);
 	text(robot_poses(:, 1), robot_poses(:, 2)+0.2, robot_text);
-	
+	legend(...
+		'Ground Truth Trajektorie', ...
+		'Ground Truth UWB-Modul Position', ...
+		'Position der Roboterplattform', ...
+		'Location', 'Southeast');
 	
 end
 
 
 function viz_beacon_pt_error(pt, beacon, gt, occupancy_grid)
 	
+	figure('Position', [50 50 1024 800], 'DefaultAxesFontSize', 12);
+
 	%
 	subplot_m = 3;
 	subplot_n = 2;
-	subplot_count = (subplot_m * subplot_n);
 
 	% Daten korrigieren
 	pt = pt + [-pt(1, cid.time) 0 0 map.center(1) map.center(2) 0 0 0 0 0];
@@ -160,8 +176,9 @@ function viz_beacon_pt_error(pt, beacon, gt, occupancy_grid)
 	uniq_bids = sortrows(unique(beacon(:, cid.beacon_anchor_address)));
 	
 	%
-	for b = 1:size(uniq_bids, 1)
+%	for b = 1:size(uniq_bids, 1)
 		%
+		b = 4;
 		bid = uniq_bids(b);
 		
 		%
@@ -173,32 +190,39 @@ function viz_beacon_pt_error(pt, beacon, gt, occupancy_grid)
 		range_gt = sqrt((interp_trajektorie_bid(:, 1) - data_gt_bid(:, 1)) .^ 2 + (interp_trajektorie_bid(:, 2) - data_gt_bid(:, 2)) .^ 2);
 		range = [data_beacon_bid(:, [cid.time cid.beacon_range]) range_gt];
 		
-		subplot(subplot_m, subplot_n, b);
+%		subplot(subplot_m, subplot_n, b);
+		subplot(2, 1, 1);
 		plot(range(:, 1), range(:, 3) - range(:, 2));
 		grid on; grid minor;
-		xlabel('time [s]'); ylabel('distance error [m]');
-		title(['Beacon: ' num2str(bid)]);
-		ylim([-1.5 1.5]);
+		xlabel('Zeit [s]'); ylabel('Entfernungsfehler [m]');
+		title(['UWB Modul: ' num2str(bid)]);
+		ylim([-1 1]);
 		
-	end
+%	end
 	
-	subplot(subplot_m, subplot_n, 5);
+%	subplot(subplot_m, subplot_n, 5);
+	subplot(2, 1, 2);
 	show(occupancy_grid);
 	hold on; grid on; grid minor;
 	plot(pt(:, cid.x), pt(:, cid.y));
-	plot(gt(:, 2), gt(:, 3), '+');
+	plot(gt(:, 2), gt(:, 3), 'k+', 'MarkerSize', 12, 'LineWidth', 1.5);
 	%axis equal;
-	xlim([10 16]);
-	ylim([9 13]);
+	xlim([9 16]);
+	ylim([9 12.5]);
 	title('');
-	xlabel(''); ylabel('');
+	xlabel('X [m]'); ylabel('Y [m]');
 	
 	%
 	times = 0:20:max(pt(:, cid.time));
 	robot_poses = interp1(pt(:, cid.time), pt(:, [cid.x cid.y]), times);
-	robot_text = strcat('T', num2str(times'));
-	plot(robot_poses(:, 1), robot_poses(:, 2), 'rp', 'MarkerSize', 12);
+	robot_text = strcat('T=', num2str(times'), 's');
+	plot(robot_poses(:, 1), robot_poses(:, 2), 'bp', 'MarkerSize', 12);
 	text(robot_poses(:, 1), robot_poses(:, 2)+0.2, robot_text);
+	legend(...
+		'Ground Truth Trajektorie', ...
+		'Ground Truth UWB-Modul Position', ...
+		'Position der Roboterplattform', ...
+		'Location', 'Southeast');
 	
 end
 

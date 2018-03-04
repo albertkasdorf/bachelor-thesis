@@ -17,7 +17,7 @@ map_center = (map_size * map_resolution) / 2;
 %
 %file_name_source = 'Record_2017-12-18-11-53-54';
 file_name_source = 'Record_2018-02-08-12-33-53_filtered';
-file_name_number = '_3';
+file_name_number = '_21';
 file_name_pt = strcat(file_name_source, file_name_number, '_pt.csv');
 file_name_pe = strcat(file_name_source, file_name_number, '_pe.csv');
 file_name_map = strcat(file_name_source, '.pgm');
@@ -45,10 +45,10 @@ occupancy_grid = robotics.OccupancyGrid(data_map, 1 / map_resolution);
 viz_trajectory(data_pt, data_pe, occupancy_grid);
 
 
-% file_name = strcat(file_name_source, file_name_number);
-% [file_path, file_name, file_ext] = fileparts(file_name);
-% file_saveas = fullfile(file_path, [file_name '_trajectory_pf']);
-% saveas(gcf, file_saveas, 'png');
+file_name = strcat(file_name_source, file_name_number);
+[file_path, file_name, file_ext] = fileparts(file_name);
+file_saveas = fullfile(file_path, [file_name '_trajectory_pf']);
+saveas(gcf, file_saveas, 'png');
 
 
 function viz_trajectory(pose_trajectory, pose_estimation, occupancy_grid)
@@ -56,7 +56,7 @@ function viz_trajectory(pose_trajectory, pose_estimation, occupancy_grid)
 	%
 	show(occupancy_grid);
 	hold on; grid on; grid minor;
-	title('Reale UWB Module');
+	title('Virtuelle UWB Module');
 	xlabel('X [m]');
 	ylabel('Y [m]');
 	
@@ -70,7 +70,7 @@ function viz_trajectory(pose_trajectory, pose_estimation, occupancy_grid)
 	%axis equal;
 	xlim([9 16]);
 	ylim([8 13]);
-	legend('Location', 'northeast');
+	legend('Location', 'southeast');
 end
 
 function viz_some(pose_trajectory, pose_estimation, occupancy_grid)
